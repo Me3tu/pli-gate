@@ -1,0 +1,333 @@
+{
+ "r2a_transport": {
+  "n_annihilations": 9402312,
+  "tau_tail_ns": 2.00033,
+  "tau_err_ns": 0.00155,
+  "n_tail": 1664796,
+  "core_material": "adipose_moskal2023",
+  "migration_fraction": 0.10468,
+  "transition_matrix": {
+   "LSO": {
+    "LSO": 0.99823,
+    "PTFE": 0.00152,
+    "worldDefaultAir": 0.00025
+   },
+   "adipose_moskal2023": {
+    "adipose_moskal2023": 0.89532,
+    "brain_tumor_moskal2024": 0.09714,
+    "worldDefaultAir": 0.00362,
+    "LSO": 0.00381,
+    "PTFE": 0.00011,
+    "Air": 1e-05
+   },
+   "brain_tumor_moskal2024": {
+    "brain_tumor_moskal2024": 0.99747,
+    "adipose_moskal2023": 0.00253
+   },
+   "worldDefaultAir": {
+    "worldDefaultAir": 0.85714,
+    "LSO": 0.14286
+   }
+  },
+  "channel_counts": {
+   "oPs2g": 2705400,
+   "direct2g": 5744619,
+   "oPs3g": 38505,
+   "pPs2g": 913788
+  }
+ },
+ "r2a_source": {
+  "n_annihilations": 9402221,
+  "tau_tail_ns": 1.99901,
+  "tau_err_ns": 0.00165,
+  "n_tail": 1660707,
+  "core_material": "adipose_moskal2023",
+  "migration_fraction": 0.10452,
+  "transition_matrix": {
+   "LSO": {
+    "LSO": 0.99797,
+    "PTFE": 0.00114,
+    "worldDefaultAir": 0.00089
+   },
+   "adipose_moskal2023": {
+    "adipose_moskal2023": 0.89548,
+    "brain_tumor_moskal2024": 0.097,
+    "worldDefaultAir": 0.0036,
+    "LSO": 0.00382,
+    "PTFE": 0.00011,
+    "Air": 1e-05
+   },
+   "brain_tumor_moskal2024": {
+    "brain_tumor_moskal2024": 0.99505,
+    "worldDefaultAir": 0.00248,
+    "adipose_moskal2023": 0.00248
+   },
+   "worldDefaultAir": {
+    "worldDefaultAir": 1.0
+   }
+  },
+  "channel_counts": {
+   "oPs2g": 2698346,
+   "direct2g": 5752597,
+   "oPs3g": 38588,
+   "pPs2g": 912690
+  }
+ },
+ "r2b_A_transport": {
+  "n_annihilations": 9402918,
+  "tau_tail_ns": 2.63144,
+  "tau_err_ns": 0.002,
+  "n_tail": 1864290,
+  "core_material": "adipose_moskal2023",
+  "migration_fraction": 0.10473,
+  "transition_matrix": {
+   "LSO": {
+    "LSO": 0.99824,
+    "PTFE": 0.00163,
+    "worldDefaultAir": 0.00013
+   },
+   "PTFE": {
+    "LSO": 1.0
+   },
+   "adipose_moskal2023": {
+    "adipose_moskal2023": 0.89527,
+    "brain_tumor_moskal2024": 0.09722,
+    "worldDefaultAir": 0.0036,
+    "LSO": 0.00379,
+    "PTFE": 0.00011,
+    "Air": 1e-05
+   },
+   "brain_tumor_moskal2024": {
+    "brain_tumor_moskal2024": 0.9974,
+    "adipose_moskal2023": 0.0026
+   },
+   "worldDefaultAir": {
+    "worldDefaultAir": 1.0
+   }
+  },
+  "channel_counts": {
+   "oPs2g": 2693590,
+   "direct2g": 5744529,
+   "oPs3g": 50519,
+   "pPs2g": 914280
+  }
+ },
+ "r2b_A_source": {
+  "n_annihilations": 9402726,
+  "tau_tail_ns": 2.71595,
+  "tau_err_ns": 0.00198,
+  "n_tail": 1895086,
+  "core_material": "adipose_moskal2023",
+  "migration_fraction": 0.10455,
+  "transition_matrix": {
+   "LSO": {
+    "LSO": 0.99811,
+    "worldDefaultAir": 0.0005,
+    "PTFE": 0.00138
+   },
+   "PTFE": {
+    "LSO": 1.0
+   },
+   "adipose_moskal2023": {
+    "adipose_moskal2023": 0.89545,
+    "brain_tumor_moskal2024": 0.09702,
+    "worldDefaultAir": 0.0036,
+    "LSO": 0.00382,
+    "PTFE": 0.0001,
+    "Air": 1e-05
+   },
+   "brain_tumor_moskal2024": {
+    "brain_tumor_moskal2024": 0.99494,
+    "adipose_moskal2023": 0.00506
+   },
+   "worldDefaultAir": {
+    "worldDefaultAir": 1.0
+   }
+  },
+  "channel_counts": {
+   "oPs2g": 2684907,
+   "direct2g": 5752586,
+   "oPs3g": 52456,
+   "pPs2g": 912777
+  }
+ },
+ "r2b_A_fixed": {
+  "n_annihilations": 9402312,
+  "tau_tail_ns": 2.00033,
+  "tau_err_ns": 0.0015,
+  "n_tail": 1664796,
+  "core_material": "adipose_moskal2023",
+  "migration_fraction": 0.10468,
+  "transition_matrix": {
+   "LSO": {
+    "LSO": 0.99823,
+    "PTFE": 0.00152,
+    "worldDefaultAir": 0.00025
+   },
+   "adipose_moskal2023": {
+    "adipose_moskal2023": 0.89532,
+    "brain_tumor_moskal2024": 0.09714,
+    "worldDefaultAir": 0.00362,
+    "LSO": 0.00381,
+    "PTFE": 0.00011,
+    "Air": 1e-05
+   },
+   "brain_tumor_moskal2024": {
+    "brain_tumor_moskal2024": 0.99747,
+    "adipose_moskal2023": 0.00253
+   },
+   "worldDefaultAir": {
+    "worldDefaultAir": 0.85714,
+    "LSO": 0.14286
+   }
+  },
+  "channel_counts": {
+   "oPs2g": 2705400,
+   "direct2g": 5744619,
+   "oPs3g": 38505,
+   "pPs2g": 913788
+  }
+ },
+ "r2b_B_transport": {
+  "n_annihilations": 9401656,
+  "tau_tail_ns": 2.47287,
+  "tau_err_ns": 0.00231,
+  "n_tail": 1179739,
+  "core_material": "adipose_avachat2024",
+  "migration_fraction": 0.10446,
+  "transition_matrix": {
+   "LSO": {
+    "LSO": 0.99841,
+    "PTFE": 0.00135,
+    "worldDefaultAir": 0.00025
+   },
+   "PTFE": {
+    "LSO": 1.0
+   },
+   "adipose_avachat2024": {
+    "adipose_avachat2024": 0.89554,
+    "water_shibuya2020_n2": 0.09691,
+    "worldDefaultAir": 0.00361,
+    "LSO": 0.00383,
+    "PTFE": 0.00011,
+    "Air": 1e-05
+   },
+   "water_shibuya2020_n2": {
+    "water_shibuya2020_n2": 0.99,
+    "worldDefaultAir": 0.0075,
+    "adipose_avachat2024": 0.0025
+   },
+   "worldDefaultAir": {
+    "worldDefaultAir": 1.0
+   }
+  },
+  "channel_counts": {
+   "oPs2g": 1741520,
+   "direct2g": 7039111,
+   "pPs2g": 590276,
+   "oPs3g": 30749
+  }
+ },
+ "r2b_B_source": {
+  "n_annihilations": 9401310,
+  "tau_tail_ns": 2.53646,
+  "tau_err_ns": 0.00249,
+  "n_tail": 1181530,
+  "core_material": "adipose_avachat2024",
+  "migration_fraction": 0.10446,
+  "transition_matrix": {
+   "LSO": {
+    "LSO": 0.9984,
+    "PTFE": 0.00111,
+    "worldDefaultAir": 0.00049
+   },
+   "PTFE": {
+    "LSO": 1.0
+   },
+   "adipose_avachat2024": {
+    "adipose_avachat2024": 0.89554,
+    "water_shibuya2020_n2": 0.0969,
+    "worldDefaultAir": 0.00361,
+    "LSO": 0.00384,
+    "PTFE": 0.00011,
+    "Air": 1e-05
+   },
+   "water_shibuya2020_n2": {
+    "water_shibuya2020_n2": 0.9975,
+    "worldDefaultAir": 0.0025
+   },
+   "worldDefaultAir": {
+    "worldDefaultAir": 1.0
+   }
+  },
+  "channel_counts": {
+   "oPs2g": 1719708,
+   "direct2g": 7067455,
+   "pPs2g": 582938,
+   "oPs3g": 31209
+  }
+ },
+ "r2b_B_fixed": {
+  "n_annihilations": 9401921,
+  "tau_tail_ns": 1.99811,
+  "tau_err_ns": 0.00184,
+  "n_tail": 1075027,
+  "core_material": "adipose_avachat2024",
+  "migration_fraction": 0.10451,
+  "transition_matrix": {
+   "LSO": {
+    "LSO": 0.99854,
+    "PTFE": 0.00134,
+    "worldDefaultAir": 0.00012
+   },
+   "PTFE": {
+    "LSO": 1.0
+   },
+   "adipose_avachat2024": {
+    "adipose_avachat2024": 0.89549,
+    "water_shibuya2020_n2": 0.09695,
+    "worldDefaultAir": 0.00361,
+    "LSO": 0.00384,
+    "PTFE": 0.00011,
+    "Air": 1e-05
+   },
+   "water_shibuya2020_n2": {
+    "water_shibuya2020_n2": 0.99022,
+    "worldDefaultAir": 0.00733,
+    "adipose_avachat2024": 0.00244
+   },
+   "worldDefaultAir": {
+    "worldDefaultAir": 1.0
+   }
+  },
+  "channel_counts": {
+   "oPs2g": 1747032,
+   "direct2g": 7040019,
+   "pPs2g": 589848,
+   "oPs3g": 25022
+  }
+ },
+ "_differences": {
+  "R2a null (equal tau)": {
+   "transport": 2.00033,
+   "source": 1.99901,
+   "diff_ns": 0.00132,
+   "diff_err_ns": 0.00226,
+   "diff_pct": 0.066
+  },
+  "R2b pair A": {
+   "transport": 2.63144,
+   "source": 2.71595,
+   "diff_ns": -0.08451,
+   "diff_err_ns": 0.00281,
+   "diff_pct": -3.1116
+  },
+  "R2b pair B": {
+   "transport": 2.47287,
+   "source": 2.53646,
+   "diff_ns": -0.06359,
+   "diff_err_ns": 0.0034,
+   "diff_pct": -2.507
+  }
+ }
+}

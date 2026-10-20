@@ -1,0 +1,77 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
+# Phase 3s-2 — Brain-tumor Poisson sources (auto-gen)
+/gate/source/addSource sc44_bg gps
+/gate/source/sc44_bg/gps/particle ion
+/gate/source/sc44_bg/gps/ion 21 44 0 0
+/gate/source/sc44_bg/gps/ene/type Mono
+/gate/source/sc44_bg/gps/ene/mono 0 keV
+/gate/source/sc44_bg/gps/ang/type iso
+/gate/source/sc44_bg/gps/pos/type Volume
+/gate/source/sc44_bg/gps/pos/shape Cylinder
+/gate/source/sc44_bg/gps/pos/radius 100.0 mm
+/gate/source/sc44_bg/gps/pos/halfz 90.0 mm
+/gate/source/sc44_bg/gps/pos/centre 0 0 0 mm
+/gate/source/sc44_bg/setActivity 1000000 Bq
+
+/gate/source/addSource sc44_t_r04 gps
+/gate/source/sc44_t_r04/gps/particle ion
+/gate/source/sc44_t_r04/gps/ion 21 44 0 0
+/gate/source/sc44_t_r04/gps/ene/type Mono
+/gate/source/sc44_t_r04/gps/ene/mono 0 keV
+/gate/source/sc44_t_r04/gps/ang/type iso
+/gate/source/sc44_t_r04/gps/pos/type Volume
+/gate/source/sc44_t_r04/gps/pos/shape Sphere
+/gate/source/sc44_t_r04/gps/pos/radius 4.0 mm
+/gate/source/sc44_t_r04/gps/pos/centre -66.0 0 0 mm
+/gate/source/sc44_t_r04/setActivity 94.8 Bq
+
+/gate/source/addSource sc44_t_r08 gps
+/gate/source/sc44_t_r08/gps/particle ion
+/gate/source/sc44_t_r08/gps/ion 21 44 0 0
+/gate/source/sc44_t_r08/gps/ene/type Mono
+/gate/source/sc44_t_r08/gps/ene/mono 0 keV
+/gate/source/sc44_t_r08/gps/ang/type iso
+/gate/source/sc44_t_r08/gps/pos/type Volume
+/gate/source/sc44_t_r08/gps/pos/shape Sphere
+/gate/source/sc44_t_r08/gps/pos/radius 8.0 mm
+/gate/source/sc44_t_r08/gps/pos/centre -49.0 0 0 mm
+/gate/source/sc44_t_r08/setActivity 758.5 Bq
+
+/gate/source/addSource sc44_t_r12 gps
+/gate/source/sc44_t_r12/gps/particle ion
+/gate/source/sc44_t_r12/gps/ion 21 44 0 0
+/gate/source/sc44_t_r12/gps/ene/type Mono
+/gate/source/sc44_t_r12/gps/ene/mono 0 keV
+/gate/source/sc44_t_r12/gps/ang/type iso
+/gate/source/sc44_t_r12/gps/pos/type Volume
+/gate/source/sc44_t_r12/gps/pos/shape Sphere
+/gate/source/sc44_t_r12/gps/pos/radius 12.0 mm
+/gate/source/sc44_t_r12/gps/pos/centre -24.0 0 0 mm
+/gate/source/sc44_t_r12/setActivity 2560.0 Bq
+
+/gate/source/addSource sc44_t_r16 gps
+/gate/source/sc44_t_r16/gps/particle ion
+/gate/source/sc44_t_r16/gps/ion 21 44 0 0
+/gate/source/sc44_t_r16/gps/ene/type Mono
+/gate/source/sc44_t_r16/gps/ene/mono 0 keV
+/gate/source/sc44_t_r16/gps/ang/type iso
+/gate/source/sc44_t_r16/gps/pos/type Volume
+/gate/source/sc44_t_r16/gps/pos/shape Sphere
+/gate/source/sc44_t_r16/gps/pos/radius 16.0 mm
+/gate/source/sc44_t_r16/gps/pos/centre 9.0 0 0 mm
+/gate/source/sc44_t_r16/setActivity 6068.1 Bq
+
+/gate/source/addSource sc44_t_r20 gps
+/gate/source/sc44_t_r20/gps/particle ion
+/gate/source/sc44_t_r20/gps/ion 21 44 0 0
+/gate/source/sc44_t_r20/gps/ene/type Mono
+/gate/source/sc44_t_r20/gps/ene/mono 0 keV
+/gate/source/sc44_t_r20/gps/ang/type iso
+/gate/source/sc44_t_r20/gps/pos/type Volume
+/gate/source/sc44_t_r20/gps/pos/shape Sphere
+/gate/source/sc44_t_r20/gps/pos/radius 20.0 mm
+/gate/source/sc44_t_r20/gps/pos/centre 50.0 0 0 mm
+/gate/source/sc44_t_r20/setActivity 11851.9 Bq
+
+# Total source activity = 1021333 Bq (1.0213 MBq)

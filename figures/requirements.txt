@@ -1,0 +1,10 @@
+# Figure scripts of pli-gate v1.1.0 (see README.md).
+# Versions that produced the figure PDFs of the submitted paper (Python 3.11.15), installed as pip wheels.
+# The matplotlib wheel bundles FreeType 2.6.1. A matplotlib built against a newer system FreeType
+# (Linux distribution packages) places text slightly differently, see README.md.
+numpy==2.4.4
+scipy==1.17.1
+matplotlib==3.10.9
+# Also tested: Python 3.14.2 with numpy 2.3.5, scipy 1.17.0 and the matplotlib 3.10.8 wheel (pixel-identical renders,
+# README.md lists the exceptions).
+# Fig. 1 needs pdflatex with TikZ (standalone class). stix.sty is used if installed, else mathptmx (as in the paper).

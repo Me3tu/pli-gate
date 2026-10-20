@@ -1,0 +1,36 @@
+[
+  {
+    "disk": "quartz",
+    "tau_cfg_ns": 1.56,
+    "tau_steinberger_label": "1.56 (Takyu) / 1.60 (clinical-isotope cluster)",
+    "N_pairs": 5243122,
+    "N_in_disk": 3797069,
+    "escaped_fraction": 0.2757999909214396,
+    "oracle_all_src": 1.8377946615219116,
+    "oracle_all_src_sigma": 0.0019258826653854775,
+    "oracle_in_disk_src": 1.5612667798995972,
+    "oracle_in_disk_src_sigma": 0.0022129605197920834,
+    "oracle_in_disk_pann": 1.561302900314331,
+    "oracle_in_disk_pann_sigma": 0.0022129872643449596,
+    "N_tail_all": 910614,
+    "N_tail_in": 497756,
+    "bias_in_pann_vs_cfg_ps": 1.3029003143310014
+  },
+  {
+    "disk": "polycarbonate",
+    "tau_cfg_ns": 2.07,
+    "tau_steinberger_label": "2.07 (Takyu) / 1.927 (\u00b2\u00b2Na, laminate-caveated)",
+    "N_pairs": 5367532,
+    "N_in_disk": 3302410,
+    "escaped_fraction": 0.3847433047441543,
+    "oracle_all_src": 2.255258798599243,
+    "oracle_all_src_sigma": 0.0018352027092337193,
+    "oracle_in_disk_src": 2.0648670196533203,
+    "oracle_in_disk_src_sigma": 0.0026498058070283056,
+    "oracle_in_disk_pann": 2.064868927001953,
+    "oracle_in_disk_pann_sigma": 0.0026497798908716353,
+    "N_tail_all": 1510166,
+    "N_tail_in": 607247,
+    "bias_in_pann_vs_cfg_ps": -5.131072998046715
+  }
+]

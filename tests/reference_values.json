@@ -1,0 +1,36 @@
+{
+  "_what": "Committed reference values for the test suite. These are measurements from the validated production runs; the tests check that this build still reproduces them. Nothing here is fitted.",
+  "three_gamma": {
+    "tau_3gamma_ns": 142.05,
+    "_tau_3gamma_source": "Vallery, Zitzewitz & Gidley, Phys. Rev. Lett. 90, 203402 (2003)",
+    "production_P3g_given_oPs_percent": 1.5741,
+    "_note": "A 1.5741 % three-photon share implies a mean o-Ps tau_eff of 0.015741 * 142.05 = 2.236 ns across the simulated population."
+  },
+  "oxygen_quenching": {
+    "kappa_ns_mmHg": 2.5704e-05,
+    "tau_at_pO2_0_ns": 1.9215,
+    "tau_at_pO2_100_ns": 1.9121,
+    "_note": "Same free-volume radius, oxygen tension 0 vs 100 mmHg. Computed from the model constants, not measured: the whole physiological range moves the lifetime by 9.4 ps, which is far below what a delayed-coincidence measurement can resolve. kappa is the materials database version 8 value (plasma O2 solubility); through version 7 it was 2.45e-05, which gives 1.9125 ns and 9.0 ps. The test requires the analysis module, this file and materials/pli_materials.json to agree."
+  },
+  "null_transport_vs_source": {
+    "difference_ns": 0.00132,
+    "difference_percent": 0.07,
+    "tolerance_percent": 0.5,
+    "_note": "In a single-material phantom the lifetime taken from the annihilation material and from the emission material must agree; this is the null arm. Measured difference 0.07 %."
+  },
+  "boundary_case": {
+    "air_I3": 0.0,
+    "_note": "The atlas database declares air with I3 = 0, so no positronium forms there. Every declared tau_eff must be finite and positive."
+  },
+  "pedestal_law": {
+    "bias_tau1p8_phi0p1_percent": -11.77,
+    "tolerance_percent": 0.05,
+    "_note": "Over-subtracting a uniform pedestal equal to 10 % of the signal biases a 1.8 ns lifetime low by 11.77 %."
+  },
+  "fixed_seed_quickstart": {
+    "annihilations_total": 200703,
+    "above_censor": 31894,
+    "tau_oPs_ns": 1.9072,
+    "_note": "The quickstart macro with its seed fixed at 12345. Reproduced exactly by a build with the same Geant4 and compiler."
+  }
+}

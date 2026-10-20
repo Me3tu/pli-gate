@@ -1,0 +1,79 @@
+{
+ "doc": "Run-to-run factor of the eight-tube lifetimes (Methods), written for release v1.1.0.\n\nThe published number had no script on disk (inventory flag F2). This script recomputes it from the three\nindependent GATE seeds of 2026-08-12_seed_repeatability/seed_results.json (44Sc eight-tube phantom, seeds\n2000000, 3000000, 4000000; per tube the event-identity tail lifetime tau_hat and its tail count n_tail).\n\n  chi2    = sum over tubes k and seeds s of (tau_ks - mean_s tau_ks)^2 / sigma_ks^2,  sigma_ks = tau_ks / sqrt(n_ks)\n            (counting uncertainty of each run, deviation from the unweighted seed mean), dof = 8 x (3 - 1) = 16\n  factor  = sqrt(chi2 / dof)\n  95 %    = sqrt(chi2 / q) for q the 97.5 % and 2.5 % quantiles of chi2(dof)\n  spreads = per tube, seed standard deviation (ddof 1) over the seed mean, against the mean relative counting\n            uncertainty 1/sqrt(n); both averaged over the eight tubes, and the ratio of the two means.\nNote: the chi2 is 27.150. With the inverse-variance weighted seed mean instead of the plain mean it is 27.137, which\nprints as 27.1, so the printed 27.2 corresponds to the plain seed mean. The factor (1.30) and its interval\n(0.97 to 1.98) do not depend on that choice at the printed precision.\nWrites seed_factor.json next to this script.",
+ "seeds": [
+  "2000000",
+  "3000000",
+  "4000000"
+ ],
+ "tubes": [
+  "T1_water_shibuya2020_n2",
+  "T2_adipose_avachat2024",
+  "T3_adipose_moskal2023",
+  "T4_hepatic_avachat2024",
+  "T5_muscle_avachat2024",
+  "T6_brain_healthy_moskal2024",
+  "T7_brain_tumor_moskal2024",
+  "T8_myxoma_moskal2023"
+ ],
+ "chi2": 27.15031238691522,
+ "dof": 16,
+ "p_value": 0.039842391206666626,
+ "factor": 1.3026490410629417,
+ "factor_95": [
+  0.9701737137994393,
+  1.9825392858139033
+ ],
+ "per_tube": [
+  {
+   "tube": "T1_water_shibuya2020_n2",
+   "tau_mean": 1.9226107107239494,
+   "spread_pct": 0.8339124816130437,
+   "counting_pct": 0.605653056162356
+  },
+  {
+   "tube": "T2_adipose_avachat2024",
+   "tau_mean": 2.5321308430722786,
+   "spread_pct": 0.5902052229529863,
+   "counting_pct": 0.6759785699162768
+  },
+  {
+   "tube": "T3_adipose_moskal2023",
+   "tau_mean": 2.711063376990007,
+   "spread_pct": 0.4150262516336318,
+   "counting_pct": 0.5362519639924013
+  },
+  {
+   "tube": "T4_hepatic_avachat2024",
+   "tau_mean": 2.057674998625377,
+   "spread_pct": 0.8478406303244301,
+   "counting_pct": 0.8688456414283834
+  },
+  {
+   "tube": "T5_muscle_avachat2024",
+   "tau_mean": 2.0215372561006273,
+   "spread_pct": 1.9920892298461192,
+   "counting_pct": 0.8169321789847441
+  },
+  {
+   "tube": "T6_brain_healthy_moskal2024",
+   "tau_mean": 2.7207314733615777,
+   "spread_pct": 0.3628088164066261,
+   "counting_pct": 0.536453105706607
+  },
+  {
+   "tube": "T7_brain_tumor_moskal2024",
+   "tau_mean": 1.7733944256951275,
+   "spread_pct": 0.9505067779832499,
+   "counting_pct": 0.5900404448456311
+  },
+  {
+   "tube": "T8_myxoma_moskal2023",
+   "tau_mean": 1.9077687298145543,
+   "spread_pct": 0.42953376109344665,
+   "counting_pct": 0.737283841970021
+  }
+ ],
+ "mean_spread_pct": 0.8027403964816917,
+ "mean_counting_pct": 0.6709298503758026,
+ "ratio_of_means": 1.1964595047188007
+}

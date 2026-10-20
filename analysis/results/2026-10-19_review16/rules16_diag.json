@@ -1,0 +1,38 @@
+{
+ "doc": "Review round 16 (2026-10-19): prompt-selection rules in use, the all-pairs builder, and the pair-breaking\nmechanism, with known-content labels, on the corrected-yield zero-delay eight-tube stream C0.\n\nBase: 2026-10-14_known_randoms/known_randoms_c0.py (clinical extractor of sim1_extract, re-implemented so that each\ntriple keeps the indices of its singles; event identity labels triples and never selects). Rate replay rungs\nk = 0.5, 1.0, 2.0 (k = 1.0 is the production rate, mu = 0.029). Smear draws per shard rng [90900, shard], identical\nfor every rung and arm, as in known_randoms_c0.py.\n\nArms (signal window [T-5, T+5] ns around the pair time T, randoms arm the same rule at T + 50 ns):\n  closest      production closest-prompt rule (sim1_extract.closest_prompt_indices; validation)\n  all          all-prompts matching (validation against known_randoms_hists.npz at k = 1.0)\n  closest_x    exact nearest prompt among all candidates (ties to the earlier), to check the production rule,\n               which compares only the earliest and the latest candidate\n  first        first-arriving prompt in the window (list-mode 'first qualifying' rule)\n  highest      highest-energy prompt in the window\n  veto1        the pair is kept only if exactly one prompt lies in the window, in both windows (single-candidate\n               veto applied identically in the delayed window)\n  ap_all       all-pairs builder (every pair of annihilation singles within 2 ns, Note S18) with all-prompts matching\n  ap_closest   all-pairs builder with the production closest-prompt rule\nLabels: G genuine, AP accidental prompt on a genuine pair, PA_corr accidental pair carrying its own prompt, PA_unc.\nAlso, at k = 1.0, a truth diagnostic of pair breaking: for every decay whose two annihilation singles fall within\n2 ns, whether the adjacent-singles builder forms that pair, split by the presence of another decay's prompt-window\nsingle in [T-5, T+5] (signal) and in [T+45, T+55] (delayed).\nOutput: rules16_hists.npz, rules16_diag.json.",
+ "identical_to_known_randoms": {
+  "closest": true,
+  "all": true
+ },
+ "labels_partition_signal": true,
+ "pair_break": {
+  "n_pairs": 39922819,
+  "n_formed": 39765374,
+  "sig_acc": [
+   1146541,
+   1112346
+  ],
+  "del_acc": [
+   1148641,
+   1144111
+  ],
+  "sig_none": [
+   38776278,
+   38653028
+  ],
+  "del_none": [
+   38774178,
+   38621263
+  ]
+ },
+ "prompt_multiplicity_k1": {
+  "counts_0_1_2_3_ge4": [
+   33837579,
+   9266175,
+   342700,
+   7025,
+   84
+  ]
+ },
+ "wall_s": 224.5751655101776
+}

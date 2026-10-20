@@ -1,0 +1,311 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
+# Paths (release v1.1.0): the aliases below are read from environment variables,
+# set by simulation/runner/paths.sh or by hand. See simulation/README.md.
+/control/getEnv PLI_SIM
+/control/getEnv PLI_SCANNER_MACRO
+# ==============================================================================
+# Phase 2b Sim 1 — Sc-44 multi-tissue validation phantom (8 tubes)
+# ==============================================================================
+#
+# Eight cylindrical tubes (30 mm dia, 50 mm length, axially aligned) on a
+# circle of radius 80 mm in the transverse plane (z = 0). Adjacent tube
+# centre-to-centre = 2*80*sin(22.5deg) = 61.2 mm; edge-to-edge = 31.2 mm,
+# > 2 x TOF FWHM (~30 mm). One material per tube:
+#
+#   T1 (  0 deg)  water_shibuya2020_n2     tau=1.9215 (N2-saturated water)
+#   T2 ( 45 deg)  adipose_avachat2024      tau=2.54   (porcine, Avachat 2024)
+#   T3 ( 90 deg)  adipose_moskal2023       tau=2.72   (mediastinal, cross-source pair)
+#   T4 (135 deg)  hepatic_avachat2024      tau=2.04   (porcine liver)
+#   T5 (180 deg)  muscle_avachat2024       tau=2.03   (porcine skeletal)
+#   T6 (225 deg)  brain_healthy_moskal2024 tau=2.72   (Moskal Sci Adv ex-vivo)
+#   T7 (270 deg)  brain_tumor_moskal2024   tau=1.77   (glioma)
+#   T8 (315 deg)  myxoma_moskal2023        tau=1.92   (cardiac myxoma)
+#
+# Activity per tube: 50 kBq/mL x 35.3 mL = 1.77 MBq. 8 tubes -> 14.13 MBq.
+# Primaries: 250M total. Sc-44 ion source (ground state) per tube;
+# /particle/select Sc44 sets short PDGLifeTime so decay fires inside the
+# 1 s simulation window. Energy framing 435-1300 keV (extraction
+# re-windows to 481-541/1100-1200 downstream). Coincidence window 5 ns.
+#
+# Loads materials via TWO database paths so the new validation materials
+# in materials_pli_phase2b.db are registered without modifying the
+# production materials_pli.db.
+# ==============================================================================
+
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+# ── Materials: production + Phase-2b extension ─────────────────────────────
+/gate/geometry/setMaterialDatabase {PLI_SIM}/geometry/materials_pli.db
+/gate/geometry/setMaterialDatabase {PLI_SIM}/geometry/materials_pli_phase2b.db
+
+# ── Scanner (Biograph Vision Quadra) ───────────────────────────────────────
+/control/execute {PLI_SCANNER_MACRO}
+
+# ── Phantom: 8 tubes in world air on R=80 mm circle, z = 0 ────────────────
+# Tube: r=15 mm, halfz=25 mm. Axial alignment (cylinder axis = z).
+
+/gate/world/daughters/name tube_T1_water
+/gate/world/daughters/insert cylinder
+/gate/tube_T1_water/setMaterial water_shibuya2020_n2
+/gate/tube_T1_water/geometry/setRmax 15 mm
+/gate/tube_T1_water/geometry/setHeight 50 mm
+/gate/tube_T1_water/placement/setTranslation 80.000 0.000 0 mm
+/gate/tube_T1_water/vis/setVisible true
+/gate/tube_T1_water/vis/setColor cyan
+
+/gate/world/daughters/name tube_T2_adipose_avachat
+/gate/world/daughters/insert cylinder
+/gate/tube_T2_adipose_avachat/setMaterial adipose_avachat2024
+/gate/tube_T2_adipose_avachat/geometry/setRmax 15 mm
+/gate/tube_T2_adipose_avachat/geometry/setHeight 50 mm
+/gate/tube_T2_adipose_avachat/placement/setTranslation 56.569 56.569 0 mm
+/gate/tube_T2_adipose_avachat/vis/setVisible true
+/gate/tube_T2_adipose_avachat/vis/setColor yellow
+
+/gate/world/daughters/name tube_T3_adipose_moskal
+/gate/world/daughters/insert cylinder
+/gate/tube_T3_adipose_moskal/setMaterial adipose_moskal2023
+/gate/tube_T3_adipose_moskal/geometry/setRmax 15 mm
+/gate/tube_T3_adipose_moskal/geometry/setHeight 50 mm
+/gate/tube_T3_adipose_moskal/placement/setTranslation 0.000 80.000 0 mm
+/gate/tube_T3_adipose_moskal/vis/setVisible true
+/gate/tube_T3_adipose_moskal/vis/setColor magenta
+
+/gate/world/daughters/name tube_T4_hepatic
+/gate/world/daughters/insert cylinder
+/gate/tube_T4_hepatic/setMaterial hepatic_avachat2024
+/gate/tube_T4_hepatic/geometry/setRmax 15 mm
+/gate/tube_T4_hepatic/geometry/setHeight 50 mm
+/gate/tube_T4_hepatic/placement/setTranslation -56.569 56.569 0 mm
+/gate/tube_T4_hepatic/vis/setVisible true
+/gate/tube_T4_hepatic/vis/setColor red
+
+/gate/world/daughters/name tube_T5_muscle
+/gate/world/daughters/insert cylinder
+/gate/tube_T5_muscle/setMaterial muscle_avachat2024
+/gate/tube_T5_muscle/geometry/setRmax 15 mm
+/gate/tube_T5_muscle/geometry/setHeight 50 mm
+/gate/tube_T5_muscle/placement/setTranslation -80.000 0.000 0 mm
+/gate/tube_T5_muscle/vis/setVisible true
+/gate/tube_T5_muscle/vis/setColor green
+
+/gate/world/daughters/name tube_T6_brain_healthy
+/gate/world/daughters/insert cylinder
+/gate/tube_T6_brain_healthy/setMaterial brain_healthy_moskal2024
+/gate/tube_T6_brain_healthy/geometry/setRmax 15 mm
+/gate/tube_T6_brain_healthy/geometry/setHeight 50 mm
+/gate/tube_T6_brain_healthy/placement/setTranslation -56.569 -56.569 0 mm
+/gate/tube_T6_brain_healthy/vis/setVisible true
+/gate/tube_T6_brain_healthy/vis/setColor blue
+
+/gate/world/daughters/name tube_T7_brain_tumor
+/gate/world/daughters/insert cylinder
+/gate/tube_T7_brain_tumor/setMaterial brain_tumor_moskal2024
+/gate/tube_T7_brain_tumor/geometry/setRmax 15 mm
+/gate/tube_T7_brain_tumor/geometry/setHeight 50 mm
+/gate/tube_T7_brain_tumor/placement/setTranslation 0.000 -80.000 0 mm
+/gate/tube_T7_brain_tumor/vis/setVisible true
+/gate/tube_T7_brain_tumor/vis/setColor white
+
+/gate/world/daughters/name tube_T8_myxoma
+/gate/world/daughters/insert cylinder
+/gate/tube_T8_myxoma/setMaterial myxoma_moskal2023
+/gate/tube_T8_myxoma/geometry/setRmax 15 mm
+/gate/tube_T8_myxoma/geometry/setHeight 50 mm
+/gate/tube_T8_myxoma/placement/setTranslation 56.569 -56.569 0 mm
+/gate/tube_T8_myxoma/vis/setVisible true
+/gate/tube_T8_myxoma/vis/setColor gray
+
+# Sensitive detector attachment for every tube.
+/gate/tube_T1_water/attachPhantomSD
+/gate/tube_T2_adipose_avachat/attachPhantomSD
+/gate/tube_T3_adipose_moskal/attachPhantomSD
+/gate/tube_T4_hepatic/attachPhantomSD
+/gate/tube_T5_muscle/attachPhantomSD
+/gate/tube_T6_brain_healthy/attachPhantomSD
+/gate/tube_T7_brain_tumor/attachPhantomSD
+/gate/tube_T8_myxoma/attachPhantomSD
+
+# ── Physics ────────────────────────────────────────────────────────────────
+/gate/physics/addPhysicsList PLI_Physics
+/gate/physics/Gamma/SetCutInRegion    world 1 mm
+/gate/physics/Electron/SetCutInRegion world 1 mm
+/gate/physics/Positron/SetCutInRegion world 1 mm
+
+# ── Initialize ─────────────────────────────────────────────────────────────
+/gate/run/initialize
+
+# ── Digitizer: Biograph Vision Quadra ──────────────────────────────────────
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert adder
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert readout
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/readout/setDepth 1
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert energyResolution
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyResolution/fwhm 0.101
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyResolution/energyOfReference 511 keV
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert timeResolution
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/timeResolution/fwhm 214 ps
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert energyFraming
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMin 435 keV
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMax 1300 keV
+
+# Coincidence sorter — Phase 2b spec: 5 ns window.
+/gate/digitizerMgr/CoincidenceSorter/Coincidences/setWindow 5. ns
+/gate/digitizerMgr/CoincidenceSorter/Coincidences/setOffset 0 ns
+
+# ── Sources: Sc-44 ion in each of the 8 tubes, equal activity ──────────────
+# 50 kBq/mL x 35.3 mL ~= 1.77 MBq per tube. Total = 14.13 MBq.
+
+/gate/source/addSource sc44_T1 gps
+/gate/source/sc44_T1/gps/particle ion
+/gate/source/sc44_T1/gps/ion 21 44 0 0
+/gate/source/sc44_T1/gps/ene/type Mono
+/gate/source/sc44_T1/gps/ene/mono 0 keV
+/gate/source/sc44_T1/gps/ang/type iso
+/gate/source/sc44_T1/gps/pos/type Volume
+/gate/source/sc44_T1/gps/pos/shape Cylinder
+/gate/source/sc44_T1/gps/pos/radius 15 mm
+/gate/source/sc44_T1/gps/pos/halfz 25 mm
+/gate/source/sc44_T1/gps/pos/centre 80.000 0.000 0 mm
+/gate/source/sc44_T1/gps/pos/confine tube_T1_water_phys
+/gate/source/sc44_T1/setForcedUnstableFlag true
+/gate/source/sc44_T1/setForcedHalfLife 14292 s
+/gate/source/sc44_T1/setActivity 1770000 Bq
+
+/gate/source/addSource sc44_T2 gps
+/gate/source/sc44_T2/gps/particle ion
+/gate/source/sc44_T2/gps/ion 21 44 0 0
+/gate/source/sc44_T2/gps/ene/type Mono
+/gate/source/sc44_T2/gps/ene/mono 0 keV
+/gate/source/sc44_T2/gps/ang/type iso
+/gate/source/sc44_T2/gps/pos/type Volume
+/gate/source/sc44_T2/gps/pos/shape Cylinder
+/gate/source/sc44_T2/gps/pos/radius 15 mm
+/gate/source/sc44_T2/gps/pos/halfz 25 mm
+/gate/source/sc44_T2/gps/pos/centre 56.569 56.569 0 mm
+/gate/source/sc44_T2/gps/pos/confine tube_T2_adipose_avachat_phys
+/gate/source/sc44_T2/setForcedUnstableFlag true
+/gate/source/sc44_T2/setForcedHalfLife 14292 s
+/gate/source/sc44_T2/setActivity 1770000 Bq
+
+/gate/source/addSource sc44_T3 gps
+/gate/source/sc44_T3/gps/particle ion
+/gate/source/sc44_T3/gps/ion 21 44 0 0
+/gate/source/sc44_T3/gps/ene/type Mono
+/gate/source/sc44_T3/gps/ene/mono 0 keV
+/gate/source/sc44_T3/gps/ang/type iso
+/gate/source/sc44_T3/gps/pos/type Volume
+/gate/source/sc44_T3/gps/pos/shape Cylinder
+/gate/source/sc44_T3/gps/pos/radius 15 mm
+/gate/source/sc44_T3/gps/pos/halfz 25 mm
+/gate/source/sc44_T3/gps/pos/centre 0.000 80.000 0 mm
+/gate/source/sc44_T3/gps/pos/confine tube_T3_adipose_moskal_phys
+/gate/source/sc44_T3/setForcedUnstableFlag true
+/gate/source/sc44_T3/setForcedHalfLife 14292 s
+/gate/source/sc44_T3/setActivity 1770000 Bq
+
+/gate/source/addSource sc44_T4 gps
+/gate/source/sc44_T4/gps/particle ion
+/gate/source/sc44_T4/gps/ion 21 44 0 0
+/gate/source/sc44_T4/gps/ene/type Mono
+/gate/source/sc44_T4/gps/ene/mono 0 keV
+/gate/source/sc44_T4/gps/ang/type iso
+/gate/source/sc44_T4/gps/pos/type Volume
+/gate/source/sc44_T4/gps/pos/shape Cylinder
+/gate/source/sc44_T4/gps/pos/radius 15 mm
+/gate/source/sc44_T4/gps/pos/halfz 25 mm
+/gate/source/sc44_T4/gps/pos/centre -56.569 56.569 0 mm
+/gate/source/sc44_T4/gps/pos/confine tube_T4_hepatic_phys
+/gate/source/sc44_T4/setForcedUnstableFlag true
+/gate/source/sc44_T4/setForcedHalfLife 14292 s
+/gate/source/sc44_T4/setActivity 1770000 Bq
+
+/gate/source/addSource sc44_T5 gps
+/gate/source/sc44_T5/gps/particle ion
+/gate/source/sc44_T5/gps/ion 21 44 0 0
+/gate/source/sc44_T5/gps/ene/type Mono
+/gate/source/sc44_T5/gps/ene/mono 0 keV
+/gate/source/sc44_T5/gps/ang/type iso
+/gate/source/sc44_T5/gps/pos/type Volume
+/gate/source/sc44_T5/gps/pos/shape Cylinder
+/gate/source/sc44_T5/gps/pos/radius 15 mm
+/gate/source/sc44_T5/gps/pos/halfz 25 mm
+/gate/source/sc44_T5/gps/pos/centre -80.000 0.000 0 mm
+/gate/source/sc44_T5/gps/pos/confine tube_T5_muscle_phys
+/gate/source/sc44_T5/setForcedUnstableFlag true
+/gate/source/sc44_T5/setForcedHalfLife 14292 s
+/gate/source/sc44_T5/setActivity 1770000 Bq
+
+/gate/source/addSource sc44_T6 gps
+/gate/source/sc44_T6/gps/particle ion
+/gate/source/sc44_T6/gps/ion 21 44 0 0
+/gate/source/sc44_T6/gps/ene/type Mono
+/gate/source/sc44_T6/gps/ene/mono 0 keV
+/gate/source/sc44_T6/gps/ang/type iso
+/gate/source/sc44_T6/gps/pos/type Volume
+/gate/source/sc44_T6/gps/pos/shape Cylinder
+/gate/source/sc44_T6/gps/pos/radius 15 mm
+/gate/source/sc44_T6/gps/pos/halfz 25 mm
+/gate/source/sc44_T6/gps/pos/centre -56.569 -56.569 0 mm
+/gate/source/sc44_T6/gps/pos/confine tube_T6_brain_healthy_phys
+/gate/source/sc44_T6/setForcedUnstableFlag true
+/gate/source/sc44_T6/setForcedHalfLife 14292 s
+/gate/source/sc44_T6/setActivity 1770000 Bq
+
+/gate/source/addSource sc44_T7 gps
+/gate/source/sc44_T7/gps/particle ion
+/gate/source/sc44_T7/gps/ion 21 44 0 0
+/gate/source/sc44_T7/gps/ene/type Mono
+/gate/source/sc44_T7/gps/ene/mono 0 keV
+/gate/source/sc44_T7/gps/ang/type iso
+/gate/source/sc44_T7/gps/pos/type Volume
+/gate/source/sc44_T7/gps/pos/shape Cylinder
+/gate/source/sc44_T7/gps/pos/radius 15 mm
+/gate/source/sc44_T7/gps/pos/halfz 25 mm
+/gate/source/sc44_T7/gps/pos/centre 0.000 -80.000 0 mm
+/gate/source/sc44_T7/gps/pos/confine tube_T7_brain_tumor_phys
+/gate/source/sc44_T7/setForcedUnstableFlag true
+/gate/source/sc44_T7/setForcedHalfLife 14292 s
+/gate/source/sc44_T7/setActivity 1770000 Bq
+
+/gate/source/addSource sc44_T8 gps
+/gate/source/sc44_T8/gps/particle ion
+/gate/source/sc44_T8/gps/ion 21 44 0 0
+/gate/source/sc44_T8/gps/ene/type Mono
+/gate/source/sc44_T8/gps/ene/mono 0 keV
+/gate/source/sc44_T8/gps/ang/type iso
+/gate/source/sc44_T8/gps/pos/type Volume
+/gate/source/sc44_T8/gps/pos/shape Cylinder
+/gate/source/sc44_T8/gps/pos/radius 15 mm
+/gate/source/sc44_T8/gps/pos/halfz 25 mm
+/gate/source/sc44_T8/gps/pos/centre 56.569 -56.569 0 mm
+/gate/source/sc44_T8/gps/pos/confine tube_T8_myxoma_phys
+/gate/source/sc44_T8/setForcedUnstableFlag true
+/gate/source/sc44_T8/setForcedHalfLife 14292 s
+/gate/source/sc44_T8/setActivity 1770000 Bq
+
+# Force instant Sc-44 decay (multi_tissue_phantom.mac idiom).
+/particle/select Sc44
+/particle/property/stable false
+/particle/property/lifetime 0.001 ns
+
+# ── Output: ROOT singles + coincidences ────────────────────────────────────
+/gate/output/root/enable
+/gate/output/root/setFileName output/c2
+/gate/output/root/setRootHitFlag 0
+/gate/output/root/setRootSinglesFlag 1
+/gate/output/root/setRootCoincidencesFlag 1
+
+# ── Run ────────────────────────────────────────────────────────────────────
+/gate/application/setTimeStart 0.0 s
+/gate/application/setTimeStop  0.137933 s
+/gate/application/setTimeSlice 0.137933 s
+# REMOVED for probe S: primaries-mode spacing is deterministic and kills accidentals
+
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed auto
+
+/gate/application/start

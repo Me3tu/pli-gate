@@ -1,0 +1,128 @@
+{
+ "2000000": {
+  "T1_water_shibuya2020_n2": {
+   "tau_hat": 1.9388293314177312,
+   "n_tail": 27293,
+   "tau_cfg": 1.9215
+  },
+  "T2_adipose_avachat2024": {
+   "tau_hat": 2.518472635335439,
+   "n_tail": 22037,
+   "tau_cfg": 2.54
+  },
+  "T3_adipose_moskal2023": {
+   "tau_hat": 2.698107874765679,
+   "n_tail": 34849,
+   "tau_cfg": 2.72
+  },
+  "T4_hepatic_avachat2024": {
+   "tau_hat": 2.076127989544287,
+   "n_tail": 13269,
+   "tau_cfg": 2.04
+  },
+  "T5_muscle_avachat2024": {
+   "tau_hat": 1.9832101393575368,
+   "n_tail": 14992,
+   "tau_cfg": 2.03
+  },
+  "T6_brain_healthy_moskal2024": {
+   "tau_hat": 2.710811217777057,
+   "n_tail": 34957,
+   "tau_cfg": 2.72
+  },
+  "T7_brain_tumor_moskal2024": {
+   "tau_hat": 1.7801147064166667,
+   "n_tail": 28627,
+   "tau_cfg": 1.77
+  },
+  "T8_myxoma_moskal2023": {
+   "tau_hat": 1.8983619393575757,
+   "n_tail": 18284,
+   "tau_cfg": 1.92
+  }
+ },
+ "3000000": {
+  "T1_water_shibuya2020_n2": {
+   "tau_hat": 1.9067702399883015,
+   "n_tail": 27239,
+   "tau_cfg": 1.9215
+  },
+  "T2_adipose_avachat2024": {
+   "tau_hat": 2.548094284695425,
+   "n_tail": 21909,
+   "tau_cfg": 2.54
+  },
+  "T3_adipose_moskal2023": {
+   "tau_hat": 2.716695385666631,
+   "n_tail": 34749,
+   "tau_cfg": 2.72
+  },
+  "T4_hepatic_avachat2024": {
+   "tau_hat": 2.0414505430712993,
+   "n_tail": 13133,
+   "tau_cfg": 2.04
+  },
+  "T5_muscle_avachat2024": {
+   "tau_hat": 2.017897009640342,
+   "n_tail": 14882,
+   "tau_cfg": 2.03
+  },
+  "T6_brain_healthy_moskal2024": {
+   "tau_hat": 2.7208306241805276,
+   "n_tail": 34635,
+   "tau_cfg": 2.72
+  },
+  "T7_brain_tumor_moskal2024": {
+   "tau_hat": 1.7858539250974172,
+   "n_tail": 28694,
+   "tau_cfg": 1.77
+  },
+  "T8_myxoma_moskal2023": {
+   "tau_hat": 1.9133576908886356,
+   "n_tail": 18515,
+   "tau_cfg": 1.92
+  }
+ },
+ "4000000": {
+  "T1_water_shibuya2020_n2": {
+   "tau_hat": 1.9222325607658153,
+   "n_tail": 27253,
+   "tau_cfg": 1.9215
+  },
+  "T2_adipose_avachat2024": {
+   "tau_hat": 2.529825609185972,
+   "n_tail": 21709,
+   "tau_cfg": 2.54
+  },
+  "T3_adipose_moskal2023": {
+   "tau_hat": 2.718386870537711,
+   "n_tail": 34726,
+   "tau_cfg": 2.72
+  },
+  "T4_hepatic_avachat2024": {
+   "tau_hat": 2.0554464632605454,
+   "n_tail": 13340,
+   "tau_cfg": 2.04
+  },
+  "T5_muscle_avachat2024": {
+   "tau_hat": 2.063504619304003,
+   "n_tail": 15079,
+   "tau_cfg": 2.03
+  },
+  "T6_brain_healthy_moskal2024": {
+   "tau_hat": 2.7305525781271487,
+   "n_tail": 34655,
+   "tau_cfg": 2.72
+  },
+  "T7_brain_tumor_moskal2024": {
+   "tau_hat": 1.7542146455712984,
+   "n_tail": 28850,
+   "tau_cfg": 1.77
+  },
+  "T8_myxoma_moskal2023": {
+   "tau_hat": 1.9115865591974512,
+   "n_tail": 18391,
+   "tau_cfg": 1.92
+  }
+ }
+}

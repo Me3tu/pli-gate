@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+*.orig
+*.rej
+*.bak
+*.bak*
+*.root
+*.h5
+build/
+custom_physics/build/
+out/
+analysis/**/out_rerun/
+figures/out/

@@ -1,0 +1,50 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
+# Paths (release v1.1.0): the aliases below are read from environment variables,
+# set by simulation/runner/paths.sh or by hand. See simulation/README.md.
+/control/getEnv PLI_GATE_MATERIALS_DB
+/control/getEnv PLI_OUT
+/gate/geometry/setMaterialDatabase {PLI_GATE_MATERIALS_DB}
+/gate/world/geometry/setXLength 60 cm
+/gate/world/geometry/setYLength 60 cm
+/gate/world/geometry/setZLength 60 cm
+/gate/world/setMaterial Air
+
+/gate/world/daughters/name watercyl
+/gate/world/daughters/insert cylinder
+/gate/watercyl/setMaterial Water
+/gate/watercyl/geometry/setRmax 100 mm
+/gate/watercyl/geometry/setRmin 0 mm
+/gate/watercyl/geometry/setHeight 200 mm
+/gate/watercyl/placement/setTranslation 0 0 0 mm
+
+/gate/physics/addPhysicsList emstandard_opt4
+/gate/physics/Gamma/SetCutInRegion world 1 mm
+/gate/physics/Electron/SetCutInRegion world 1 mm
+/gate/physics/Positron/SetCutInRegion world 1 mm
+
+/gate/actor/addActor PhaseSpaceActor PS
+/gate/actor/PS/attachTo watercyl
+/gate/actor/PS/save {PLI_OUT}/ps_stock_1M.root
+/gate/actor/PS/enableEmissionPoint true
+/gate/actor/PS/enableProductionProcess true
+/gate/actor/PS/enableParticleName true
+/gate/actor/PS/enableEkine true
+/gate/actor/PS/storeSecondaries true
+/gate/actor/PS/storeOutgoingParticles true
+
+/gate/run/initialize
+
+/gate/source/addSource psrc gps
+/gate/source/psrc/gps/particle e+
+/gate/source/psrc/gps/energytype Mono
+/gate/source/psrc/gps/monoenergy 632. keV
+/gate/source/psrc/gps/type Volume
+/gate/source/psrc/gps/shape Cylinder
+/gate/source/psrc/gps/radius 20. mm
+/gate/source/psrc/gps/halfz 20. mm
+/gate/source/psrc/gps/centre 0. 0. 0. mm
+/gate/source/psrc/gps/angtype iso
+
+/gate/application/setTotalNumberOfPrimaries 1000000
+/gate/application/start

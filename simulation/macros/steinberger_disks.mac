@@ -1,0 +1,134 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
+# Paths (release v1.1.0): the aliases below are read from environment variables,
+# set by simulation/runner/paths.sh or by hand. See simulation/README.md.
+/control/getEnv PLI_SIM
+/control/getEnv PLI_SCANNER_MACRO
+# ============================================================================
+# Steinberger disk-phantom (M6 validation against Steinberger 2024)
+#
+# Two disks side-by-side, 44Sc filling, scanned on Quadra geometry.
+#   - Quartz-glass disk: 25.4 mm φ × 5 mm thick, centred at (-50, 0, 0)
+#   - Polycarbonate disk: 10 mm φ × 5 mm thick, centred at (+50, 0, 0)
+#
+# Activity & time:
+#   Steinberger ballpark: 5 MBq × 15 min = 75 MBq·min total scan-time-
+#   activity product. Splitting evenly across the two disks:
+#     2.5 MBq per disk × 900 s.
+#   At Quadra geometric efficiency, this gives ~10^4-10^5 triples/disk
+#   inside the 15 mm-radius spherical VOI.
+#
+# To run after materials JSON additions arrive:
+#   1) Add quartz-glass + polycarbonate to materials/materials_pli.db
+#   2) Add quartz-glass + polycarbonate entries (tau_TE_ns, I3,
+#      I3_convention) to materials/pli_materials.json
+#   3) Replace QuartzGlass and PolycarbonateTakyu tokens below
+#      with the JSON canonical material names
+#   4) Source scripts/env_setup.sh; launch via run_gate_parallel_musire.sh
+#      or systemd-run + the gate-st binary
+# ============================================================================
+
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+/gate/geometry/setMaterialDatabase {PLI_SIM}/geometry/materials_pli.db
+# NB: if quartz-glass / polycarbonate are added to a NEW .db (e.g.
+# materials_pli_steinberger.db), add a second setMaterialDatabase line
+# here pointing to it (pattern: brain_tumor mac sources two DBs).
+
+/control/execute {PLI_SCANNER_MACRO}
+
+# ── Quartz-glass disk (25.4 mm φ × 5 mm) at (-50, 0, 0) ────────────────
+/gate/world/daughters/name disk_quartz
+/gate/world/daughters/insert cylinder
+/gate/disk_quartz/geometry/setRmax 12.7 mm
+/gate/disk_quartz/geometry/setHeight 5 mm
+/gate/disk_quartz/setMaterial QuartzGlass
+/gate/disk_quartz/placement/setTranslation -50 0 0 mm
+/gate/disk_quartz/attachPhantomSD
+
+# ── Polycarbonate disk (10 mm φ × 5 mm) at (+50, 0, 0) ─────────────────
+/gate/world/daughters/name disk_poly
+/gate/world/daughters/insert cylinder
+/gate/disk_poly/geometry/setRmax 5 mm
+/gate/disk_poly/geometry/setHeight 5 mm
+/gate/disk_poly/setMaterial PolycarbonateTakyu
+/gate/disk_poly/placement/setTranslation 50 0 0 mm
+/gate/disk_poly/attachPhantomSD
+
+# ── Physics ─────────────────────────────────────────────────────────────
+/gate/physics/addPhysicsList PLI_Physics
+/gate/physics/Gamma/SetCutInRegion    world 1 mm
+/gate/physics/Electron/SetCutInRegion world 1 mm
+/gate/physics/Positron/SetCutInRegion world 1 mm
+
+/gate/run/initialize
+
+# ── Digitizer (matches brain-tumor production for unit-equivalent output)
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert adder
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert readout
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/readout/setDepth 1
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert energyResolution
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyResolution/fwhm 0.101
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyResolution/energyOfReference 511 keV
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert energyFraming
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMin 435 keV
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMax 1300 keV
+# timeResolution OMITTED — true-time singles for post-extraction CRT.
+/gate/digitizerMgr/CoincidenceSorter/Coincidences/setWindow 20. ns
+/gate/digitizerMgr/CoincidenceSorter/Coincidences/setOffset 0 ns
+
+# ── Sources: 44Sc in each disk ─────────────────────────────────────────
+/gate/source/addSource sc44_quartz gps
+/gate/source/sc44_quartz/gps/particle ion
+/gate/source/sc44_quartz/gps/ion 21 44 0 0
+/gate/source/sc44_quartz/gps/ene/type Mono
+/gate/source/sc44_quartz/gps/ene/mono 0 keV
+/gate/source/sc44_quartz/gps/ang/type iso
+/gate/source/sc44_quartz/gps/pos/type Volume
+/gate/source/sc44_quartz/gps/pos/shape Cylinder
+/gate/source/sc44_quartz/gps/pos/radius 12.7 mm
+/gate/source/sc44_quartz/gps/pos/halfz 2.5 mm
+/gate/source/sc44_quartz/gps/pos/centre -50 0 0 mm
+/gate/source/sc44_quartz/gps/pos/confine disk_quartz
+/gate/source/sc44_quartz/setActivity 2500000 Bq
+
+/gate/source/addSource sc44_poly gps
+/gate/source/sc44_poly/gps/particle ion
+/gate/source/sc44_poly/gps/ion 21 44 0 0
+/gate/source/sc44_poly/gps/ene/type Mono
+/gate/source/sc44_poly/gps/ene/mono 0 keV
+/gate/source/sc44_poly/gps/ang/type iso
+/gate/source/sc44_poly/gps/pos/type Volume
+/gate/source/sc44_poly/gps/pos/shape Cylinder
+/gate/source/sc44_poly/gps/pos/radius 5.0 mm
+/gate/source/sc44_poly/gps/pos/halfz 2.5 mm
+/gate/source/sc44_poly/gps/pos/centre 50 0 0 mm
+/gate/source/sc44_poly/gps/pos/confine disk_poly
+/gate/source/sc44_poly/setActivity 2500000 Bq
+
+# Force 44Sc fast decay so the ion fires within the sim window
+/particle/select Sc44
+/particle/property/stable false
+/particle/property/lifetime 0.001 ns
+
+# ── ROOT output ─────────────────────────────────────────────────────────
+/gate/output/root/enable
+/gate/output/root/setFileName steinberger_disks
+/gate/output/root/setRootHitFlag 0
+/gate/output/root/setRootSinglesFlag 1
+/gate/output/root/setRootCoincidencesFlag 1
+
+# ── Run: 900 s = 15 min ─────────────────────────────────────────────────
+# For the parallel runner, set per-shard time so N_shards × shard_time = 900.
+# With 16 threads × 16 batches × 3.516 s per shard ≈ 900 s total.
+/gate/application/setTimeStart 0.0 s
+/gate/application/setTimeStop  3.516 s
+/gate/application/setTimeSlice 1.0 s
+
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed auto
+
+/gate/application/start

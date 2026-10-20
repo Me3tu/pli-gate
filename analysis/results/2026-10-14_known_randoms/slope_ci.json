@@ -1,0 +1,36 @@
+{
+ "c0_all20": {
+  "n": 20,
+  "free_slope": 1.058769746855846,
+  "free_se_scaled": 0.01244711531455866,
+  "chi2_dof_free": 1.5691112757325205,
+  "scatter_pp": 0.38782688089329087,
+  "slope_with_scatter": 1.0339694876437364,
+  "se_with_scatter": 0.01825108087763661,
+  "chi2_dof_with_scatter": 0.8703061630727517,
+  "phantom_jackknife_se_with_scatter": 0.009343435036356417,
+  "jackknife_slopes": {
+   "NEMA IQ": 1.0342302546292417,
+   "Sim-1": 1.0456505322506817,
+   "Steinberger disks": 1.0321062400647687,
+   "Steinberger water": 1.0336281332007546
+  }
+ },
+ "discovery_all20": {
+  "n": 20,
+  "free_slope": 1.032415917990383,
+  "free_se_scaled": 0.014558135797742568,
+  "chi2_dof_free": 2.18868608128986,
+  "scatter_pp": 0.29171063680435527,
+  "slope_with_scatter": 0.9964099963111134,
+  "se_with_scatter": 0.014757312359355184,
+  "chi2_dof_with_scatter": 1.04951684003127,
+  "phantom_jackknife_se_with_scatter": 0.0429103754662735,
+  "jackknife_slopes": {
+   "NEMA IQ": 0.9961629284347444,
+   "Sim-1": 1.0504571895150616,
+   "Steinberger disks": 0.9920323405105842,
+   "Steinberger water": 0.9919418005530835
+  }
+ }
+}

@@ -1,0 +1,30 @@
+--- a/custom_physics/src/PLIPhysicsList.cc
++++ b/custom_physics/src/PLIPhysicsList.cc
+@@ -131,11 +131,25 @@
+     }
+ 
+     // ── Remove standard G4eplusAnnihilation ──────────────────────────────
++    // SENSITIVITY VARIANT (2026-09-30, feedback round 3; not the shipped list).
++    // PLI_INFLIGHT_STOCK=1 keeps the stock process for IN-FLIGHT annihilation
++    // (its PostStep DoIt) and deactivates only its AtRest DoIt, so every
++    // positron that stops is still handled by the custom processes below.
++    // Unset or != "1": identical to the shipped list (stock process removed);
++    // this path consumes no random number and prints nothing extra.
++    const char* inflightEnv = std::getenv("PLI_INFLIGHT_STOCK");
++    const G4bool keepInflight = (inflightEnv && std::string(inflightEnv) == "1");
+     G4ProcessVector* processList = pManager->GetProcessList();
+     for (G4int i = 0; i < (G4int)processList->size(); ++i) {
+         if ((*processList)[i]->GetProcessName() == "annihil") {
+-            G4cout << "[PLI] Removing standard G4eplusAnnihilation" << G4endl;
+-            pManager->RemoveProcess((*processList)[i]);
++            if (keepInflight) {
++                G4cout << "[PLI] PLI_INFLIGHT_STOCK=1: stock annihil KEPT for in-flight "
++                          "annihilation; its AtRest DoIt deactivated" << G4endl;
++                pManager->SetProcessOrdering((*processList)[i], idxAtRest, ordInActive);
++            } else {
++                G4cout << "[PLI] Removing standard G4eplusAnnihilation" << G4endl;
++                pManager->RemoveProcess((*processList)[i]);
++            }
+             break;
+         }
+     }

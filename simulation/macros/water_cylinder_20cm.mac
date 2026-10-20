@@ -1,0 +1,118 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
+# Paths (release v1.1.0): the aliases below are read from environment variables,
+# set by simulation/runner/paths.sh or by hand. See simulation/README.md.
+/control/getEnv PLI_SIM
+/control/getEnv PLI_SCANNER_MACRO
+# ============================================================================
+# Review round 17 (2026-10-19): water cylinder at the published size, 20 cm diameter x 30 cm.
+# Steinberger et al 2024 write the phantom as '(20 phi x 30 cm3)' and the VOIs as '(5 phi x 15 cm3)'.
+# The June 2026 design read the diameters in mm (Rmax 10 mm); this macro is the 2026-08-12
+# water_7MBq.mac with only Rmax and the source radius changed to 100 mm (and the ROOT file name).
+# Same material (WaterSteinberger, 1.84 ns), activity (7 MBq), digitizer, physics and runner.
+# The header below is the original one and still describes the 20 mm geometry.
+# ============================================================================
+# ============================================================================
+# Steinberger water-cylinder (M6 scatter validation against Steinberger 2024)
+#
+# Single uniform 44Sc-filled water cylinder, 20 mm φ × 30 cm, centred at
+# origin and aligned with the Quadra z-axis.
+#   - Rmax = 10 mm
+#   - half_z = 150 mm   (Height = 300 mm)
+#   - Material: water (G4_WATER from the standard DB, with PLI material
+#     entry G4_WATER having tau_TE = 1.8 ns)
+#
+# Activity & time: Steinberger ballpark "70 MBq-equivalent". A clean
+# interpretation: 70 MBq total activity in the cylinder × time to be
+# determined. Steinberger's quoted measurement times are 5-10 min; we
+# use 600 s = 10 min × 70 MBq = 4.2 × 10^10 decays. Yields ~10^9 triples
+# in the inner-most 5 mm × 15 cm VOI after geometric and energy cuts.
+#
+# Analysis VOIs (computed post-extraction; NOT separate phantoms):
+#   VOI_5 :   2.5 mm radius × ± 75 mm halfz  (5 mm φ × 15 cm)
+#   VOI_10:   5.0 mm radius × ±100 mm halfz  (10 mm φ × 20 cm)
+#   VOI_15:   7.5 mm radius × ±125 mm halfz  (15 mm φ × 25 cm)
+#   (all coaxial with the cylinder, centred at origin)
+#
+# To run: same prep as steinberger_disk_phantom.mac.template (env_setup,
+# materials JSON; here, only G4_WATER is needed — already in
+# pli_materials.json with tau_TE = 1.8 ns).
+# ============================================================================
+
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+/gate/geometry/setMaterialDatabase {PLI_SIM}/geometry/materials_pli.db
+
+/control/execute {PLI_SCANNER_MACRO}
+
+# ── Water cylinder (20 cm φ × 30 cm) ────────────────────────────────────
+/gate/world/daughters/name water_cyl
+/gate/world/daughters/insert cylinder
+/gate/water_cyl/geometry/setRmax 100 mm
+/gate/water_cyl/geometry/setHeight 300 mm
+/gate/water_cyl/setMaterial WaterSteinberger
+/gate/water_cyl/placement/setTranslation 0 0 0 mm
+/gate/water_cyl/attachPhantomSD
+
+# ── Physics ─────────────────────────────────────────────────────────────
+/gate/physics/addPhysicsList PLI_Physics
+/gate/physics/Gamma/SetCutInRegion    world 1 mm
+/gate/physics/Electron/SetCutInRegion world 1 mm
+/gate/physics/Positron/SetCutInRegion world 1 mm
+
+/gate/run/initialize
+
+# ── Digitizer ───────────────────────────────────────────────────────────
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert adder
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert readout
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/readout/setDepth 1
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert energyResolution
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyResolution/fwhm 0.101
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyResolution/energyOfReference 511 keV
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert energyFraming
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMin 435 keV
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMax 1300 keV
+# timeResolution OMITTED — true-time singles for post-extraction CRT.
+/gate/digitizerMgr/CoincidenceSorter/Coincidences/setWindow 20. ns
+/gate/digitizerMgr/CoincidenceSorter/Coincidences/setOffset 0 ns
+
+# ── Source: 44Sc uniform in water ───────────────────────────────────────
+/gate/source/addSource sc44_water gps
+/gate/source/sc44_water/gps/particle ion
+/gate/source/sc44_water/gps/ion 21 44 0 0
+/gate/source/sc44_water/gps/ene/type Mono
+/gate/source/sc44_water/gps/ene/mono 0 keV
+/gate/source/sc44_water/gps/ang/type iso
+/gate/source/sc44_water/gps/pos/type Volume
+/gate/source/sc44_water/gps/pos/shape Cylinder
+/gate/source/sc44_water/gps/pos/radius 100 mm
+/gate/source/sc44_water/gps/pos/halfz 150 mm
+/gate/source/sc44_water/gps/pos/centre 0 0 0 mm
+/gate/source/sc44_water/gps/pos/confine water_cyl
+/gate/source/sc44_water/setActivity 7000000 Bq
+
+# Force 44Sc fast decay
+/particle/select Sc44
+/particle/property/stable false
+/particle/property/lifetime 0.001 ns
+
+# ── ROOT output ─────────────────────────────────────────────────────────
+/gate/output/root/enable
+/gate/output/root/setFileName water20cm
+/gate/output/root/setRootHitFlag 0
+/gate/output/root/setRootSinglesFlag 1
+/gate/output/root/setRootCoincidencesFlag 1
+
+# ── Run: 600 s = 10 min ─────────────────────────────────────────────────
+# Per-shard: 600 s / (16 batches × 16 threads) = 2.344 s per shard
+/gate/application/setTimeStart 0.0 s
+/gate/application/setTimeStop  23.44 s
+/gate/application/setTimeSlice 1.0 s
+
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed auto
+
+/gate/application/start

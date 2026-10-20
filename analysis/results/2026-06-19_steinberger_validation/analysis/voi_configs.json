@@ -1,0 +1,104 @@
+{
+  "_doc": "Steinberger validation VOIs. Disks use spherical 15-mm-radius VOIs centred on each disk. Water cylinder uses three nested cylindrical VOIs.",
+  "disk_phantom": {
+    "phantom_outline": {
+      "type": "world_box",
+      "halfx_mm": 100,
+      "halfy_mm": 100,
+      "halfz_mm": 100,
+      "buffer_mm": 0,
+      "lor_tol_mm": 10.0,
+      "_note": "Two small disks in air; phantom outline is just the disks' bounding region. The LOR-perp cut + ROI distance cut do the work."
+    },
+    "vois": [
+      {
+        "name": "quartz",
+        "shape": "sphere",
+        "cx_mm": -50.0,
+        "cy_mm": 0.0,
+        "cz_mm": 0.0,
+        "r_mm": 15.0,
+        "tau_cfg_ns": 1.56,
+        "tau_steinberger_ns_range": [
+          1.58,
+          1.62
+        ],
+        "_note": "tau_cfg_ns filled from materials/pli_materials.json once the quartz-glass entry exists.",
+        "tau_steinberger_ns": 1.6,
+        "tau_steinberger_note": "Clinical-isotope cluster on quartz: 82Rb 1.59 / 68Ga 1.58 / 124I 1.62. Steinberger 22Na headline = 1.538. Takyu certified = 1.56."
+      },
+      {
+        "name": "polycarbonate",
+        "shape": "sphere",
+        "cx_mm": 50.0,
+        "cy_mm": 0.0,
+        "cz_mm": 0.0,
+        "r_mm": 15.0,
+        "tau_cfg_ns": 2.07,
+        "tau_steinberger_ns": 1.927,
+        "_note": "tau_cfg_ns filled from JSON once entry exists.",
+        "tau_steinberger_note": "CAVEATED \u2014 Steinberger measured polycarbonate only with 22Na, which reads low vs the 2.07 certified reference because of source-laminate self-absorption in his subtraction. EXPECTED RECOVERY near 2.07; treat 1.927 as a caveated cross-check, not a target. Do NOT flag a 2.07-vs-1.927 gap as failure."
+      }
+    ]
+  },
+  "water_cylinder": {
+    "phantom_outline": {
+      "type": "cylinder",
+      "R_mm": 12.0,
+      "halfz_mm": 160.0,
+      "buffer_mm": 2.0,
+      "lor_tol_mm": 10.0,
+      "_note": "Outline is the 20mm-diameter \u00d7 30cm water cylinder + small buffer."
+    },
+    "vois": [
+      {
+        "name": "VOI_5x15",
+        "shape": "cylinder",
+        "cx_mm": 0.0,
+        "cy_mm": 0.0,
+        "cz_mm": 0.0,
+        "r_mm": 2.5,
+        "half_z_mm": 75.0,
+        "tau_cfg_ns": 1.84,
+        "tau_steinberger_ns": 1.815,
+        "_note": "5 mm \u03c6 \u00d7 15 cm \u2014 innermost, scatter-clean"
+      },
+      {
+        "name": "VOI_10x20",
+        "shape": "cylinder",
+        "cx_mm": 0.0,
+        "cy_mm": 0.0,
+        "cz_mm": 0.0,
+        "r_mm": 5.0,
+        "half_z_mm": 100.0,
+        "tau_cfg_ns": 1.84,
+        "tau_steinberger_ns": 1.815,
+        "_note": "10 mm \u03c6 \u00d7 20 cm \u2014 intermediate"
+      },
+      {
+        "name": "VOI_15x25",
+        "shape": "cylinder",
+        "cx_mm": 0.0,
+        "cy_mm": 0.0,
+        "cz_mm": 0.0,
+        "r_mm": 7.5,
+        "half_z_mm": 125.0,
+        "tau_cfg_ns": 1.84,
+        "tau_steinberger_ns": 1.815,
+        "_note": "15 mm \u03c6 \u00d7 25 cm \u2014 largest, closest to phantom edge, captures more scatter"
+      }
+    ]
+  },
+  "extraction_pipelines": {
+    "oracle": {
+      "_description": "EventID-based oracle pairing (M4 pattern): group singles by eventID, accept groups with exactly 2 in 511 + \u22651 in prompt, build truth-position-corrected triples. No randoms subtraction needed; cumulant MLE directly."
+    },
+    "clinical": {
+      "_description": "M3_tubes pattern: sliding \u00b12 ns pair sorter + \u00b15 ns prompt window + +50 ns delayed-window randoms + TOF-corrected \u03c4 + truncation-aware MLE.",
+      "W_PAIR_NS": 2.0,
+      "W_PROMPT_NS": 5.0,
+      "DELAY_NS": 50.0,
+      "TAU_MIN_NS": 1.0
+    }
+  }
+}

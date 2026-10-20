@@ -1,0 +1,11 @@
+# Python 3.14.2 (Arch Linux, analysis workstation). Versions are those that produced the published numbers.
+# Core: every script that runs from the shipped intermediates.
+numpy==2.3.5
+scipy==1.17.0
+h5py==3.15.1
+matplotlib==3.10.8
+pandas==2.3.3
+# Optional, raw-data stage only (not needed for any script that runs from the shipped files):
+#   uproot==5.6.9 and awkward==2.8.11   GATE ROOT -> HDF5 singles conversion (converter not part of this subset)
+#   PyROOT 6.38.00 (system ROOT, not pip) reconstruction/extract_triples_chunked.py (ROOT -> triples)
+#   parallelproj 1.10.2 C/CUDA library  image reconstruction (loaded through ctypes; not used by this subset)

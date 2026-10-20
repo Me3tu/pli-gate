@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
+#-------------------------------------------------------------------------------
+# PLICustomPhysicsConfig.cmake
+#-------------------------------------------------------------------------------
+# CMake configuration file for PLI Custom Physics Library
+#-------------------------------------------------------------------------------
+
+@PACKAGE_INIT@
+
+# Find dependencies
+find_package(Geant4 REQUIRED)
+
+# Include targets file
+include("${CMAKE_CURRENT_LIST_DIR}/PLICustomPhysicsTargets.cmake")
+
+# Check that all required components are present
+check_required_components(PLICustomPhysics)
+
+# Set variables for downstream projects
+set(PLICustomPhysics_INCLUDE_DIRS "@PACKAGE_INCLUDE_INSTALL_DIR@")
+set(PLICustomPhysics_LIBRARIES PLI::PLICustomPhysics)
+
+message(STATUS "Found PLI Custom Physics: ${CMAKE_CURRENT_LIST_DIR}")

@@ -1,0 +1,103 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
+# ==============================================================================
+# Brain-tumor visibility phantom — Phase 3s-2 STAGE 0 design
+# ==============================================================================
+#
+# Background: brain_healthy_moskal2024 cylinder (R=100, H=180 mm) — τ_TE = 2.72 ns
+# Inserts: 5 brain_tumor_moskal2024 spheres along x-axis at z=0 — τ_TE = 1.77 ns
+# Δτ_GT = 950 ps (well above Quadra 214 ps CRT)
+#
+# Insert sizes span below-resolution to comfortably-above:
+#   recon FWHM ≈ 7-8 mm at 4 mm × 10 iter MLEM
+#
+# Tumor sizes + positions (centers along x-axis at z=0, surface-to-surface gap 5 mm):
+#   r= 4 mm at x=-66 mm  (smallest, below resolution, PVE-dominated)
+#   r= 8 mm at x=-49 mm  (~at resolution)
+#   r=12 mm at x=-24 mm
+#   r=16 mm at x= +9 mm
+#   r=20 mm at x=+50 mm  (largest, well-resolved)
+#
+# Span check: x_min(r=4) = -70, x_max(r=20) = +70, total span 140 mm.
+# Cylinder R=100 → 30 mm clearance from wall at x=±70. ✓
+#
+# Source: realistic FDG-like SUV(tumor)/SUV(bg) = 3.0
+#   Background source: cylinder volume (excluding sphere daughters) at A_bg
+#   5 tumor sources: separate Sc-44 sphere sources, each at 2× bg-density per
+#     sphere volume (additive on top of the bg-source-excluded sphere region)
+#
+# At 1 MBq background-density × cylinder volume (≈ 5.65 × 10⁶ mm³) = 1 MBq total bg
+#   - Per-sphere bg volume excluded; spheres get tumor source instead
+#   - Each tumor source A_t = 2 × bg_density × V_sphere (gives total tumor activity
+#     = (1 + 2) × bg_density × V_sphere = 3× bg-density-per-mm³)
+#
+# With background-density 0.177 Bq/mm³ (= 1 MBq / 5.65e6 mm³):
+#   r= 4 (V=268):    A_t = 95 Bq
+#   r= 8 (V=2145):   A_t = 759 Bq
+#   r=12 (V=7238):   A_t = 2563 Bq
+#   r=16 (V=17157):  A_t = 6074 Bq
+#   r=20 (V=33510):  A_t = 11862 Bq
+#   total tumor source: ~21 kBq (vs 1 MBq bg → tumor source contributes ~2.1%)
+#
+# Phase 3c Poisson recipe:
+#   * NO setForcedUnstableFlag, NO setForcedHalfLife, NO setTotalNumberOfPrimaries
+#   * setActivity per source (drives Poisson rate)
+#   * setTimeStop derived from total activity × T_sim = target primaries
+#
+# Geometry referenced by master mac brain_tumor_te_poisson.mac.
+# ==============================================================================
+
+# ── Background cylinder ─────────────────────────────────────────────────────
+/gate/world/daughters/name phantom
+/gate/world/daughters/insert cylinder
+/gate/phantom/setMaterial brain_healthy_moskal2024
+/gate/phantom/geometry/setRmax 100 mm
+/gate/phantom/geometry/setHeight 180 mm
+/gate/phantom/placement/setTranslation 0 0 0 mm
+/gate/phantom/vis/setVisible true
+/gate/phantom/vis/setColor cyan
+
+# ── Tumor 1 (r=4 mm, smallest — PVE-dominated) ──────────────────────────────
+/gate/phantom/daughters/name tumor_r04
+/gate/phantom/daughters/insert sphere
+/gate/tumor_r04/setMaterial brain_tumor_moskal2024
+/gate/tumor_r04/geometry/setRmax 4 mm
+/gate/tumor_r04/placement/setTranslation -66 0 0 mm
+/gate/tumor_r04/vis/setVisible true
+/gate/tumor_r04/vis/setColor magenta
+
+# ── Tumor 2 (r=8 mm, near resolution) ───────────────────────────────────────
+/gate/phantom/daughters/name tumor_r08
+/gate/phantom/daughters/insert sphere
+/gate/tumor_r08/setMaterial brain_tumor_moskal2024
+/gate/tumor_r08/geometry/setRmax 8 mm
+/gate/tumor_r08/placement/setTranslation -49 0 0 mm
+/gate/tumor_r08/vis/setVisible true
+/gate/tumor_r08/vis/setColor magenta
+
+# ── Tumor 3 (r=12 mm) ───────────────────────────────────────────────────────
+/gate/phantom/daughters/name tumor_r12
+/gate/phantom/daughters/insert sphere
+/gate/tumor_r12/setMaterial brain_tumor_moskal2024
+/gate/tumor_r12/geometry/setRmax 12 mm
+/gate/tumor_r12/placement/setTranslation -24 0 0 mm
+/gate/tumor_r12/vis/setVisible true
+/gate/tumor_r12/vis/setColor magenta
+
+# ── Tumor 4 (r=16 mm) ───────────────────────────────────────────────────────
+/gate/phantom/daughters/name tumor_r16
+/gate/phantom/daughters/insert sphere
+/gate/tumor_r16/setMaterial brain_tumor_moskal2024
+/gate/tumor_r16/geometry/setRmax 16 mm
+/gate/tumor_r16/placement/setTranslation 9 0 0 mm
+/gate/tumor_r16/vis/setVisible true
+/gate/tumor_r16/vis/setColor magenta
+
+# ── Tumor 5 (r=20 mm, largest — well-resolved) ──────────────────────────────
+/gate/phantom/daughters/name tumor_r20
+/gate/phantom/daughters/insert sphere
+/gate/tumor_r20/setMaterial brain_tumor_moskal2024
+/gate/tumor_r20/geometry/setRmax 20 mm
+/gate/tumor_r20/placement/setTranslation 50 0 0 mm
+/gate/tumor_r20/vis/setVisible true
+/gate/tumor_r20/vis/setColor magenta

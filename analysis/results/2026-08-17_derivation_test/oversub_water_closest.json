@@ -1,0 +1,63 @@
+{
+ "label": "water",
+ "matching": "closest",
+ "phantom": "water_cylinder",
+ "singles": "/data/dhritman/pli-quadra-archive-2026-08-15-singles/singles_steinberger_water.h5",
+ "tau_min_ns": 1.0,
+ "fit_hi_ns": 5.0,
+ "delay_ns": 50.0,
+ "rows": [
+  {
+   "voi": "bg",
+   "tau_cfg_ns": null,
+   "n_total": 283408,
+   "n_sub": 48826,
+   "n_true_acc": 39545,
+   "n_true_sig": 243863,
+   "over_subtraction": 9281,
+   "over_sigma": 297.2726021684474,
+   "phi": 0.038058254019674984,
+   "over_over_sigma": 31.22050243547499,
+   "true_acc_frac": 0.1395338169705866
+  },
+  {
+   "voi": "VOI_5x15",
+   "tau_cfg_ns": 1.84,
+   "n_total": 12260,
+   "n_sub": 2140,
+   "n_true_acc": 1629,
+   "n_true_sig": 10631,
+   "over_subtraction": 511,
+   "over_sigma": 61.39218191268331,
+   "phi": 0.04806697394412567,
+   "over_over_sigma": 8.323535409228223,
+   "true_acc_frac": 0.13287112561174552
+  },
+  {
+   "voi": "VOI_10x20",
+   "tau_cfg_ns": 1.84,
+   "n_total": 61928,
+   "n_sub": 10749,
+   "n_true_acc": 8567,
+   "n_true_sig": 53361,
+   "over_subtraction": 2182,
+   "over_sigma": 138.98201322473352,
+   "phi": 0.040891287644534396,
+   "over_over_sigma": 15.699873310021148,
+   "true_acc_frac": 0.13833807001679368
+  },
+  {
+   "voi": "VOI_15x25",
+   "tau_cfg_ns": 1.84,
+   "n_total": 159908,
+   "n_sub": 27711,
+   "n_true_acc": 22095,
+   "n_true_sig": 137813,
+   "over_subtraction": 5616,
+   "over_sigma": 223.17257896076748,
+   "phi": 0.040750872559192526,
+   "over_over_sigma": 25.164381870531066,
+   "true_acc_frac": 0.13817319958976412
+  }
+ ]
+}

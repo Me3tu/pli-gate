@@ -1,0 +1,212 @@
+{
+ "rows": [
+  {
+   "k": 0.15,
+   "mu": 0.004384846744712018,
+   "mean_did": 1.8354808833921326,
+   "sd_did": 0.560356447372217,
+   "n_tubes": 6,
+   "per_tube": {
+    "T1_water_shibuya2020_n2": 1.7098003218720317,
+    "T2_adipose_avachat2024": 2.34175606347606,
+    "T3_adipose_moskal2023": 1.2197635852711066,
+    "T6_brain_healthy_moskal2024": 1.2825319562278565,
+    "T7_brain_tumor_moskal2024": 1.8406093435931057,
+    "T8_myxoma_moskal2023": 2.618424029912636
+   }
+  },
+  {
+   "k": 0.25,
+   "mu": 0.0073080779072031525,
+   "mean_did": 3.010660359469675,
+   "sd_did": 0.659963361371551,
+   "n_tubes": 6,
+   "per_tube": {
+    "T1_water_shibuya2020_n2": 2.9473375055661517,
+    "T2_adipose_avachat2024": 3.6478619811251223,
+    "T3_adipose_moskal2023": 2.336543437903309,
+    "T6_brain_healthy_moskal2024": 2.5209257181013136,
+    "T7_brain_tumor_moskal2024": 2.6350444498509282,
+    "T8_myxoma_moskal2023": 3.976249064271224
+   }
+  },
+  {
+   "k": 0.35,
+   "mu": 0.010231309069174124,
+   "mean_did": 4.3997415594485645,
+   "sd_did": 0.9177863091973214,
+   "n_tubes": 6,
+   "per_tube": {
+    "T1_water_shibuya2020_n2": 4.2753032832050515,
+    "T2_adipose_avachat2024": 5.329158203547381,
+    "T3_adipose_moskal2023": 3.8377632682809786,
+    "T6_brain_healthy_moskal2024": 3.2687533548181005,
+    "T7_brain_tumor_moskal2024": 4.0242409659061344,
+    "T8_myxoma_moskal2023": 5.663230280933741
+   }
+  },
+  {
+   "k": 0.5,
+   "mu": 0.014616155811155261,
+   "mean_did": 6.0776592137063306,
+   "sd_did": 1.2229214190064928,
+   "n_tubes": 6,
+   "per_tube": {
+    "T1_water_shibuya2020_n2": 6.302506078475525,
+    "T2_adipose_avachat2024": 7.237280052758594,
+    "T3_adipose_moskal2023": 5.116548516933044,
+    "T6_brain_healthy_moskal2024": 4.68284605888676,
+    "T7_brain_tumor_moskal2024": 5.392638307124342,
+    "T8_myxoma_moskal2023": 7.734136268059723
+   }
+  },
+  {
+   "k": 0.7,
+   "mu": 0.020462618131976196,
+   "mean_did": 8.644095300770182,
+   "sd_did": 1.8555234190777905,
+   "n_tubes": 6,
+   "per_tube": {
+    "T1_water_shibuya2020_n2": 8.437159763139205,
+    "T2_adipose_avachat2024": 10.662606933907913,
+    "T3_adipose_moskal2023": 7.214871005575618,
+    "T6_brain_healthy_moskal2024": 6.933178774030916,
+    "T7_brain_tumor_moskal2024": 7.405069399370947,
+    "T8_myxoma_moskal2023": 11.211685928596502
+   }
+  },
+  {
+   "k": 1.0,
+   "mu": 0.029232311609306342,
+   "mean_did": 12.129624179307191,
+   "sd_did": 2.484431856577934,
+   "n_tubes": 6,
+   "per_tube": {
+    "T1_water_shibuya2020_n2": 12.130038345046927,
+    "T2_adipose_avachat2024": 14.443101126053897,
+    "T3_adipose_moskal2023": 9.630315936577013,
+    "T6_brain_healthy_moskal2024": 9.8235928922267,
+    "T7_brain_tumor_moskal2024": 11.047060079150153,
+    "T8_myxoma_moskal2023": 15.703636696788454
+   }
+  },
+  {
+   "k": 1.25,
+   "mu": 0.03654038950350531,
+   "mean_did": 15.166713247721907,
+   "sd_did": 3.2655713052180717,
+   "n_tubes": 6,
+   "per_tube": {
+    "T1_water_shibuya2020_n2": 14.75907102888285,
+    "T2_adipose_avachat2024": 17.72677353724606,
+    "T3_adipose_moskal2023": 12.089550340055762,
+    "T6_brain_healthy_moskal2024": 11.710627462527281,
+    "T7_brain_tumor_moskal2024": 14.56514002931118,
+    "T8_myxoma_moskal2023": 20.149117088308298
+   }
+  },
+  {
+   "k": 1.5,
+   "mu": 0.04384846739445323,
+   "mean_did": 18.22962298217218,
+   "sd_did": 4.4010424453535535,
+   "n_tubes": 6,
+   "per_tube": {
+    "T1_water_shibuya2020_n2": 17.230340634123976,
+    "T2_adipose_avachat2024": 22.481209936799626,
+    "T3_adipose_moskal2023": 13.977735718766008,
+    "T6_brain_healthy_moskal2024": 14.291772402170166,
+    "T7_brain_tumor_moskal2024": 16.69852834191898,
+    "T8_myxoma_moskal2023": 24.698150859254337
+   }
+  },
+  {
+   "k": 1.75,
+   "mu": 0.051156545282150113,
+   "mean_did": 20.979917255079567,
+   "sd_did": 5.347391572159965,
+   "n_tubes": 6,
+   "per_tube": {
+    "T1_water_shibuya2020_n2": 20.3639615218405,
+    "T2_adipose_avachat2024": 24.899331987422592,
+    "T3_adipose_moskal2023": 16.1296659385994,
+    "T6_brain_healthy_moskal2024": 15.640798358881764,
+    "T7_brain_tumor_moskal2024": 19.348784038281917,
+    "T8_myxoma_moskal2023": 29.496961685451218
+   }
+  },
+  {
+   "k": 2.0,
+   "mu": 0.05846462316659595,
+   "mean_did": 24.12532923217675,
+   "sd_did": 6.50098471111065,
+   "n_tubes": 6,
+   "per_tube": {
+    "T1_water_shibuya2020_n2": 23.021849980609602,
+    "T2_adipose_avachat2024": 30.061304712867866,
+    "T3_adipose_moskal2023": 18.279685098808955,
+    "T6_brain_healthy_moskal2024": 17.848535882444544,
+    "T7_brain_tumor_moskal2024": 21.658048724270362,
+    "T8_myxoma_moskal2023": 33.88255099405919
+   }
+  },
+  {
+   "k": 2.5,
+   "mu": 0.07308077892573449,
+   "mean_did": 30.6480482315507,
+   "sd_did": 8.682166004510297,
+   "n_tubes": 6,
+   "per_tube": {
+    "T1_water_shibuya2020_n2": 28.819138402774527,
+    "T2_adipose_avachat2024": 38.744360876438805,
+    "T3_adipose_moskal2023": 23.100357426001402,
+    "T6_brain_healthy_moskal2024": 22.29576334336555,
+    "T7_brain_tumor_moskal2024": 27.25204773026821,
+    "T8_myxoma_moskal2023": 43.6766216104557
+   }
+  },
+  {
+   "k": 3.0,
+   "mu": 0.08769693467186883,
+   "mean_did": 37.49411860724468,
+   "sd_did": 11.229421671851053,
+   "n_tubes": 6,
+   "per_tube": {
+    "T1_water_shibuya2020_n2": 35.77533564570149,
+    "T2_adipose_avachat2024": 48.15665715525333,
+    "T3_adipose_moskal2023": 25.914307246605773,
+    "T6_brain_healthy_moskal2024": 28.434579905163872,
+    "T7_brain_tumor_moskal2024": 32.63456149087434,
+    "T8_myxoma_moskal2023": 54.0492701998693
+   }
+  }
+ ],
+ "common_tubes": [
+  "T1_water_shibuya2020_n2",
+  "T2_adipose_avachat2024",
+  "T3_adipose_moskal2023",
+  "T6_brain_healthy_moskal2024",
+  "T7_brain_tumor_moskal2024",
+  "T8_myxoma_moskal2023"
+ ],
+ "tubes_lost": {
+  "T4_hepatic_avachat2024": [
+   "3.00"
+  ],
+  "T5_muscle_avachat2024": [
+   "3.00"
+  ]
+ },
+ "n_exponent": 0.9991410632500272,
+ "ln_intercept": 6.0318962347567915,
+ "resid_sd_ln": 0.015262225135209828,
+ "loo_n_min": 0.9953519818888444,
+ "loo_n_max": 1.0022286401287177,
+ "mu_over_k_mean": 0.029232311602912616,
+ "mu_over_k_rel_sd": 7.894287660302809e-10,
+ "mu_min": 0.004384846744712018,
+ "mu_max": 0.08769693467186883,
+ "mu_span_factor": 19.999999949286362,
+ "six_rung_n": 1.009,
+ "p_l4_pass": true
+}

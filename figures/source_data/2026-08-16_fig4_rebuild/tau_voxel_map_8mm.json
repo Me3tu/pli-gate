@@ -1,0 +1,51 @@
+{
+ "voxel_mm": 8.0,
+ "shape": [
+  70,
+  35,
+  10
+ ],
+ "tau_min": 1.0,
+ "min_n": 30,
+ "smooth_sigma_vox": 1.0,
+ "z_thresh": -3.0,
+ "slab_mm": 8.0,
+ "min_cluster": 3,
+ "tau_bg_global": 2.7034,
+ "sigma_mad_ns": 0.05077,
+ "n_triples": 7761376,
+ "n_valid_voxels": 5396,
+ "clusters": [
+  {
+   "id": 1,
+   "centroid": [
+    19.08,
+    1.05,
+    0.12
+   ],
+   "n_vox": 130,
+   "vol_mm3": 66560.0,
+   "r_eq_mm": 25.14,
+   "tau_mean": 2.3302,
+   "tau_min": 1.9538,
+   "max_abs_z": 14.76,
+   "nearest_truth_r": 16,
+   "distance_mm": 10.13,
+   "centroid_inside_truth": true
+  }
+ ],
+ "may_reference": {
+  "n_triples": 7765088,
+  "in_grid": 2843953,
+  "above_tau_min": 444232,
+  "in_fov": 4400,
+  "median_tau": 2.666,
+  "smoothed_median": 2.6822,
+  "sigma_mad_ps": 180.09,
+  "below_z": 40,
+  "in_slab": 24,
+  "clusters": 1
+ },
+ "axis": "postcorrection (O4 re-run); May values are pre-correction, quoted for structural comparison only",
+ "source": "/home/dhritman/research/pli-quadra-simulation/reconstruction/results/2026-08-13_overnight/W3_detection_sigma/derived_brain_tumor_O4.h5"
+}

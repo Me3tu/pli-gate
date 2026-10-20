@@ -1,0 +1,86 @@
+[Elements]
+# Phase 2b validation tubes (multi-tissue Sc-44 phantom).
+# Loaded ALONGSIDE materials_pli.db via a second
+# /gate/geometry/setMaterialDatabase line in the Sim 1 macro.
+# Element block must be present even if empty (just headers).
+
+[Materials]
+# ==============================================================================
+# water_shibuya2020_n2: pure water, N2-saturated. tau_eff=1.9215 ns from JSON
+# (back-calc from Shibuya 2020 N2 measurement).
+# ==============================================================================
+water_shibuya2020_n2: d=1.00 g/cm3; n=2 ; state=liquid
+        +el: name=Hydrogen   ; n=2
+        +el: name=Oxygen     ; n=1
+
+# ==============================================================================
+# adipose_avachat2024: porcine adipose (Avachat 2024). rho=0.92 g/cm3.
+# Composition cloned from AdiposeTissue.
+# ==============================================================================
+adipose_avachat2024: d=0.92 g/cm3; n=6 ; state=solid
+        +el: name=Hydrogen   ; f=0.120
+        +el: name=Carbon     ; f=0.640
+        +el: name=Nitrogen   ; f=0.008
+        +el: name=Oxygen     ; f=0.229
+        +el: name=Phosphorus ; f=0.002
+        +el: name=Sulfur     ; f=0.001
+
+# ==============================================================================
+# adipose_moskal2023: mediastinal adipose (Moskal 2023). Cross-source pair
+# partner for adipose_avachat2024. Same elemental composition; only tau_eff
+# differs at the JSON level.
+# ==============================================================================
+adipose_moskal2023: d=0.92 g/cm3; n=6 ; state=solid
+        +el: name=Hydrogen   ; f=0.120
+        +el: name=Carbon     ; f=0.640
+        +el: name=Nitrogen   ; f=0.008
+        +el: name=Oxygen     ; f=0.229
+        +el: name=Phosphorus ; f=0.002
+        +el: name=Sulfur     ; f=0.001
+
+# ==============================================================================
+# hepatic_avachat2024: porcine liver (Avachat 2024). rho=1.06 g/cm3.
+# ==============================================================================
+hepatic_avachat2024: d=1.06 g/cm3; n=4 ; state=solid
+        +el: name=Hydrogen   ; f=0.102
+        +el: name=Carbon     ; f=0.143
+        +el: name=Nitrogen   ; f=0.034
+        +el: name=Oxygen     ; f=0.721
+
+# ==============================================================================
+# muscle_avachat2024: porcine skeletal muscle (Avachat 2024). rho=1.05.
+# ==============================================================================
+muscle_avachat2024: d=1.05 g/cm3; n=4 ; state=solid
+        +el: name=Hydrogen   ; f=0.102
+        +el: name=Carbon     ; f=0.143
+        +el: name=Nitrogen   ; f=0.034
+        +el: name=Oxygen     ; f=0.721
+
+# ==============================================================================
+# brain_healthy_moskal2024: in-vivo human brain. ICRP 110 brain composition.
+# ==============================================================================
+brain_healthy_moskal2024: d=1.04 g/cm3; n=6 ; state=solid
+        +el: name=Hydrogen   ; f=0.110
+        +el: name=Carbon     ; f=0.125
+        +el: name=Nitrogen   ; f=0.013
+        +el: name=Oxygen     ; f=0.737
+        +el: name=Phosphorus ; f=0.013
+        +el: name=Sulfur     ; f=0.002
+
+# ==============================================================================
+# brain_tumor_moskal2024: in-vivo brain tumor (glioma).
+# ==============================================================================
+brain_tumor_moskal2024: d=1.05 g/cm3; n=4 ; state=solid
+        +el: name=Hydrogen   ; f=0.102
+        +el: name=Carbon     ; f=0.143
+        +el: name=Nitrogen   ; f=0.034
+        +el: name=Oxygen     ; f=0.721
+
+# ==============================================================================
+# myxoma_moskal2023: cardiac myxoma (post-resection sample, gelatinous).
+# ==============================================================================
+myxoma_moskal2023: d=1.05 g/cm3; n=4 ; state=solid
+        +el: name=Hydrogen   ; f=0.102
+        +el: name=Carbon     ; f=0.143
+        +el: name=Nitrogen   ; f=0.034
+        +el: name=Oxygen     ; f=0.721

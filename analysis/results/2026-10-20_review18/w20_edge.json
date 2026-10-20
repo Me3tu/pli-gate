@@ -1,0 +1,178 @@
+{
+ "doc": "Review round 18 (third report on v2.17, 2026-10-20, item 3.2): true-triple acceptance edge of the 20 cm water\ncylinder, by the method of Note S17 (2026-10-07_acceptance_factorization). No new simulation.\n\nData: the eight batches of 2026-10-19_review16/water20cm (water20_batch_200..207.h5, 128 shards), the clinical\nbuilder of w20_extract.py (steinberger_extract_ap: 90.9 ps single-photon smear with the same seed and draw order,\nadjacent pairs within 2 ns, phantom outline and LOR cut of the 20 cm cylinder, TOF annihilation point, per-event\npath-corrected delay), all-prompts matching with the prompt search WIDENED to +-9 ns. Every candidate triple\nrecords tau, s = t_p - tbar, whether its three singles share one eventID, and whether any of the three singles was\nCompton-scattered in the phantom. The production selection is the subset |s| <= 5 (identical by construction to\nthe production all-prompts triples; checked by reproducing the w20_extract readouts). Randoms arm: search displaced\nby +50 ns, built the same way.\n\nOutputs: histograms H[shard, arm(0 signal, 1 delayed), class(0 true unscattered, 1 true scattered, 2 not true),\nsel(0 |s|<=9, 1 |s|<=5), region(bg, VOI_5x15, VOI_10x20, VOI_15x25), bin] in w20_edge_hists.npz; and w20_edge.json with\n  - edge of the true triples (all, unscattered, scattered), binomial ML fit of n(|s|<=5)/n(|s|<=9) per 50 ps bin of\n    tau between 3 and 7 ns with Phi((5 + d - tau)/s), in VOI_15x25 and in all regions pooled\n  - windowed mean of the selected true triples on (1, 5) ns against the mean predicted from all true candidates\n    weighted by an acceptance model: a priori (350.1 ps, d = 0), randoms arm (w20_extract: 372.6 ps, +93.2 ps),\n    and the fitted true-triple edge\n  - lifetime of the production randoms-subtracted all-prompts spectrum of VOI_15x25 with the sharp, a priori,\n    randoms-arm and fitted true-triple acceptances, against event identity (1.836 +- 0.008 ns) and the configured\n    1.84 ns\nUncertainties: shard bootstrap B = 300 (seed 18), edge refits started at the full-sample estimate.",
+ "models_ns": {
+  "apriori": [
+   0.35006,
+   0.0
+  ],
+  "randoms_arm": [
+   0.3726124622707103,
+   0.09315330051081637
+  ]
+ },
+ "event_identity_ns": [
+  1.836,
+  0.008
+ ],
+ "tau_cfg_ns": 1.84,
+ "regions": {
+  "VOI_15x25": {
+   "edge_true": {
+    "s_ps": 307.4078078694341,
+    "s_ps_sd": 5.973009708558024,
+    "d_ps": 21.523776403318333,
+    "d_ps_sd": 6.582593320331088
+   },
+   "frac_true_4p5_5p5": [
+    3562.0,
+    57.51725057504378
+   ],
+   "edge_true_unscattered": {
+    "s_ps": 307.3588100360339,
+    "s_ps_sd": 6.554046380068915,
+    "d_ps": 17.391722475849964,
+    "d_ps_sd": 7.6193898976808
+   },
+   "frac_true_unscattered_4p5_5p5": [
+    3003.0,
+    49.11132429402656
+   ],
+   "edge_true_scattered": {
+    "s_ps": 307.034514864269,
+    "s_ps_sd": 15.674067216392373,
+    "d_ps": 43.809466302202125,
+    "d_ps_sd": 17.560626577938635
+   },
+   "frac_true_scattered_4p5_5p5": [
+    559.0,
+    25.08780100362175
+   ],
+   "pred_minus_sel_ps_apriori": [
+    -5.034857824683492,
+    0.8566786570802185
+   ],
+   "pred_minus_sel_ps_randoms_arm": [
+    1.5963732755541749,
+    0.8380948222296479
+   ],
+   "pred_minus_sel_ps_fitted": [
+    0.5239823339127092,
+    0.43892478470243407
+   ],
+   "frac_true_1to5_inside": [
+    0.9909067342014477,
+    0.00036898449255515534
+   ],
+   "tau_sharp": [
+    1.7796562143999246,
+    0.014607484837088675
+   ],
+   "tau_apriori": [
+    1.865700910748373,
+    0.016602127513391744
+   ],
+   "tau_randoms_arm": [
+    1.8437322933839653,
+    0.016078979675888755
+   ],
+   "tau_fitted_true": [
+    1.8470944714478177,
+    0.015918474431181398
+   ],
+   "tau_true_selected_fitted": [
+    1.841876016557336,
+    0.013104300480026965
+   ],
+   "tau_true_selected_apriori": [
+    1.8603429768928215,
+    0.014103997050414364
+   ]
+  },
+  "all_regions": {
+   "edge_true": {
+    "s_ps": 327.5646589643064,
+    "s_ps_sd": 4.010580635205161,
+    "d_ps": 13.923334815106513,
+    "d_ps_sd": 4.718137145000024
+   },
+   "frac_true_4p5_5p5": [
+    11385.0,
+    109.52803258509712
+   ],
+   "edge_true_unscattered": {
+    "s_ps": 328.99371625701133,
+    "s_ps_sd": 4.5378956494952005,
+    "d_ps": 11.316442195923944,
+    "d_ps_sd": 5.16939626003325
+   },
+   "frac_true_unscattered_4p5_5p5": [
+    10047.0,
+    106.47567383814254
+   ],
+   "edge_true_scattered": {
+    "s_ps": 316.23212994169234,
+    "s_ps_sd": 11.466148055836179,
+    "d_ps": 33.5911580916899,
+    "d_ps_sd": 11.99606816629989
+   },
+   "frac_true_scattered_4p5_5p5": [
+    1338.0,
+    43.93464742258844
+   ],
+   "pred_minus_sel_ps_apriori": [
+    -2.5665057721857565,
+    0.5611248606043725
+   ],
+   "pred_minus_sel_ps_randoms_arm": [
+    3.936359403428291,
+    0.5595068196728126
+   ],
+   "pred_minus_sel_ps_fitted": [
+    0.5872896151815077,
+    0.2576630450191311
+   ],
+   "frac_true_1to5_inside": [
+    0.9900945268694488,
+    0.0002586819358247098
+   ],
+   "tau_sharp": [
+    1.7691155731505406,
+    0.01062461833723688
+   ],
+   "tau_apriori": [
+    1.8537279273111587,
+    0.012061731363760647
+   ],
+   "tau_randoms_arm": [
+    1.8321347749113392,
+    0.011685067680838108
+   ],
+   "tau_fitted_true": [
+    1.8430993045636073,
+    0.011942051840843668
+   ],
+   "tau_true_selected_fitted": [
+    1.8402369159642262,
+    0.009038600564351799
+   ],
+   "tau_true_selected_apriori": [
+    1.850821722657732,
+    0.009207567966146713
+   ]
+  }
+ },
+ "check_w20_extract": {
+  "sharp": [
+   1.7796562144000128,
+   0.015117861676691985
+  ],
+  "acc_measured": [
+   1.8437322933840623,
+   0.01664009981098468
+  ],
+  "acc359": [
+   1.8681857678859184,
+   0.01724008817822874
+  ]
+ }
+}

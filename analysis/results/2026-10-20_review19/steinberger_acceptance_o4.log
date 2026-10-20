@@ -1,0 +1,11 @@
+
+disks closest: randoms-arm edge sigma_e 337.5 +- 4.0 ps, shift +25.1 ps, 192 shards
+   bg             cfg    nan  sharp 1.5905±0.0034  acc_measured 1.6443±0.0038  acc359 1.6546±0.0038
+   quartz         cfg   1.56  sharp 1.4473±0.0055  acc_measured 1.4880±0.0060  acc359 1.4957±0.0061
+   polycarbonate  cfg   2.07  sharp 1.9021±0.0063  acc_measured 1.9917±0.0071  acc359 2.0088±0.0073
+
+disks all: randoms-arm edge sigma_e 336.4 +- 3.9 ps, shift +26.1 ps, 192 shards
+   bg             cfg    nan  sharp 1.6485±0.0037  acc_measured 1.7078±0.0040  acc359 1.7196±0.0041
+   quartz         cfg   1.56  sharp 1.5135±0.0059  acc_measured 1.5596±0.0065  acc359 1.5689±0.0066
+   polycarbonate  cfg   2.07  sharp 1.9655±0.0065  acc_measured 2.0627±0.0073  acc359 2.0823±0.0075
+wrote steinberger_acceptance.json

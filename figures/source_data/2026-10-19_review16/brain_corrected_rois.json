@@ -1,0 +1,154 @@
+{
+ "corrected_regions": {
+  "n_triples": 7761376,
+  "background": {
+   "N": 92304,
+   "tau": 2.7129496362270507,
+   "s": 2.7209083727149768,
+   "sig_a": 0.008929589010514116,
+   "sig_e": 0.008955784943137104
+  },
+  "rois": {
+   "20": {
+    "R_ROI": 21.19,
+    "N": 11419,
+    "tau": 2.024053,
+    "s": 2.122882,
+    "sig_a": 0.018941,
+    "sig_e": 0.019866,
+    "nsigma_analytic": 32.8977,
+    "nsigma_empirical": 31.6132,
+    "ratio_emp_over_ana": 1.0406,
+    "centre": [
+     50.0,
+     -6.0
+    ],
+    "offset_mm": 6.0
+   },
+   "16": {
+    "R_ROI": 17.464,
+    "N": 4988,
+    "tau": 1.935563,
+    "s": 1.979042,
+    "sig_a": 0.027406,
+    "sig_e": 0.028022,
+    "nsigma_analytic": 26.9702,
+    "nsigma_empirical": 26.4257,
+    "ratio_emp_over_ana": 1.0206,
+    "centre": [
+     10.0,
+     -2.0
+    ],
+    "offset_mm": 2.23606797749979
+   },
+   "12": {
+    "R_ROI": 13.892,
+    "N": 2432,
+    "tau": 2.056445,
+    "s": 2.206401,
+    "sig_a": 0.0417,
+    "sig_e": 0.044741,
+    "nsigma_analytic": 15.3945,
+    "nsigma_empirical": 14.3881,
+    "ratio_emp_over_ana": 1.0699,
+    "centre": [
+     -26.0,
+     -2.0
+    ],
+    "offset_mm": 2.8284271247461903
+   },
+   "8": {
+    "R_ROI": 10.63,
+    "N": 1074,
+    "tau": 2.232215,
+    "s": 2.368927,
+    "sig_a": 0.068114,
+    "sig_e": 0.072285,
+    "nsigma_analytic": 6.998,
+    "nsigma_empirical": 6.6001,
+    "ratio_emp_over_ana": 1.0603,
+    "centre": [
+     -50.0,
+     2.0
+    ],
+    "offset_mm": 2.23606797749979
+   }
+  }
+ },
+ "published_regions": {
+  "n_triples": 7761376,
+  "background": {
+   "N": 92304,
+   "tau": 2.7129496362270507,
+   "s": 2.7209083727149768,
+   "sig_a": 0.008929589010514116,
+   "sig_e": 0.008955784943137104
+  },
+  "rois": {
+   "20": {
+    "R_ROI": 21.19,
+    "N": 11956,
+    "tau": 1.999978,
+    "s": 2.080238,
+    "sig_a": 0.018291,
+    "sig_e": 0.019025,
+    "nsigma_analytic": 35.0283,
+    "nsigma_empirical": 33.9069,
+    "ratio_emp_over_ana": 1.0331,
+    "centre": [
+     54.0,
+     -2.0
+    ],
+    "offset_mm": 4.47213595499958
+   },
+   "16": {
+    "R_ROI": 17.464,
+    "N": 4988,
+    "tau": 1.935563,
+    "s": 1.979042,
+    "sig_a": 0.027406,
+    "sig_e": 0.028022,
+    "nsigma_analytic": 26.9702,
+    "nsigma_empirical": 26.4257,
+    "ratio_emp_over_ana": 1.0206,
+    "centre": [
+     10.0,
+     -2.0
+    ],
+    "offset_mm": 2.23606797749979
+   },
+   "12": {
+    "R_ROI": 13.892,
+    "N": 2432,
+    "tau": 2.056445,
+    "s": 2.206401,
+    "sig_a": 0.0417,
+    "sig_e": 0.044741,
+    "nsigma_analytic": 15.3945,
+    "nsigma_empirical": 14.3881,
+    "ratio_emp_over_ana": 1.0699,
+    "centre": [
+     -26.0,
+     -2.0
+    ],
+    "offset_mm": 2.8284271247461903
+   },
+   "8": {
+    "R_ROI": 10.63,
+    "N": 1035,
+    "tau": 2.296483,
+    "s": 2.407438,
+    "sig_a": 0.071383,
+    "sig_e": 0.074832,
+    "nsigma_analytic": 5.7892,
+    "nsigma_empirical": 5.5259,
+    "ratio_emp_over_ana": 1.0476,
+    "centre": [
+     -50.0,
+     -2.0
+    ],
+    "offset_mm": 2.23606797749979
+   }
+  }
+ }
+}

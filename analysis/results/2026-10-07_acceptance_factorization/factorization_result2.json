@@ -1,0 +1,174 @@
+{
+ "_doc": "Binomial maximum-likelihood edge fits (replacing the least-squares ratio fit of analyze.py, whose\ndata-based errors biased the width), prompt-origin split, and the all-prompts over-subtraction check.\nInput factorization_hists2.npz: H[shard, arm(0 signal,1 delayed), class(0 true,1 same-tube prompt,\n2 other prompt), sel(0 |s|<=9, 1 |s|<=5), voi, bin].",
+ "pooled": {
+  "true": {
+   "sigma_ps": 358.64149048706145,
+   "sigma_err_ps": 2.4135102017808556,
+   "shift_ps": 9.181662545796744,
+   "shift_err_ps": 2.7060675751626526,
+   "pearson_chi2": 77.21145360189065,
+   "nbins": 80,
+   "n": 125645.0
+  },
+  "signal_accidental_same_tube_prompt": {
+   "sigma_ps": 352.9994438811275,
+   "sigma_err_ps": 5.896031791042571,
+   "shift_ps": 5.608311140231031,
+   "shift_err_ps": 6.556571754400136,
+   "pearson_chi2": 41.12325708299703,
+   "nbins": 80,
+   "n": 18618.0
+  },
+  "signal_accidental_other_prompt": {
+   "sigma_ps": 348.9048700535742,
+   "sigma_err_ps": 2.208215011428499,
+   "shift_ps": 51.02102516945632,
+   "shift_err_ps": 2.4318857992984073,
+   "pearson_chi2": 67.83754494371976,
+   "nbins": 80,
+   "n": 129601.0
+  },
+  "signal_accidental_all": {
+   "sigma_ps": 349.67844565024996,
+   "sigma_err_ps": 2.068721462183563,
+   "shift_ps": 45.46727296270676,
+   "shift_err_ps": 2.28099127712092,
+   "pearson_chi2": 68.19682995304407,
+   "nbins": 80,
+   "n": 148219.0
+  },
+  "delayed_same_tube_prompt": {
+   "sigma_ps": 366.52421546013863,
+   "sigma_err_ps": 5.95081192418752,
+   "shift_ps": 9.747966167852201,
+   "shift_err_ps": 6.539169091075738,
+   "pearson_chi2": 43.06544625992841,
+   "nbins": 80,
+   "n": 18721.0
+  },
+  "delayed_other_prompt": {
+   "sigma_ps": 352.9990199387171,
+   "sigma_err_ps": 2.2126076423258025,
+   "shift_ps": 49.49245739731086,
+   "shift_err_ps": 2.446397698570167,
+   "pearson_chi2": 56.87256628500769,
+   "nbins": 80,
+   "n": 130793.0
+  },
+  "delayed_all": {
+   "sigma_ps": 354.96541911123546,
+   "sigma_err_ps": 2.0745594744553597,
+   "shift_ps": 44.41259429956657,
+   "shift_err_ps": 2.2922452218789333,
+   "pearson_chi2": 65.6116426914817,
+   "nbins": 80,
+   "n": 149514.0
+  },
+  "accidental_same_tube_share_1_5": 0.12492926752593524,
+  "oversubtraction_1_5": {
+   "excess": 2483.0,
+   "excess_sd": 472.3594203283904,
+   "delayed": 145628.0,
+   "true": 306047.0,
+   "excess_over_true": 0.008113132950167785
+  }
+ },
+ "tubes": {
+  "T1_water_shibuya2020_n2": {
+   "true": {
+    "sigma_ps": 348.3958041731695,
+    "sigma_err_ps": 6.772174358465891,
+    "shift_ps": 6.836141530887883,
+    "shift_err_ps": 7.6644168824674725,
+    "pearson_chi2": 34.49422346332872,
+    "nbins": 80,
+    "n": 15883.0
+   }
+  },
+  "T2_adipose_avachat2024": {
+   "true": {
+    "sigma_ps": 366.3599772128049,
+    "sigma_err_ps": 6.963542009893449,
+    "shift_ps": 12.758792177414577,
+    "shift_err_ps": 7.798460662714576,
+    "pearson_chi2": 46.00195865594321,
+    "nbins": 80,
+    "n": 15091.0
+   }
+  },
+  "T3_adipose_moskal2023": {
+   "true": {
+    "sigma_ps": 367.1104151966017,
+    "sigma_err_ps": 5.392716814536283,
+    "shift_ps": 11.001667861900836,
+    "shift_err_ps": 6.014423568131103,
+    "pearson_chi2": 44.623755787598164,
+    "nbins": 80,
+    "n": 24770.0
+   }
+  },
+  "T4_hepatic_avachat2024": {
+   "true": {
+    "sigma_ps": 348.1554151999975,
+    "sigma_err_ps": 9.327838014669736,
+    "shift_ps": 17.273258226527414,
+    "shift_err_ps": 10.401899488837438,
+    "pearson_chi2": 29.820434440718145,
+    "nbins": 80,
+    "n": 8486.0
+   }
+  },
+  "T5_muscle_avachat2024": {
+   "true": {
+    "sigma_ps": 358.41394912964387,
+    "sigma_err_ps": 8.81850705948972,
+    "shift_ps": 1.765671927102223,
+    "shift_err_ps": 9.935177401645142,
+    "pearson_chi2": 36.72031968269163,
+    "nbins": 80,
+    "n": 9503.0
+   }
+  },
+  "T6_brain_healthy_moskal2024": {
+   "true": {
+    "sigma_ps": 346.757756433843,
+    "sigma_err_ps": 5.277731528832226,
+    "shift_ps": 1.2739154468067422,
+    "shift_err_ps": 5.826360489013297,
+    "pearson_chi2": 43.949857846981814,
+    "nbins": 80,
+    "n": 24583.0
+   }
+  },
+  "T7_brain_tumor_moskal2024": {
+   "true": {
+    "sigma_ps": 366.651304756414,
+    "sigma_err_ps": 7.033895509167079,
+    "shift_ps": 15.865545287916234,
+    "shift_err_ps": 7.978683186175107,
+    "pearson_chi2": 38.393518742059,
+    "nbins": 80,
+    "n": 16205.0
+   }
+  },
+  "T8_myxoma_moskal2023": {
+   "true": {
+    "sigma_ps": 365.152759552303,
+    "sigma_err_ps": 8.325583738700551,
+    "shift_ps": 12.610259556303397,
+    "shift_err_ps": 9.534298790358992,
+    "pearson_chi2": 28.319258875238326,
+    "nbins": 80,
+    "n": 11124.0
+   }
+  }
+ },
+ "true_width_homogeneity": {
+  "ivw_ps": 358.2497596260495,
+  "chi2": 14.200252894221986,
+  "dof": 7,
+  "r_with_tau_cfg": 0.006705597367745775,
+  "min_ps": 346.757756433843,
+  "max_ps": 367.1104151966017
+ }
+}

@@ -1,0 +1,60 @@
+{
+  "_doc": "NEMA NU 2-2018 Image Quality phantom VOIs, T6. Geometry transcribed verbatim from reconstruction/results/2026-04-24_1039_nema_iq/nema_iq_200M.mac. THE WHOLE PHANTOM IS WATER: spheres and background share tau_cfg = 1.80 ns, and the only contrast is a 10:1 per-volume ACTIVITY ratio. That makes this a null test for lifetime -- any sphere-vs-background tau difference is a bias induced by activity contrast and the prompt-matching rule, not by the phantom.",
+  "nema_iq": {
+    "phantom_outline": {
+      "type": "cylinder",
+      "R_mm": 110.0,
+      "halfz_mm": 90.0,
+      "buffer_mm": 2.0,
+      "lor_tol_mm": 10.0,
+      "_note": "NEMA IQ body: 220 mm diameter x 180 mm length water cylinder, macro lines 46-51."
+    },
+    "vois": [
+      {
+        "name": "sphere_37mm",
+        "shape": "sphere",
+        "cx_mm": -68.5, "cy_mm": 0.0, "cz_mm": 0.0, "r_mm": 18.5,
+        "tau_cfg_ns": 1.80,
+        "_note": "Rmax 18.5 mm at (-68.5, 0, 0). Water, 10x background activity concentration."
+      },
+      {
+        "name": "sphere_28mm",
+        "shape": "sphere",
+        "cx_mm": -34.25, "cy_mm": 59.3, "cz_mm": 0.0, "r_mm": 14.0,
+        "tau_cfg_ns": 1.80
+      },
+      {
+        "name": "sphere_22mm",
+        "shape": "sphere",
+        "cx_mm": 34.25, "cy_mm": 59.3, "cz_mm": 0.0, "r_mm": 11.0,
+        "tau_cfg_ns": 1.80
+      },
+      {
+        "name": "sphere_17mm",
+        "shape": "sphere",
+        "cx_mm": 68.5, "cy_mm": 0.0, "cz_mm": 0.0, "r_mm": 8.5,
+        "tau_cfg_ns": 1.80
+      },
+      {
+        "name": "sphere_13mm",
+        "shape": "sphere",
+        "cx_mm": 34.25, "cy_mm": -59.3, "cz_mm": 0.0, "r_mm": 6.5,
+        "tau_cfg_ns": 1.80
+      },
+      {
+        "name": "sphere_10mm",
+        "shape": "sphere",
+        "cx_mm": -34.25, "cy_mm": -59.3, "cz_mm": 0.0, "r_mm": 5.0,
+        "tau_cfg_ns": 1.80
+      },
+      {
+        "name": "background_central",
+        "shape": "cylinder",
+        "cx_mm": 0.0, "cy_mm": 0.0, "cz_mm": 0.0,
+        "r_mm": 40.0, "half_z_mm": 40.0,
+        "tau_cfg_ns": 1.80,
+        "_note": "Central background. The spheres sit at radius 68.5 mm and span r in [50, 87] mm, so r < 40 mm is sphere-free with 10 mm to spare. Axial half-extent 40 mm keeps it inside the 90 mm half-length and away from the axial edges."
+      }
+    ]
+  }
+}

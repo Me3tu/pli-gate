@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "PLI-GATE: positronium lifetime physics for GATE, with the analysis code of a prompt-selection study"
+abstract: >-
+  A GATE 9.4.1 / Geant4 11.3 physics extension for positronium lifetime imaging
+  that selects the ortho-positronium lifetime and yield by the material in which
+  each positron comes to rest, from a provenance-tracked Tao-Eldrup and oxygen
+  database, with the Ore-Powell three-photon channel. The release also contains
+  the simulation macros, the analysis and figure scripts, the processed data and
+  the registration files behind the paper "Material-dependent positronium
+  lifetimes in GATE and prompt-selection bias".
+type: software
+version: "1.1.0"
+date-released: "2026-10-20"
+license: LGPL-3.0-only
+repository-code: "https://github.com/Me3tu/pli-gate"
+authors:
+  - family-names: Dhar
+    given-names: Dhritman
+    affiliation: "German Cancer Research Center (DKFZ), Heidelberg, Germany; Heinrich-Heine-Universität Düsseldorf, Germany"
+  - family-names: Peter
+    given-names: Jörg
+    affiliation: "German Cancer Research Center (DKFZ), Heidelberg, Germany"
+keywords:
+  - positronium lifetime imaging
+  - GATE
+  - Geant4
+  - Monte Carlo simulation
+  - PET
+  - triple coincidences

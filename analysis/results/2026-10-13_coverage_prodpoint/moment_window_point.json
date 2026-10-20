@@ -1,0 +1,132 @@
+{
+ "source": "/home/dhritman/research/pli-quadra-simulation/reconstruction/results/2026-10-09_pair_window/c0/hists_pair_window.npz",
+ "arm": "adj2",
+ "window_ns": [
+  1.0,
+  5.0
+ ],
+ "tubes": {
+  "T1_water_shibuya2020_n2": {
+   "all": {
+    "prompt": 63246.0,
+    "delayed": 18101.0,
+    "fR": 0.28619991778136167,
+    "Ns": 45145.0
+   },
+   "closest": {
+    "prompt": 58933.0,
+    "delayed": 17782.0,
+    "fR": 0.30173247586242,
+    "Ns": 41151.0
+   }
+  },
+  "T2_adipose_avachat2024": {
+   "all": {
+    "prompt": 50820.0,
+    "delayed": 18475.0,
+    "fR": 0.36353797717434083,
+    "Ns": 32345.0
+   },
+   "closest": {
+    "prompt": 46730.0,
+    "delayed": 18113.0,
+    "fR": 0.3876096725872031,
+    "Ns": 28617.0
+   }
+  },
+  "T3_adipose_moskal2023": {
+   "all": {
+    "prompt": 68486.0,
+    "delayed": 18648.0,
+    "fR": 0.2722892269952983,
+    "Ns": 49838.0
+   },
+   "closest": {
+    "prompt": 64223.0,
+    "delayed": 18295.0,
+    "fR": 0.28486679227068185,
+    "Ns": 45928.0
+   }
+  },
+  "T4_hepatic_avachat2024": {
+   "all": {
+    "prompt": 40172.0,
+    "delayed": 18078.0,
+    "fR": 0.45001493577616253,
+    "Ns": 22094.0
+   },
+   "closest": {
+    "prompt": 36161.0,
+    "delayed": 17719.0,
+    "fR": 0.4900030419512735,
+    "Ns": 18442.0
+   }
+  },
+  "T5_muscle_avachat2024": {
+   "all": {
+    "prompt": 42374.0,
+    "delayed": 18273.0,
+    "fR": 0.43123141549063104,
+    "Ns": 24101.0
+   },
+   "closest": {
+    "prompt": 38304.0,
+    "delayed": 17950.0,
+    "fR": 0.46861946532999166,
+    "Ns": 20354.0
+   }
+  },
+  "T6_brain_healthy_moskal2024": {
+   "all": {
+    "prompt": 68316.0,
+    "delayed": 17864.0,
+    "fR": 0.26149071959716613,
+    "Ns": 50452.0
+   },
+   "closest": {
+    "prompt": 64090.0,
+    "delayed": 17528.0,
+    "fR": 0.2734904041192074,
+    "Ns": 46562.0
+   }
+  },
+  "T7_brain_tumor_moskal2024": {
+   "all": {
+    "prompt": 67135.0,
+    "delayed": 18037.0,
+    "fR": 0.2686676100394727,
+    "Ns": 49098.0
+   },
+   "closest": {
+    "prompt": 62841.0,
+    "delayed": 17660.0,
+    "fR": 0.2810267182253624,
+    "Ns": 45181.0
+   }
+  },
+  "T8_myxoma_moskal2023": {
+   "all": {
+    "prompt": 48643.0,
+    "delayed": 18152.0,
+    "fR": 0.37316777336924123,
+    "Ns": 30491.0
+   },
+   "closest": {
+    "prompt": 44629.0,
+    "delayed": 17815.0,
+    "fR": 0.3991799054426494,
+    "Ns": 26814.0
+   }
+  }
+ },
+ "fR_range": [
+  0.26149071959716613,
+  0.45001493577616253
+ ],
+ "fR_median": 0.3248689474778512,
+ "Ns_range": [
+  22094.0,
+  50452.0
+ ],
+ "Ns_median": 38745.0
+}

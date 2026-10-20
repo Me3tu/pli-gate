@@ -1,0 +1,95 @@
+{
+ "_doc": "Sim-1 eight-tube geometry transcribed verbatim from scripts/sim1_tubes_config.json into the steinberger_extract_ap VOI schema. Tube radii and half-lengths unchanged (15 mm x 25 mm half-length cylinders at radius 80 mm). NOTHING TUNED.",
+ "sim1_tubes": {
+  "phantom_outline": {
+   "type": "cylinder",
+   "R_mm": 110.0,
+   "halfz_mm": 35.0,
+   "buffer_mm": 0,
+   "lor_tol_mm": 10.0,
+   "_note": "R_mm = phantom R + buffer, as the source config intends"
+  },
+  "vois": [
+   {
+    "name": "T1_water_shibuya2020_n2",
+    "shape": "cylinder",
+    "cx_mm": 80.0,
+    "cy_mm": 0.0,
+    "cz_mm": 0,
+    "r_mm": 15,
+    "half_z_mm": 25,
+    "tau_cfg_ns": 1.9215
+   },
+   {
+    "name": "T2_adipose_avachat2024",
+    "shape": "cylinder",
+    "cx_mm": 56.569,
+    "cy_mm": 56.569,
+    "cz_mm": 0,
+    "r_mm": 15,
+    "half_z_mm": 25,
+    "tau_cfg_ns": 2.54
+   },
+   {
+    "name": "T3_adipose_moskal2023",
+    "shape": "cylinder",
+    "cx_mm": 0.0,
+    "cy_mm": 80.0,
+    "cz_mm": 0,
+    "r_mm": 15,
+    "half_z_mm": 25,
+    "tau_cfg_ns": 2.72
+   },
+   {
+    "name": "T4_hepatic_avachat2024",
+    "shape": "cylinder",
+    "cx_mm": -56.569,
+    "cy_mm": 56.569,
+    "cz_mm": 0,
+    "r_mm": 15,
+    "half_z_mm": 25,
+    "tau_cfg_ns": 2.04
+   },
+   {
+    "name": "T5_muscle_avachat2024",
+    "shape": "cylinder",
+    "cx_mm": -80.0,
+    "cy_mm": 0.0,
+    "cz_mm": 0,
+    "r_mm": 15,
+    "half_z_mm": 25,
+    "tau_cfg_ns": 2.03
+   },
+   {
+    "name": "T6_brain_healthy_moskal2024",
+    "shape": "cylinder",
+    "cx_mm": -56.569,
+    "cy_mm": -56.569,
+    "cz_mm": 0,
+    "r_mm": 15,
+    "half_z_mm": 25,
+    "tau_cfg_ns": 2.72
+   },
+   {
+    "name": "T7_brain_tumor_moskal2024",
+    "shape": "cylinder",
+    "cx_mm": 0.0,
+    "cy_mm": -80.0,
+    "cz_mm": 0,
+    "r_mm": 15,
+    "half_z_mm": 25,
+    "tau_cfg_ns": 1.77
+   },
+   {
+    "name": "T8_myxoma_moskal2023",
+    "shape": "cylinder",
+    "cx_mm": 56.569,
+    "cy_mm": -56.569,
+    "cz_mm": 0,
+    "r_mm": 15,
+    "half_z_mm": 25,
+    "tau_cfg_ns": 1.92
+   }
+  ]
+ }
+}

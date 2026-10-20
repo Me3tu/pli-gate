@@ -1,0 +1,50 @@
+{
+ "label": "disks",
+ "matching": "all",
+ "phantom": "disk_phantom",
+ "singles": "/data/dhritman/pli-quadra-archive-2026-08-15-singles/singles_steinberger_disks.h5",
+ "tau_min_ns": 1.0,
+ "fit_hi_ns": 5.0,
+ "delay_ns": 50.0,
+ "rows": [
+  {
+   "voi": "bg",
+   "tau_cfg_ns": null,
+   "n_total": 808469,
+   "n_sub": 97374,
+   "n_true_acc": 99458,
+   "n_true_sig": 709011,
+   "over_subtraction": -2084,
+   "over_sigma": 443.6575255757531,
+   "phi": -0.002939305596104997,
+   "over_over_sigma": -4.6973169164560105,
+   "true_acc_frac": 0.12302017764441185
+  },
+  {
+   "voi": "quartz",
+   "tau_cfg_ns": 1.56,
+   "n_total": 316839,
+   "n_sub": 45842,
+   "n_true_acc": 45448,
+   "n_true_sig": 271391,
+   "over_subtraction": 394,
+   "over_sigma": 302.1423505568195,
+   "phi": 0.0014517799042709596,
+   "over_over_sigma": 1.3040210989088277,
+   "true_acc_frac": 0.14344193738775846
+  },
+  {
+   "voi": "polycarbonate",
+   "tau_cfg_ns": 2.07,
+   "n_total": 425392,
+   "n_sub": 47615,
+   "n_true_acc": 47091,
+   "n_true_sig": 378301,
+   "over_subtraction": 524,
+   "over_sigma": 307.7433996042807,
+   "phi": 0.001385140404069775,
+   "over_over_sigma": 1.7027172659878267,
+   "true_acc_frac": 0.11070024824162185
+  }
+ ]
+}

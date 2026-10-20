@@ -1,0 +1,23 @@
+{
+  "_what": "Reference value for the quickstart. The extraction compares against tau_oPs_ns and passes if the difference is within tolerance_ns.",
+  "material": "water_shibuya2020_n2",
+  "tau_oPs_ns": 1.9215,
+  "_tau_source": "the configured tau_eff for this material in materials/pli_materials.json. The quickstart asks whether the physics reproduces the lifetime it was given.",
+  "tolerance_ns": 0.05,
+  "_tolerance_basis": "About 200,000 annihilations leave ~32,000 above the 1 ns censor, so the statistical error on tau_oPs is ~0.011 ns. The tolerance is ~4.5 sigma: wide enough that a correct build never fails it, narrow enough that a broken lifetime is caught.",
+  "reference_run": {
+    "_note": "Values from one reference run with the seed fixed at 12345 in the macro. A build with the same Geant4 and compiler should reproduce these exactly; a different toolchain may differ within the tolerance above.",
+    "annihilations_total": 200703,
+    "above_censor": 31894,
+    "tau_oPs_ns": 1.9072,
+    "sigma_ns": 0.0107,
+    "channel_tally": {
+      "direct2g": 128498,
+      "pPs2g": 18140,
+      "oPs2g": 53338,
+      "oPs3g": 727,
+      "envelope_violations": 0
+    },
+    "_channel_check": "o-Ps share (53338+727)/200703 = 0.2694 against the configured I3 = 0.27 in the o-Ps-intensity convention; p-Ps share 0.0904 against I3/3 = 0.090; three-photon share of o-Ps 727/54065 = 1.345 % against tau/142.05 ns = 1.353 %."
+  }
+}

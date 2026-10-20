@@ -1,0 +1,385 @@
+{
+  "_doc": "Environment and build manifest of release v1.1.0. It records the build of the production binary, the other two binaries behind the paper's runs, the GATE patch, the hashes of the positronium physics sources (as shipped, as in v1.0.1, and as compiled into the production binary) with the object-file evidence that links them, the material-database hashes and every runtime switch the physics reads. Hashes of files in this release can be checked with sha256sum. Workstation paths are written relative to <project>, the project tree of the build machine.",
+  "release": "1.1.0",
+  "generated_utc": "2026-10-20T08:10:19Z",
+  "production_binary": {
+    "sha256": "e37be8b469aa3996f289e25829b0efdbc413eba47dd9d6aa4e0a16dbb04b1f54",
+    "bytes": 12562608,
+    "built_local_time": "2026-08-19 20:19 (CEST)",
+    "install_path": "<project>/software/install/gate-st/bin/Gate",
+    "build_tree_copy_sha256": "d730b31fde4344de11935a821de9bbd9e9854706ceba3e203d232b72ea964386",
+    "build_tree_copy_note": "same size, differs only because cmake --install rewrites the RPATH",
+    "rebuilds_from_this_release_have_other_hashes": "A Gate built from this release cannot carry the hash e37be8b4. The binary embeds absolute RPATHs of the build machine, and it also contains G4PickOffAtRestModel, a compiled but never-referenced class that is not shipped. A build of this release with the production configuration on the production machine gave sha256 60f31ce34250fbbcababeb3386af63c64ca92fe8a827cc3b4d41d2c8765f792b. Equivalence is shown at the level of the object files instead (physics_sources.object_identity)."
+  },
+  "build": {
+    "os": {
+      "distro": "Arch Linux",
+      "kernel_recorded_2026_08_20": "6.18.5-arch1-1",
+      "arch": "x86_64"
+    },
+    "compiler": "g++ (GCC) 15.2.1 20260103, /usr/bin/c++",
+    "cmake": "4.2.1, generator Unix Makefiles",
+    "build_type": "Release",
+    "cxx_flags": "-pipe -fsigned-char -pthread -Wno-shadow -O3 -DNDEBUG -std=gnu++17 -fPIC",
+    "gate_cmake_options": {
+      "GATE_USE_OPTICAL": "ON",
+      "GATE_COMPILE_WITH_NATIVE": "OFF",
+      "GATE_USE_RTK": "OFF",
+      "GATE_USE_ITK": "OFF",
+      "GATE_USE_LMF": "OFF",
+      "GATE_USE_DAVIS": "OFF",
+      "GATE_USE_TORCH": "OFF",
+      "GATE_USE_XRAYLIB": "OFF",
+      "GATE_USE_SYSTEM_CLHEP": "OFF",
+      "GATE_COMPILE_GATEDIGIT": "OFF"
+    },
+    "ui_vis": "Geant4 Qt UI and OpenGL/Qt visualisation compiled in (G4UI_USE_QT, G4VIS_USE_OPENGLQT)",
+    "geant4": {
+      "version": "11.3.2",
+      "multithreading": false,
+      "gdml": true,
+      "qt": true,
+      "install": "<project>/software/install/geant4-st",
+      "patched": false
+    },
+    "root": {
+      "version": "6.36.04",
+      "install": "<project>/software/install/root"
+    },
+    "clhep": {
+      "version": "2.4.7.1",
+      "source": "Geant4-internal copy (GATE_USE_SYSTEM_CLHEP=OFF)"
+    },
+    "nlohmann_json": {
+      "version": "3.12.0",
+      "production": "non-amalgamated 3.12.0 top header in the GATE tree, whose detail/ headers came from the system package (Arch nlohmann-json 3.12.0-2)",
+      "release": "amalgamated 3.12.0 single header, custom_physics/third_party/nlohmann/json.hpp (MIT)",
+      "release_sha256": "aaf127c04cb31c406e5b04a63f1ae89369fccde6d8fa7cdda1ed4f32dfc5de63",
+      "evidence": "PLIMaterialLoader.cc, the only file that includes it, compiles to the same object file with either header (object_identity)"
+    },
+    "no_dynamic_pli_library": "Gate links no libPLICustomPhysics. The physics is compiled into GateLib from source/physics/ (integration/install_into_gate.sh)"
+  },
+  "gate": {
+    "version": "9.4.1",
+    "git_commit": "2d03a89bfec37c21ec69d196b4876d5e3bf5ed83",
+    "patch": {
+      "file": "integration/gate-9.4.1-pli.patch",
+      "sha256": "c18245a68db64abc7c0db42168a4092dea63fdee0a23ea75ee835cee3d740350",
+      "bytes": 10590,
+      "equals_production_tree": "byte-identical to git diff HEAD of the production GATE tree (and of the in-flight tree)",
+      "statement": "GATE was patched. One change makes the physics list selectable by name, and the other ten were made so that GATE 9.4.1 builds and runs with GCC 15, CMake 4 and Geant4 11.3.2. None of them changes the simulated physics. Geant4 itself was not patched.",
+      "files": {
+        "source/general/src/GateRunManager.cc": "hook: /gate/physics/addPhysicsList PLI_Physics constructs PLIPhysicsList",
+        "source/io/include/GateAsciiFile.hh": "#include <cstdint> (GCC 15)",
+        "source/io/include/GateNumpyFile.hh": "#include <cstdint> (GCC 15)",
+        "source/io/include/GateRootTreeFile.hh": "#include <cstdint> (GCC 15)",
+        "source/io/include/GateTreeFile.hh": "#include <cstdint> (GCC 15)",
+        "source/io/include/GateTreeFileManager.hh": "#include <cstdint> (GCC 15)",
+        "source/io/src/GateTreeFile.cc": "#include <cstdint> (GCC 15)",
+        "source/externals/itk-mhd/CMakeLists.txt": "cmake_minimum_required 2.4 -> 3.5 (CMake 4 refuses older)",
+        "source/digits_hits/src/GateOutputMgr.cc": "null checks on the analysis/fastanalysis output modules, and two /vis calls disabled (crash guards)",
+        "source/digits_hits/src/GateToRoot.cc": "empty-container checks at end of acquisition (crash guard)",
+        "source/digits_hits/src/GateUserActions.cc": "two /vis calls disabled (crash guards)"
+      }
+    },
+    "geant4_version": {
+      "gate_validated_with": "11.2.1",
+      "used": "11.3.2, as released",
+      "build_check": "GATE's CMakeLists.txt calls FIND_PACKAGE(Geant4 REQUIRED) without a version and only prints a warning for 11.3",
+      "warning_printed": "Warning! This GATE version is not validated for Geant4 11.3 distribution. Please use Geant4 11.2 distribution instead.",
+      "statement": "The combination builds and runs with the patch above, but it is outside GATE's validated matrix."
+    }
+  },
+  "other_binaries": {
+    "3522d567": {
+      "sha256": "3522d56765918517a14082a11111516de05419bf9a2116648161c79d5d30b719",
+      "bytes": 12558176,
+      "built_local_time": "2026-08-14 14:54",
+      "note": "archived build used from 2026-08-14 14:54 until the production build of 2026-08-19 20:19. No source snapshot was kept, so it cannot be rebuilt or compared at object level"
+    },
+    "cc552a68": {
+      "sha256": "cc552a6843b478ed577be91ee44b01f8a9ca668c6e5966a53dee3190bb316cd1",
+      "bytes": 12566704,
+      "built_local_time": "2026-09-30 20:23",
+      "note": "in-flight annihilation variant: the production configuration and sources with integration/variants/gate-inflight-stock.patch applied (variant)"
+    },
+    "earlier_builds": "runs before 2026-08-14 14:54 used builds that were not retained"
+  },
+  "binary_per_run": {
+    "_see": "simulation/README.md and simulation/RUNS.json (run numbers)",
+    "e37be8b4": [
+      "1 C0 eight tubes",
+      "2 C2 eight tubes 388 ps",
+      "5 Mercolli replication (by date)",
+      "8 water cylinder 20 cm (by date)",
+      "9b NEMA IQ 388 ps (by date)",
+      "10 oxygen gradient",
+      "15 R2c matched yield",
+      "20 annihilation-vertex unit test (by date)"
+    ],
+    "3522d567": [
+      "4a closure Sim-1",
+      "4b closure Sim-2",
+      "6 Steinberger disks (O4 rerun)",
+      "7 water cylinder 20 mm (O4 rerun)",
+      "11 brain tumour",
+      "12 VIP-Man slab"
+    ],
+    "cc552a68": [
+      "3 in-flight arm"
+    ],
+    "not_retained": [
+      "6 Steinberger disks (June run)",
+      "7 water cylinder 20 mm (2026-08-12)",
+      "9a NEMA IQ zero delay (2026-08-11)",
+      "14 core-shell R2 (2026-08-13)",
+      "16 lookup arm (May)",
+      "17 discovery stream (May)",
+      "18 seed repeatability (2026-08-12)",
+      "19 stock vs custom, Table S5 (2026-08-11)"
+    ]
+  },
+  "physics_sources": {
+    "gate_installed": [
+      "custom_physics/src/G4PositroniumAnnihilation.cc",
+      "custom_physics/src/G4PsAtRestProcess.cc",
+      "custom_physics/src/PLIMaterialLoader.cc",
+      "custom_physics/src/PLIOrePowell.cc",
+      "custom_physics/src/PLIPhysicsList.cc",
+      "custom_physics/include/G4PositroniumAnnihilation.hh",
+      "custom_physics/include/G4PsAtRestProcess.hh",
+      "custom_physics/include/PLIMaterialLoader.hh",
+      "custom_physics/include/PLIOrePowell.hh",
+      "custom_physics/include/PLIPhysicsList.hh"
+    ],
+    "standalone_library_only": [
+      "custom_physics/src/PLISteppingAction.cc",
+      "custom_physics/include/PLISteppingAction.hh",
+      "custom_physics/include/PLIConstants.hh (included by nothing)"
+    ],
+    "shipped_sha256": {
+      "custom_physics/src/G4PositroniumAnnihilation.cc": "6c8e5de0e495f879de49ec715a0378cb4919c28809c9274081a2a1ffb8be3382",
+      "custom_physics/src/G4PsAtRestProcess.cc": "0b4a9b81a263e1bef4f7300a2f26cd6d5a50c96c8f27aed09c2d259b31f003ad",
+      "custom_physics/src/PLIMaterialLoader.cc": "1af81385c0a32e7b8f3b5fde8c104e376d458491c113422cbb186baf16bba66f",
+      "custom_physics/src/PLIOrePowell.cc": "7ce925d98df6bf46adcdcdd2e69d1f6e83207666fc7114510d3f069662b204d7",
+      "custom_physics/src/PLIPhysicsList.cc": "38c9fbc90d5c61b135df422e21da53972cbfed609f692acba0d64186f9361f0a",
+      "custom_physics/src/PLISteppingAction.cc": "7a741fbcc6e15571e6499a593e531d94fb67d44edd38a570a15468e7b8d7bf3f",
+      "custom_physics/include/G4PositroniumAnnihilation.hh": "6e0a4f715e2d2fe3d404e8f287d7d2ba140030383b991c3ad972bd7bbaf3cd3e",
+      "custom_physics/include/G4PsAtRestProcess.hh": "262d40c23850868f3b9d4f0379724f7803ae4711c051ad0a6cda39f3d646918c",
+      "custom_physics/include/PLIConstants.hh": "95a8add4246ec5c6621fe82f1aec07ff32307fff98c37a2a3604e3451d262b04",
+      "custom_physics/include/PLIMaterialLoader.hh": "4b2e8498822e4502127346bd29662311e30044808007045b8745f8791d64121c",
+      "custom_physics/include/PLIOrePowell.hh": "a207c731d3a0d1dde31c955f4f450d64beab1670d72245785ac251408d2c3d35",
+      "custom_physics/include/PLIPhysicsList.hh": "829dd2a83a40659a19d84cff903e4429f4b8d375797dfeab04aad1356e54bbe9",
+      "custom_physics/include/PLISteppingAction.hh": "b4a9425fe45da051a1d6a72b0bdadad4d9dca027ebe84e72f52566f2c162dc1e"
+    },
+    "shipped_note": "The text is that of v1.0.1 with two comment lines added at the top (SPDX licence identifier and copyright). Removing them gives the v1.0.1 file: tail -n +3 <file> | sha256sum.",
+    "v1_0_1_sha256": {
+      "custom_physics/src/G4PositroniumAnnihilation.cc": "3877f4dac9a8e62104c40ddc951ba9843dffa7e2e5d9a5fbc84e00f9045863c2",
+      "custom_physics/src/G4PsAtRestProcess.cc": "ee7b65106db8a485b65af4e3d1e7ae8bcef5a56c5b78b8c3b6dfbc4ebbc30c78",
+      "custom_physics/src/PLIMaterialLoader.cc": "6b1d57b905065287f0e5147a63634ba77ced8320e625564c81b3bad6e5ed2965",
+      "custom_physics/src/PLIOrePowell.cc": "c343f3e3a11c063db34100921ff26f339701539e66352bcbbad32c2a964a9fcb",
+      "custom_physics/src/PLIPhysicsList.cc": "9fb91496cc66177ebaf3948143ba9c54119b4bdcd9d308fe6f3885ac27f333da",
+      "custom_physics/src/PLISteppingAction.cc": "bb43b5485447e16fda2111dc0e46d847adec71f867d9950d19dcc36cdd3326f4",
+      "custom_physics/include/G4PositroniumAnnihilation.hh": "878d4692b19b096cfdb8d5b358a783d11bde3808b5237df2b043b29afa9e3759",
+      "custom_physics/include/G4PsAtRestProcess.hh": "06354f04b5f5d0b04abf7112715f0cf4076cc31a25a140352bd6ad2ab0191d43",
+      "custom_physics/include/PLIConstants.hh": "7c2f4f23a2d0e58f8adb49978d2b4c601e334491afd0c9046f04357b6d35375e",
+      "custom_physics/include/PLIMaterialLoader.hh": "6eea644de947b6087c2d54d18346a94f95c9d7c838a8e6e99b7e597b591ddaca",
+      "custom_physics/include/PLIOrePowell.hh": "93eb0fb421699b7e12d2f3acabad5cca9e14c442e25b8554b47a9d0ef2211118",
+      "custom_physics/include/PLIPhysicsList.hh": "bc5cb2fe9266feb7967e79775e2e0cd3882a0d4ae9c9dfff70de332ee4a48abe",
+      "custom_physics/include/PLISteppingAction.hh": "05884c542d195a1ec5a3a33ac9ff441545db689a82b1ba4678fee8db4c9dc758"
+    },
+    "as_compiled_project_sources_sha256": {
+      "custom_physics/src/G4PositroniumAnnihilation.cc": "1d7341cb1e57781a59a24793818a5ca6dd77887ea182fd73036556ff0d54d0cd",
+      "custom_physics/include/G4PositroniumAnnihilation.hh": "e2f6d36e9b8340e146933419e61040ef91208bc6950a052c79cbedac746088bb",
+      "custom_physics/src/G4PsAtRestProcess.cc": "b690292a7959d865b5e9cf627e5f252bfe63134f1ba00d0f8f473a2bb6f69202",
+      "custom_physics/include/G4PsAtRestProcess.hh": "52b8c8e5b4ec58051a9be19415ba370a47ade1e8bdd5ed96e8a861eadf6e16d0",
+      "custom_physics/src/PLIMaterialLoader.cc": "bdddfc02deca2a97c1c3496c3bbb2fd9f3c619436d5c58d54aba8f0d24f0719e",
+      "custom_physics/include/PLIMaterialLoader.hh": "66a2a6629e4ebaa42d1d2a9e729053632e963fb7bc3131c7a410137136027d16",
+      "custom_physics/src/PLIOrePowell.cc": "5ff59b5a105cd7e4f6e55d99b1fc6c4499c7290e08f749b93b4e3477d704d191",
+      "custom_physics/include/PLIOrePowell.hh": "5e7b0668df281f8f59b701da33fec0d939ae834dc776a14d026d660cc43a0efc",
+      "custom_physics/src/PLIPhysicsList.cc": "90e9199f1b31c9f876266cf695a4e02ee52a3220beab77f6d426f83875a51957",
+      "custom_physics/include/PLIPhysicsList.hh": "5ae733982d98d8d7514559d4bd9641d1ee1365feda72f65a341bc02462e4efec"
+    },
+    "as_compiled_note": "These are the project files that GATE compiled (the production GATE tree holds symlinks to them). G4PositroniumAnnihilation.cc and G4PsAtRestProcess.cc were edited on 2026-08-24, after the production build, so the bytes compiled on 2026-08-19 are not on disk. The in-flight build of 2026-09-30 compiled the present files with the same flags, and its objects are byte-identical to the production objects (object_identity). The project files and the shipped files differ only in comments, log and exception message text, the name of one file-static variable (g_lastEventID -> g_lastTrackID), one parameter name and the override keyword. The project copy of PLIPhysicsList.cc also names a private planning note in a comment, which is why it is not the shipped text.",
+    "not_shipped": {
+      "custom_physics/src/G4PickOffAtRestModel.cc": "44c04fc0c984f298e9f7c561f377c23953034edfd66459dda7431c88ac2cf6da",
+      "custom_physics/include/G4PickOffAtRestModel.hh": "04dcaf58bd0aa2b2b47559dcd8b1c013721b19546f7bdcffe4074ae66d5caf7b",
+      "note": "compiled into e37be8b4 (object sha256 85102b8edcb564387f1bd531000caf673ac5023aafd98867d4f6b640dac5a57c) but referenced by no code"
+    },
+    "object_identity": {
+      "method": "Objects of CMakeFiles/GateLib.dir/source/physics/src/ compared by sha256. production = the build of e37be8b4. inflight_build = the 2026-09-30 build of cc552a68 from the present project files. release_build = a 2026-10-20 build of this release (integration/install_into_gate.sh into GATE 2d03a89b, the configuration above, same machine).",
+      "objects": {
+        "G4PositroniumAnnihilation.cc.o": {
+          "production": "e616c6b1c7eb6818bcdeb7a93004d3b5cb7cd674d7fa87e422d992f684919624",
+          "inflight_build": "e616c6b1c7eb6818bcdeb7a93004d3b5cb7cd674d7fa87e422d992f684919624",
+          "release_build": "6abd527344360a5b0203373c1bc9b24b75999b7a49700ac075bfe41be8b14fb1"
+        },
+        "G4PsAtRestProcess.cc.o": {
+          "production": "1e364c189548adb8136d863a986927c79412e0e3e44e5f390c30644309ee38e4",
+          "inflight_build": "1e364c189548adb8136d863a986927c79412e0e3e44e5f390c30644309ee38e4",
+          "release_build": "5276074926aa89d2e15b377921c1761df3c7d7167e883179ec41ba7ef265ad4b"
+        },
+        "PLIMaterialLoader.cc.o": {
+          "production": "f5000e7945e23b0a58e619957f1fd40819205650cab0a0a197f5e624e2ece93f",
+          "inflight_build": "f5000e7945e23b0a58e619957f1fd40819205650cab0a0a197f5e624e2ece93f",
+          "release_build": "f5000e7945e23b0a58e619957f1fd40819205650cab0a0a197f5e624e2ece93f"
+        },
+        "PLIOrePowell.cc.o": {
+          "production": "7ae882dc6b19befc883c99e699914550377082aa8d69b6e90811f42dc33d3966",
+          "inflight_build": "7ae882dc6b19befc883c99e699914550377082aa8d69b6e90811f42dc33d3966",
+          "release_build": "138811aacc7895ad9a95cdcdb97dfd1e06c6dd393dd9f6094b472fcecdf64ee6"
+        },
+        "PLIPhysicsList.cc.o": {
+          "production": "6385b5f403810ef73b497ce11e09e90dd72dbe3b0972d15159ab123d52cdfd6d",
+          "inflight_build": "6202934c03c1fb20d0697ec4618395ce76709a353da0c1e8d70118c83c0e30d6",
+          "release_build": "6385b5f403810ef73b497ce11e09e90dd72dbe3b0972d15159ab123d52cdfd6d"
+        },
+        "G4PickOffAtRestModel.cc.o": {
+          "production": "85102b8edcb564387f1bd531000caf673ac5023aafd98867d4f6b640dac5a57c",
+          "inflight_build": "85102b8edcb564387f1bd531000caf673ac5023aafd98867d4f6b640dac5a57c",
+          "release_build": null
+        }
+      },
+      "result": {
+        "PLIMaterialLoader.cc.o": "release build byte-identical to production",
+        "PLIPhysicsList.cc.o": "release build byte-identical to production",
+        "G4PositroniumAnnihilation.cc.o": "differs. objdump -d -r of the two: same number of disassembly lines (5606), 6 differing lines: 2 string-length immediates of exception message text, and 4 disassembler annotations (two name the renamed file-static g_lastEventID, two name a nearby label) whose target offsets are the same",
+        "G4PsAtRestProcess.cc.o": "differs. objdump -d -r: same number of disassembly lines (5617), 2 differing lines, both string-length immediates of message text",
+        "PLIOrePowell.cc.o": "differs. objdump -d -r: same number of disassembly lines (2540), 2 differing lines, both string-length immediates of the two reworded log messages",
+        "G4PickOffAtRestModel.cc.o": "not in the release (dead code)",
+        "inflight_build_vs_production": "all identical except PLIPhysicsList.cc.o, the intended variant"
+      },
+      "variant": "custom_physics/src/PLIPhysicsList.cc of this release with integration/variants/gate-inflight-stock.patch applied, compiled with the production flags, gives 6202934c03c1fb20d0697ec4618395ce76709a353da0c1e8d70118c83c0e30d6, byte-identical to PLIPhysicsList.cc.o of the cc552a68 build",
+      "conclusion": "the shipped physics sources are code-equivalent to the physics compiled into e37be8b4 and cc552a68"
+    },
+    "tests_and_build_files_sha256": {
+      "custom_physics/CMakeLists.txt": "75863878bda9743175b106fe9517364333499b60276cb763a0cf017cee143db8",
+      "custom_physics/cmake/PLICustomPhysicsConfig.cmake.in": "757ea922dbb7b9ee89dbb8799862bbe7a0f343057b91f489cd6fe12e37f36b2a",
+      "custom_physics/tests/test_load.cc": "9e7bdc84ab588003c6fe8549c13902d867a62700bda8411ae8c2c08ed125a797",
+      "custom_physics/tests/test_orepowell.cc": "7def7fdd95673c47ed17986f6de5dbfc681fdab05ad04bc18745ff30ddce2fd8"
+    }
+  },
+  "variant": {
+    "patch": "integration/variants/gate-inflight-stock.patch",
+    "patch_sha256": "00f0464bec6e3db0dbe8adff351ce7eedbeea955045244bd4ae04df81b4d1b1d",
+    "applies_to": "custom_physics/src/PLIPhysicsList.cc of this release (patch -p1 from the release root) or source/physics/src/PLIPhysicsList.cc of a GATE tree",
+    "switch": "PLI_INFLIGHT_STOCK",
+    "binary": "cc552a68",
+    "physics_level_test": "integration/variants/pli_inflight_test built from this release reproduces the CSV output of the production test binary byte for byte (3000 44Sc positrons, seed 401, modes pli, hybrid and stock)"
+  },
+  "materials_database": {
+    "current": {
+      "materials/pli_materials.json": "c5937bf76e2268d3166411d8db9b8e971a3cee3db7dcea471654ccfcf8dbb95d",
+      "materials/pli_materials_vipman.json": "e7cc64c0258fa045d4e8f35d6c35dc3a49d4abe823fdb5f71a54e2bb07ceb9da",
+      "version": 8,
+      "date": "2026-10-08"
+    },
+    "previous": {
+      "materials/previous/pli_materials.json": "a5394005f78a3e56bc89d57e4234b632a4afdb3c826bdd9f42a8421d095bedd2",
+      "materials/previous/pli_materials_vipman.json": "e3c5b1018017784f2a6d4068edd93810886a8a7e2d120a82da8e1feba1ef8399",
+      "version": 7,
+      "date": "2026-08-19"
+    },
+    "v8_vs_v7_at_run_time": "only the five TumorTissue_pO2_* entries differ (by at most 0.11 ps). k_O2 2.45e-5 -> 2.5704e-5, provenance fields added (materials/PROVENANCE.md)",
+    "variants": {
+      "materials/variants/lookup_baseline.json": "80da91ba9aa407165f6bddf894d15a4f03be39b1551573a4c11a08e2652640e9",
+      "materials/variants/r2a_equal_tau_materials.json": "8dcd9ac99d3d8e73c2da5bd95fac57d6093344e7df0433ec6a1596659d9ca96c",
+      "materials/variants/r2c_equal_yield_materials.json": "8dd6916ce3736f0edc2fa37a5518017d9d2b23cf0d3d11a49cff6cf56fcd05f6"
+    },
+    "variants_note": "lookup_baseline.json and r2a_equal_tau_materials.json lack I3_convention on some entries and cannot be loaded by this release",
+    "closure_database": "2a26b68e..., used by the O4 reruns of 2026-08-14 to 16 (calibration closure, brain tumour, VIP-Man era). Not retained, not in this release",
+    "removed_since_v1_0_1": {
+      "pli_materials.json": "302f2645e867c27b328aa8d2b4cddf1abe2d261a29d36a2ce2cc838c29f1d915",
+      "pli_materials_vipman.json": "a44c09b668207059f28b5d371564160f0e898f8f731caa40db6c174d8255880c",
+      "note": "version 7 with reworded provenance text, numerically equal to materials/previous/"
+    },
+    "as_used_sha256": {
+      "materials/pli_materials.json": "23f607ea14c591722ab72864c9e55ea34abf5b80a87a295a7605a23879e790e4",
+      "materials/pli_materials_vipman.json": "1e59f1cfe6c4e3ce42a4825e3830289616e6d774a8a9fcef17a1a1a97198da62",
+      "materials/previous/pli_materials.json": "f6d5a53ca33ed6d371160c595d7ebfcf794e64fbd788f277881b1fb5a3aab3a3",
+      "materials/previous/pli_materials_vipman.json": "09e75eee2ffaff9b8258f240e457c22fa9facfd8768bcbb51420fc9852f429e2",
+      "materials/variants/r2a_equal_tau_materials.json": "0738bcca0ff754d35ce63f2fa75ed4eca9649cecbf5bd60fd0fea276f8b595c0",
+      "materials/variants/r2c_equal_yield_materials.json": "25e3441c170cdb12bebf35abfbe6b76b912eb98164dc8890fbc66ca7ad2f507c"
+    },
+    "as_used_note": "The released database files differ from the files the runs used only in the free-text \"comment\" field of the XAD4_water entry, which the loader does not read: one phrase was reworded for the release. Every lifetime, yield, radius, oxygen, convention and alias entry is identical. as_used_sha256 gives the hashes of the files the runs used, which the paper, simulation/RUNS.json, simulation/README.md and the registration records quote."
+  },
+  "gate_material_files": {
+    "simulation/geometry/materials_pli.db": "5b6337c6b55ac908285854ac688505d79de3dca6144b61495cc6637c2ffe5729",
+    "simulation/geometry/materials_pli_phase2b.db": "3a7dbbe8c09d953f7d80443b0c570065b3baf0ebd7d8d15fa66cf9dacaa13530",
+    "note": "materials_pli.db as of 2026-08-22 (XAD-4 densities 0.67 g/cm3). Runs before that date loaded the earlier densities"
+  },
+  "excluded_inputs_sha256": {
+    "_note": "not in the release (simulation/README.md, 'Inputs you must supply'). Hashes of the files used, so that copies obtained from the authors can be checked",
+    "quadra_detector.mac": "ee25291d7bc95eb1f667152e7087b0e2fe8e077ab801e5141aa5f8a21cf64d6d",
+    "gate-materials.db": "3cb21efd72df4042c2d1e78940a1ca8b767675bd7bca846428ccbf97e29cc9ee",
+    "vipman-atlas-lungs-32mm-1mm-cropped-fixed.mhd": "20cf81b43465ea151fce04c8809f7b85653371e66641a03ae2c491cf101ffccc",
+    "vipman-atlas-lungs-32mm-1mm-cropped.raw": "f7f24f961bdae5d10a99d5a431a201850b91295489124e3ba469033ca4c4c060",
+    "vipman-atlas-gate-materials.dat": "7c8d4eb532808f1fef2626146b775bae1b7a82d908b73292d012dd9ce9d44622",
+    "vipman-atlas-gate-activities-f18-fdg.dat": "88c53fd37c236cd296a0a0c892a7265294671c93cd8656857e830fa51d3680a4",
+    "vipman-atlas-lungs-sim-mumap-harmonized.mhd": "a4a80eb42afc1c7d163720174c6d532c5a6d6819e144d0ce3a0a99213e74636a"
+  },
+  "runtime_switches": {
+    "PLI_MATERIALS_JSON": {
+      "default": "unset: the loader tries materials/pli_materials.json, ../materials/, ../../materials/ and ../../../materials/ relative to the working directory, and stops if none exists",
+      "effect": "path of the positronium materials database",
+      "read_in": "src/PLIMaterialLoader.cc"
+    },
+    "PLI_LIFETIME_LOG": {
+      "default": "unset (no per-annihilation records). runner/run_gate_parallel.sh sets it to 1 for every shard unless the caller exports another value",
+      "effect": "1 = one PLI_LIFETIME:<delay_ns>:<material>:<x>:<y>:<z>:<time_ns> record per annihilation on stdout",
+      "read_in": "src/G4PositroniumAnnihilation.cc, src/G4PsAtRestProcess.cc, src/PLIPhysicsList.cc, include/G4PositroniumAnnihilation.hh"
+    },
+    "PLI_DIRECT_TAU_PS": {
+      "default": "unset or <= 0: direct annihilation is instantaneous",
+      "effect": "mean lifetime in ps of the exponential delay given to direct annihilation (C2, C1/NEMA 388 ps and the Mercolli replication use 388)",
+      "read_in": "src/G4PositroniumAnnihilation.cc, src/G4PsAtRestProcess.cc"
+    },
+    "PLI_DISABLE_3GAMMA": {
+      "default": "unset: three-photon o-Ps decay on, P(3 gamma) = tau_eff / PLI_TAU_3GAMMA_NS",
+      "effect": "1 = two-photon-only o-Ps decay",
+      "read_in": "src/PLIOrePowell.cc"
+    },
+    "PLI_LIFETIME_MODE": {
+      "default": "transport (lifetime and yield of the material where the positron stops)",
+      "effect": "source = material where the positron was emitted, fixed = PLI_FIXED_TAU_NS everywhere, any other value warns and uses transport",
+      "read_in": "src/PLIOrePowell.cc"
+    },
+    "PLI_ALLOW_MATERIAL_FALLBACK": {
+      "default": "unset or 0: a material absent from the database stops the run",
+      "effect": "non-zero integer = warn and use tau 2.0 ns and the scalar formation probability 0.35 for such a material",
+      "read_in": "src/PLIOrePowell.cc"
+    },
+    "PLI_TAU_3GAMMA_NS": {
+      "default": "142.05",
+      "effect": "vacuum o-Ps three-photon lifetime in ns",
+      "read_in": "src/PLIOrePowell.cc"
+    },
+    "PLI_FIXED_TAU_NS": {
+      "default": "2.0",
+      "effect": "lifetime in ns used when PLI_LIFETIME_MODE=fixed",
+      "read_in": "src/PLIOrePowell.cc"
+    },
+    "PLI_LOG_XMAT": {
+      "default": "unset (off)",
+      "effect": "1 = one PLI_R2 record per annihilation carrying the emission and the annihilation material",
+      "read_in": "src/PLIOrePowell.cc (records written in src/G4PositroniumAnnihilation.cc, src/G4PsAtRestProcess.cc)"
+    }
+  },
+  "runtime_switches_variant_only": {
+    "PLI_INFLIGHT_STOCK": {
+      "default": "unset or not 1: identical to the shipped physics list (stock annihilation removed)",
+      "effect": "1 = keep Geant4's annihil process for in-flight annihilation and deactivate only its AtRest part",
+      "read_in": "integration/variants/gate-inflight-stock.patch (PLIPhysicsList.cc)"
+    }
+  },
+  "runtime_switches_verified": "the set above equals every getenv(\"PLI_...\") and EnvDouble(\"PLI_...\") call in custom_physics/src and custom_physics/include (and the variant patch)",
+  "build_test_v1_1_0": {
+    "date": "2026-10-20",
+    "gate": "integration/install_into_gate.sh into a clean GATE 9.4.1 tree at 2d03a89b, configure + build (-j 12) + install in 95 s, no compiler warning in the PLI files",
+    "quickstart": "PASS: 200,703 annihilations, 31,894 above the censor, tau_oPs = 1.9072 +/- 0.0107 ns, channel tally identical to examples/quickstart/expected_output.json",
+    "custom_physics": "standalone library, test_load and test_orepowell build. test_orepowell PASS with the numbers of docs/VALIDATION.md section 1",
+    "test_suite": "tests/run_tests.sh: 7 pass and 2 skip without a build (ore_powell needs custom_physics built, fixed_seed_regression needs the quickstart run); with the standalone library built and the quickstart run, 8 pass and ore_powell passes in its C++ test. analysis/tao_eldrup.py carries the version-8 oxygen constant 2.5704e-5 that the database uses",
+    "physics_level_variant_test": "integration/variants/pli_inflight_test builds and reproduces the production test output (variant)",
+    "simulation_smoke_test": "runner/run_gate_parallel.sh with macros/water_cylinder_20mm.mac, 2 shards x 1e-5 s, PLI_SCANNER_MACRO pointing at the workstation copy of the scanner macro: aliases resolved, geometry and databases loaded, shards merged. Without PLI_SCANNER_MACRO GATE stops at the /control/getEnv line"
+  }
+}

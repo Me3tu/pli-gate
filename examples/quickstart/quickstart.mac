@@ -1,0 +1,75 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
+# ============================================================================
+# PLI quickstart - one water tube, no detector
+# ============================================================================
+#
+# The smallest run that exercises everything this package adds: a positron
+# source inside a material whose o-Ps lifetime is set from the database, with
+# the custom physics list active and per-annihilation logging on.
+#
+# There is deliberately NO scanner. The quantity being checked is the
+# annihilation delay the physics emits, which is written to stdout and does
+# not need a detector, a digitizer or ROOT. That keeps the run to seconds and
+# keeps the check on the physics rather than on the readout chain.
+#
+# The material is water_shibuya2020_n2 - the GATE material name must match a
+# name or alias in the PLI database exactly, or the run aborts. Its tau_eff = 1.9215 ns, I3 = 0.27
+# (o-Ps intensity convention). Expect the extraction to return that lifetime.
+# ============================================================================
+
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+/gate/geometry/setMaterialDatabase materials.db
+
+# --- world -----------------------------------------------------------------
+/gate/world/geometry/setXLength 20 cm
+/gate/world/geometry/setYLength 20 cm
+/gate/world/geometry/setZLength 20 cm
+/gate/world/setMaterial worldDefaultAir
+
+# --- the tube --------------------------------------------------------------
+/gate/world/daughters/name tube
+/gate/world/daughters/insert cylinder
+/gate/tube/geometry/setRmax 5 mm
+/gate/tube/geometry/setHeight 50 mm
+/gate/tube/setMaterial water_shibuya2020_n2
+/gate/tube/placement/setTranslation 0 0 0 mm
+
+# --- physics ---------------------------------------------------------------
+/gate/physics/addPhysicsList PLI_Physics
+/gate/physics/Gamma/SetCutInRegion    world 1 mm
+/gate/physics/Electron/SetCutInRegion world 1 mm
+/gate/physics/Positron/SetCutInRegion world 1 mm
+
+# No output module is enabled: the check reads the physics' own stdout
+# records, not a detector readout. GATE requires this to be explicit.
+/gate/output/allowNoOutput
+
+/gate/run/initialize
+
+# --- source: monoenergetic positrons, stopped inside the tube --------------
+/gate/source/addSource pos gps
+/gate/source/pos/gps/particle e+
+/gate/source/pos/gps/ene/type Mono
+/gate/source/pos/gps/ene/mono 50 keV
+/gate/source/pos/gps/ang/type iso
+/gate/source/pos/gps/pos/type Volume
+/gate/source/pos/gps/pos/shape Cylinder
+/gate/source/pos/gps/pos/radius 3 mm
+/gate/source/pos/gps/pos/halfz 20 mm
+/gate/source/pos/gps/pos/centre 0 0 0 mm
+/gate/source/pos/gps/pos/confine tube
+/gate/source/pos/setActivity 200000 becquerel
+
+/gate/application/setTimeStart 0.0 s
+/gate/application/setTimeStop  1.0 s
+/gate/application/setTimeSlice 1.0 s
+
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed 12345
+
+/gate/application/start

@@ -1,0 +1,64 @@
+{
+  "_doc": "Mercolli 4-tube phantom, built 2026-08-23 from gate/geometry/phantom_mercolli_xad4.mac lines 38-73: tube r=6 mm, L=45 mm, at y=z=0, x = -45/-15/+15/+45 mm. VOI cylinders R=15, half_z=25 capture TOF-blurred annihilation points; the 30 mm pitch keeps them disjoint. Schema matches the Steinberger configs (shape/r_mm/half_z_mm), verified against voi_masks().",
+  "mercolli_tubes": {
+    "phantom_outline": {
+      "type": "world_box",
+      "halfx_mm": 80.0,
+      "halfy_mm": 30.0,
+      "halfz_mm": 40.0,
+      "buffer_mm": 0.0,
+      "lor_tol_mm": 10.0,
+      "_note": "Four small tubes in air; the LOR-perp cut and the VOI cylinders do the work."
+    },
+    "vois": [
+      {
+        "name": "T1_dry",
+        "shape": "cylinder",
+        "cx_mm": -45.0,
+        "cy_mm": 0.0,
+        "cz_mm": 0.0,
+        "r_mm": 15.0,
+        "half_z_mm": 25.0,
+        "material": "XAD4_dry",
+        "tau_cfg_ns": 2.52,
+        "I3": 0.211
+      },
+      {
+        "name": "T2_wet",
+        "shape": "cylinder",
+        "cx_mm": -15.0,
+        "cy_mm": 0.0,
+        "cz_mm": 0.0,
+        "r_mm": 15.0,
+        "half_z_mm": 25.0,
+        "material": "XAD4_wet",
+        "tau_cfg_ns": 2.37,
+        "I3": 0.217
+      },
+      {
+        "name": "T3_gelatin",
+        "shape": "cylinder",
+        "cx_mm": 15.0,
+        "cy_mm": 0.0,
+        "cz_mm": 0.0,
+        "r_mm": 15.0,
+        "half_z_mm": 25.0,
+        "material": "XAD4_gelatin",
+        "tau_cfg_ns": 2.27,
+        "I3": 0.222
+      },
+      {
+        "name": "T4_water",
+        "shape": "cylinder",
+        "cx_mm": 45.0,
+        "cy_mm": 0.0,
+        "cz_mm": 0.0,
+        "r_mm": 15.0,
+        "half_z_mm": 25.0,
+        "material": "XAD4_water",
+        "tau_cfg_ns": 1.82,
+        "I3": 0.268
+      }
+    ]
+  }
+}

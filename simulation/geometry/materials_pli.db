@@ -1,0 +1,225 @@
+# ==============================================================================
+# PLI Materials Database
+# Literature-validated material definitions for Positronium Lifetime Imaging
+# ==============================================================================
+
+[Elements]
+Hydrogen:   S= H   ; Z=  1. ; A=   1.01  g/mole
+Carbon:     S= C   ; Z=  6. ; A=  12.01  g/mole
+Nitrogen:   S= N   ; Z=  7. ; A=  14.01  g/mole
+Oxygen:     S= O   ; Z=  8. ; A=  16.00  g/mole
+Fluorine:   S= F   ; Z=  9. ; A=  18.998 g/mole
+Phosphorus: S= P   ; Z= 15. ; A=  30.97  g/mole
+Sulfur:     S= S   ; Z= 16. ; A=  32.07  g/mole
+Silicon:    S= Si  ; Z= 14. ; A=  28.09  g/mole
+Yttrium:    S= Y   ; Z= 39. ; A=  88.91  g/mole
+Lutetium:   S= Lu  ; Z= 71. ; A= 174.97  g/mole
+
+[Materials]
+Vacuum: d=0.000001 mg/cm3 ; n=1
+        +el: name=Hydrogen   ; n=1
+
+Air: d=1.29 mg/cm3 ; n=2 ; state=gas
+        +el: name=Nitrogen   ; f=0.7
+        +el: name=Oxygen     ; f=0.3
+
+# ==============================================================================
+# WATER: Universal reference (Ps lifetime ~1.75 ns at 37C)
+# ==============================================================================
+Water: d=1.00 g/cm3; n=2 ; state=liquid
+        +el: name=Hydrogen   ; n=2
+        +el: name=Oxygen     ; n=1
+
+# ==============================================================================
+# TUMOR TISSUE: Dense cellular tissue (water-like Ps lifetime ~1.85 ns)
+# Literature: Myxoma 1.79 ns, Glioma 1.77 ns [Moskal 2019]
+# Key finding: Tumors are WATER-LIKE, not adipose-like
+# ==============================================================================
+TumorTissue: d=1.05 g/cm3; n=4 ; state=solid
+        +el: name=Hydrogen   ; f=0.102
+        +el: name=Carbon     ; f=0.143
+        +el: name=Nitrogen   ; f=0.034
+        +el: name=Oxygen     ; f=0.721
+
+# Hypoxic tumor: Reduced O2 quenching -> longer lifetime ~2.0 ns
+TumorTissue_Hypoxic: d=1.05 g/cm3; n=4 ; state=solid
+        +el: name=Hydrogen   ; f=0.102
+        +el: name=Carbon     ; f=0.143
+        +el: name=Nitrogen   ; f=0.034
+        +el: name=Oxygen     ; f=0.721
+
+# Normoxic tumor: Normal O2 -> water-like ~1.75 ns
+TumorTissue_Normoxic: d=1.05 g/cm3; n=4 ; state=solid
+        +el: name=Hydrogen   ; f=0.102
+        +el: name=Carbon     ; f=0.143
+        +el: name=Nitrogen   ; f=0.034
+        +el: name=Oxygen     ; f=0.721
+
+# ==============================================================================
+# ADIPOSE TISSUE (Fat): Large lipid voids (long Ps lifetime ~2.55 ns)
+# Literature: 2.54 +/- 0.12 ns [J-PET ex-vivo porcine, Jasinska 2016]
+# ==============================================================================
+AdiposeTissue: d=0.92 g/cm3; n=6 ; state=solid
+        +el: name=Hydrogen   ; f=0.120
+        +el: name=Carbon     ; f=0.640
+        +el: name=Nitrogen   ; f=0.008
+        +el: name=Oxygen     ; f=0.229
+        +el: name=Phosphorus ; f=0.002
+        +el: name=Sulfur     ; f=0.001
+
+# ==============================================================================
+# BRAIN TISSUE: Myelin-rich (long Ps lifetime ~2.70 ns)
+# ==============================================================================
+BrainTissue: d=1.04 g/cm3; n=6 ; state=solid
+        +el: name=Hydrogen   ; f=0.110
+        +el: name=Carbon     ; f=0.125
+        +el: name=Nitrogen   ; f=0.013
+        +el: name=Oxygen     ; f=0.737
+        +el: name=Phosphorus ; f=0.013
+        +el: name=Sulfur     ; f=0.002
+
+# ==============================================================================
+# MUSCLE TISSUE: Intermediate water/protein mix (~2.03 ns)
+# ==============================================================================
+MuscleTissue: d=1.05 g/cm3; n=4 ; state=solid
+        +el: name=Hydrogen   ; f=0.102
+        +el: name=Carbon     ; f=0.143
+        +el: name=Nitrogen   ; f=0.034
+        +el: name=Oxygen     ; f=0.721
+
+# ==============================================================================
+# XAD4 VALIDATION PHANTOMS (J-PET calibration standard)
+# ==============================================================================
+
+# XAD4_Dry: Air-filled pores, mimics adipose (~2.52 ns) [Moskal 2016]
+# Density corrected to the measured rho_tot of Table 1 (0.67 g/cm3); the
+# previous 1.02 was ~55 % too dense. Composition now includes the 0.4 ml of
+# [124I]NaI solution present in every tube, which the polymer-only version
+# omitted: 3.25 g polymer + 0.40 g solution gives mass fractions 0.890/0.110,
+# and folding water into C 0.910 / H 0.090 polymer gives the values below.
+XAD4_Dry: d=0.67 g/cm3; n=3 ; state=solid
+        +el: name=Carbon     ; f=0.8103
+        +el: name=Hydrogen   ; f=0.0924
+        +el: name=Oxygen     ; f=0.0973
+
+# XAD4_Wet: Water-saturated pores, mimics tumor/water (~1.82 ns) [Moskal 2016]
+# Density corrected to the measured rho_tot of Table 1 (0.67 g/cm3); the
+# previous 1.08 was ~61 % too dense. The composition already represents
+# water-saturated pores and is unchanged: at 0.67 g/cm3 it is a porous bead
+# pack, not a solid, which is what the sample is.
+XAD4_Wet: d=0.67 g/cm3; n=3 ; state=solid
+        +el: name=Carbon     ; f=0.455
+        +el: name=Hydrogen   ; f=0.100
+        +el: name=Oxygen     ; f=0.445
+
+# ==============================================================================
+# Mercolli 2025a XAD-4 reproduction tubes (Phase 3.3 - added 2026-04-08)
+# tau_eff/I3 read from materials/pli_materials.json at runtime by
+# PLIMaterialLoader. Cross-referenced against Mercolli 2025a Table during
+# Phase 3.2 label correction (T3=Gelatin=2.27 ns, T4=Water=1.82 ns).
+# ==============================================================================
+
+# Mercolli 2025a T3: 1 ml gelatin + 3.5 ml wet XAD-4 mixture, rho=0.79 g/cm3.
+# Composition approximated from XAD4_Wet with ~5% mass fraction nitrogen
+# from the gelatin (collagen-derived gelatin is ~18% N by mass at ~22%
+# volume fraction). Exact elemental breakdown is not critical for positron
+# transport - tau_eff comes from the JSON loader.
+# Mercolli measured tau = 2.27 +/- 0.04 ns.
+XAD4_gelatin: d=0.79 g/cm3; n=4 ; state=solid
+        +el: name=Carbon     ; f=0.40
+        +el: name=Hydrogen   ; f=0.08
+        +el: name=Nitrogen   ; f=0.05
+        +el: name=Oxygen     ; f=0.47
+
+# Mercolli 2025a T4: demineralized water only (NO XAD-4 matrix), rho=1.00.
+# Identical composition to 'Water' above but registered as a separate
+# G4Material so PLIMaterialLoader can assign a distinct tau_eff: Mercolli
+# measured 1.82 +/- 0.02 ns at lab temperature (probably ~22 C), which is
+# inconsistent with Shibuya 2020's 19 C anchor of 1.95 ns for pure water.
+# Discrepancy documented in the paper Discussion.
+# NOTE: name 'XAD4_water' is a historical misnomer - this is pure water,
+# NOT water-loaded XAD-4. Name retained for plan continuity.
+XAD4_water: d=1.00 g/cm3; n=2 ; state=liquid
+        +el: name=Hydrogen   ; n=2
+        +el: name=Oxygen     ; n=1
+
+# ==============================================================================
+# Hypoxia gradient variants (Phase 3.4 — added 2026-04-08)
+# Five G4Materials with IDENTICAL composition to TumorTissue but distinct
+# names, each mapped to a different pO2 via the JSON loader at runtime.
+# Physical interpretation: the same tumor at different oxygenations, not
+# different free-volume radii. Part of the paper's quantitative negative
+# result (pO2 imaging infeasible at Quadra CRT).
+# ==============================================================================
+
+TumorTissue_pO2_2: d=1.05 g/cm3; n=4 ; state=solid
+        +el: name=Hydrogen   ; f=0.102
+        +el: name=Carbon     ; f=0.143
+        +el: name=Nitrogen   ; f=0.034
+        +el: name=Oxygen     ; f=0.721
+
+TumorTissue_pO2_6: d=1.05 g/cm3; n=4 ; state=solid
+        +el: name=Hydrogen   ; f=0.102
+        +el: name=Carbon     ; f=0.143
+        +el: name=Nitrogen   ; f=0.034
+        +el: name=Oxygen     ; f=0.721
+
+TumorTissue_pO2_10: d=1.05 g/cm3; n=4 ; state=solid
+        +el: name=Hydrogen   ; f=0.102
+        +el: name=Carbon     ; f=0.143
+        +el: name=Nitrogen   ; f=0.034
+        +el: name=Oxygen     ; f=0.721
+
+TumorTissue_pO2_20: d=1.05 g/cm3; n=4 ; state=solid
+        +el: name=Hydrogen   ; f=0.102
+        +el: name=Carbon     ; f=0.143
+        +el: name=Nitrogen   ; f=0.034
+        +el: name=Oxygen     ; f=0.721
+
+TumorTissue_pO2_40: d=1.05 g/cm3; n=4 ; state=solid
+        +el: name=Hydrogen   ; f=0.102
+        +el: name=Carbon     ; f=0.143
+        +el: name=Nitrogen   ; f=0.034
+        +el: name=Oxygen     ; f=0.721
+
+# ==============================================================================
+# DETECTOR MATERIALS
+# ==============================================================================
+
+# LSO scintillator for Quadra detector
+LSO: d=7.4 g/cm3; n=3 ; state=solid
+        +el: name=Lutetium   ; n=2
+        +el: name=Silicon    ; n=1
+        +el: name=Oxygen     ; n=5
+
+# PTFE reflector material
+PTFE: d=2.2 g/cm3 ; n=2 ; state=solid
+        +el: name=Carbon     ; n=2
+        +el: name=Fluorine   ; n=4
+
+# ==============================================================================
+# STEINBERGER 2024 VALIDATION MATERIALS (added 2026-06-22)
+# Non-circular validation: independent literature τ_oPs references.
+# ==============================================================================
+
+# Fused silica (quartz glass), UQG Optics formulation per Steinberger 2024.
+# Density 2.20 g/cm³ (NOT the 2.32 of NIST crystalline G4_SILICON_DIOXIDE).
+# Mass fractions: Si 0.4674, O 0.5326.
+QuartzGlass: d=2.20 g/cm3; n=2 ; state=solid
+        +el: name=Silicon    ; f=0.4674
+        +el: name=Oxygen     ; f=0.5326
+
+# PolycarbonateTakyu (bisphenol-A PC, Steinberger 2024 validation). Mass fractions: C 0.7557, H 0.0555, O 0.1888.
+PolycarbonateTakyu: d=1.20 g/cm3; n=3 ; state=solid
+        +el: name=Carbon     ; f=0.7557
+        +el: name=Hydrogen   ; f=0.0555
+        +el: name=Oxygen     ; f=0.1888
+
+# Water material for Steinberger water cylinder validation. Identical
+# elemental composition + density to "Water" / G4_WATER; only difference
+# is the pli_materials.json entry resolves to τ_oPs = 1.84 ns (Kotera)
+# for this run, NOT the 1.80 ns currently configured for G4_WATER which
+# is shared with Sim-1 / brain-tumor and must not change.
+WaterSteinberger: d=1.00 g/cm3; n=2 ; state=liquid
+        +el: name=Hydrogen   ; n=2
+        +el: name=Oxygen     ; n=1

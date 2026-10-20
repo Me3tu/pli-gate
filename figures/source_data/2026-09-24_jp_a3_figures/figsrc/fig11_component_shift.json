@@ -1,0 +1,51 @@
+{
+ "_source": "2026-08-26_A2_cond2/cond2_component_shift.json (shift_pp, sigma_eff_pp); NEMA background from 2026-08-24_C1_nema388/c1_result.json tau3 all-closest over 1.80 ns",
+ "pooled_shift_pp": 9.309159722744306,
+ "pooled_shift_err_pp": 0.40438575546820604,
+ "rows": [
+  {
+   "region": "T7_brain_tumor_moskal2024",
+   "shift_pp": 8.991840544649929,
+   "sigma_eff_pp": 0.9298996268923063
+  },
+  {
+   "region": "T8_myxoma_moskal2023",
+   "shift_pp": 12.25885945765846,
+   "sigma_eff_pp": 1.3873212392954404
+  },
+  {
+   "region": "T1_water_shibuya2020_n2",
+   "shift_pp": 8.60490400519589,
+   "sigma_eff_pp": 0.9281684177116252
+  },
+  {
+   "region": "T5_muscle_avachat2024",
+   "shift_pp": 19.139891888928847,
+   "sigma_eff_pp": 1.8383304966084602
+  },
+  {
+   "region": "T4_hepatic_avachat2024",
+   "shift_pp": 17.62869564605478,
+   "sigma_eff_pp": 2.1935589925823233
+  },
+  {
+   "region": "T2_adipose_avachat2024",
+   "shift_pp": 13.177515952300883,
+   "sigma_eff_pp": 1.5430331375745707
+  },
+  {
+   "region": "T3_adipose_moskal2023",
+   "shift_pp": 7.694632891724453,
+   "sigma_eff_pp": 1.0961241558646018
+  },
+  {
+   "region": "T6_brain_healthy_moskal2024",
+   "shift_pp": 5.849307336306593,
+   "sigma_eff_pp": 0.810484084419762
+  }
+ ],
+ "background_central": {
+  "shift_pp": 2.7857004428154775,
+  "sigma_eff_pp": null
+ }
+}

@@ -1,0 +1,284 @@
+{
+ "ladder": {
+  "rows": [
+   {
+    "k": 0.15,
+    "mu": 0.004384846744712018,
+    "did": 1.8354808833921326,
+    "sd": 0.560356447372217,
+    "n_tubes": 6
+   },
+   {
+    "k": 0.25,
+    "mu": 0.0073080779072031525,
+    "did": 3.010660359469675,
+    "sd": 0.659963361371551,
+    "n_tubes": 6
+   },
+   {
+    "k": 0.35,
+    "mu": 0.010231309069174124,
+    "did": 4.3997415594485645,
+    "sd": 0.9177863091973214,
+    "n_tubes": 6
+   },
+   {
+    "k": 0.5,
+    "mu": 0.014616155811155261,
+    "did": 6.0776592137063306,
+    "sd": 1.2229214190064928,
+    "n_tubes": 6
+   },
+   {
+    "k": 0.7,
+    "mu": 0.020462618131976196,
+    "did": 8.644095300770182,
+    "sd": 1.8555234190777905,
+    "n_tubes": 6
+   },
+   {
+    "k": 1.0,
+    "mu": 0.029232311609306342,
+    "did": 12.129624179307191,
+    "sd": 2.484431856577934,
+    "n_tubes": 6
+   },
+   {
+    "k": 1.25,
+    "mu": 0.03654038950350531,
+    "did": 15.166713247721907,
+    "sd": 3.2655713052180717,
+    "n_tubes": 6
+   },
+   {
+    "k": 1.5,
+    "mu": 0.04384846739445323,
+    "did": 18.22962298217218,
+    "sd": 4.4010424453535535,
+    "n_tubes": 6
+   },
+   {
+    "k": 1.75,
+    "mu": 0.051156545282150113,
+    "did": 20.979917255079567,
+    "sd": 5.347391572159965,
+    "n_tubes": 6
+   },
+   {
+    "k": 2.0,
+    "mu": 0.05846462316659595,
+    "did": 24.12532923217675,
+    "sd": 6.50098471111065,
+    "n_tubes": 6
+   },
+   {
+    "k": 2.5,
+    "mu": 0.07308077892573449,
+    "did": 30.6480482315507,
+    "sd": 8.682166004510297,
+    "n_tubes": 6
+   },
+   {
+    "k": 3.0,
+    "mu": 0.08769693467186883,
+    "did": 37.49411860724468,
+    "sd": 11.229421671851053,
+    "n_tubes": 6
+   }
+  ],
+  "n_exponent": 0.9991410632500272,
+  "ln_intercept": 6.0318962347567915,
+  "resid_sd_ln": 0.015262225135209828,
+  "loo_n_min": 0.9953519818888444,
+  "loo_n_max": 1.0022286401287177,
+  "common_tubes": [
+   "T1_water_shibuya2020_n2",
+   "T2_adipose_avachat2024",
+   "T3_adipose_moskal2023",
+   "T6_brain_healthy_moskal2024",
+   "T7_brain_tumor_moskal2024",
+   "T8_myxoma_moskal2023"
+  ],
+  "tubes_lost": {
+   "T4_hepatic_avachat2024": [
+    "3.00"
+   ],
+   "T5_muscle_avachat2024": [
+    "3.00"
+   ]
+  },
+  "mu_span_factor": 19.999999949286362
+ },
+ "controls": {
+  "k1_byte_identical": true,
+  "k1_source": "REGISTERED_LADDER.md P-L1, verified at extraction time",
+  "mu_over_k": 0.029232311602912616,
+  "mu_over_k_rel_sd": 7.894287660302809e-10,
+  "mu_over_k_5dp": "0.02923"
+ },
+ "configs": [
+  {
+   "phantom": "Sim-1",
+   "arm": "0 ps",
+   "mu": 0.029232311609306342,
+   "mu_sd": 2.8515489311341696e-05,
+   "did_ivw": 12.218796355575233,
+   "did_err": 0.1973696427301733,
+   "n_regions": 8,
+   "did_plain_mean": 13.592366427176277,
+   "regions": [
+    "T1_water_shibuya2020_n2",
+    "T2_adipose_avachat2024",
+    "T3_adipose_moskal2023",
+    "T4_hepatic_avachat2024",
+    "T5_muscle_avachat2024",
+    "T6_brain_healthy_moskal2024",
+    "T7_brain_tumor_moskal2024",
+    "T8_myxoma_moskal2023"
+   ]
+  },
+  {
+   "phantom": "Sim-1",
+   "arm": "388 ps",
+   "mu": 0.02923749984323683,
+   "mu_sd": 3.614963525790241e-05,
+   "did_ivw": 4.769496214685943,
+   "did_err": 0.05014568378060736,
+   "n_regions": 8,
+   "did_plain_mean": 4.977881775350459,
+   "regions": [
+    "T1_water_shibuya2020_n2",
+    "T2_adipose_avachat2024",
+    "T3_adipose_moskal2023",
+    "T4_hepatic_avachat2024",
+    "T5_muscle_avachat2024",
+    "T6_brain_healthy_moskal2024",
+    "T7_brain_tumor_moskal2024",
+    "T8_myxoma_moskal2023"
+   ]
+  },
+  {
+   "phantom": "NEMA IQ",
+   "arm": "0 ps",
+   "mu": 0.009752397729114851,
+   "mu_sd": 2.658042403231162e-05,
+   "did_ivw": 3.591991590206217,
+   "did_err": 0.5706794192603272,
+   "n_regions": 7,
+   "did_plain_mean": 2.08512823792518,
+   "regions": [
+    "sphere_37mm",
+    "sphere_28mm",
+    "sphere_22mm",
+    "sphere_17mm",
+    "sphere_13mm",
+    "sphere_10mm",
+    "background_central"
+   ]
+  },
+  {
+   "phantom": "NEMA IQ",
+   "arm": "388 ps",
+   "mu": 0.009743727902918727,
+   "mu_sd": 2.5720149924529254e-05,
+   "did_ivw": 1.8208916146798662,
+   "did_err": 0.1682156000634532,
+   "n_regions": 6,
+   "did_plain_mean": -1.778150623836142,
+   "regions": [
+    "sphere_37mm",
+    "sphere_28mm",
+    "sphere_22mm",
+    "sphere_17mm",
+    "sphere_10mm",
+    "background_central"
+   ]
+  },
+  {
+   "phantom": "Steinberger water",
+   "arm": "0 ps",
+   "mu": 0.014736392158872893,
+   "mu_sd": 2.6708992522340742e-05,
+   "did_ivw": 4.633310678800237,
+   "did_err": 0.11437586327459215,
+   "n_regions": 3,
+   "did_plain_mean": 4.382972833337874,
+   "regions": [
+    "VOI_5x15",
+    "VOI_10x20",
+    "VOI_15x25"
+   ]
+  },
+  {
+   "phantom": "Steinberger disks",
+   "arm": "0 ps",
+   "mu": 0.010994257056798198,
+   "mu_sd": 1.0793873998149667e-05,
+   "did_ivw": 3.4822209255053247,
+   "did_err": 0.05243781992781652,
+   "n_regions": 2,
+   "did_plain_mean": 3.6520831805847864,
+   "regions": [
+    "quartz",
+    "polycarbonate"
+   ]
+  }
+ ],
+ "excluded": [
+  {
+   "phantom": "NEMA IQ",
+   "arm": "388 ps",
+   "region": "sphere_13mm",
+   "reason": "degenerate, sigma_eff = 0 gives infinite weight"
+  }
+ ],
+ "mixed_phantom_fit": {
+  "rows": [
+   {
+    "config": "Sim-1 frozen 0 ps",
+    "mu": 0.029232311609306342,
+    "n": 5,
+    "mean": 11.666928789957847,
+    "sd": 2.471810953033335
+   },
+   {
+    "config": "NEMA T6 0 ps",
+    "mu": 0.009752397729114851,
+    "n": 7,
+    "mean": 2.08512823792518,
+    "sd": 5.452088887440212
+   },
+   {
+    "config": "Steinberger disks",
+    "mu": 0.010994257056798198,
+    "n": 2,
+    "mean": 3.6520831805847864,
+    "sd": 0.835027064540729
+   },
+   {
+    "config": "Steinberger water",
+    "mu": 0.014736392158872893,
+    "n": 2,
+    "mean": 4.715116441986594,
+    "sd": 0.04318428638928695
+   }
+  ],
+  "n_exponent": 1.4220204234831366,
+  "intercept": 7.514088247606139,
+  "resid_sd": 0.16163107160819806,
+  "caveat": "4 mixed-phantom points; tau and geometry confounded with mu",
+  "n_exponent_drop_nema": 1.211689859604699,
+  "intercept_drop_nema": 6.719502798818537,
+  "nema_consistent_with_zero": true
+ },
+ "hierarchical": {
+  "beta": 0.9961717931454583,
+  "ci95": [
+   0.9261717931454583,
+   1.0661717931454568
+  ],
+  "n_groups": 6,
+  "n_points": 17,
+  "sigma_alpha": 0.3412773549974022
+ }
+}

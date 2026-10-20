@@ -1,0 +1,132 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
+# Paths (release v1.1.0): the aliases below are read from environment variables,
+# set by simulation/runner/paths.sh or by hand. See simulation/README.md.
+/control/getEnv PLI_SIM
+/control/getEnv PLI_SCANNER_MACRO
+# Phase 3s-2 OVERNIGHT — Mercolli te arm Poisson master mac
+# (auto-generated; references iodine124_tubes_poisson.mac sub-mac)
+
+# ==============================================================================
+# Mercolli 2025a XAD-4 reproduction — Phase 3.3 GATE macro
+# ==============================================================================
+#
+# Four chemistry tubes with different XAD-4 variants, I-124 source per
+# tube, Biograph Vision Quadra geometry. Reproduces the "separated"
+# configuration from Mercolli et al., EJNMMI Phys 12:80 (2025a).
+#
+# Physics parameters (tau_eff, I3) loaded at runtime from the JSON at
+# PLI_MATERIALS_JSON. Paired runner toggles between pli_materials.json
+# and lookup_baseline.json.
+#
+# The paired comparison's key asymmetry:
+#   TE arm (new physics):    T1>T2>T3>T4 with per-tube tau matching Mercolli
+#   Lookup arm (old physics): T1=2.52, T2=XAD4_Wet's 1.82 (old code conflated
+#                             wet XAD-4 and pure water at this tau), T3 and
+#                             T4 fall back to the old code's defaults (the
+#                             old physics had no XAD4_water or XAD4_gelatin
+#                             entry). This asymmetry is the paper's "why the
+#                             overhaul matters" figure for the validation
+#                             subset.
+# ==============================================================================
+
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+# ── Materials ──────────────────────────────────────────────────────────────
+/gate/geometry/setMaterialDatabase {PLI_SIM}/geometry/materials_pli.db
+
+# ── Scanner (Biograph Vision Quadra) ───────────────────────────────────────
+/control/execute {PLI_SCANNER_MACRO}
+
+# ── Phantom: 4 XAD-4 tubes in world air ────────────────────────────────────
+/control/execute {PLI_SIM}/geometry/phantom_mercolli_xad4.mac
+
+# Sensitive-detector attachment (NEMA pattern).
+/gate/tube_T1_dry/attachPhantomSD
+/gate/tube_T2_wet/attachPhantomSD
+/gate/tube_T3_gelatin/attachPhantomSD
+/gate/tube_T4_water/attachPhantomSD
+
+# ── Physics ────────────────────────────────────────────────────────────────
+/gate/physics/addPhysicsList PLI_Physics
+/gate/physics/Gamma/SetCutInRegion    world 1 mm
+/gate/physics/Electron/SetCutInRegion world 1 mm
+/gate/physics/Positron/SetCutInRegion world 1 mm
+
+# ── Initialize ─────────────────────────────────────────────────────────────
+/gate/run/initialize
+
+# ==============================================================================
+# DIGITIZER — I-124 energy windows per Mercolli 2025a Methods
+# ==============================================================================
+#
+# Mercolli specifies two DISJOINT windows for I-124 PLI:
+#   annihilation: [460, 545] keV  (centered on 511 keV, asymmetric to
+#                                  reject the 603 keV prompt tail)
+#   prompt:       [568, 639] keV  (centered on 603 keV from 124Te*)
+#
+# GATE 9's new-digitizer convention uses a single "Singles" chain per
+# crystal. We use ONE chain with a UNION window [460, 639] keV that
+# captures both photon categories in one stream. The two-window split
+# is applied in Phase 4 post-processing by filtering the ROOT Singles
+# branch on the energy column (E < 556 keV -> annihilation, E >= 556
+# -> prompt, where 556 is the midpoint of the [545, 568] gap).
+#
+# The 23 keV gap [545, 568] keV that Mercolli excludes at digitizer
+# level is retained here and filtered out in analysis. Effect on the
+# lifetime signal is < 5 % of counts and does not change the ordering
+# demonstration.
+#
+# CRITICAL: do NOT reuse the Sc-44 window [435, 1300] keV from
+# validate_1M.mac — that would mix Compton-scattered gammas from the
+# I-124 higher-energy lines into the annihilation branch and destroy
+# the lifetime signal. The narrow [460, 639] window is what makes this
+# an I-124 macro rather than a Sc-44 copy-paste.
+# ==============================================================================
+
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert adder
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert readout
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/readout/setDepth 1
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert energyResolution
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyResolution/fwhm 0.101
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyResolution/energyOfReference 511 keV
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert timeResolution
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/timeResolution/fwhm 214 ps
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert energyFraming
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMin 460 keV
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMax 639 keV
+
+# Coincidence sorter — wide 20 ns window for I-124 triples.
+# The reconstruction stage uses a narrower window after filtering.
+/gate/digitizerMgr/CoincidenceSorter/Coincidences/setWindow 20. ns
+/gate/digitizerMgr/CoincidenceSorter/Coincidences/setOffset 0 ns
+
+# ── Source: 4 I-124 ion sources, one per tube ─────────────────────────────
+/control/execute {PLI_SIM}/sources/iodine124_tubes_poisson.mac
+
+# Force instant I-124 decay so the source emits all primaries inside the
+# 1 s simulation window. I-124 natural half-life is 4.18 days (360,800 s).
+/particle/select I124
+/particle/property/stable false
+/particle/property/lifetime 0.001 ns
+
+# ── Output: ROOT with singles + coincidences for CASToR reconstruction ────
+/gate/output/root/enable
+/gate/output/root/setFileName mercolli_te_v2
+/gate/output/root/setRootHitFlag 0
+/gate/output/root/setRootSinglesFlag 1
+/gate/output/root/setRootCoincidencesFlag 1
+
+# ── Run ────────────────────────────────────────────────────────────────────
+/gate/application/setTimeStart 0.0 s
+/gate/application/setTimeStop  0.157510 s
+/gate/application/setTimeSlice 1.0 s
+# Primary count is substituted by the runner via sed (10000000 -> N).
+
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed auto
+
+/gate/application/start

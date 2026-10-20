@@ -1,0 +1,100 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
+# ==============================================================================
+# Phase 3s-2 — iodine124_tubes Phase 3c Poisson variant
+# (auto-generated; original gate/sources/iodine124_tubes.mac unchanged)
+#   * REMOVED: setForcedUnstableFlag true (x4)
+#   * REMOVED: setForcedHalfLife 360800 s (x4)
+#   * KEPT:    setActivity (drives Poisson rate)
+# ==============================================================================
+# ==============================================================================
+# I-124 source — four per-tube GPS ion sources for the Mercolli phantom
+# ==============================================================================
+#
+# Physics: 124I → 124Te* + β+ + ν_e  (beta-plus branching ~22.7%, Emax 2.137 MeV)
+#          124Te* → 124Te + γ(603 keV)   [prompt, T1/2 ~ 2.5 ps]
+#
+# Also significant: 124I → 124Te + γ(1691 keV) [electron capture, no β+]
+# and other minor gamma lines; Geant4's G4PhotonEvaporation + G4RadioactiveDecay
+# handle the full decay scheme automatically once we feed it the ion.
+#
+# For PLI lifetime reconstruction:
+#   - prompt 603 keV gamma from 124Te* → 124Te is the "start signal"
+#     (marks approximate time of β+ emission)
+#   - 2×511 keV annihilation gammas after Ps decay are the "stop signal"
+#     (mark time of positron annihilation)
+#   - Delta_t = t_annihilation - t_prompt ≈ Ps lifetime (β+ transport
+#     and thermalization take < 100 ps, much smaller than Ps lifetimes)
+#
+# Activity per tube (from Mercolli 2025a Table):
+#   T1 Dry:       ~1.12 MBq
+#   T2 Wet:       ~1.44 MBq
+#   T3 Gelatin:   ~1.14 MBq
+#   T4 Water:     ~1.26 MBq
+# We use the exact Mercolli values so the total activity and per-tube
+# count distribution match the published experiment.
+#
+# Note: the total-primary-count override via /gate/application/
+# setTotalNumberOfPrimaries dominates the activity for the simulation —
+# the setActivity values here are for ratio preservation (so T2 gets
+# more counts than T3, T1, T4 in proportion to Mercolli's activities).
+#
+# Tube volume distribution: each GPS source's position/shape must match
+# the corresponding phantom tube (r=6 mm, h=45 mm at the same center).
+# ==============================================================================
+
+# ── T1 XAD4_Dry source ────────────────────────────────────────────────────
+/gate/source/addSource i124_t1 gps
+/gate/source/i124_t1/gps/particle ion
+/gate/source/i124_t1/gps/ion 53 124 0 0
+/gate/source/i124_t1/gps/ene/type Mono
+/gate/source/i124_t1/gps/ene/mono 0 keV
+/gate/source/i124_t1/gps/ang/type iso
+/gate/source/i124_t1/gps/pos/type Volume
+/gate/source/i124_t1/gps/pos/shape Cylinder
+/gate/source/i124_t1/gps/pos/radius 6 mm
+/gate/source/i124_t1/gps/pos/halfz 22.5 mm
+/gate/source/i124_t1/gps/pos/centre -45 0 0 mm
+/gate/source/i124_t1/setActivity 1120000 Bq
+
+# ── T2 XAD4_Wet source ────────────────────────────────────────────────────
+/gate/source/addSource i124_t2 gps
+/gate/source/i124_t2/gps/particle ion
+/gate/source/i124_t2/gps/ion 53 124 0 0
+/gate/source/i124_t2/gps/ene/type Mono
+/gate/source/i124_t2/gps/ene/mono 0 keV
+/gate/source/i124_t2/gps/ang/type iso
+/gate/source/i124_t2/gps/pos/type Volume
+/gate/source/i124_t2/gps/pos/shape Cylinder
+/gate/source/i124_t2/gps/pos/radius 6 mm
+/gate/source/i124_t2/gps/pos/halfz 22.5 mm
+/gate/source/i124_t2/gps/pos/centre -15 0 0 mm
+/gate/source/i124_t2/setActivity 1440000 Bq
+
+# ── T3 XAD4_gelatin source ────────────────────────────────────────────────
+/gate/source/addSource i124_t3 gps
+/gate/source/i124_t3/gps/particle ion
+/gate/source/i124_t3/gps/ion 53 124 0 0
+/gate/source/i124_t3/gps/ene/type Mono
+/gate/source/i124_t3/gps/ene/mono 0 keV
+/gate/source/i124_t3/gps/ang/type iso
+/gate/source/i124_t3/gps/pos/type Volume
+/gate/source/i124_t3/gps/pos/shape Cylinder
+/gate/source/i124_t3/gps/pos/radius 6 mm
+/gate/source/i124_t3/gps/pos/halfz 22.5 mm
+/gate/source/i124_t3/gps/pos/centre 15 0 0 mm
+/gate/source/i124_t3/setActivity 1140000 Bq
+
+# ── T4 XAD4_water source ──────────────────────────────────────────────────
+/gate/source/addSource i124_t4 gps
+/gate/source/i124_t4/gps/particle ion
+/gate/source/i124_t4/gps/ion 53 124 0 0
+/gate/source/i124_t4/gps/ene/type Mono
+/gate/source/i124_t4/gps/ene/mono 0 keV
+/gate/source/i124_t4/gps/ang/type iso
+/gate/source/i124_t4/gps/pos/type Volume
+/gate/source/i124_t4/gps/pos/shape Cylinder
+/gate/source/i124_t4/gps/pos/radius 6 mm
+/gate/source/i124_t4/gps/pos/halfz 22.5 mm
+/gate/source/i124_t4/gps/pos/centre 45 0 0 mm
+/gate/source/i124_t4/setActivity 1260000 Bq

@@ -1,0 +1,277 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
+# Paths (release v1.1.0): the aliases below are read from environment variables,
+# set by simulation/runner/paths.sh or by hand. See simulation/README.md.
+/control/getEnv PLI_GATE_MATERIALS_DB
+/control/getEnv PLI_SCANNER_MACRO
+# ==============================================================================
+# NEMA IQ phantom — Sc-44 PLI, Mercolli 2025 configuration
+# ==============================================================================
+#
+# Phantom:     Data Spectrum Corp NEMA NU 2-2018 Image Quality (cylindrical
+#              body 220 mm diameter × 180 mm length, 6 fillable spheres of
+#              diameters 37/28/22/17/13/10 mm in a hexagonal pattern at
+#              r = 68.5 mm from the axial centre).
+# Materials:   ALL water (background and spheres). NO tumour-tissue
+#              lifetime contrast — matches Mercolli 2025 and differs from
+#              the older gate/geometry/nema_iq_phantom.mac (which used
+#              TumorTissue in spheres).
+# Activity:    Sphere-to-background PER-VOLUME concentration ratio 10:1
+#              (Mercolli 2025 Table 1: spheres 40.68 kBq/ml, background
+#              3.90 kBq/ml ≈ 10.43:1). Implemented as one 1× body-volume
+#              GPS source plus six 9× extra sphere-volume GPS sources. To
+#              get per-volume ratio = 10, each source's setActivity is
+#              set proportional to its volume × concentration:
+#                 body   setActivity = V_body_mm³            (1× body)
+#                 sph_D  setActivity = 9 × V_sphere_mm³       (9× extra)
+#              sum = 10× per-volume inside spheres, 1× in bg.
+#              Volume-weighted Bq values below computed from gps/pos dims.
+# Physics:     Same PLI_Physics stack as the VIPman 500 M and the water
+#              100 M calibration runs.
+# Isotope:     Sc-44 ion (Z=21, A=44) with forcedUnstable + 0.001 ns
+#              instant-decay trick (identical chain to VIPman/water).
+# Digitizer:   Quadra — 214 ps time res, 350–1300 keV energy window, 20 ns
+#              coincidence window (all match VIPman).
+# Primaries:   the Gate runner is expected to edit
+#              `/gate/application/setTotalNumberOfPrimaries` per run.
+# ==============================================================================
+
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+# ── Materials ──────────────────────────────────────────────────────────────
+/gate/geometry/setMaterialDatabase {PLI_GATE_MATERIALS_DB}
+
+# ── Scanner (Biograph Vision Quadra) ───────────────────────────────────────
+/control/execute {PLI_SCANNER_MACRO}
+
+# ── Phantom: NEMA IQ body (water cylinder) ─────────────────────────────────
+/gate/world/daughters/name              nema_body
+/gate/world/daughters/insert            cylinder
+/gate/nema_body/setMaterial             Water
+/gate/nema_body/geometry/setRmax        110 mm
+/gate/nema_body/geometry/setRmin        0 mm
+/gate/nema_body/geometry/setHeight      180 mm
+/gate/nema_body/placement/setTranslation 0 0 0 mm
+/gate/nema_body/vis/setColor            cyan
+/gate/nema_body/vis/setVisible          true
+
+# ── Six spheres (all water, for activity contrast only) ────────────────────
+# Diameters: 37, 28, 22, 17, 13, 10 mm — NEMA NU 2-2018 spec.
+# Positions form a hexagon at r = 68.5 mm.
+/gate/nema_body/daughters/name          sphere_37mm
+/gate/nema_body/daughters/insert        sphere
+/gate/sphere_37mm/setMaterial           Water
+/gate/sphere_37mm/geometry/setRmax      18.5 mm
+/gate/sphere_37mm/placement/setTranslation -68.5 0 0 mm
+/gate/sphere_37mm/vis/setColor          red
+
+/gate/nema_body/daughters/name          sphere_28mm
+/gate/nema_body/daughters/insert        sphere
+/gate/sphere_28mm/setMaterial           Water
+/gate/sphere_28mm/geometry/setRmax      14.0 mm
+/gate/sphere_28mm/placement/setTranslation -34.25 59.3 0 mm
+/gate/sphere_28mm/vis/setColor          red
+
+/gate/nema_body/daughters/name          sphere_22mm
+/gate/nema_body/daughters/insert        sphere
+/gate/sphere_22mm/setMaterial           Water
+/gate/sphere_22mm/geometry/setRmax      11.0 mm
+/gate/sphere_22mm/placement/setTranslation 34.25 59.3 0 mm
+/gate/sphere_22mm/vis/setColor          red
+
+/gate/nema_body/daughters/name          sphere_17mm
+/gate/nema_body/daughters/insert        sphere
+/gate/sphere_17mm/setMaterial           Water
+/gate/sphere_17mm/geometry/setRmax      8.5 mm
+/gate/sphere_17mm/placement/setTranslation 68.5 0 0 mm
+/gate/sphere_17mm/vis/setColor          red
+
+/gate/nema_body/daughters/name          sphere_13mm
+/gate/nema_body/daughters/insert        sphere
+/gate/sphere_13mm/setMaterial           Water
+/gate/sphere_13mm/geometry/setRmax      6.5 mm
+/gate/sphere_13mm/placement/setTranslation 34.25 -59.3 0 mm
+/gate/sphere_13mm/vis/setColor          red
+
+/gate/nema_body/daughters/name          sphere_10mm
+/gate/nema_body/daughters/insert        sphere
+/gate/sphere_10mm/setMaterial           Water
+/gate/sphere_10mm/geometry/setRmax      5.0 mm
+/gate/sphere_10mm/placement/setTranslation -34.25 -59.3 0 mm
+/gate/sphere_10mm/vis/setColor          red
+
+# ── Physics ────────────────────────────────────────────────────────────────
+/gate/physics/addPhysicsList PLI_Physics
+/gate/physics/Gamma/SetCutInRegion    world 1 mm
+/gate/physics/Electron/SetCutInRegion world 1 mm
+/gate/physics/Positron/SetCutInRegion world 1 mm
+
+# ── Initialize ─────────────────────────────────────────────────────────────
+/gate/run/initialize
+
+# ── Digitizer (identical to VIPman + water calibration) ────────────────────
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert adder
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert readout
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/readout/setDepth 1
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert energyResolution
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyResolution/fwhm 0.101
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyResolution/energyOfReference 511 keV
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert timeResolution
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/timeResolution/fwhm 214 ps
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert energyFraming
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMin 350 keV
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMax 1300 keV
+
+/gate/digitizerMgr/CoincidenceSorter/Coincidences/setWindow 20. ns
+/gate/digitizerMgr/CoincidenceSorter/Coincidences/setOffset 0 ns
+
+# ── Sources ────────────────────────────────────────────────────────────────
+# Background: 1× Sc-44 uniform in the full body cylinder.
+/gate/source/addSource                   bg gps
+/gate/source/bg/gps/particle             ion
+/gate/source/bg/gps/ion                  21 44 0 0
+/gate/source/bg/gps/energytype           Mono
+/gate/source/bg/gps/monoenergy           0 keV
+/gate/source/bg/gps/pos/type             Volume
+/gate/source/bg/gps/pos/shape            Cylinder
+/gate/source/bg/gps/pos/radius           109 mm
+/gate/source/bg/gps/pos/halfz            89 mm
+/gate/source/bg/gps/pos/centre           0 0 0 mm
+/gate/source/bg/gps/ang/type             iso
+/gate/source/bg/setForcedUnstableFlag    true
+/gate/source/bg/setForcedHalfLife        14292 s
+# body GPS volume π·109²·178 mm³ = 6,643,897 mm³; 1 unit/mm³ per-volume → 6,643,897 Bq
+/gate/source/bg/setActivity              6643897 Bq
+
+# Six extra sphere sources at 9× — sum with body gives 10× per-voxel activity
+# inside spheres. Scale computed from activity ratio Mercolli (40.68/3.90 ≈
+# 10.43); we use 10× exactly.
+# Sphere 37 mm
+/gate/source/addSource                   sph37 gps
+/gate/source/sph37/gps/particle          ion
+/gate/source/sph37/gps/ion               21 44 0 0
+/gate/source/sph37/gps/energytype        Mono
+/gate/source/sph37/gps/monoenergy        0 keV
+/gate/source/sph37/gps/pos/type          Volume
+/gate/source/sph37/gps/pos/shape         Sphere
+/gate/source/sph37/gps/pos/radius        18.5 mm
+/gate/source/sph37/gps/pos/centre        -68.5 0 0 mm
+/gate/source/sph37/gps/ang/type          iso
+/gate/source/sph37/setForcedUnstableFlag true
+/gate/source/sph37/setForcedHalfLife     14292 s
+# 9 × V_sphere(R=18.5) = 9 × 26,522 mm³ → 238,697 Bq
+/gate/source/sph37/setActivity           238697 Bq
+
+# Sphere 28 mm
+/gate/source/addSource                   sph28 gps
+/gate/source/sph28/gps/particle          ion
+/gate/source/sph28/gps/ion               21 44 0 0
+/gate/source/sph28/gps/energytype        Mono
+/gate/source/sph28/gps/monoenergy        0 keV
+/gate/source/sph28/gps/pos/type          Volume
+/gate/source/sph28/gps/pos/shape         Sphere
+/gate/source/sph28/gps/pos/radius        14.0 mm
+/gate/source/sph28/gps/pos/centre        -34.25 59.3 0 mm
+/gate/source/sph28/gps/ang/type          iso
+/gate/source/sph28/setForcedUnstableFlag true
+/gate/source/sph28/setForcedHalfLife     14292 s
+# 9 × V_sphere(R=14) = 9 × 11,494 mm³ → 103,446 Bq
+/gate/source/sph28/setActivity           103446 Bq
+
+# Sphere 22 mm
+/gate/source/addSource                   sph22 gps
+/gate/source/sph22/gps/particle          ion
+/gate/source/sph22/gps/ion               21 44 0 0
+/gate/source/sph22/gps/energytype        Mono
+/gate/source/sph22/gps/monoenergy        0 keV
+/gate/source/sph22/gps/pos/type          Volume
+/gate/source/sph22/gps/pos/shape         Sphere
+/gate/source/sph22/gps/pos/radius        11.0 mm
+/gate/source/sph22/gps/pos/centre        34.25 59.3 0 mm
+/gate/source/sph22/gps/ang/type          iso
+/gate/source/sph22/setForcedUnstableFlag true
+/gate/source/sph22/setForcedHalfLife     14292 s
+# 9 × V_sphere(R=11) = 9 × 5,575 mm³ → 50,178 Bq
+/gate/source/sph22/setActivity           50178 Bq
+
+# Sphere 17 mm
+/gate/source/addSource                   sph17 gps
+/gate/source/sph17/gps/particle          ion
+/gate/source/sph17/gps/ion               21 44 0 0
+/gate/source/sph17/gps/energytype        Mono
+/gate/source/sph17/gps/monoenergy        0 keV
+/gate/source/sph17/gps/pos/type          Volume
+/gate/source/sph17/gps/pos/shape         Sphere
+/gate/source/sph17/gps/pos/radius        8.5 mm
+/gate/source/sph17/gps/pos/centre        68.5 0 0 mm
+/gate/source/sph17/gps/ang/type          iso
+/gate/source/sph17/setForcedUnstableFlag true
+/gate/source/sph17/setForcedHalfLife     14292 s
+# 9 × V_sphere(R=8.5) = 9 × 2,572 mm³ → 23,152 Bq
+/gate/source/sph17/setActivity           23152 Bq
+
+# Sphere 13 mm
+/gate/source/addSource                   sph13 gps
+/gate/source/sph13/gps/particle          ion
+/gate/source/sph13/gps/ion               21 44 0 0
+/gate/source/sph13/gps/energytype        Mono
+/gate/source/sph13/gps/monoenergy        0 keV
+/gate/source/sph13/gps/pos/type          Volume
+/gate/source/sph13/gps/pos/shape         Sphere
+/gate/source/sph13/gps/pos/radius        6.5 mm
+/gate/source/sph13/gps/pos/centre        34.25 -59.3 0 mm
+/gate/source/sph13/gps/ang/type          iso
+/gate/source/sph13/setForcedUnstableFlag true
+/gate/source/sph13/setForcedHalfLife     14292 s
+# 9 × V_sphere(R=6.5) = 9 × 1,150 mm³ → 10,353 Bq
+/gate/source/sph13/setActivity           10353 Bq
+
+# Sphere 10 mm
+/gate/source/addSource                   sph10 gps
+/gate/source/sph10/gps/particle          ion
+/gate/source/sph10/gps/ion               21 44 0 0
+/gate/source/sph10/gps/energytype        Mono
+/gate/source/sph10/gps/monoenergy        0 keV
+/gate/source/sph10/gps/pos/type          Volume
+/gate/source/sph10/gps/pos/shape         Sphere
+/gate/source/sph10/gps/pos/radius        5.0 mm
+/gate/source/sph10/gps/pos/centre        -34.25 -59.3 0 mm
+/gate/source/sph10/gps/ang/type          iso
+/gate/source/sph10/setForcedUnstableFlag true
+/gate/source/sph10/setForcedHalfLife     14292 s
+# 9 × V_sphere(R=5) = 9 × 524 mm³ → 4,712 Bq
+/gate/source/sph10/setActivity           4712 Bq
+
+# Force instant Sc-44 decay (same idiom as VIPman/water).
+/particle/select Sc44
+/particle/property/stable false
+/particle/property/lifetime 0.001 ns
+
+# ── Output ─────────────────────────────────────────────────────────────────
+# Gate runner will override setFileName + setTotalNumberOfPrimaries per run.
+/gate/output/root/enable
+/gate/output/root/setFileName sim_nema_iq_200M
+/gate/output/root/setRootHitFlag 0
+/gate/output/root/setRootSinglesFlag 1
+/gate/output/root/setRootCoincidencesFlag 1
+
+# ── Run control (TIME-BASED, not setTotalNumberOfPrimaries) ───────────────
+# IMPORTANT: observed 2026-04-24 that with `setTotalNumberOfPrimaries N`
+# plus multiple GPS sources, GATE 9.4.1 distributes primaries approximately
+# EQUALLY across sources rather than proportional to setActivity. This
+# breaks the Mercolli 10:1 per-voxel ratio. Using time-based acquisition
+# ensures each source emits proportional to its setActivity × time.
+#
+# Dry-run (~1 M primaries at total activity 7.07 MBq): setTimeStop 0.14 s.
+# Production (~200 M): setTimeStop 28 s — ≈ 200 M / 7.07e6 Bq.
+/gate/application/setTimeStart 0.0 s
+/gate/application/setTimeStop  28.3 s
+/gate/application/setTimeSlice 28.3 s
+
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed auto
+
+/gate/application/start

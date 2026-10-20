@@ -1,0 +1,107 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
+# Paths (release v1.1.0): the aliases below are read from environment variables,
+# set by simulation/runner/paths.sh or by hand. See simulation/README.md.
+/control/getEnv PLI_GATE_MATERIALS_DB
+/control/getEnv PLI_SCANNER_MACRO
+/control/getEnv PLI_VIPMAN_DIR
+# ==============================================================================
+# VIPman voxelized multi-organ phantom — Sc-44 PLI simulation (50M, Poisson)
+# ==============================================================================
+#
+# Phase 3p-2 smoketest of the Phase 3c Poisson timing recipe applied to the
+# VIPman atlas, at 50M-decay scale (vs production 1.4B). Pipeline this feeds:
+# GATE → ROOT → HDF5 → bg generate → inject → h5 extract → simple_recon.
+#
+# Diff from macros/vipman_sc44_500M.mac:
+#   * REMOVED  /gate/source/vox/setForcedUnstableFlag true
+#   * REMOVED  /gate/source/vox/setForcedHalfLife 14292 s
+#   * REMOVED  /gate/application/setTotalNumberOfPrimaries 500000000
+#   * CHANGED  /gate/application/setTimeStop 1.0 → 0.956 s   (50M decays at 52.29 MBq)
+#
+# Phase 3c established the Poisson recipe at 1 MBq water cylinder (median gap
+# 693.87 ns vs theory 693.15 ns, +0.10%). For voxelized sources the per-voxel
+# .dat activity drives the Poisson process directly — no setActivity needed.
+#
+# Atlas activity = 52.29 MBq (Phase 3e voxelized .dat sum). T_sim = 50M /
+# 52.29M = 0.956 s gives ~50M Poisson decays.
+# ==============================================================================
+
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+# ── Materials ──────────────────────────────────────────────────────────────
+/gate/geometry/setMaterialDatabase {PLI_GATE_MATERIALS_DB}
+
+# ── Scanner (Biograph Vision Quadra) ───────────────────────────────────────
+/control/execute {PLI_SCANNER_MACRO}
+
+# ── Phantom: VIPman voxelized atlas ────────────────────────────────────────
+/gate/world/daughters/name                          vipman
+/gate/world/daughters/insert                        ImageNestedParametrisedVolume
+/gate/vipman/geometry/setImage                      {PLI_VIPMAN_DIR}/vipman-atlas-lungs-32mm-1mm-cropped-fixed.mhd
+/gate/vipman/geometry/setRangeToMaterialFile        {PLI_VIPMAN_DIR}/vipman-atlas-gate-materials.dat
+/gate/vipman/placement/setTranslation               0 0 0 mm
+
+# ── Physics ────────────────────────────────────────────────────────────────
+/gate/physics/addPhysicsList PLI_Physics
+/gate/physics/Gamma/SetCutInRegion    world 1 mm
+/gate/physics/Electron/SetCutInRegion world 1 mm
+/gate/physics/Positron/SetCutInRegion world 1 mm
+
+# ── Initialize ─────────────────────────────────────────────────────────────
+/gate/run/initialize
+
+# ── Digitizer ──────────────────────────────────────────────────────────────
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert adder
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert readout
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/readout/setDepth 1
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert energyResolution
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyResolution/fwhm 0.101
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyResolution/energyOfReference 511 keV
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert timeResolution
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/timeResolution/fwhm 214 ps
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert energyFraming
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMin 350 keV
+/gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMax 1300 keV
+
+/gate/digitizerMgr/CoincidenceSorter/Coincidences/setWindow 20. ns
+/gate/digitizerMgr/CoincidenceSorter/Coincidences/setOffset 0 ns
+
+# ── Source: Sc-44 ion driven by VIPman activity map (Poisson timing) ──────
+/gate/source/addSource                              vox voxel
+/gate/source/vox/reader/insert                      image
+/gate/source/vox/imageReader/translator/insert      range
+/gate/source/vox/imageReader/rangeTranslator/readTable {PLI_VIPMAN_DIR}/vipman-atlas-gate-activities-f18-fdg.dat
+/gate/source/vox/imageReader/readFile               {PLI_VIPMAN_DIR}/vipman-atlas-lungs-32mm-1mm-cropped-fixed.mhd
+/gate/source/vox/setPosition                        -280.5 -135.5 -16 mm
+/gate/source/vox/gps/particle e+
+/gate/source/vox/gps/ene/type                       Mono
+/gate/source/vox/gps/ene/mono 632 keV
+/gate/source/vox/gps/ang/type                       iso
+# Phase 3p-2: setForcedUnstableFlag + setForcedHalfLife REMOVED for Poisson
+# timing per Phase 3c recipe. Per-voxel activity from .dat drives the Poisson
+# process directly.
+
+# Force fast Sc-44 decay (overrides PDGLifeTime ~14292 s).
+
+# ── Output ─────────────────────────────────────────────────────────────────
+/gate/output/root/enable
+/gate/output/root/setFileName timing_pli_eplus
+/gate/output/root/setRootHitFlag 0
+/gate/output/root/setRootSinglesFlag 1
+/gate/output/root/setRootCoincidencesFlag 1
+
+# ── Run ────────────────────────────────────────────────────────────────────
+# Phase 3p-2: setTimeStop 0.956 s for 50M decays at 52.29 MBq atlas.
+# setTotalNumberOfPrimaries REMOVED — Poisson driver only.
+/gate/application/setTimeStart 0.0 s
+/gate/application/setTimeStop  0.019124 s
+/gate/application/setTimeSlice 1.0 s
+
+/gate/random/setEngineName MersenneTwister
+/gate/random/setEngineSeed 424242
+
+/gate/application/start

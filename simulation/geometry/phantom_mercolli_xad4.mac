@@ -1,0 +1,85 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
+# ==============================================================================
+# Mercolli 2025a XAD-4 reproduction phantom — Phase 3.3
+# ==============================================================================
+#
+# Reproduces the 4-tube "separated" configuration from
+#   Mercolli et al., EJNMMI Phys 12:80 (2025a)
+# on the Biograph Vision Quadra. Four standard chemistry tubes, modelled
+# as short cylinders in world air (no water background), arranged in a
+# row along x with ~18 mm edge-to-edge spacing. Each tube contains a
+# different XAD-4 variant with a distinct published o-Ps lifetime.
+#
+# Tube  Material       Mercolli label    tau_pub (ns)   rho (g/cm3)
+# --------------------------------------------------------------------
+# T1    XAD4_Dry       T1 Dry            2.52 +/- 0.03  0.67 (Mercolli)
+# T2    XAD4_Wet       T2 Wet            2.37 +/- 0.03  0.67 (Mercolli)
+# T3    XAD4_gelatin   T3 Gelatin        2.27 +/- 0.04  0.79 (Mercolli)
+# T4    XAD4_water     T4 Water          1.82 +/- 0.02  1.00 (Mercolli)
+#
+# (Densities above are what this macro actually loads. CORRECTED 2026-08-29:
+# this note previously claimed our XAD4_Dry/XAD4_Wet were 1.02 and 1.08 g/cm3
+# from Moskal 2016 rather than Mercolli's 0.67. That is no longer true and
+# described a database this macro does not load. gate/geometry/materials_pli.db
+# -- set at line 30 of gate/simulations/phase3_mercolli_xad4/mercolli_xad4_phantom.mac
+# -- carries 0.67/0.67/0.79/1.00, matching the measured rho_tot of Mercolli
+# Table 1 as amended by the correction (10.1186/s40658-025-00801-z). The
+# 0.4 ml of [124I]NaI solution present in every tube is folded into the
+# composition: 3.25 g polymer + 0.40 g solution -> mass fractions 0.890/0.110.
+# Derivation is recorded in the XAD4_Dry/XAD4_Wet comment blocks of that .db.
+# tau_eff still comes from the JSON loader, driven by PALS data at each
+# material's own temperature and pO2, so density does not set the lifetime.)
+#
+# Geometry (X axis, Y = Z = 0):
+#   x=-45 mm    T1 XAD4_Dry       (left-most)
+#   x=-15 mm    T2 XAD4_Wet
+#   x=+15 mm    T3 XAD4_gelatin
+#   x=+45 mm    T4 XAD4_water     (right-most)
+# All tubes r=6 mm (12 mm ID, standard chemistry tube), h=45 mm.
+# 30 mm center-to-center pitch, 18 mm edge-to-edge gap — comfortably
+# resolvable at the Quadra's ~4-5 mm FWHM.
+#
+# Sensitive-detector attachment is done by the simulation macro after
+# /gate/run/initialize, matching validate_1M.mac convention.
+# ==============================================================================
+
+# ── T1 Dry XAD-4 ──────────────────────────────────────────────────────────
+/gate/world/daughters/name tube_T1_dry
+/gate/world/daughters/insert cylinder
+/gate/tube_T1_dry/setMaterial XAD4_Dry
+/gate/tube_T1_dry/geometry/setRmax 6 mm
+/gate/tube_T1_dry/geometry/setHeight 45 mm
+/gate/tube_T1_dry/placement/setTranslation -45 0 0 mm
+/gate/tube_T1_dry/vis/setVisible true
+/gate/tube_T1_dry/vis/setColor yellow
+
+# ── T2 Wet XAD-4 ──────────────────────────────────────────────────────────
+/gate/world/daughters/name tube_T2_wet
+/gate/world/daughters/insert cylinder
+/gate/tube_T2_wet/setMaterial XAD4_Wet
+/gate/tube_T2_wet/geometry/setRmax 6 mm
+/gate/tube_T2_wet/geometry/setHeight 45 mm
+/gate/tube_T2_wet/placement/setTranslation -15 0 0 mm
+/gate/tube_T2_wet/vis/setVisible true
+/gate/tube_T2_wet/vis/setColor cyan
+
+# ── T3 Gelatin + XAD-4 ────────────────────────────────────────────────────
+/gate/world/daughters/name tube_T3_gelatin
+/gate/world/daughters/insert cylinder
+/gate/tube_T3_gelatin/setMaterial XAD4_gelatin
+/gate/tube_T3_gelatin/geometry/setRmax 6 mm
+/gate/tube_T3_gelatin/geometry/setHeight 45 mm
+/gate/tube_T3_gelatin/placement/setTranslation 15 0 0 mm
+/gate/tube_T3_gelatin/vis/setVisible true
+/gate/tube_T3_gelatin/vis/setColor green
+
+# ── T4 Pure demineralized water (despite the XAD4_water name) ─────────────
+/gate/world/daughters/name tube_T4_water
+/gate/world/daughters/insert cylinder
+/gate/tube_T4_water/setMaterial XAD4_water
+/gate/tube_T4_water/geometry/setRmax 6 mm
+/gate/tube_T4_water/geometry/setHeight 45 mm
+/gate/tube_T4_water/placement/setTranslation 45 0 0 mm
+/gate/tube_T4_water/vis/setVisible true
+/gate/tube_T4_water/vis/setColor blue

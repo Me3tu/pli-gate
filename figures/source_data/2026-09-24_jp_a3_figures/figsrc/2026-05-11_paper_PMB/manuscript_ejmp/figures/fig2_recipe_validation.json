@@ -1,0 +1,204 @@
+{
+ "source": "POST-CORRECTION O4 rerun (the freeze pipeline)",
+ "inputs": [
+  "results/2026-08-13_overnight/O4_rerun/sim1_calibration/analysis/post_taumin1p0.csv",
+  "results/2026-08-13_overnight/O4_rerun/sim2_mercolli_te/analysis/post_taumin1p0.csv"
+ ],
+ "recipe": "filter_triples_tof_pann --r-cut 75 ; analyze_per_tube_tau --tau-min 1.0",
+ "binary": "3522d567...",
+ "materials_db": "2a26b68e...",
+ "n_tubes": 12,
+ "tubes": [
+  {
+   "isotope": "Sc-44",
+   "sim": "Sim-1",
+   "tube": "T1",
+   "material": "water_shibuya2020_n2",
+   "tau_cfg": 1.9214999999999058,
+   "tau_rec": 1.921071379530579,
+   "sigma_ns": 0.004888649663063712,
+   "residual_pct": -0.02230655578074017,
+   "residual_ps": -0.42862046932690134,
+   "sigma_ps": 4.8886496630637115,
+   "n_used": 154422
+  },
+  {
+   "isotope": "Sc-44",
+   "sim": "Sim-1",
+   "tube": "T2",
+   "material": "adipose_avachat2024",
+   "tau_cfg": 2.5399999999999974,
+   "tau_rec": 2.523623362720246,
+   "sigma_ns": 0.007204092035700837,
+   "residual_pct": -0.6447494992028101,
+   "residual_ps": -16.37663727975136,
+   "sigma_ps": 7.204092035700837,
+   "n_used": 122713
+  },
+  {
+   "isotope": "Sc-44",
+   "sim": "Sim-1",
+   "tube": "T3",
+   "material": "adipose_moskal2023",
+   "tau_cfg": 2.7199999999999998,
+   "tau_rec": 2.712515513341789,
+   "sigma_ns": 0.006146863491858529,
+   "residual_pct": -0.27516495066951796,
+   "residual_ps": -7.484486658210887,
+   "sigma_ps": 6.14686349185853,
+   "n_used": 194732
+  },
+  {
+   "isotope": "Sc-44",
+   "sim": "Sim-1",
+   "tube": "T4",
+   "material": "hepatic_avachat2024",
+   "tau_cfg": 2.039999999999973,
+   "tau_rec": 2.0447734722090787,
+   "sigma_ns": 0.007413662051390317,
+   "residual_pct": 0.2339937357404802,
+   "residual_ps": 4.7734722091057336,
+   "sigma_ps": 7.413662051390317,
+   "n_used": 76072
+  },
+  {
+   "isotope": "Sc-44",
+   "sim": "Sim-1",
+   "tube": "T5",
+   "material": "muscle_avachat2024",
+   "tau_cfg": 2.029999999999969,
+   "tau_rec": 2.0416254707403003,
+   "sigma_ns": 0.0070110119894583435,
+   "residual_pct": 0.5726832877010509,
+   "residual_ps": 11.625470740331156,
+   "sigma_ps": 7.011011989458344,
+   "n_used": 84799
+  },
+  {
+   "isotope": "Sc-44",
+   "sim": "Sim-1",
+   "tube": "T6",
+   "material": "brain_healthy_moskal2024",
+   "tau_cfg": 2.7200000000000015,
+   "tau_rec": 2.7120997955778527,
+   "sigma_ns": 0.006134182921169081,
+   "residual_pct": -0.2904486919907639,
+   "residual_ps": -7.900204422148782,
+   "sigma_ps": 6.1341829211690815,
+   "n_used": 195478
+  },
+  {
+   "isotope": "Sc-44",
+   "sim": "Sim-1",
+   "tube": "T7",
+   "material": "brain_tumor_moskal2024",
+   "tau_cfg": 1.769999999999938,
+   "tau_rec": 1.7704520706802014,
+   "sigma_ns": 0.00439339773369505,
+   "residual_pct": 0.02554071639905834,
+   "residual_ps": 0.45207068026331676,
+   "sigma_ps": 4.393397733695051,
+   "n_used": 162393
+  },
+  {
+   "isotope": "Sc-44",
+   "sim": "Sim-1",
+   "tube": "T8",
+   "material": "myxoma_moskal2023",
+   "tau_cfg": 1.919999999999904,
+   "tau_rec": 1.9167951707272328,
+   "sigma_ns": 0.005925383521305531,
+   "residual_pct": -0.16691819128496582,
+   "residual_ps": -3.2048292726711836,
+   "sigma_ps": 5.925383521305531,
+   "n_used": 104645
+  },
+  {
+   "isotope": "I-124",
+   "sim": "Sim-2 TE",
+   "tube": "T1",
+   "material": "XAD4_dry",
+   "tau_cfg": 2.520000000000001,
+   "tau_rec": 2.5078317091409343,
+   "sigma_ns": 0.0204736305251173,
+   "residual_pct": -0.4828686848835937,
+   "residual_ps": -12.168290859066566,
+   "sigma_ps": 20.4736305251173,
+   "n_used": 15004
+  },
+  {
+   "isotope": "I-124",
+   "sim": "Sim-2 TE",
+   "tube": "T2",
+   "material": "XAD4_wet",
+   "tau_cfg": 2.3699999999999997,
+   "tau_rec": 2.3717478448649465,
+   "sigma_ns": 0.016853575689256814,
+   "residual_pct": 0.07374872847876941,
+   "residual_ps": 1.7478448649468348,
+   "sigma_ps": 16.853575689256814,
+   "n_used": 19804
+  },
+  {
+   "isotope": "I-124",
+   "sim": "Sim-2 TE",
+   "tube": "T3",
+   "material": "XAD4_gelatin",
+   "tau_cfg": 2.2699999999999942,
+   "tau_rec": 2.228135608164137,
+   "sigma_ns": 0.018162405566756842,
+   "residual_pct": -1.84424633638139,
+   "residual_ps": -41.86439183585744,
+   "sigma_ps": 18.162405566756842,
+   "n_used": 15050
+  },
+  {
+   "isotope": "I-124",
+   "sim": "Sim-2 TE",
+   "tube": "T4",
+   "material": "XAD4_water",
+   "tau_cfg": 1.8199999999999297,
+   "tau_rec": 1.8079152637299902,
+   "sigma_ns": 0.013247378063141614,
+   "residual_pct": -0.6639964983483468,
+   "residual_ps": -12.084736269939444,
+   "sigma_ps": 13.247378063141614,
+   "n_used": 18625
+  }
+ ],
+ "per_isotope": {
+  "Sc-44": {
+   "n": 8,
+   "mean_abs_pct": 0.2789757035961734,
+   "worst_pct": 0.6447494992028101,
+   "within_1pct": 8
+  },
+  "I-124": {
+   "n": 4,
+   "mean_abs_pct": 0.766215062023025,
+   "worst_pct": 1.84424633638139,
+   "within_1pct": 3
+  }
+ },
+ "pooled": {
+  "rms_pct": 0.6498875453960965,
+  "mean_abs_pct": 0.4413888230717906,
+  "within_1pct": 11
+ },
+ "trend": {
+  "slope_ps_per_ns": -11.700326915100083,
+  "slope_err": 5.973603463424675,
+  "intercept_ps": 22.19873792392187,
+  "intercept_err": 12.971059264132057,
+  "chi2_dof_stat_only": 1.1771604219028045,
+  "sigma_sys_ps": 3.896421270467478,
+  "median_sigma_ps": 7.107552012579591,
+  "systematic_share": 0.2310843025591049
+ },
+ "supersedes": {
+  "file": "2026-08-25_fig2_regen/fig2_v3_summary.json",
+  "plotted": "v3b / May phase3s_2 pipeline",
+  "numbers": "Sc-44 0.387 %, I-124 0.446 %, pooled RMS 0.422 %",
+  "why": "a different, pre-correction recipe from the one the caption, the abstract and the freeze all quote"
+ }
+}

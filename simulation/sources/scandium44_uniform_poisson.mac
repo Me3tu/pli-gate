@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
+# Phase 3s-2 — Sc-44 uniform-cylinder Poisson source (Phase 3c recipe)
+# (auto-generated from gate/sources/scandium44_ion_realistic.mac)
+#   * REMOVED: setForcedUnstableFlag true
+#   * REMOVED: setForcedHalfLife 14292 s
+#   * KEPT:    setActivity 1000000 Bq (drives Poisson rate)
+# Geometry matches phantom_hypoxia_gradient.mac body cylinder R=100 mm, halfz=100 mm.
+
+/gate/source/addSource sc44 gps
+/gate/source/sc44/gps/particle ion
+/gate/source/sc44/gps/ion 21 44 0 0
+/gate/source/sc44/gps/ene/type Mono
+/gate/source/sc44/gps/ene/mono 0 keV
+/gate/source/sc44/gps/ang/type iso
+/gate/source/sc44/gps/pos/type Volume
+/gate/source/sc44/gps/pos/shape Cylinder
+/gate/source/sc44/gps/pos/radius 100 mm
+/gate/source/sc44/gps/pos/halfz 100 mm
+/gate/source/sc44/gps/pos/centre 0 0 0 mm
+/gate/source/sc44/setActivity 1000000 Bq

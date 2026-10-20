@@ -1,0 +1,269 @@
+diff --git a/source/digits_hits/src/GateOutputMgr.cc b/source/digits_hits/src/GateOutputMgr.cc
+index e587b3f..adbb6f3 100644
+--- a/source/digits_hits/src/GateOutputMgr.cc
++++ b/source/digits_hits/src/GateOutputMgr.cc
+@@ -261,13 +261,17 @@ void GateOutputMgr::RecordBeginOfAcquisition()
+   if (nVerboseLevel > 2)
+     G4cout << "GateOutputMgr::RecordBeginOfAcquisition\n";
+   //OK GND
++  // PATCHED: Added null-checks to prevent crash when analysis/fastanalysis modules not found
+   GateDigitizerMgr* digitizerMgr=GateDigitizerMgr::GetInstance();
+-	if((digitizerMgr->m_recordSingles|| digitizerMgr->m_recordCoincidences)
+-			&& !this->FindOutputModule("analysis")->IsEnabled()
+-			&& !this->FindOutputModule("fastanalysis")->IsEnabled())
+-	{
+-		GateError("***ERROR*** Digitizer Manager is not initialized properly. Please, enable analysis or fastanalysis Output Modules to write down Singles or Coincidences.\n Use,  /gate/output/analysis/enable or  /gate/output/fastanalysis/enable.\n");
+-	}
++  if(digitizerMgr->m_recordSingles || digitizerMgr->m_recordCoincidences) {
++    GateVOutputModule* analysisModule = this->FindOutputModule("analysis");
++    GateVOutputModule* fastanalysisModule = this->FindOutputModule("fastanalysis");
++    bool analysisEnabled = (analysisModule != nullptr) && analysisModule->IsEnabled();
++    bool fastanalysisEnabled = (fastanalysisModule != nullptr) && fastanalysisModule->IsEnabled();
++    if(!analysisEnabled && !fastanalysisEnabled) {
++      GateError("***ERROR*** Digitizer Manager is not initialized properly. Please, enable analysis or fastanalysis Output Modules to write down Singles or Coincidences.\n Use,  /gate/output/analysis/enable or  /gate/output/fastanalysis/enable.\n");
++    }
++  }
+ 
+ 
+ #ifdef G4ANALYSIS_USE_ROOT
+@@ -580,10 +584,11 @@ void GateOutputMgr::BeginOfRunAction(const G4Run* /*aRun*/)
+   //  G4cout << " ... outFile opened\n";
+ 
+   // Prepare the visualization
+-  if (G4VVisManager::GetConcreteInstance()) {
+-    G4UImanager* UI = G4UImanager::GetUIpointer();
+-    UI->ApplyCommand("/vis/scene/notifyHandlers");
+-  }
++  // PATCHED: Disabled to fix crash with Geant4 11.3.2 when no visualization active
++  // if (G4VVisManager::GetConcreteInstance()) {
++  //   G4UImanager* UI = G4UImanager::GetUIpointer();
++  //   UI->ApplyCommand("/vis/scene/notifyHandlers");
++  // }
+ 
+ }
+ //----------------------------------------------------------------------------------
+@@ -603,9 +608,10 @@ void GateOutputMgr::EndOfRunAction(const G4Run* /*aRun*/)
+     #endif
+   */
+   // Run ended, update the visualization
+-  if (G4VVisManager::GetConcreteInstance()) {
+-    G4UImanager::GetUIpointer()->ApplyCommand("/vis/viewer/update");
+-  }
++  // PATCHED: Disabled to fix crash with Geant4 11.3.2 when no visualization active
++  // if (G4VVisManager::GetConcreteInstance()) {
++  //   G4UImanager::GetUIpointer()->ApplyCommand("/vis/viewer/update");
++  // }
+ 
+   // Close the file with the hits information
+   //  outFile.close();
+diff --git a/source/digits_hits/src/GateToRoot.cc b/source/digits_hits/src/GateToRoot.cc
+index 269b338..b34dfde 100644
+--- a/source/digits_hits/src/GateToRoot.cc
++++ b/source/digits_hits/src/GateToRoot.cc
+@@ -620,19 +620,24 @@ void GateToRoot::RecordEndOfAcquisition() {
+ 
+        // m_hfile = m_treeHit->GetCurrentFile();
+ 
++    	// PATCHED: Check if m_treesHit is not empty before accessing
+     	// Get file only for the 1st tree as it is the same file for all trees
+-    	m_hfile = m_treesHit[0]->GetCurrentFile();
+-
+-
+-        if (nVerboseLevel > 0)
+-            G4cout << "GateToRoot: ROOT: files writing...\n";
+-        //GateMessage("Output", 1, " GateToRoot: ROOT: files writing...\n";);
+-        m_hfile->Write(0,TObject::kOverwrite);
+-
+-        if (nVerboseLevel > 0)
+-            G4cout << "GateToRoot: ROOT: files closing...\n";
+-        //GateMessage("Output", 1, " GateToRoot: ROOT: files closing...\n";);
+-        m_hfile->Close();
++    	if (!m_treesHit.empty()) {
++    		m_hfile = m_treesHit[0]->GetCurrentFile();
++    	}
++
++    	// PATCHED: Only write/close if m_hfile is valid
++    	if (m_hfile && m_hfile->IsOpen()) {
++    		if (nVerboseLevel > 0)
++    			G4cout << "GateToRoot: ROOT: files writing...\n";
++    		//GateMessage("Output", 1, " GateToRoot: ROOT: files writing...\n";);
++    		m_hfile->Write(0,TObject::kOverwrite);
++
++    		if (nVerboseLevel > 0)
++    			G4cout << "GateToRoot: ROOT: files closing...\n";
++    		//GateMessage("Output", 1, " GateToRoot: ROOT: files closing...\n";);
++    		m_hfile->Close();
++    	}
+     }
+     /* PY Descourt 08/09/2009 */
+ 
+diff --git a/source/digits_hits/src/GateUserActions.cc b/source/digits_hits/src/GateUserActions.cc
+index 0fea311..da4ed95 100644
+--- a/source/digits_hits/src/GateUserActions.cc
++++ b/source/digits_hits/src/GateUserActions.cc
+@@ -96,10 +96,11 @@ void GateUserActions::BeginOfRunAction(const G4Run* run)
+   GateActorManager::GetInstance()->BeginOfRunAction(run);
+ 
+   // Prepare the visualization
+-  if (G4VVisManager::GetConcreteInstance()) {
+-    G4UImanager* UI = G4UImanager::GetUIpointer();
+-    UI->ApplyCommand("/vis/scene/notifyHandlers");
+-  }
++  // PATCHED: Disabled to fix crash with Geant4 11.3.2 when no visualization active
++  // if (G4VVisManager::GetConcreteInstance()) {
++  //   G4UImanager* UI = G4UImanager::GetUIpointer();
++  //   UI->ApplyCommand("/vis/scene/notifyHandlers");
++  // }
+ }
+ //-----------------------------------------------------------------------------
+ 
+@@ -114,9 +115,10 @@ void GateUserActions::EndOfRunAction(const G4Run* run)
+   }
+ 
+   // Run ended, update the visualization
+-  if (G4VVisManager::GetConcreteInstance()) {
+-    G4UImanager::GetUIpointer()->ApplyCommand("/vis/viewer/update");
+-  }
++  // PATCHED: Disabled to fix crash with Geant4 11.3.2 when no visualization active
++  // if (G4VVisManager::GetConcreteInstance()) {
++  //   G4UImanager::GetUIpointer()->ApplyCommand("/vis/viewer/update");
++  // }
+   mTimer->Stop();
+   GateMessage("Core",1,"Run "<<mRunNumber - 1<<"  ---  Elapsed time = "<<mTimer->GetUserElapsed()<< Gateendl);
+ }
+diff --git a/source/externals/itk-mhd/CMakeLists.txt b/source/externals/itk-mhd/CMakeLists.txt
+index c070b92..908669a 100644
+--- a/source/externals/itk-mhd/CMakeLists.txt
++++ b/source/externals/itk-mhd/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ PROJECT(testmhd)
+-CMAKE_MINIMUM_REQUIRED (VERSION 2.4)
++CMAKE_MINIMUM_REQUIRED (VERSION 3.5)
+ IF(COMMAND CMAKE_POLICY)
+   CMAKE_POLICY(SET CMP0003 NEW)
+ ENDIF(COMMAND CMAKE_POLICY)
+diff --git a/source/general/src/GateRunManager.cc b/source/general/src/GateRunManager.cc
+index 1b13b0e..9e702c7 100644
+--- a/source/general/src/GateRunManager.cc
++++ b/source/general/src/GateRunManager.cc
+@@ -25,6 +25,9 @@
+ 
+ #include "G4RadioactiveDecayPhysics.hh"
+ 
++// PLI Custom Physics
++#include "PLIPhysicsList.hh"
++
+ #if (G4VERSION_MAJOR > 9)
+ 
+ #include "G4StepLimiterPhysics.hh"
+@@ -83,14 +86,25 @@ void GateRunManager::InitializeAll() {
+     if (mUserPhysicListName != "") {
+ 
+         // Need to be in PreInit state (cheat)
+-        G4PhysListFactory *physListFactory = new G4PhysListFactory();
+         G4ApplicationState currentState = G4StateManager::GetStateManager()->GetCurrentState();
+         G4StateManager::GetStateManager()->SetNewState(G4State_PreInit);
+ 
+-        // Get G4 physics list from the name
+-        mUserPhysicList = physListFactory->GetReferencePhysList(mUserPhysicListName);
+-
+-        dynamic_cast<G4VModularPhysicsList*>(mUserPhysicList)->RegisterPhysics(new G4RadioactiveDecayPhysics());
++        // Check for custom PLI physics list first
++        if (mUserPhysicListName == "PLI_Physics") {
++            GateMessage("Physic", 0, "Using PLI custom physics list for positronium lifetime imaging" << Gateendl);
++            mUserPhysicList = new PLIPhysicsList();
++        }
++        else {
++            // Use factory for standard Geant4 physics lists
++            G4PhysListFactory *physListFactory = new G4PhysListFactory();
++            mUserPhysicList = physListFactory->GetReferencePhysList(mUserPhysicListName);
++
++            // Add radioactive decay for standard lists
++            if (mUserPhysicList != NULL) {
++                dynamic_cast<G4VModularPhysicsList*>(mUserPhysicList)->RegisterPhysics(new G4RadioactiveDecayPhysics());
++            }
++            delete physListFactory;
++        }
+ 
+ 
+         // Check if it exists
+@@ -111,6 +125,7 @@ void GateRunManager::InitializeAll() {
+                               << " empenelope"
+                               << " emDNAphysics"
+                               << " optical (if enabled during compilation)"
++                              << " PLI_Physics (positronium lifetime imaging)"
+                               << GatePhysicsList::GetInstance()->GetListOfPhysicsLists());
+         }
+ 
+diff --git a/source/io/include/GateAsciiFile.hh b/source/io/include/GateAsciiFile.hh
+index aa73a72..3778135 100644
+--- a/source/io/include/GateAsciiFile.hh
++++ b/source/io/include/GateAsciiFile.hh
+@@ -15,6 +15,7 @@
+ 
+ #include "GateTreeFile.hh"
+ #include "GateTreeFileManager.hh"
++#include <cstdint>
+ 
+ class GateAsciiData;
+ 
+diff --git a/source/io/include/GateNumpyFile.hh b/source/io/include/GateNumpyFile.hh
+index 6ab37c3..67771a6 100644
+--- a/source/io/include/GateNumpyFile.hh
++++ b/source/io/include/GateNumpyFile.hh
+@@ -17,6 +17,7 @@
+ 
+ 
+ #include "GateTreeFile.hh"
++#include <cstdint>
+ 
+ 
+ 
+diff --git a/source/io/include/GateRootTreeFile.hh b/source/io/include/GateRootTreeFile.hh
+index 09351b9..de9693c 100644
+--- a/source/io/include/GateRootTreeFile.hh
++++ b/source/io/include/GateRootTreeFile.hh
+@@ -7,6 +7,7 @@
+ 
+ #include "GateTreeFile.hh"
+ #include "GateTreeFileManager.hh"
++#include <cstdint>
+ 
+ 
+ class TFile;
+diff --git a/source/io/include/GateTreeFile.hh b/source/io/include/GateTreeFile.hh
+index 35235e0..91ffa99 100644
+--- a/source/io/include/GateTreeFile.hh
++++ b/source/io/include/GateTreeFile.hh
+@@ -14,6 +14,7 @@
+ 
+ 
+ #include "GateFile.hh"
++#include <cstdint>
+ 
+ class GateData
+ {
+diff --git a/source/io/include/GateTreeFileManager.hh b/source/io/include/GateTreeFileManager.hh
+index ee1dc5d..b48ae17 100644
+--- a/source/io/include/GateTreeFileManager.hh
++++ b/source/io/include/GateTreeFileManager.hh
+@@ -8,6 +8,7 @@
+ #include <vector>
+ #include <string>
+ #include <map>
++#include <cstdint>
+ 
+ #include "GateTreeFile.hh"
+ 
+diff --git a/source/io/src/GateTreeFile.cc b/source/io/src/GateTreeFile.cc
+index a8216f3..69a5c6d 100644
+--- a/source/io/src/GateTreeFile.cc
++++ b/source/io/src/GateTreeFile.cc
+@@ -3,6 +3,7 @@
+ //
+ 
+ #include "GateTreeFile.hh"
++#include <cstdint>
+ 
+ #include <iostream>
+ 

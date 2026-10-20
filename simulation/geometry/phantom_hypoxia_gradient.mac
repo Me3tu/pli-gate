@@ -1,0 +1,87 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
+# ==============================================================================
+# Hypoxia gradient phantom — Phase 3.4
+# ==============================================================================
+#
+# Five tumor inserts (identical composition to TumorTissue) at five
+# different pO2 levels, arranged along x inside a water cylinder body.
+# Each insert is assigned a different G4Material name so the
+# PLIMaterialLoader can map each to its own tau_eff from the JSON:
+#
+#   pO2 (mmHg)   Material             tau_eff (ns)   Δτ vs canonical
+#   --------------------------------------------------------------
+#        2       TumorTissue_pO2_2    1.921175       +1.175 ps
+#        6       TumorTissue_pO2_6    1.920813       +0.813 ps
+#       10       TumorTissue_pO2_10   1.920452       +0.452 ps
+#       20       TumorTissue_pO2_20   1.919549       -0.451 ps
+#       40       TumorTissue_pO2_40   1.917745       -2.255 ps
+#
+# Total spread across all 5 regions: 3.43 ps — compared to the Quadra's
+# 214 ps CRT. Signal/resolution = 1.6 %. This is the paper's quantitative
+# negative result: pO2 imaging at physiological pO2 on a LAFOV PET
+# scanner is infeasible regardless of the physics model used.
+#
+# Geometry (X axis, Y = Z = 0):
+#   x=-60 mm    TumorTissue_pO2_2     (most hypoxic; longest tau)
+#   x=-30 mm    TumorTissue_pO2_6
+#   x=  0 mm    TumorTissue_pO2_10
+#   x=+30 mm    TumorTissue_pO2_20
+#   x=+60 mm    TumorTissue_pO2_40    (most oxygenated; shortest tau)
+# Inserts: r=15 mm spheres. 30 mm center-to-center pitch, contained
+# inside the 100 mm water cylinder body.
+#
+# World → phantom (water cylinder) → 5 spherical inserts.
+# SD attachment is done by the simulation macro.
+# ==============================================================================
+
+# ── Water body ─────────────────────────────────────────────────────────────
+/gate/world/daughters/name phantom
+/gate/world/daughters/insert cylinder
+/gate/phantom/setMaterial Water
+/gate/phantom/geometry/setRmax 100 mm
+/gate/phantom/geometry/setHeight 200 mm
+/gate/phantom/placement/setTranslation 0 0 0 mm
+/gate/phantom/vis/setVisible true
+/gate/phantom/vis/setColor blue
+
+# ── Five hypoxia variant inserts (x-aligned, pitch 30 mm) ──────────────────
+/gate/phantom/daughters/name insert_pO2_2
+/gate/phantom/daughters/insert sphere
+/gate/insert_pO2_2/setMaterial TumorTissue_pO2_2
+/gate/insert_pO2_2/geometry/setRmax 15 mm
+/gate/insert_pO2_2/placement/setTranslation -60 0 0 mm
+/gate/insert_pO2_2/vis/setVisible true
+/gate/insert_pO2_2/vis/setColor magenta
+
+/gate/phantom/daughters/name insert_pO2_6
+/gate/phantom/daughters/insert sphere
+/gate/insert_pO2_6/setMaterial TumorTissue_pO2_6
+/gate/insert_pO2_6/geometry/setRmax 15 mm
+/gate/insert_pO2_6/placement/setTranslation -30 0 0 mm
+/gate/insert_pO2_6/vis/setVisible true
+/gate/insert_pO2_6/vis/setColor red
+
+/gate/phantom/daughters/name insert_pO2_10
+/gate/phantom/daughters/insert sphere
+/gate/insert_pO2_10/setMaterial TumorTissue_pO2_10
+/gate/insert_pO2_10/geometry/setRmax 15 mm
+/gate/insert_pO2_10/placement/setTranslation 0 0 0 mm
+/gate/insert_pO2_10/vis/setVisible true
+/gate/insert_pO2_10/vis/setColor yellow
+
+/gate/phantom/daughters/name insert_pO2_20
+/gate/phantom/daughters/insert sphere
+/gate/insert_pO2_20/setMaterial TumorTissue_pO2_20
+/gate/insert_pO2_20/geometry/setRmax 15 mm
+/gate/insert_pO2_20/placement/setTranslation 30 0 0 mm
+/gate/insert_pO2_20/vis/setVisible true
+/gate/insert_pO2_20/vis/setColor green
+
+/gate/phantom/daughters/name insert_pO2_40
+/gate/phantom/daughters/insert sphere
+/gate/insert_pO2_40/setMaterial TumorTissue_pO2_40
+/gate/insert_pO2_40/geometry/setRmax 15 mm
+/gate/insert_pO2_40/placement/setTranslation 60 0 0 mm
+/gate/insert_pO2_40/vis/setVisible true
+/gate/insert_pO2_40/vis/setColor cyan

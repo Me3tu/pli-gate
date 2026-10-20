@@ -1,0 +1,52 @@
+{
+ "tubes": {
+  "tube_0": {
+   "n": 1216151,
+   "sigma_geo_ps": 353.22054974255303,
+   "mean_delta_ps": 17.56308272010501
+  },
+  "tube_1": {
+   "n": 1214955,
+   "sigma_geo_ps": 353.3131032108627,
+   "mean_delta_ps": 17.18452887467216
+  },
+  "tube_2": {
+   "n": 1216777,
+   "sigma_geo_ps": 353.08628910666215,
+   "mean_delta_ps": 16.682038673761806
+  },
+  "tube_3": {
+   "n": 1215717,
+   "sigma_geo_ps": 353.07780924773783,
+   "mean_delta_ps": 16.87251815711686
+  },
+  "tube_4": {
+   "n": 1216882,
+   "sigma_geo_ps": 352.7615273656502,
+   "mean_delta_ps": 17.036438601614726
+  },
+  "tube_5": {
+   "n": 1217105,
+   "sigma_geo_ps": 353.16363806088634,
+   "mean_delta_ps": 17.253006689839975
+  },
+  "tube_6": {
+   "n": 1215456,
+   "sigma_geo_ps": 353.560167985101,
+   "mean_delta_ps": 17.416227849344242
+  },
+  "tube_7": {
+   "n": 1216427,
+   "sigma_geo_ps": 353.15408667002305,
+   "mean_delta_ps": 17.095479192810185
+  }
+ },
+ "sigma_geo_ps": 353.1671464236845,
+ "sigma_e_ps": 358.96857566233876,
+ "sigma_e_ns": 0.35896857566233875,
+ "sigma_t_pair_ps": 64.27600640985716,
+ "symmetry_spread_ps": 0.7986406194507856,
+ "nema_sigma_e_ps": 357.2,
+ "shipped_sigma_e_ps": 312.4,
+ "registered_smaller_than_nema": false
+}
