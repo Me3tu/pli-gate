@@ -25,7 +25,7 @@ repository-code: "https://github.com/Me3tu/pli-gate"
 authors:
   - family-names: Dhar
     given-names: Dhritman
-    affiliation: "German Cancer Research Center (DKFZ), Heidelberg, Germany; Heinrich-Heine-Universität Düsseldorf, Germany"
+    affiliation: "German Cancer Research Center (DKFZ), Heidelberg, Germany"
   - family-names: Peter
     given-names: Jörg
     affiliation: "German Cancer Research Center (DKFZ), Heidelberg, Germany"

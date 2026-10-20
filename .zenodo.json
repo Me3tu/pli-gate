@@ -5,7 +5,7 @@
   "license": "LGPL-3.0-only",
   "description": "A GATE 9.4.1 / Geant4 11.3 physics extension for positronium lifetime imaging that selects the ortho-positronium lifetime and yield by the material in which each positron comes to rest, from a provenance-tracked Tao-Eldrup and oxygen database, with the Ore-Powell three-photon channel. The release also contains the simulation macros, the analysis and figure scripts, the processed data and the registration files behind the paper \"Material-dependent positronium lifetimes in GATE and prompt-selection bias\" (D. Dhar and J. Peter, submitted to Physics in Medicine and Biology).",
   "creators": [
-    {"name": "Dhar, Dhritman", "affiliation": "German Cancer Research Center (DKFZ), Heidelberg; Heinrich-Heine-Universität Düsseldorf"},
+    {"name": "Dhar, Dhritman", "affiliation": "German Cancer Research Center (DKFZ), Heidelberg"},
     {"name": "Peter, Jörg", "affiliation": "German Cancer Research Center (DKFZ), Heidelberg"}
   ],
   "keywords": ["positronium lifetime imaging", "GATE", "Geant4", "Monte Carlo simulation", "PET", "triple coincidences"]
