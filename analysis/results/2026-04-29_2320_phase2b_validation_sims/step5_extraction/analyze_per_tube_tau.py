@@ -35,7 +35,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 # but correct() is path-parameterised.
 from reconstruction.correct_travel_time import correct as travel_time_correct  # noqa: E402
 
-# Tube layouts — must mirror the GATE macros' /placement/setTranslation values.
+# Tube layouts: must mirror the GATE macros' /placement/setTranslation values.
 TUBE_LAYOUTS = {
     "sim1": [
         # name in materials json,                centre (x_mm, y_mm), half-extent
@@ -49,7 +49,7 @@ TUBE_LAYOUTS = {
         ("myxoma_moskal2023",          56.569, -56.569),
     ],
     "sim2": [
-        # Mercolli 4 tubes — see gate/geometry/phantom_mercolli_xad4.mac
+        # Mercolli 4 tubes (see gate/geometry/phantom_mercolli_xad4.mac)
         ("XAD4_dry",      -45.0, 0.0),
         ("XAD4_wet",      -15.0, 0.0),
         ("XAD4_gelatin",  +15.0, 0.0),
@@ -57,9 +57,9 @@ TUBE_LAYOUTS = {
     ],
 }
 
-# Tube assignment radius — per config, slightly larger than the geometric tube
+# Tube assignment radius: per config, slightly larger than the geometric tube
 # radius to allow for positron-range smearing of source position. Sim 1 tubes
-# are r=15 mm; sim 2 tubes are r=6 mm with adjacent centres 30 mm apart so
+# are r=15 mm. Sim 2 tubes are r=6 mm with adjacent centres 30 mm apart so
 # 9 mm assignment leaves a 12 mm guard band.
 TUBE_R_MM_BY_CONFIG = {"sim1": 18.0, "sim2": 9.0}
 
@@ -113,7 +113,7 @@ def main() -> int:
     print(f"[step5] truth:    {args.truth}")
     print(f"[step5] tube_config: {args.tube_config}  tau_min={args.tau_min}")
 
-    # Travel-time correction — call existing implementation.
+    # Travel-time correction: call existing implementation.
     print("[step5] applying TOF travel-time correction (correct_travel_time.correct)")
     tau, P_annih = travel_time_correct(args.detector)
     print(f"[step5]   N triples = {len(tau):,}")

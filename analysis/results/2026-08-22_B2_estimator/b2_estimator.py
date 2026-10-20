@@ -13,7 +13,7 @@ from scipy.optimize import minimize
 from scipy.stats import dirichlet
 
 TAU_PPS, TAU_DIR = 0.125, 0.388          # ns, FIXED per the block
-ALPHA = np.array([0.75, 3.1, 1.15])      # Dirichlet, order (p-Ps, direct, o-Ps); see registration
+ALPHA = np.array([0.75, 3.1, 1.15])      # Dirichlet, order (p-Ps, direct, o-Ps), see registration
 EDGES = np.linspace(-2.0, 12.0, 561)     # 25 ps bins
 CEN = 0.5 * (EDGES[:-1] + EDGES[1:])
 

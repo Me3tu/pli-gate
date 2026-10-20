@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""R2 analysis — transport-level novelty, from the PLI_R2 truth records.
+"""R2 analysis: transport-level novelty, from the PLI_R2 truth records.
 
 Each record is  PLI_R2:<delay_ns>:<emission_material>:<annihilation_material>:<channel>
 written once per annihilation. From these, per arm:

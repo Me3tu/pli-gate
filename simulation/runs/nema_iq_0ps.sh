@@ -1,7 +1,7 @@
 #!/bin/bash
 # SPDX-License-Identifier: LGPL-3.0-only
 # Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
-# NEMA IEC 2.5e8 benchmark — per-event Ps physics, standard Quadra.
+# NEMA IEC 2.5e8 benchmark: per-event Ps physics, standard Quadra.
 # Pattern per scaling memory: sequential batches x 16 threads (VIPman prod).
 # Total activity 7.1 MBq -> T_total = 2.5e8/7.1e6 = 35.2 s
 # 16 batches x total-time-sec 2.2 (runner divides across 16 shards).

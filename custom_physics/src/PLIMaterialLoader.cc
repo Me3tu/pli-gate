@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: LGPL-3.0-only
 // Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
 // ============================================================================
-// PLIMaterialLoader.cc — JSON-driven per-material PLI parameter loader
+// PLIMaterialLoader.cc: JSON-driven per-material PLI parameter loader
 // ============================================================================
 //
 // See PLIMaterialLoader.hh for the design rationale and the contract.
 //
 // This file is the only place in custom_physics/ that includes
-// <nlohmann/json.hpp>. JSON parsing is contained here; the rest of the
+// <nlohmann/json.hpp>. JSON parsing is contained here. The rest of the
 // library only sees plain G4 types.
 //
 // ============================================================================
@@ -33,7 +33,7 @@ constexpr int kSupportedSchemaVersion = 1;
 
 // Candidates searched (in order) when PLI_MATERIALS_JSON is not set.
 // Resolved relative to the current working directory of the running
-// process — keep this in sync with the layout under
+// process. Keep this in sync with the layout under
 // ~/research/pli-quadra-simulation/.
 const std::vector<G4String> kCandidates = {
     "materials/pli_materials.json",

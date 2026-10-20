@@ -11,8 +11,8 @@ mkdir -p $SC/{src,build,install,logs}
 ```
 
 Get the three sources into `$SC/src/{geant4,root,gate}`. GATE must be at
-upstream commit `2d03a89bfec37c21ec69d196b4876d5e3bf5ed83`; see
-`integration/gate-base-commit.txt`.
+upstream commit `2d03a89bfec37c21ec69d196b4876d5e3bf5ed83` (see
+`integration/gate-base-commit.txt`).
 
 ## 1. Geant4 11.3.2
 
@@ -31,7 +31,7 @@ cmake --install $SC/build/geant4
 ```
 
 `GEANT4_USE_GDML=ON` needs xerces-c. `GEANT4_INSTALL_DATA=ON` downloads about
-2.1 GB of physics datasets; if you already have them, set it `OFF` and point
+2.1 GB of physics datasets. If you already have them, set it `OFF` and point
 `GEANT4_INSTALL_DATADIR` at the existing directory instead.
 
 **Single-threaded on purpose.** `GEANT4_BUILD_MULTITHREADED=OFF` matches the
@@ -70,7 +70,7 @@ Turning one off without the other is the first thing that goes wrong here.
 ## 3. The environment
 
 Source this before building GATE and before every run. It is the whole
-environment — nothing else is needed and nothing system-wide is used.
+environment: nothing else is needed and nothing system-wide is used.
 
 ```bash
 source $SC/install/geant4/bin/geant4.sh

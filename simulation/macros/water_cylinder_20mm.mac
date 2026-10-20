@@ -16,18 +16,18 @@
 #
 # Activity & time: Steinberger ballpark "70 MBq-equivalent". A clean
 # interpretation: 70 MBq total activity in the cylinder × time to be
-# determined. Steinberger's quoted measurement times are 5-10 min; we
+# determined. Steinberger's quoted measurement times are 5-10 min. We
 # use 600 s = 10 min × 70 MBq = 4.2 × 10^10 decays. Yields ~10^9 triples
 # in the inner-most 5 mm × 15 cm VOI after geometric and energy cuts.
 #
-# Analysis VOIs (computed post-extraction; NOT separate phantoms):
+# Analysis VOIs (computed post-extraction, NOT separate phantoms):
 #   VOI_5 :   2.5 mm radius × ± 75 mm halfz  (5 mm φ × 15 cm)
 #   VOI_10:   5.0 mm radius × ±100 mm halfz  (10 mm φ × 20 cm)
 #   VOI_15:   7.5 mm radius × ±125 mm halfz  (15 mm φ × 25 cm)
 #   (all coaxial with the cylinder, centred at origin)
 #
 # To run: same prep as steinberger_disk_phantom.mac.template (env_setup,
-# materials JSON; here, only G4_WATER is needed — already in
+# materials JSON. Here, only G4_WATER is needed, already in
 # pli_materials.json with tau_TE = 1.8 ns).
 # ============================================================================
 
@@ -67,7 +67,7 @@
 /gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert energyFraming
 /gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMin 435 keV
 /gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMax 1300 keV
-# timeResolution OMITTED — true-time singles for post-extraction CRT.
+# timeResolution OMITTED: true-time singles for post-extraction CRT.
 /gate/digitizerMgr/CoincidenceSorter/Coincidences/setWindow 20. ns
 /gate/digitizerMgr/CoincidenceSorter/Coincidences/setOffset 0 ns
 

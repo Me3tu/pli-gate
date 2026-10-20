@@ -8,23 +8,23 @@ The scripts in this folder were taken from the figure working copy that produced
 
 | file | sha256 of the source version | sha256 in this release | changed |
 |---|---|---|---|
-| `common.py` | `1e465d0684aa475c2a289a8e79c5d541f358fc9a20c524ed2b1d4909f18c7608` | `ea7b1e2aeafe073e1f378b7af8913b01d624a6a0765c34d469e86ac855145881` | yes (1) |
-| `ejmp_style.py` | `29f832d52b3fdd7d786ca0d095b0654f885f3918cacc90de4538412889e703c4` | same | no, moved (1) |
-| `f02b_closure_benchmark.py` | `0ae67a7fd6aa24f79e580c30f6205ef3895aeca1e5218eaf6c64380926568526` | same | no |
-| `f04_transport.py` | `873d018c285949ce1ae5380ae5d511205c8e07caf0cbad83ca9bb6a7b1a5c955` | `936e2ed5e499f5bfc6e758b3a2fae13303dfddcd533a6d845a6810f22461a220` | yes (2) |
-| `f05_vipman.py` | `5db0dd5c639ce706d0aece0ed9b07ab1274670a634eb96d2c449785a6c4cb1fa` | `3530086d38fd4a3ae011725e80562a02d32fc69b4da702eaa8f8b729130c890a` | yes (3, 4) |
-| `f06_brain.py` | `48f4414aef45b2a2968c15d29047a57785a0ffe793b586faf306a81ea07fb52f` | `7babef9f56a3c7c67124204769d7a4fcd3b7cb992812e6610c23ccd6f5bc9041` | yes (4) |
-| `f07_oxygen.py` | `7560b36858c60ef5494967f317b6aef718e4dcf32eaf5f3c00ff6bb300cfa3ee` | same | no |
-| `f08_pedestal.py` | `5f04948eb9286e4541ad9b05acdd973a65c98edc407c8843b48a98ea6153762f` | `22a62d2d3c68e19c211b52d03ba06021e6382544c2187010ac84071438f70c25` | yes (5) |
-| `f09_mechanism.py` | `dbdeebfb0e51e01fcf72be129315c741eb70a4cb341bcd39f51e18241222dffb` | same | no |
-| `f10_rate.py` | `b415031686d37e20a3e7f6513f43cc21f8fb36924d5d9ad14abdd971ef3770bf` | `4b0e0f46434e9961c2623ac887f71c1c4b2d82388f834277bb3bae00cc8ac311` | yes (4) |
-| `f11_realistic.py` | `06f6831e3da2480295582d78b3d03bf8e069428621a459d1c80e1fa6f86d69ec` | `989d796ee1fcdf15af3e62da7da9c8b882a641bfbf3b91caa82e2dacfaf1a51c` | yes (2) |
-| `fS1_refutation.py` | `dd0ef0ab536bf1c6d8c54e03b01303cf6510c6944820ef8f9dae4710204f731d` | same | no |
-| `fS3_inflight.py` | `52a5e9bb15fa43d04826600802d31bd48afc8f26ccd4014f580dd50e9b1cf429` | same | no |
-| `fS_benchspec.py` | `83d8861547d17723e9f04228f4a2a003384484ceee178f701e40c05a476f7780` | same | no |
+| `common.py` | `1e465d0684aa475c2a289a8e79c5d541f358fc9a20c524ed2b1d4909f18c7608` | `6e62d0195610ef25b4ad147de82ed8770deb1c4c177a02f46c2f6340f7b3281a` | yes (1, 6) |
+| `ejmp_style.py` | `29f832d52b3fdd7d786ca0d095b0654f885f3918cacc90de4538412889e703c4` | `73ffc6589b12764fa6cbe4f1c3bf44cc3cea4e0bbb21d740c70319490506f728` | moved, yes (1, 6) |
+| `f02b_closure_benchmark.py` | `0ae67a7fd6aa24f79e580c30f6205ef3895aeca1e5218eaf6c64380926568526` | `b714d774f434d96cdbfb945b436ef6505fd682e3ffcfc760cf7c4390519eeb0a` | yes (6) |
+| `f04_transport.py` | `873d018c285949ce1ae5380ae5d511205c8e07caf0cbad83ca9bb6a7b1a5c955` | `80e3d4f5e1097454bc98668a07185732d02552cb60a87bd3e909ecf332efd70d` | yes (2, 6) |
+| `f05_vipman.py` | `5db0dd5c639ce706d0aece0ed9b07ab1274670a634eb96d2c449785a6c4cb1fa` | `a59446f418839d65df210a060dc40b81f6158a503d60bfed0dc2333e0627feb9` | yes (3, 4, 6) |
+| `f06_brain.py` | `48f4414aef45b2a2968c15d29047a57785a0ffe793b586faf306a81ea07fb52f` | `90a7f7c624df04a38743d66842c2e1d549502e3f53ba471c580c3ad79a24f9bf` | yes (4, 6) |
+| `f07_oxygen.py` | `7560b36858c60ef5494967f317b6aef718e4dcf32eaf5f3c00ff6bb300cfa3ee` | `fac7c7530a1e52728773333f8b2bf9b013dd1a59589d2a61e52b82d89660f2e0` | yes (6) |
+| `f08_pedestal.py` | `5f04948eb9286e4541ad9b05acdd973a65c98edc407c8843b48a98ea6153762f` | `802803d66938dc5ed8175dfb9ee90e9cb9d279f31e5f18fb9cb64d9f06bfde3a` | yes (5, 6) |
+| `f09_mechanism.py` | `dbdeebfb0e51e01fcf72be129315c741eb70a4cb341bcd39f51e18241222dffb` | `36043bd2954124ed7805ca9722a9a98a776d81996dd5775ab28839816ec171c4` | yes (6) |
+| `f10_rate.py` | `b415031686d37e20a3e7f6513f43cc21f8fb36924d5d9ad14abdd971ef3770bf` | `1dedf9f736eda787b24d44e8ced3875004b06052d08996890a0b538bb208b3dd` | yes (4, 6) |
+| `f11_realistic.py` | `06f6831e3da2480295582d78b3d03bf8e069428621a459d1c80e1fa6f86d69ec` | `a11d2b620eb73b04e6bb25818ab72e0b71534ff8c0a443dc9f54da197be5e87a` | yes (2, 6) |
+| `fS1_refutation.py` | `dd0ef0ab536bf1c6d8c54e03b01303cf6510c6944820ef8f9dae4710204f731d` | `435ac15395055300202ae93c9476eed4278871ab5d3cb453785e6ca47c4cc7b7` | yes (6) |
+| `fS3_inflight.py` | `52a5e9bb15fa43d04826600802d31bd48afc8f26ccd4014f580dd50e9b1cf429` | `1d43aeac28b361d6fde8b9c6489a33f83f84fd1cfab1ffec82535bba5e1995c6` | yes (6) |
+| `fS_benchspec.py` | `83d8861547d17723e9f04228f4a2a003384484ceee178f701e40c05a476f7780` | `eb73b38a62eff332ae0f14eb16f38ec47b523bb143ab88d11ea71efce35e5b8e` | yes (6) |
 | `fig1_methods.tex` | `b1d2a77cc62e531b28621079cf89f658396d6d5985b87ff79e221fbbf2767615` | same | no |
 
-`ejmp_style.py` is copied unchanged from `reconstruction/results/2026-08-11_ejmp_figure_regen/ejmp_style.py`. `make_figures.sh`, `requirements.txt`, `README.md`, `SHA256SUMS` and this file are new.
+`ejmp_style.py` is copied, with the punctuation of its comments changed (6), from `reconstruction/results/2026-08-11_ejmp_figure_regen/ejmp_style.py`. `make_figures.sh`, `requirements.txt`, `README.md`, `SHA256SUMS` and this file are new.
 
 ## Changes
 
@@ -44,6 +44,8 @@ The scripts in this folder were taken from the figure working copy that produced
    - `f10_rate.py`: `2026-09-30_referee2/ladder_joint/ladder_boot.json` was loaded into `B` and unpacked into `lo, hi`, never used. Both statements are replaced by a comment.
 5. `f08_pedestal.py`: `np.load(..., allow_pickle=True)` is now `allow_pickle=False`. Every array in `hists_c0_0ps.npz` is numeric or a fixed-width unicode string (`<U27`), so nothing in the file needs unpickling.
 
+6. Punctuation in comments and docstrings (`common.py`, `ejmp_style.py`, `f02b_closure_benchmark.py`, `f04_transport.py`, `f05_vipman.py`, `f06_brain.py`, `f07_oxygen.py`, `f08_pedestal.py`, `f09_mechanism.py`, `f10_rate.py`, `f11_realistic.py`, `fS1_refutation.py`, `fS3_inflight.py`, `fS_benchspec.py`, `make_figures.sh`, `source_data/2026-10-20_review19/vipman_slice/make_vipman_slice.py`): em dashes and semicolons were replaced by colons, commas, parentheses or periods. No code line changed.
+
 Not changed, documented in README.md instead: the optional override `PLI_INFLIGHT_JSON` in `fS3_inflight.py` (unset by `make_figures.sh`), the `h5py` fallback in `f05_vipman.py` that is used only if the shipped 8 mm cache is absent, the print-only inputs of `f09_mechanism.py` and the assert-only input of `f11_realistic.py`, and the docstrings (some still name the former inputs).
 
 ## Unified diff (source version against release version)
@@ -59,7 +61,7 @@ Not changed, documented in README.md instead: the optional override `PLI_INFLIGH
  from pathlib import Path
 -RES = Path(os.environ.get('PLI_RES', '<PROJECT>/reconstruction/results'))
 +# Code release v1.1.0: inputs default to the shipped source_data/ next to this file (dated result-folder
-+# names kept), outputs to out/; both can be redirected with PLI_RES and PLI_FIGOUT.
++# names kept), outputs to out/. Both can be redirected with PLI_RES and PLI_FIGOUT.
 +HERE = Path(__file__).resolve().parent
 +RES = Path(os.environ.get('PLI_RES', str(HERE / 'source_data')))
  FS = RES / '2026-09-24_jp_a3_figures/figsrc'
@@ -68,7 +70,7 @@ Not changed, documented in README.md instead: the optional override `PLI_INFLIGH
  F3 = RES / '2026-09-30_feedback3'
 -sys.path.insert(0, str(RES / '2026-08-11_ejmp_figure_regen'))
 -import ejmp_style as st  # noqa: E402
-+import ejmp_style as st  # noqa: E402  (shipped next to this file; was results/2026-08-11_ejmp_figure_regen/ejmp_style.py)
++import ejmp_style as st  # noqa: E402  (shipped next to this file, was results/2026-08-11_ejmp_figure_regen/ejmp_style.py)
  st.apply()
  import matplotlib  # noqa: E402
  import matplotlib.pyplot as plt  # noqa: E402
@@ -86,7 +88,7 @@ Not changed, documented in README.md instead: the optional override `PLI_INFLIGH
 @@ -88,19 +88,20 @@
  labs = ['measured, material pair', 'first-order consistency check\nfrom the same-run shares and yields', 'null control (equal lifetimes)']
  # Review round 8: registered matched-yield arms (equal o-Ps yields everywhere, three-photon channel off), paired event
- # for event; 2026-10-08_r2c_matched_yield/r2c_results.json
+ # for event, 2026-10-08_r2c_matched_yield/r2c_results.json
 +# Code release v1.1.0: this input is required (it was optional, and without it the figure silently lost the
 +# matched-yield points and changed its y-range).
  R2C = RES / '2026-10-08_r2c_matched_yield/r2c_results.json'
@@ -130,9 +132,9 @@ Not changed, documented in README.md instead: the optional override `PLI_INFLIGH
  # (2026-10-19_review16/vipman_recon_O4, simple_recon single, 4 mm, 10 iterations, the settings of recon_phase3q),
 -# central two 4 mm slices, transferred as an 8-bit slice (vipman_O4_slice.npz); the support mask is identical.
 -_V = np.load(RES / '2026-10-19_review16/vipman_O4_slice.npz')
-+# central two 4 mm slices; the support mask is identical.
++# central two 4 mm slices. The support mask is identical.
 +# Code release v1.1.0: the slice is read in float32 from 2026-10-20_review19/vipman_slice/vipman_O4_slice.npz
-+# (written by make_vipman_slice.py in that folder from vipman_recon_O4/activity_x.npy); the figure in the submitted
++# (written by make_vipman_slice.py in that folder from vipman_recon_O4/activity_x.npy). The figure in the submitted
 +# paper was drawn from an 8-bit quantized transfer of the same slice (2026-10-19_review16/vipman_O4_slice.npz).
 +# The recon_phase3q activity, previously loaded here and then overwritten by this slice, is no longer read.
 +_V = np.load(RES / '2026-10-20_review19/vipman_slice/vipman_O4_slice.npz')
@@ -146,7 +148,7 @@ Not changed, documented in README.md instead: the optional override `PLI_INFLIGH
  
  SESS = RES / '2026-08-16_fig4_rebuild'
 -W3 = json.load(open(RES / '2026-08-13_overnight/W3_detection_sigma/w3_activity_rois.json'))
-+# Code release v1.1.0: 2026-08-13_overnight/W3_detection_sigma/w3_activity_rois.json was loaded here but never used; load removed.
++# Code release v1.1.0: 2026-08-13_overnight/W3_detection_sigma/w3_activity_rois.json was loaded here but never used. Load removed.
  meta = json.load(open(SESS / 'tau_voxel_map_8mm.json')); TAU_BG = meta['tau_bg_global']
  TRUTH = [dict(r=4, cx=-66), dict(r=8, cx=-49), dict(r=12, cx=-24), dict(r=16, cx=9), dict(r=20, cx=50)]
  # Review round 17: regions redefined on the corrected-yield reconstruction (2026-10-19_review16/brain_corrected_rois.py,
@@ -154,10 +156,10 @@ Not changed, documented in README.md instead: the optional override `PLI_INFLIGH
 +++ release figures/f08_pedestal.py
 @@ -18,7 +18,7 @@
  # Review round 13 (2026-10-14): eight-tube data from the corrected-yield arm C0 (hists_c0_0ps.npz, same dump script
- # as hists_sim1.npz); panel (c) and Fig. S2 use the twenty-region signed regression with the C0 tubes in place of the
- # discovery tubes (2026-10-14_known_randoms/signed_eq3_c0.json); the other twelve regions are unchanged.
+ # as hists_sim1.npz). Panel (c) and Fig. S2 use the twenty-region signed regression with the C0 tubes in place of the
+ # discovery tubes (2026-10-14_known_randoms/signed_eq3_c0.json). The other twelve regions are unchanged.
 -Z = np.load(F3 / 'c0_sim1/hists_c0_0ps.npz', allow_pickle=True)
-+Z = np.load(F3 / 'c0_sim1/hists_c0_0ps.npz', allow_pickle=False)  # v1.1.0: was allow_pickle=True; every array is numeric or <U27
++Z = np.load(F3 / 'c0_sim1/hists_c0_0ps.npz', allow_pickle=False)  # v1.1.0: was allow_pickle=True. Every array is numeric or <U27
  names = [str(s) for s in Z['voi_names']]
  tubes = [n for n in names if n.startswith('T')]
  b = Z['tau_bins']; c = 0.5 * (b[:-1] + b[1:])
@@ -168,7 +170,7 @@ Not changed, documented in README.md instead: the optional override `PLI_INFLIGH
  d = json.load(open(MF / 'fig10_rate_law.json'))
  L = d['ladder']; rows = L['rows']
 -B = json.load(open(R2 / 'ladder_joint/ladder_boot.json'))
-+# Code release v1.1.0: 2026-09-30_referee2/ladder_joint/ladder_boot.json was loaded here into (lo, hi) and never used;
++# Code release v1.1.0: 2026-09-30_referee2/ladder_joint/ladder_boot.json was loaded here into (lo, hi) and never used,
 +# load removed.
  mu = np.array([r['mu'] for r in rows]); did = np.array([r['did'] for r in rows])
  C0, N0 = np.exp(L['ln_intercept']), L['n_exponent']
@@ -209,5 +211,5 @@ Not changed, documented in README.md instead: the optional override `PLI_INFLIGH
 +print('eight-tube zero-delay arm from C0; pooled retention', C0['summary']['retention_ivw_c0'])
  
  # pooled numbers quoted in the text (asserted in the PDF): all three estimators refitted on the
- # same 400 paired shard resamples (comp_joint_ratio.json); the frozen analysis gave 9.31 / 1.95 / 4.77.
+ # same 400 paired shard resamples (comp_joint_ratio.json). The frozen analysis gave 9.31 / 1.95 / 4.77.
 ```

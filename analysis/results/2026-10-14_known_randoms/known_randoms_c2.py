@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """Review round 14 (2026-10-14): the known-content test repeated on the realistic-timing arm C2 (effective 388 ps
-direct component; identical to C0 except for the direct delay). Copy of known_randoms_c0.py with SRC and outputs
-changed; the validation against the C0 ladder is replaced by a count comparison of the k = 1 rung with the C2 production
-histograms (2026-08-26_B2_paired/hists_sim1_388.npz; independent smear realization, so not bin for bin).
+direct component, identical to C0 except for the direct delay). Copy of known_randoms_c0.py with SRC and outputs
+changed. The validation against the C0 ladder is replaced by a count comparison of the k = 1 rung with the C2 production
+histograms (2026-08-26_B2_paired/hists_sim1_388.npz, independent smear realization, so not bin for bin).
 
 Original docstring (round 13): Review round 13 (2026-10-14), referee M4: a direct test of the delayed-window randoms correction against
 known accidental content, at twelve accidental rates, on the corrected-yield zero-delay eight-tube stream C0.
 
 Construction. The rate replay of 2026-10-08_c0_ladder (ladder_joint_c0.py) is repeated with the published
 clinical extractor logic (sim1_extract.clinical_per_shard, re-implemented here line by line so that each triple
-keeps the indices of its three singles; the signal and randoms histograms are checked bin for bin against
+keeps the indices of its three singles, and the signal and randoms histograms are checked bin for bin against
 ladder_joint_hists.npz). Compressing the decay epochs (t_new = t0/k + (t - t0) per eventID group) injects
 accidental prompts and accidental pairs at a known rate while every decay keeps its own internal timing, so the
 content of the signal window is known for every triple from the event identity of its three singles, which is
@@ -155,7 +155,7 @@ def main():
                         ks=np.array(KS), rules=np.array(RULES), classes=np.array(CLS), bins=SX.TAU_BINS,
                         voi_names=np.array(["bg"] + [v["name"] for v in VOIS]),
                         tau_cfg=np.array([np.nan] + [v["tau_cfg_ns"] for v in VOIS]))
-    # validation: labels partition the signal arm; k = 1 counts against the C2 production histograms
+    # validation: labels partition the signal arm, and k = 1 counts against the C2 production histograms
     HK = np.stack([res[s] for s in ids]); lab_sum = bool(np.array_equal(HK[..., 2:, :].sum(-2), HK[..., 0, :]))
     P = np.load(RES / "2026-08-26_B2_paired/hists_sim1_388.npz", allow_pickle=True); ik = KS.index(1.00); cmp = {}
     for r, rule in enumerate(RULES):

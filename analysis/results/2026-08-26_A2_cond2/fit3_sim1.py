@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Three-component + acceptance fits for the eight Sim-1 tubes, per matching
-rule, on the existing C2 (388 ps) histograms. No simulation; fitting only.
+rule, on the existing C2 (388 ps) histograms. No simulation, fitting only.
 
 The estimator is C1's, imported unchanged in structure: three EMG components
 with the para-Ps and direct lifetimes FIXED (b2_estimator.TAU_PPS = 0.125 ns,
@@ -54,7 +54,7 @@ def _nll(th, counts):
 
 
 def fit3(counts, x0=None):
-    """Full multi-start for point estimates; single warm start for replicates."""
+    """Full multi-start for point estimates, single warm start for replicates."""
     inits = ([np.array([x0, 0.0, .0909, np.log(.15 / .23), np.log(.62 / .23)])]
              if x0 is not None else
              [np.array([s, 0.0, .0909, np.log(.15 / .23), np.log(.62 / .23)])

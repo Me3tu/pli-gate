@@ -1,14 +1,14 @@
 """Fig. 8 (stem fig9_pedestal_derivation), three panels, and Supplementary
 Fig. S1 (stem figS2_pedestal_residuals, the former panel d).
-(a) larger: hepatic tube spectra under both rules, shaded excess, fit window;
+(a) larger: hepatic tube spectra under both rules, shaded excess, fit window.
 (b) difference between the rules: thin grey tubes, bold mean, a-priori
-    acceptance roll-off; (c) measured vs predicted change in |bias| with the
+    acceptance roll-off. (c) measured vs predicted change in |bias| with the
     zero-parameter consistency line (conditional on the measured pedestal) and the scatter band.
 Review round 6 (2026-10-08): panel (c) and Fig. S1 plot the SIGNED rule difference
 b_all - b_closest, the quantity Eq. (4) predicts, with its paired-bootstrap uncertainty and the
-scatter term of the signed regression (2026-10-08_signed_eq3/signed_eq3.json); the folded
+scatter term of the signed regression (2026-10-08_signed_eq3/signed_eq3.json). The folded
 |b_closest| - |b_all| differs from it only where a bias is positive (hepatic tube, two spheres).
-Data: 2026-08-22_G3_consequences/hists_sim1.npz; signed_eq3.json."""
+Data: 2026-08-22_G3_consequences/hists_sim1.npz, signed_eq3.json."""
 # Review round 9 (2026-10-09): the pedestal relation is Eq. (4) of the main text since the branching equation became Eq. (3).
 import json
 import numpy as np
@@ -16,9 +16,9 @@ from scipy.stats import norm
 from common import *  # noqa
 
 # Review round 13 (2026-10-14): eight-tube data from the corrected-yield arm C0 (hists_c0_0ps.npz, same dump script
-# as hists_sim1.npz); panel (c) and Fig. S2 use the twenty-region signed regression with the C0 tubes in place of the
-# discovery tubes (2026-10-14_known_randoms/signed_eq3_c0.json); the other twelve regions are unchanged.
-Z = np.load(F3 / 'c0_sim1/hists_c0_0ps.npz', allow_pickle=False)  # v1.1.0: was allow_pickle=True; every array is numeric or <U27
+# as hists_sim1.npz). Panel (c) and Fig. S2 use the twenty-region signed regression with the C0 tubes in place of the
+# discovery tubes (2026-10-14_known_randoms/signed_eq3_c0.json). The other twelve regions are unchanged.
+Z = np.load(F3 / 'c0_sim1/hists_c0_0ps.npz', allow_pickle=False)  # v1.1.0: was allow_pickle=True. Every array is numeric or <U27
 names = [str(s) for s in Z['voi_names']]
 tubes = [n for n in names if n.startswith('T')]
 b = Z['tau_bins']; c = 0.5 * (b[:-1] + b[1:])

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Does the prompt-window acceptance explain the all-prompts residual of the windowed-moment
 estimator?  The production truncation correction assumes a sharp upper edge at T = 5 ns in
-the corrected delay; the window is applied to the uncorrected pair-prompt time, so in the
+the corrected delay. The window is applied to the uncorrected pair-prompt time, so in the
 corrected delay the upper edge is softened by the geometric path spread (sigma_e).
 
 For each Sim-1 tube (full 128 shards, 303 ps, both rules) the windowed mean is inverted

@@ -6,7 +6,7 @@
 /control/getEnv PLI_SCANNER_MACRO
 /control/getEnv PLI_VIPMAN_DIR
 # ==============================================================================
-# VIPman voxelized multi-organ phantom — Sc-44 PLI simulation (50M, Poisson)
+# VIPman voxelized multi-organ phantom: Sc-44 PLI simulation (50M, Poisson)
 # ==============================================================================
 #
 # Phase 3p-2 smoketest of the Phase 3c Poisson timing recipe applied to the
@@ -21,7 +21,7 @@
 #
 # Phase 3c established the Poisson recipe at 1 MBq water cylinder (median gap
 # 693.87 ns vs theory 693.15 ns, +0.10%). For voxelized sources the per-voxel
-# .dat activity drives the Poisson process directly — no setActivity needed.
+# .dat activity drives the Poisson process directly: no setActivity needed.
 #
 # Atlas activity = 52.29 MBq (Phase 3e voxelized .dat sum). T_sim = 50M /
 # 52.29M = 0.956 s gives ~50M Poisson decays.
@@ -96,7 +96,7 @@
 
 # ── Run ────────────────────────────────────────────────────────────────────
 # Phase 3p-2: setTimeStop 0.956 s for 50M decays at 52.29 MBq atlas.
-# setTotalNumberOfPrimaries REMOVED — Poisson driver only.
+# setTotalNumberOfPrimaries REMOVED: Poisson driver only.
 /gate/application/setTimeStart 0.0 s
 /gate/application/setTimeStop  0.019124 s
 /gate/application/setTimeSlice 1.0 s

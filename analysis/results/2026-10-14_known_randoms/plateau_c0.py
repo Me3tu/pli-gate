@@ -2,10 +2,10 @@
 """Review round 13: pedestal plateau numbers of the main text, Table S16 and Note S21, recomputed by a script (the
 values in README section 3 were computed ad hoc with the f08_pedestal.py definition). For the corrected-yield arm C0
 (2026-09-30_feedback3/c0_sim1/hists_c0_0ps.npz) and the discovery stream (2026-08-22_G3_consequences/hists_sim1.npz):
-d = (all_sig - all_rnd) - (closest_sig - closest_rnd) per 50 ps bin; plateau = mean of d over 1.25-4.5 ns (bin
-centers), per tube and averaged over the eight tubes; share = sum of d / sum of closest_rnd over the same bins, per
-tube; slope = least-squares slope of the tube-averaged d against delay on 1.25-4.5 ns, shard bootstrap (1000
-resamples, seed 20261014, half 16-84 width); first = mean of d in the bins with centers in 1.0-1.1 ns. Writes
+d = (all_sig - all_rnd) - (closest_sig - closest_rnd) per 50 ps bin. plateau = mean of d over 1.25-4.5 ns (bin
+centers), per tube and averaged over the eight tubes. share = sum of d / sum of closest_rnd over the same bins, per
+tube. slope = least-squares slope of the tube-averaged d against delay on 1.25-4.5 ns, shard bootstrap (1000
+resamples, seed 20261014, half 16-84 width). first = mean of d in the bins with centers in 1.0-1.1 ns. Writes
 plateau_c0.json."""
 import json, os
 import numpy as np

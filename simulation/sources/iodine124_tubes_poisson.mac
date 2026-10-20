@@ -1,21 +1,21 @@
 # SPDX-License-Identifier: LGPL-3.0-only
 # Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
 # ==============================================================================
-# Phase 3s-2 — iodine124_tubes Phase 3c Poisson variant
-# (auto-generated; original gate/sources/iodine124_tubes.mac unchanged)
+# Phase 3s-2: iodine124_tubes Phase 3c Poisson variant
+# (auto-generated, original gate/sources/iodine124_tubes.mac unchanged)
 #   * REMOVED: setForcedUnstableFlag true (x4)
 #   * REMOVED: setForcedHalfLife 360800 s (x4)
 #   * KEPT:    setActivity (drives Poisson rate)
 # ==============================================================================
 # ==============================================================================
-# I-124 source — four per-tube GPS ion sources for the Mercolli phantom
+# I-124 source: four per-tube GPS ion sources for the Mercolli phantom
 # ==============================================================================
 #
 # Physics: 124I → 124Te* + β+ + ν_e  (beta-plus branching ~22.7%, Emax 2.137 MeV)
 #          124Te* → 124Te + γ(603 keV)   [prompt, T1/2 ~ 2.5 ps]
 #
 # Also significant: 124I → 124Te + γ(1691 keV) [electron capture, no β+]
-# and other minor gamma lines; Geant4's G4PhotonEvaporation + G4RadioactiveDecay
+# and other minor gamma lines. Geant4's G4PhotonEvaporation + G4RadioactiveDecay
 # handle the full decay scheme automatically once we feed it the ion.
 #
 # For PLI lifetime reconstruction:
@@ -35,7 +35,7 @@
 # count distribution match the published experiment.
 #
 # Note: the total-primary-count override via /gate/application/
-# setTotalNumberOfPrimaries dominates the activity for the simulation —
+# setTotalNumberOfPrimaries dominates the activity for the simulation:
 # the setActivity values here are for ratio preservation (so T2 gets
 # more counts than T3, T1, T4 in proportion to Mercolli's activities).
 #

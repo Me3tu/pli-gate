@@ -75,7 +75,7 @@ copies still give (the Mahmoud 2024 and Zgardzinska 2020 entries).
 | A | o-Ps intensity fixed by assumption in the source |
 | E | project estimate, or a measurement on another specimen or in another source |
 
-## Base database — `pli_materials.json`
+## Base database: `pli_materials.json`
 
 33 materials.
 
@@ -119,17 +119,17 @@ copies still give (the Mahmoud 2024 and Zgardzinska 2020 entries).
 
 These are detector and world-volume materials, not phantom
 components. Positrons do reach them, so they need lifetime and
-formation values; earlier versions supplied those from an implicit
+formation values. Earlier versions supplied those from an implicit
 code default. They are declared explicitly here with the same
 values, so the assumption is visible and can be argued with. Their
 annihilations fall outside any phantom volume and are removed by the
 geometric selection in the analysis.
 
-* `LSO` — tau_eff 2.00 ns, I3 0.35 (total_formation)
-* `worldDefaultAir` — tau_eff 2.00 ns, I3 0.35 (total_formation)
-* `PTFE` — tau_eff 2.00 ns, I3 0.35 (total_formation)
+* `LSO`: tau_eff 2.00 ns, I3 0.35 (total_formation)
+* `worldDefaultAir`: tau_eff 2.00 ns, I3 0.35 (total_formation)
+* `PTFE`: tau_eff 2.00 ns, I3 0.35 (total_formation)
 
-## VIP-Man atlas extension — `pli_materials_vipman.json`
+## VIP-Man atlas extension: `pli_materials_vipman.json`
 
 47 materials.
 
@@ -187,12 +187,12 @@ geometric selection in the analysis.
 
 These are detector and world-volume materials, not phantom
 components. Positrons do reach them, so they need lifetime and
-formation values; earlier versions supplied those from an implicit
+formation values. Earlier versions supplied those from an implicit
 code default. They are declared explicitly here with the same
 values, so the assumption is visible and can be argued with. Their
 annihilations fall outside any phantom volume and are removed by the
 geometric selection in the analysis.
 
-* `LSO` — tau_eff 2.00 ns, I3 0.35 (total_formation)
-* `PTFE` — tau_eff 2.00 ns, I3 0.35 (total_formation)
+* `LSO`: tau_eff 2.00 ns, I3 0.35 (total_formation)
+* `PTFE`: tau_eff 2.00 ns, I3 0.35 (total_formation)
 

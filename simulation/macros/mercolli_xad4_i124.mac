@@ -4,11 +4,11 @@
 # set by simulation/runner/paths.sh or by hand. See simulation/README.md.
 /control/getEnv PLI_SIM
 /control/getEnv PLI_SCANNER_MACRO
-# Phase 3s-2 OVERNIGHT — Mercolli te arm Poisson master mac
-# (auto-generated; references iodine124_tubes_poisson.mac sub-mac)
+# Phase 3s-2 OVERNIGHT: Mercolli te arm Poisson master mac
+# (auto-generated, references iodine124_tubes_poisson.mac sub-mac)
 
 # ==============================================================================
-# Mercolli 2025a XAD-4 reproduction — Phase 3.3 GATE macro
+# Mercolli 2025a XAD-4 reproduction: Phase 3.3 GATE macro
 # ==============================================================================
 #
 # Four chemistry tubes with different XAD-4 variants, I-124 source per
@@ -60,7 +60,7 @@
 /gate/run/initialize
 
 # ==============================================================================
-# DIGITIZER — I-124 energy windows per Mercolli 2025a Methods
+# DIGITIZER: I-124 energy windows per Mercolli 2025a Methods
 # ==============================================================================
 #
 # Mercolli specifies two DISJOINT windows for I-124 PLI:
@@ -81,7 +81,7 @@
 # demonstration.
 #
 # CRITICAL: do NOT reuse the Sc-44 window [435, 1300] keV from
-# validate_1M.mac — that would mix Compton-scattered gammas from the
+# validate_1M.mac. That would mix Compton-scattered gammas from the
 # I-124 higher-energy lines into the annihilation branch and destroy
 # the lifetime signal. The narrow [460, 639] window is what makes this
 # an I-124 macro rather than a Sc-44 copy-paste.
@@ -99,7 +99,7 @@
 /gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMin 460 keV
 /gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMax 639 keV
 
-# Coincidence sorter — wide 20 ns window for I-124 triples.
+# Coincidence sorter: wide 20 ns window for I-124 triples.
 # The reconstruction stage uses a narrower window after filtering.
 /gate/digitizerMgr/CoincidenceSorter/Coincidences/setWindow 20. ns
 /gate/digitizerMgr/CoincidenceSorter/Coincidences/setOffset 0 ns

@@ -82,7 +82,7 @@ def main():
         # the one every analysis actually opens -- has no record of which
         # energy bands it contains, and a question about a band the converter
         # discarded returns data instead of failing. That has produced one
-        # bogus result already; see energy_window_guard.py.
+        # bogus result already (see energy_window_guard.py).
         CARRY = ("E_keep_511_window", "E_keep_prompt_window",
                  "E_511_tight_window", "E_prompt_tight_window")
         with h5py.File(parts[0], "r") as f0:

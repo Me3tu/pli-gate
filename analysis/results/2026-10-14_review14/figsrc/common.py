@@ -1,4 +1,4 @@
-"""Shared setup for the figure generators (referee round 2, 2026-09-30; feedback round 3,
+"""Shared setup for the figure generators (referee round 2, 2026-09-30, and feedback round 3,
 2026-09-30 evening).
 
 Unified visual language:
@@ -12,7 +12,7 @@ never by color alone, so every figure reads in grayscale.
 
 Round 3: figures are drawn at the IOP double-column width (W = 150 mm), and every text
 element is 8 pt or larger at that size (IOP: 8 to 12 pt at final size, 15 cm wide). A panel may
-carry ONE key number where the conclusion rests on it; every such number is read
+carry ONE key number where the conclusion rests on it. Every such number is read
 from the same JSON as the text that quotes it and is asserted in the built PDF.
 No interpretive sentences are drawn into a figure.
 """
@@ -69,7 +69,7 @@ def key(ax, x, y, s, transform=None, **kw):
 
 
 def mm_fig(w_mm, h_mm):
-    """A figure of exact size; axes are placed in millimetres with ax_mm."""
+    """A figure of exact size. Axes are placed in millimetres with ax_mm."""
     fig = plt.figure(figsize=(w_mm * MM, h_mm * MM))
     fig._mm = (w_mm, h_mm)
     return fig

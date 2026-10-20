@@ -15,7 +15,7 @@ Output (next to this script): vipman_O4_slice.npz, written with numpy.savez_comp
 f05_vipman.py draws act_z only where sup2.any(axis=2) and asserts that sup2 equals the support mask
 of recon_phase3q in the same slices.
 
-Run: python3 make_vipman_slice.py   (prints input hashes and hashes of the array bytes; the npz
+Run: python3 make_vipman_slice.py   (prints input hashes and hashes of the array bytes. The npz
 bytes themselves carry zip timestamps, so compare the printed array hashes across reruns).
 """
 import hashlib

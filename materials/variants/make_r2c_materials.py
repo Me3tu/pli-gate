@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: LGPL-3.0-only
 # Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
 """R2c materials: database v8 with I3 = 0.2625 for every o-Ps-intensity entry (P_oPs = 0.2625 in every material,
-matching the total-formation structural entries at I3 = 0.35). Writes r2c_equal_yield_materials.json here;
+matching the total-formation structural entries at I3 = 0.35). Writes r2c_equal_yield_materials.json here, and
 the released database is read only."""
 import json, hashlib
 from pathlib import Path

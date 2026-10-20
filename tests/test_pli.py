@@ -15,7 +15,7 @@ from pathlib import Path
 
 PKG = Path(__file__).resolve().parent.parent
 # tao_eldrup.py and pedestal.py belong to the analysis part of the release.
-# Search the layouts it has used, first match wins; PLI_ANALYSIS_PY overrides.
+# Search the layouts it has used, first match wins. PLI_ANALYSIS_PY overrides.
 for _d in reversed([os.environ.get("PLI_ANALYSIS_PY", ""),
                     PKG / "analysis" / "pli_analysis",
                     PKG / "analysis",
@@ -132,7 +132,7 @@ def t6():
 # ------------------------------------------------------------------------- 7
 @test("boundary_case_materials")
 def t7():
-    """Air forms no positronium; every declared lifetime is finite and positive."""
+    """Air forms no positronium, and every declared lifetime is finite and positive."""
     d = json.loads((PKG / "materials/pli_materials_vipman.json").read_text())
     air = [m for m in d["materials"] if m["name"] == "Air"]
     assert air, "no Air entry in the atlas database"

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: LGPL-3.0-only
 // Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
 // ============================================================================
-// G4PositroniumAnnihilation.cc — PostStep positronium annihilation process
+// G4PositroniumAnnihilation.cc: PostStep positronium annihilation process
 // ============================================================================
 //
 // Custom Geant4 discrete process for positronium lifetime imaging (PLI).
@@ -32,8 +32,8 @@
 //                   Constructor defaults are fallbacks only.
 //
 // Process type: fElectromagnetic (type 2), fAnnihilation (subtype 5)
-//   — matches standard G4eplusAnnihilation signature so that GATE's
-//     digitizer and actor systems recognize the resulting gammas.
+//   Matches standard G4eplusAnnihilation signature so that GATE's
+//   digitizer and actor systems recognize the resulting gammas.
 //
 // ============================================================================
 
@@ -87,7 +87,7 @@ G4PositroniumAnnihilation::G4PositroniumAnnihilation(const G4String& processName
         G4cout << "G4PositroniumAnnihilation: PLI lifetime logging ENABLED" << G4endl;
     }
 
-    // Fallback material lifetimes — used ONLY for materials not explicitly
+    // Fallback material lifetimes, used ONLY for materials not explicitly
     // configured by PLIPhysicsList. In production, PLIPhysicsList::
     // AddCustomPositronAnnihilation() calls SetMaterialLifetime() for all
     // relevant materials, overriding these defaults.
@@ -127,7 +127,7 @@ G4PositroniumAnnihilation::~G4PositroniumAnnihilation()
 }
 
 // ============================================================================
-// IsApplicable — only positrons
+// IsApplicable: only positrons
 // ============================================================================
 
 G4bool G4PositroniumAnnihilation::IsApplicable(const G4ParticleDefinition& particle)
@@ -136,7 +136,7 @@ G4bool G4PositroniumAnnihilation::IsApplicable(const G4ParticleDefinition& parti
 }
 
 // ============================================================================
-// GetMeanFreePath — triggers at thermalization (KE < 1 eV)
+// GetMeanFreePath: triggers at thermalization (KE < 1 eV)
 // ============================================================================
 
 G4double G4PositroniumAnnihilation::GetMeanFreePath(const G4Track& track,
@@ -145,19 +145,19 @@ G4double G4PositroniumAnnihilation::GetMeanFreePath(const G4Track& track,
 {
     *condition = NotForced;
     if (track.GetKineticEnergy() < 1.0 * eV) {
-        return 0.0;   // Immediate interaction — positron is thermalized
+        return 0.0;   // Immediate interaction: positron is thermalized
     }
-    return DBL_MAX;    // Transparent — let other processes handle transport
+    return DBL_MAX;    // Transparent: let other processes handle transport
 }
 
 // ============================================================================
-// GetLifetime — material-dependent o-Ps pick-off lifetime lookup
+// GetLifetime: material-dependent o-Ps pick-off lifetime lookup
 // ============================================================================
 
 G4double G4PositroniumAnnihilation::GetLifetime(const G4Material* material) const
 {
     // PLI_LIFETIME_MODE=fixed: one global tau for the whole geometry (see the AtRest
-    // twin; both processes must apply identical physics).
+    // twin: both processes must apply identical physics).
     if (PLIOrePowell::LifetimeMode() == PLILifetimeMode::kFixed) {
         return PLIOrePowell::FixedTau();
     }
@@ -203,7 +203,7 @@ const G4Material* G4PositroniumAnnihilation::LifetimeMaterial(
 }
 
 // ============================================================================
-// SamplePsLifetime — Monte Carlo sampling of the Ps decay pathway
+// SamplePsLifetime: Monte Carlo sampling of the Ps decay pathway
 //
 // Branching (per material, I3 from JSON via PLIMaterialLoader):
 //   P(direct annihilation) = 1 - I3
@@ -285,9 +285,9 @@ G4double G4PositroniumAnnihilation::SamplePsLifetime(const G4Material* material,
 
     if (G4UniformRand() < fOrthoPosFraction) {
         // Ortho-Ps: material-dependent effective lifetime. The decay TIME is
-        // exponential with 1/tau_eff whatever the channel; the CHANNEL is
+        // exponential with 1/tau_eff whatever the channel. The CHANNEL is
         // drawn independently with P(3 gamma) = tau_eff / tau_3g (competing
-        // risks; see PLIOrePowell.hh). Short-circuit ordering keeps the
+        // risks, see PLIOrePowell.hh). Short-circuit ordering keeps the
         // two-gamma-only random stream bit-exact under PLI_DISABLE_3GAMMA=1.
         const G4double tau   = GetLifetime(material);
         const G4double delay = -tau * std::log(G4UniformRand());
@@ -305,7 +305,7 @@ G4double G4PositroniumAnnihilation::SamplePsLifetime(const G4Material* material,
 }
 
 // ============================================================================
-// GenerateGammas — two back-to-back 511 keV gammas at annihilation position
+// GenerateGammas: two back-to-back 511 keV gammas at annihilation position
 // ============================================================================
 
 void G4PositroniumAnnihilation::GenerateGammas(G4VParticleChange* particleChange,
@@ -353,7 +353,7 @@ void G4PositroniumAnnihilation::GenerateGammas(G4VParticleChange* particleChange
 }
 
 // ============================================================================
-// PostStepDoIt — main entry point when positron thermalizes
+// PostStepDoIt: main entry point when positron thermalizes
 // ============================================================================
 
 G4VParticleChange* G4PositroniumAnnihilation::PostStepDoIt(const G4Track& track,
@@ -435,7 +435,7 @@ void G4PositroniumAnnihilation::ResetLifetimeData()
 }
 
 // ============================================================================
-// SetMaterialLifetime — called by PLIPhysicsList to configure lifetimes
+// SetMaterialLifetime: called by PLIPhysicsList to configure lifetimes
 // ============================================================================
 
 void G4PositroniumAnnihilation::SetMaterialLifetime(const G4String& materialName,
@@ -449,7 +449,7 @@ void G4PositroniumAnnihilation::SetMaterialLifetime(const G4String& materialName
 }
 
 // ============================================================================
-// SetPsFormationProbability — per-material I3 setter
+// SetPsFormationProbability: per-material I3 setter
 //   Called by PLIMaterialLoader::loadInto for every material+alias from
 //   the JSON parameter file at physics-list init.
 // ============================================================================

@@ -4,25 +4,25 @@
 # set by simulation/runner/paths.sh or by hand. See simulation/README.md.
 /control/getEnv PLI_SIM
 /control/getEnv PLI_SCANNER_MACRO
-# Review round 8 oxygen rerun (database v8); copy of the Phase 3s-2 hypoxia te master mac
+# Review round 8 oxygen rerun (database v8): copy of the Phase 3s-2 hypoxia te master mac
 
 # ==============================================================================
-# Hypoxia gradient phantom simulation — Phase 3.4
+# Hypoxia gradient phantom simulation: Phase 3.4
 # ==============================================================================
 #
 # Runs the 5-insert hypoxia gradient phantom through GATE with the
 # new TE + O2 physics list. Oracle log carries per-insert material names
-# so parse_sanity_log.py can fit per-region tau; ROOT output for Phase 4
+# so parse_sanity_log.py can fit per-region tau. ROOT output for Phase 4
 # CASToR reconstruction.
 #
-# The TE+O2 arm produces ~3 ps total spread across the 5 regions; the
+# The TE+O2 arm produces ~3 ps total spread across the 5 regions. The
 # lookup arm produces a flat 1.85 ns for all 5 regions (old physics had
 # no pO2 dependence). Both arms should reconstruct to visually flat
-# lifetime maps at the Quadra's 214 ps CRT — that flatness IS the
+# lifetime maps at the Quadra's 214 ps CRT. That flatness IS the
 # paper's quantitative negative result.
 #
 # Source: Sc-44 uniform in the water body (reuses the multi-tissue
-# phantom's pattern — primaries spawn anywhere in the cylinder, land in
+# phantom's pattern: primaries spawn anywhere in the cylinder, land in
 # whichever daughter contains the position).
 # ==============================================================================
 
@@ -57,7 +57,7 @@
 # Initialize
 /gate/run/initialize
 
-# Digitizer: Biograph Vision Quadra (same as Phase 3.1 — Sc-44 window)
+# Digitizer: Biograph Vision Quadra (same as Phase 3.1, Sc-44 window)
 /gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert adder
 /gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert readout
 /gate/digitizerMgr/LSO/SinglesDigitizer/Singles/readout/setDepth 1

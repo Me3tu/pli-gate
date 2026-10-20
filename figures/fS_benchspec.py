@@ -1,6 +1,6 @@
 """Supplementary figure (stem figS_benchspec), review round 16: the benchmark spectrum moved from main Fig. 3(a).
 Dry XAD-4, all-prompts, randoms-subtracted spectrum over the fit range with the three-component model as in the fit
-objective (total thin, so that the data points stay visible), o-Ps and summed short components; lower panel:
+objective (total thin, so that the data points stay visible), o-Ps and summed short components. Lower panel:
 Poisson-normalized residual for every bin of the fit range. Data: 2026-10-08_replication_330/repl_sig0.3306.json."""
 import json
 import numpy as np

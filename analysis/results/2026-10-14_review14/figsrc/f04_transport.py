@@ -1,5 +1,5 @@
 """Fig. 4 (stem fig_r2_transport_novelty): (a) radial cross-section, core and
-shell, migration across the boundary; (b) Delta tau-hat (vertex minus source arm)
+shell, migration across the boundary. (b) Delta tau-hat (vertex minus source arm)
 against the lifetime step: null control at step 0, the two material pairs, and
 the first-order estimator-specific consistency check (same-run shares and yields)."""
 import json
@@ -15,8 +15,8 @@ PAIRS = [('A', 2.72, 1.77), ('B', 2.54, 1.9215)]
 # annihilations outside core and shell. Shift = sum_m w_m (tau_m - tau_core), w_m = tail share (delay > 1 ns)
 # of material m among the transport-arm annihilations of core-origin positrons, from the measured transition
 # matrix and the (P_oPs, tau) with which the runs were made. As-run yields: P_oPs = I3 (o-Ps-intensity
-# convention) for the cores and the pair-A shell; the pair-B water shell ran before the 2026-08-14 I3-convention
-# correction at 0.75*0.27; structural materials (LSO, PTFE) and world air carried the fallback (0.75*0.35, 2.0 ns).
+# convention) for the cores and the pair-A shell. The pair-B water shell ran before the 2026-08-14 I3-convention
+# correction at 0.75*0.27. Structural materials (LSO, PTFE) and world air carried the fallback (0.75*0.35, 2.0 ns).
 # These yields reproduce the observed transport/source o-Ps ratios of all three pairs within 0.05% (printed).
 TAU_MIN = 1.0
 FALLBACK = (0.75 * 0.35, 2.0)
@@ -87,7 +87,7 @@ h = [Line2D([], [], marker='o', ms=5, color=THIS, ls='none'), Line2D([], [], mar
      Line2D([], [], marker='o', ms=5, color=CTRL, ls='none')]
 labs = ['measured, material pair', 'first-order consistency check\nfrom the same-run shares and yields', 'null control (equal lifetimes)']
 # Review round 8: registered matched-yield arms (equal o-Ps yields everywhere, three-photon channel off), paired event
-# for event; 2026-10-08_r2c_matched_yield/r2c_results.json
+# for event, 2026-10-08_r2c_matched_yield/r2c_results.json
 R2C = RES / '2026-10-08_r2c_matched_yield/r2c_results.json'
 if R2C.exists():
     C = json.load(open(R2C))

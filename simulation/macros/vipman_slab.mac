@@ -6,7 +6,7 @@
 /control/getEnv PLI_SCANNER_MACRO
 /control/getEnv PLI_VIPMAN_DIR
 # ==============================================================================
-# VIPman voxelized multi-organ phantom — Sc-44 PLI simulation (1.4B, Poisson)
+# VIPman voxelized multi-organ phantom: Sc-44 PLI simulation (1.4B, Poisson)
 # ==============================================================================
 #
 # Phase 3q production sim. Same recipe as Phase 3p-2 50M smoketest, scaled to
@@ -16,7 +16,7 @@
 # reconstruction/utils/run_phase3q_per_batch.py.
 #
 # Diff from macros/vipman_sc44_50M_poisson.mac:
-#   * CHANGED  /gate/application/setTimeStop 0.956 → 0.0523 s (per-shard slice;
+#   * CHANGED  /gate/application/setTimeStop 0.956 → 0.0523 s (per-shard slice:
 #              0.0523 × 16 threads × 32 batches = 26.77 s total = 1.4B at 52.29 MBq)
 #
 # The runner divides --total-time-sec by --threads to get per-shard time.

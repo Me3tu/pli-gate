@@ -1,11 +1,11 @@
 """Locked EJMP figure style.
 
-v2, 2026-08-28 — the polish pass. Typography, geometry, palette and mark
+v2, 2026-08-28: the polish pass. Typography, geometry, palette and mark
 conventions are set ONCE here so twelve figures change together and no
 generator needs a per-figure hack.
 
 NOTHING in this module changes a number. The palette keys keep their names and
-their SEMANTIC assignments; only the hex values are tuned for print and screen:
+their SEMANTIC assignments. Only the hex values are tuned for print and screen:
 
     green  -> teal  #0F7173   ours / signal / 388 ps
     verm   -> coral #C8502D   0 ps / theirs-contrast
@@ -14,7 +14,7 @@ their SEMANTIC assignments; only the hex values are tuned for print and screen:
     purple -> plum  #7B4B94   auxiliary
     grey           #8A8988    unresolved / de-emphasised
 
-Import and call apply(); save with save_fig(fig, name).
+Import and call apply(). Save with save_fig(fig, name).
 Panel letters: panel_letter(ax, "a") puts a bold 11 pt letter OUTSIDE the axes,
 top-left, so a panel's own descriptive title keeps its wording underneath it.
 """
@@ -23,15 +23,15 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-# Semantic palette. Keys are historical (Wong); values are the v2 tuning.
+# Semantic palette. Keys are historical (Wong). Values are the v2 tuning.
 WONG = {
     "black":  "#333333",
     "orange": "#E09F3E",   # gold, auxiliary
     "sky":    "#6FA8C7",   # auxiliary light
-    "green":  "#0F7173",   # teal   — ours / signal / 388 ps
+    "green":  "#0F7173",   # teal:    ours / signal / 388 ps
     "yellow": "#E6C34A",
-    "blue":   "#3D5A80",   # slate  — component fit / canonical
-    "verm":   "#C8502D",   # coral  — 0 ps / theirs-contrast
+    "blue":   "#3D5A80",   # slate:   component fit / canonical
+    "verm":   "#C8502D",   # coral:   0 ps / theirs-contrast
     "purple": "#7B4B94",   # plum, auxiliary
     "grey":   "#8A8988",   # unresolved / de-emphasised
 }
@@ -72,7 +72,7 @@ def apply():
         "ytick.major.width": 0.8,
         "xtick.minor.size": 1.8,
         "ytick.minor.size": 1.8,
-        # grid, off by default; generators switch it on where it aids reading
+        # grid, off by default. Generators switch it on where it aids reading
         "grid.linewidth": 0.4,
         "grid.alpha": 0.22,
         "grid.color": "#000000",

@@ -14,7 +14,7 @@ S=$PLI_ANALYSIS/results/2026-08-17_derivation_test
 PER_SHARD_SEC=0.137933
 say(){ echo "[$(date +%H:%M:%S)] $*" >> "$L/run.log"; }
 mkdir -p "$L" "$OUT"
-# v1.1.0: the wait for the in-flight arm and its analysis are disabled; C0 does not depend on them.
+# v1.1.0: the wait for the in-flight arm and its analysis are disabled. C0 does not depend on them.
 #[v1.1.0 disabled] say "chain started; waiting for HYB_DONE"
 #[v1.1.0 disabled] while ! grep -q "HYB_DONE\|HYB_FAILED" "$I/run.log"; do sleep 60; done
 #[v1.1.0 disabled] grep -q HYB_FAILED "$I/run.log" && { say "hybrid FAILED; C0 not started"; exit 1; }

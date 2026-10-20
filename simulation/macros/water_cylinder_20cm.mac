@@ -7,7 +7,7 @@
 # ============================================================================
 # Review round 17 (2026-10-19): water cylinder at the published size, 20 cm diameter x 30 cm.
 # Steinberger et al 2024 write the phantom as '(20 phi x 30 cm3)' and the VOIs as '(5 phi x 15 cm3)'.
-# The June 2026 design read the diameters in mm (Rmax 10 mm); this macro is the 2026-08-12
+# The June 2026 design read the diameters in mm (Rmax 10 mm). This macro is the 2026-08-12
 # water_7MBq.mac with only Rmax and the source radius changed to 100 mm (and the ROOT file name).
 # Same material (WaterSteinberger, 1.84 ns), activity (7 MBq), digitizer, physics and runner.
 # The header below is the original one and still describes the 20 mm geometry.
@@ -24,18 +24,18 @@
 #
 # Activity & time: Steinberger ballpark "70 MBq-equivalent". A clean
 # interpretation: 70 MBq total activity in the cylinder × time to be
-# determined. Steinberger's quoted measurement times are 5-10 min; we
+# determined. Steinberger's quoted measurement times are 5-10 min. We
 # use 600 s = 10 min × 70 MBq = 4.2 × 10^10 decays. Yields ~10^9 triples
 # in the inner-most 5 mm × 15 cm VOI after geometric and energy cuts.
 #
-# Analysis VOIs (computed post-extraction; NOT separate phantoms):
+# Analysis VOIs (computed post-extraction, NOT separate phantoms):
 #   VOI_5 :   2.5 mm radius × ± 75 mm halfz  (5 mm φ × 15 cm)
 #   VOI_10:   5.0 mm radius × ±100 mm halfz  (10 mm φ × 20 cm)
 #   VOI_15:   7.5 mm radius × ±125 mm halfz  (15 mm φ × 25 cm)
 #   (all coaxial with the cylinder, centred at origin)
 #
 # To run: same prep as steinberger_disk_phantom.mac.template (env_setup,
-# materials JSON; here, only G4_WATER is needed — already in
+# materials JSON. Here, only G4_WATER is needed, already in
 # pli_materials.json with tau_TE = 1.8 ns).
 # ============================================================================
 
@@ -75,7 +75,7 @@
 /gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert energyFraming
 /gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMin 435 keV
 /gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMax 1300 keV
-# timeResolution OMITTED — true-time singles for post-extraction CRT.
+# timeResolution OMITTED: true-time singles for post-extraction CRT.
 /gate/digitizerMgr/CoincidenceSorter/Coincidences/setWindow 20. ns
 /gate/digitizerMgr/CoincidenceSorter/Coincidences/setOffset 0 ns
 

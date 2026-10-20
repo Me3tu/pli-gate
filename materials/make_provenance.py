@@ -133,8 +133,8 @@ for title, fn in DBS:
     out.append(f"* `{fn}`: entries whose runtime fields ({', '.join(RUNTIME_FIELDS)}) "
                f"differ from `{PREVIOUS}/{fn}`: "
                + (", ".join(f"`{n}`" for n in changed) if changed else "none")
-               + (f"; added: {', '.join(added)}" if added else "")
-               + (f"; removed: {', '.join(removed)}" if removed else "")
+               + (f", added: {', '.join(added)}" if added else "")
+               + (f", removed: {', '.join(removed)}" if removed else "")
                + f". `k_O2_ns_mmHg` {kc[1]:g} -> {kc[0]:g}.")
 out += ["",
         "Only `tau_TE_ns`, `I3`, `I3_convention` and `aliases` (with the entry",
@@ -157,7 +157,7 @@ out.append("")
 for title, fn in DBS:
     d = json.loads((HERE / fn).read_text())
     mats = d["materials"]
-    out += [f"## {title} — `{fn}`", "",
+    out += [f"## {title}: `{fn}`", "",
             f"{len(mats)} materials.", "",
             "| material | R (nm) | pO2 (mmHg) | I3 | convention | class | tau_eff (ns) | source |",
             "|---|---|---|---|---|---|---|---|"]
@@ -178,13 +178,13 @@ for title, fn in DBS:
         out += ["### Structural materials", "",
                 "These are detector and world-volume materials, not phantom",
                 "components. Positrons do reach them, so they need lifetime and",
-                "formation values; earlier versions supplied those from an implicit",
+                "formation values. Earlier versions supplied those from an implicit",
                 "code default. They are declared explicitly here with the same",
                 "values, so the assumption is visible and can be argued with. Their",
                 "annihilations fall outside any phantom volume and are removed by the",
                 "geometric selection in the analysis.", ""]
         for m in struct:
-            out.append(f"* `{m['name']}` — tau_eff {m['tau_TE_ns']:.2f} ns, "
+            out.append(f"* `{m['name']}`: tau_eff {m['tau_TE_ns']:.2f} ns, "
                        f"I3 {m['I3']:.2f} ({m['I3_convention']})")
         out.append("")
 

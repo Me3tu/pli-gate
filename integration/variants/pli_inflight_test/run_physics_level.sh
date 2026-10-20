@@ -1,7 +1,7 @@
 #!/bin/bash
 # SPDX-License-Identifier: LGPL-3.0-only
 # Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
-# v1.1.0: expects the CMake build of this test in ./build (cmake -S . -B build);
+# v1.1.0: expects the CMake build of this test in ./build (cmake -S . -B build), and
 # output goes to $PLI_OUT/feedback3_inflight/physics.
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${GEANT4_INSTALL:?set GEANT4_INSTALL}/bin/geant4.sh"

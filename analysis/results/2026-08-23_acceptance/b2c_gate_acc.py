@@ -20,7 +20,7 @@ sys.path.insert(0, str(Path(os.environ.get("PLI_RES") or Path(__file__).resolve(
 import b2_estimator as E
 from acceptance import A_analytic
 
-SIGMA_E = 0.3124                  # ns, a priori; see acceptance_water.py
+SIGMA_E = 0.3124                  # ns, a priori, see acceptance_water.py
 EDGES = E.EDGES
 CEN = E.CEN
 ACC_BIN = None

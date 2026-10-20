@@ -5,7 +5,7 @@ imported unchanged, photon-1 delay convention), both matching rules.
 
 The published sweep (Fig. 6a) used the discovery stream and the extractor of that stage. Here the single-photon timing
 sigma takes the values of the published sweep, 90.9, 68.5, 30.0 and 15.0 ps (coincidence resolution 303, 228, 100 and
-50 ps FWHM), plus 0 (noiseless timing). Smear draws per shard rng [round(sigma_ps*1000), shard]; the 90.9 ps arm uses
+50 ps FWHM), plus 0 (noiseless timing). Smear draws per shard rng [round(sigma_ps*1000), shard]. The 90.9 ps arm uses
 [90900, shard] and therefore reproduces photon_conventions_c0 (photon-1) bin for bin, which is checked.
 Output crt_sweep_c0_hists.npz: hist[shard, sigma, rule, voi+1, sig/rnd, bin]."""
 from __future__ import annotations

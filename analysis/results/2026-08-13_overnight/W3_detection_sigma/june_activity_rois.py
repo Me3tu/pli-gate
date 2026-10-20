@@ -2,19 +2,19 @@
 """Activity-ROI detection statistic on the JUNE (pre-correction) brain-tumor
 triples, then the June-vs-O4 comparison on one axis.
 
-DEFINITION — transcribed from the published pipeline
+DEFINITION, transcribed from the published pipeline
 (2026-05-07_2140_phase3r3_batch1_clinical/run_roi_analysis_and_render.py):
 
     ROI       sphere, R_ROI = sqrt(r_inferred^2 + RECON_FWHM^2), RECON_FWHM = 7.0 mm,
               centred on the activity-map peak at z = 0
     background cylindrical annulus 80 < r_xy < 95 mm, |z| < 20 mm
     tau_hat   mean(tau | tau > 1 ns) - 1 ns
-    sigma     tau_hat / sqrt(N)                       (analytic; manuscript form)
+    sigma     tau_hat / sqrt(N)                       (analytic, manuscript form)
     n_sigma   |tau_ROI - tau_bg| / hypot(sigma_ROI, sigma_bg)
 
 The ROI CENTRES are held fixed at the published activity peaks. Re-running the
 MLEM activity reconstruction on each dataset would move the centres and mix a
-localisation change into a lifetime comparison; holding them fixed isolates the
+localisation change into a lifetime comparison. Holding them fixed isolates the
 lifetime term. Activity is I3-independent, so the centres are not expected to
 move -- but that is a separate measurement, not an input to this one.
 
@@ -39,7 +39,7 @@ O4_H5 = (Path(os.environ.get("PLI_RAW", "<missing>")) / "2026-08-13_overnight/O4
 
 TAU_MIN = 1.0
 RECON_FWHM = 7.0
-# rank -> (peak_x, peak_y, r_inferred); published activity peaks
+# rank -> (peak_x, peak_y, r_inferred). Published activity peaks
 ROIS = [(1, 54.0, -2.0, 20), (2, 10.0, -2.0, 16), (3, -26.0, -2.0, 12), (4, -50.0, -2.0, 8)]
 
 

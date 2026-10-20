@@ -5,9 +5,9 @@
     of an event-level bootstrap (tail events resampled within each insert, B = 20000), zero line,
     and the mean paired difference with its event-level bootstrap 95% interval (band).
 Review round 8: the phantom was rerun with database v8 (plasma-based coefficient 2.5704e-5 ns^-1 mmHg^-1)
-and the production binary (corrected I3 convention); per-insert values from the v8 triples
+and the production binary (corrected I3 convention). Per-insert values from the v8 triples
 (2026-10-08_oxygen_v8/oxygen_boot_v8.json, 'reextraction'). Panel (a): solid, as simulated (plasma
-coefficient); dashed, the 37 C water solubility (1.40 umol/L/mmHg) as sensitivity value, radius anchored at
+coefficient). Dashed, the 37 C water solubility (1.40 umol/L/mmHg) as sensitivity value, radius anchored at
 the 15 mmHg reference as in the database."""
 import json
 import numpy as np
@@ -28,7 +28,7 @@ lam0 = 1 / cfg[0] - KAPPA * po2[0]
 xx = np.linspace(0, 42, 200)
 ax.plot(xx, 1000 * (1 / (lam0 + KAPPA * xx) - cfg[0]), color=REF, lw=1.2)
 ax.plot(po2, 1000 * (cfg - cfg[0]), 'o', ms=4.6, color=REF, zorder=4)
-# Sensitivity: the 37 C solubility of water (1.40 umol/L/mmHg); the radius is anchored at the 15 mmHg reference,
+# Sensitivity: the 37 C solubility of water (1.40 umol/L/mmHg). The radius is anchored at the 15 mmHg reference,
 # so tau(15) is unchanged.
 KAPPA_W = 0.0204e-3 * 1.406  # Battino et al at 37 C (review round 16: 1.406, giving 2.87e-5)
 tau15 = 1 / (lam0 + KAPPA * 15.0)

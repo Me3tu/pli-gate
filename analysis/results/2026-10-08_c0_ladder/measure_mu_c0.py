@@ -1,5 +1,5 @@
 """mu per rung on C0: expected number of prompt singles in a +-5 ns window = 10 ns / mean spacing,
-measured after the same epoch compression, per shard; reported as mean over all shards and over
+measured after the same epoch compression, per shard, reported as mean over all shards and over
 the first six shards (the convention of 2026-08-26_rate_scan/mu_ladder.json)."""
 import json, os, sys
 from pathlib import Path

@@ -24,7 +24,7 @@
 #      I3_convention) to materials/pli_materials.json
 #   3) Replace QuartzGlass and PolycarbonateTakyu tokens below
 #      with the JSON canonical material names
-#   4) Source scripts/env_setup.sh; launch via run_gate_parallel_musire.sh
+#   4) Source scripts/env_setup.sh. Launch via run_gate_parallel_musire.sh
 #      or systemd-run + the gate-st binary
 # ============================================================================
 
@@ -76,7 +76,7 @@
 /gate/digitizerMgr/LSO/SinglesDigitizer/Singles/insert energyFraming
 /gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMin 435 keV
 /gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMax 1300 keV
-# timeResolution OMITTED — true-time singles for post-extraction CRT.
+# timeResolution OMITTED: true-time singles for post-extraction CRT.
 /gate/digitizerMgr/CoincidenceSorter/Coincidences/setWindow 20. ns
 /gate/digitizerMgr/CoincidenceSorter/Coincidences/setOffset 0 ns
 

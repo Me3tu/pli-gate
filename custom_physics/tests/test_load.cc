@@ -16,7 +16,7 @@
 //   5. The parsed values agree numerically with what the materials JSON
 //      contains.
 //
-// The C++ side does NOT recompute Tao-Eldrup math here; the JSON's
+// The C++ side does NOT recompute Tao-Eldrup math here. The JSON's
 // tau_TE_ns is the value used at runtime. So this test is an end-to-end
 // check of the parser + linkage, NOT an independent physics validation
 // (which lives in tests/test_pli.py).

@@ -1,11 +1,11 @@
-"""Steinberger disk oracle — in-disk-only re-extraction.
+"""Steinberger disk oracle: in-disk-only re-extraction.
 
 The default oracle (steinberger_extract.py) uses the TRUTH SOURCE position
 (sx, sy, sz) to truth-correct τ. For thin disk phantoms in air, ⁴⁴Sc β⁺
 with σ_β+ ≈ 2 mm in dense glass routinely escapes the 5 mm-thick disk
 through the edge or face and annihilates in air or LSO. The source
 position is still inside the disk, but the actual annihilation is far
-away — and the truth-source-corrected formula
+away, and the truth-source-corrected formula
 
     τ_oracle = delay + (d_annih_to_p1 − d_src_to_p1) / c
 
@@ -16,7 +16,7 @@ This script removes those escape events by cutting on the **truth
 annihilation position**. In the oracle (no σ_T smear) the TOF-
 reconstructed P_ann_truth = the true annihilation position exactly
 (by the LOR-midpoint + Δt/c closure). So requiring P_ann_truth ∈ disk
-volume IS a truth material cut — same physical meaning as a
+volume IS a truth material cut, same physical meaning as a
 `/PLI_LIFETIME: <material>` tag, computed from the existing Singles
 HDF5 with no re-simulation.
 
@@ -75,7 +75,7 @@ def in_disk(pos, disk):
 
 
 def oracle_per_shard(eid, t, gx, gy, gz, sx, sy, sz, in_511, in_prompt, disks):
-    """Per shard: oracle-pair by eventID; compute P_ann_truth; per-disk
+    """Per shard: oracle-pair by eventID, compute P_ann_truth, per-disk
     return (τ_kept, τ_all) plus counts so we can report escaped fraction."""
     n = len(eid)
     if n == 0: return None
@@ -124,9 +124,9 @@ def oracle_per_shard(eid, t, gx, gy, gz, sx, sy, sz, in_511, in_prompt, disks):
     # TRUTH annihilation position: TOF closure with TRUE times = exact annih
     p_ann_truth = tof_p_ann(p1, p2, t1, t2)
 
-    # ALL-events oracle τ (truth-source-corrected; biased by escape geometry)
+    # ALL-events oracle τ (truth-source-corrected, biased by escape geometry)
     tau_all_src = per_event_tau_p(p1, p2, pp, t1, t2, tp, src)
-    # In-disk oracle τ (still truth-source-corrected; in-disk means
+    # In-disk oracle τ (still truth-source-corrected: in-disk means
     # src ≈ annih within positron range so this gives τ ≈ delay)
     tau_all_pann = per_event_tau_p(p1, p2, pp, t1, t2, tp, p_ann_truth)
 

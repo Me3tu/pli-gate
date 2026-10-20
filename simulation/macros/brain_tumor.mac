@@ -10,20 +10,20 @@
 #
 # Identical to brain_tumor_te_poisson_1B.mac (5 spheres r{4,8,12,16,20}mm,
 # brain-healthy bg, 3:1 SUV, 1.021 MBq, ~1e9 primaries) EXCEPT:
-#   * timeResolution digitizer step REMOVED — single-photon hit times are
+#   * timeResolution digitizer step REMOVED: single-photon hit times are
 #     written to ROOT at their TRUE Geant4 globalTime, unsmeared.
 #   * Post-processing re-smears at sigma_T in {90.9, 68.5, 30.0, 15.0} ps
 #     for the CRT sweep (M4) and the clinical-extractor randoms test (M3).
 #   * energyResolution, energyFraming, CoincidenceSorter are UNCHANGED.
 # ============================================================================
 
-# Phase 3s-3 — Brain-tumor TE Poisson master mac (1 B primaries)
+# Phase 3s-3: Brain-tumor TE Poisson master mac (1 B primaries)
 # Identical per-shard timing to Phase 3s-2 (3.824657 s per shard at GATE_RUNNER's
 # 16-thread default). Total wall is 4x the 250M run by running 16 batches
 # instead of 4.
 #
 # Source activity (1.021 MBq) and per-shard sim time both unchanged from the
-# Phase 3s-2 mac; only batch count differs (orchestrator-side, not in this mac).
+# Phase 3s-2 mac. Only batch count differs (orchestrator-side, not in this mac).
 # At 16 batches × 16 threads × 3.825 s × 1.021 MBq = ~1.0 B primaries.
 
 /control/verbose 0

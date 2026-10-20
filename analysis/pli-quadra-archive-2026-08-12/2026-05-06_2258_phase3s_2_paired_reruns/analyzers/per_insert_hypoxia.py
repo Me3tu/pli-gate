@@ -1,4 +1,4 @@
-"""Phase 3s-2 — Hypoxia per-insert MLE tau.
+"""Phase 3s-2: Hypoxia per-insert MLE tau.
 
 Same MLE pattern as Phase 2b analyze_per_tube_tau.py but with the 5-insert
 hypoxia layout (spheres at x=-60,-30,0,+30,+60 mm, all r=15 mm). Each

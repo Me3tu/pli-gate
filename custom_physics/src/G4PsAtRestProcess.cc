@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: LGPL-3.0-only
 // Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
 // ============================================================================
-// G4PsAtRestProcess.cc — AtRest positronium annihilation process
+// G4PsAtRestProcess.cc: AtRest positronium annihilation process
 // ============================================================================
 //
 // Companion to G4PositroniumAnnihilation. Handles positrons that are
@@ -57,7 +57,7 @@ G4PsAtRestProcess::G4PsAtRestProcess(const G4String& processName)
         fVerboseLevel = 1;
     }
 
-    // Fallback only — operational lifetimes set by PLIPhysicsList
+    // Fallback only: operational lifetimes set by PLIPhysicsList
     // (see G4PositroniumAnnihilation.cc header for rationale)
 
     SetProcessSubType(fAnnihilation);   // SubType = 5
@@ -122,7 +122,7 @@ G4double G4PsAtRestProcess::AtRestGetPhysicalInteractionLength(
 }
 
 // ============================================================================
-// AtRestDoIt — identical physics to PostStepDoIt
+// AtRestDoIt: identical physics to PostStepDoIt
 // ============================================================================
 
 G4VParticleChange* G4PsAtRestProcess::AtRestDoIt(const G4Track& track,
@@ -136,7 +136,7 @@ G4VParticleChange* G4PsAtRestProcess::AtRestDoIt(const G4Track& track,
     G4double delay = SamplePsLifetime(tauMaterial, channel);
     ++fChannelCount[static_cast<int>(channel)];
 
-    // Oracle log — format UNCHANGED (six fields after the tag) so every
+    // Oracle log: format UNCHANGED (six fields after the tag) so every
     // existing parser keeps working. The annihilation material is reported,
     // which is the truth quantity the analysis needs.
     if (fVerboseLevel >= 1) {
@@ -173,7 +173,7 @@ G4VParticleChange* G4PsAtRestProcess::AtRestDoIt(const G4Track& track,
 }
 
 // ============================================================================
-// Physics helpers — identical to G4PositroniumAnnihilation
+// Physics helpers: identical to G4PositroniumAnnihilation
 // ============================================================================
 
 G4double G4PsAtRestProcess::GetLifetime(const G4Material* material) const
@@ -215,7 +215,7 @@ G4double G4PsAtRestProcess::GetLifetime(const G4Material* material) const
 const G4Material* G4PsAtRestProcess::LifetimeMaterial(const G4Track& track) const
 {
     // PLI_LIFETIME_MODE. 'transport' (default) uses the material where the positron
-    // actually annihilates; 'source' emulates a source-attached model by
+    // actually annihilates. 'source' emulates a source-attached model by
     // using the material of the volume where the positron was created.
     if (PLIOrePowell::LifetimeMode() == PLILifetimeMode::kSource) {
         const G4LogicalVolume* lv = track.GetLogicalVolumeAtVertex();
@@ -255,7 +255,7 @@ G4double G4PsAtRestProcess::SamplePsLifetime(const G4Material* material,
                                              PLIChannel& channel)
 {
     // Per-material I3 lookup with one-shot fallback warning. See
-    // G4PositroniumAnnihilation::SamplePsLifetime for the rationale —
+    // G4PositroniumAnnihilation::SamplePsLifetime for the rationale:
     // both processes must apply identical physics so the oracle path
     // remains single-source.
     G4double prob = fPsFormationProb;
@@ -295,7 +295,7 @@ G4double G4PsAtRestProcess::SamplePsLifetime(const G4Material* material,
         const G4double tau   = GetLifetime(material);
         const G4double delay = -tau * std::log(G4UniformRand());
         // Competing risks (see PLIOrePowell.hh): the decay TIME is
-        // exponential with the total rate 1/tau_eff whatever the channel;
+        // exponential with the total rate 1/tau_eff whatever the channel, and
         // the CHANNEL is then drawn independently. Short-circuit ordering
         // guarantees that PLI_DISABLE_3GAMMA=1 consumes no extra random
         // number, so the two-gamma-only stream is reproduced bit-exactly.
@@ -354,7 +354,7 @@ void G4PsAtRestProcess::GenerateGammas(G4VParticleChange* change,
 }
 
 // ============================================================================
-// Configuration — called by PLIPhysicsList
+// Configuration: called by PLIPhysicsList
 // ============================================================================
 
 void G4PsAtRestProcess::SetMaterialLifetime(const G4String& materialName,
@@ -374,7 +374,7 @@ void G4PsAtRestProcess::CopyLifetimeMap(
 }
 
 // ============================================================================
-// SetPsFormationProbability — per-material I3 setter
+// SetPsFormationProbability: per-material I3 setter
 //   Mirrors G4PositroniumAnnihilation::SetPsFormationProbability. Called by
 //   PLIMaterialLoader::loadInto for every material+alias from the JSON.
 // ============================================================================

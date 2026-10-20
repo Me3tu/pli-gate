@@ -1,9 +1,9 @@
 #!/bin/bash
 # R2c matched-yield paired core-shell arms (REGISTERED_R2C.md). Waits until the oxygen v8 GATE stage has finished
 # (one GATE runner on the box at a time), then runs four arms with the R2b recipe of
-# 2026-08-13_referee_response/run_r2.sh: same macros, seeds, shards, primaries; database v8 with equal o-Ps yields;
+# 2026-08-13_referee_response/run_r2.sh: same macros, seeds, shards, primaries. Database v8 with equal o-Ps yields,
 # PLI_DISABLE_3GAMMA=1. Bulky per-shard logs and ROOT files of these arms are deleted after the PLI_R2 records are
-# extracted, as in run_r2.sh (recovery: rerun this script; about 3 min per arm).
+# extracted, as in run_r2.sh (recovery: rerun this script, about 3 min per arm).
 set -u
 ROOT=${PLI_REPO:-$(cd "$(dirname "$0")/../../.." && pwd)}
 RES=${PLI_RES:-$(cd "$(dirname "$0")/.." && pwd)}

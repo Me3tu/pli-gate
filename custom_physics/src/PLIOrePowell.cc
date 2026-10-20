@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: LGPL-3.0-only
 // Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
 //******************************************************************************
-// PLIOrePowell.cc — see PLIOrePowell.hh for the physics and the references.
+// PLIOrePowell.cc: see PLIOrePowell.hh for the physics and the references.
 //******************************************************************************
 
 #include "PLIOrePowell.hh"
@@ -37,7 +37,7 @@ G4double EnvDouble(const char* name, G4double fallback)
 
 
 // unknown-material fallback gate. Read once, like every other
-// PLI runtime switch. Absent or "0" -> fatal; "1" -> the old permissive path.
+// PLI runtime switch. Absent or "0" -> fatal, "1" -> the old permissive path.
 G4bool AllowFallbackCached()
 {
     static int cached = -1;
@@ -194,7 +194,7 @@ void PLIOrePowell::SampleThreeGamma(G4double energy[3], G4ThreeVector dir[3])
     energy[1] = x2 * electron_mass_c2;
     energy[2] = x3 * electron_mass_c2;
 
-    // Photon 1 isotropic; the decay plane then gets a uniform azimuth about it.
+    // Photon 1 isotropic. The decay plane then gets a uniform azimuth about it.
     dir[0] = G4RandomDirection();
     const G4ThreeVector ref = (std::abs(dir[0].x()) < 0.9)
                                   ? G4ThreeVector(1.0, 0.0, 0.0)

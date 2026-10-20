@@ -59,7 +59,7 @@ include(${Geant4_USE_FILE})
 # nlohmann/json (header-only). Required by PLIMaterialLoader.cc to parse
 # materials/pli_materials.json. Header lives at /usr/include/nlohmann/
 # on Arch (package nlohmann-json). find_package gives us a version check
-# and the imported target nlohmann_json::nlohmann_json; if find_package
+# and the imported target nlohmann_json::nlohmann_json. If find_package
 # fails (e.g. on a system without the CMake config files installed) we
 # fall back to a plain include-path check.
 # The bundled copy is preferred so the package builds with no system
@@ -98,7 +98,7 @@ include_directories(
 # Source Files
 #-------------------------------------------------------------------------------
 
-# List files explicitly — must match actual sources used in GATE
+# List files explicitly (must match actual sources used in GATE)
 set(LIBRARY_SOURCES
     ${PROJECT_SOURCE_DIR}/src/G4PositroniumAnnihilation.cc
     ${PROJECT_SOURCE_DIR}/src/G4PsAtRestProcess.cc
@@ -160,7 +160,7 @@ target_link_libraries(PLICustomPhysics
         ${Geant4_LIBRARIES}
 )
 
-# nlohmann/json is header-only — wire it in via either the imported
+# nlohmann/json is header-only. Wire it in via either the imported
 # CMake target (preferred) or a raw include path (fallback).
 if(nlohmann_json_FOUND)
     target_link_libraries(PLICustomPhysics PRIVATE nlohmann_json::nlohmann_json)

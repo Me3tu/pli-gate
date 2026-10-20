@@ -1,17 +1,17 @@
-"""Phase 3r-2 PART B — publication-quality matplotlib styling baseline.
+"""Phase 3r-2 PART B: publication-quality matplotlib styling baseline.
 
 Targets PMB / EJNMMI Physics / IEEE-TMI house-style envelope:
 - Vector PDF + 300-DPI PNG
-- Serif typography via STIX (built into matplotlib; no system-font dep)
+- Serif typography via STIX (built into matplotlib, no system-font dep)
 - Color-blind-safe Wong palette (Wong 2011, Nature Methods)
 - Tight axis layout, minimal grid, clean ticks
 - Single-column 88 mm / double-column 180 mm targets
 
 Helper functions:
-    setup_publication_rcparams()    — apply global rcParams
-    save_figure(fig, path, ext)     — save vector + raster with metadata
-    tight_layout_with_margins(fig)  — multi-panel-safe tight layout
-    figure_dims(width, height)      — convert mm → inches for figsize
+    setup_publication_rcparams():     apply global rcParams
+    save_figure(fig, path, ext):      save vector + raster with metadata
+    tight_layout_with_margins(fig):   multi-panel-safe tight layout
+    figure_dims(width, height):       convert mm → inches for figsize
 """
 from __future__ import annotations
 from pathlib import Path
@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 
 # ── Color palettes (color-blind-safe) ─────────────────────────────────────────
 
-# Wong 2011 (Nature Methods 8, 441) — 7-color color-blind-safe palette.
+# Wong 2011 (Nature Methods 8, 441): 7-color color-blind-safe palette.
 WONG = {
     "black":         "#000000",
     "orange":        "#E69F00",
@@ -33,7 +33,7 @@ WONG = {
     "reddish_purple":"#CC79A7",
 }
 
-# Paul Tol "muted" palette — alternative; cleaner for many-category plots
+# Paul Tol "muted" palette: alternative, cleaner for many-category plots
 TOL_MUTED = {
     "indigo":   "#332288",
     "cyan":     "#88CCEE",
@@ -72,7 +72,7 @@ def setup_publication_rcparams() -> None:
     """Apply publication-quality rcParams globally.
 
     Targets:
-    - Serif font (STIX, ships with matplotlib; no system-font dep)
+    - Serif font (STIX, ships with matplotlib, no system-font dep)
     - Math font matched to text (mathtext.fontset='stix')
     - 9 pt body / 10 pt title (within 8-11 pt journal envelope)
     - Vector-friendly defaults (PDF metadata, embedded fonts)
@@ -107,7 +107,7 @@ def setup_publication_rcparams() -> None:
         "xtick.color":        "#222222",
         "ytick.color":        "#222222",
 
-        # Grid (off by default; opt-in per axis)
+        # Grid (off by default, opt-in per axis)
         "axes.grid":          False,
         "grid.linewidth":     0.4,
         "grid.color":         "#cccccc",

@@ -1,4 +1,4 @@
-"""Task B v2 — Per-voxel-then-per-tissue aggregation.
+"""Task B v2: Per-voxel-then-per-tissue aggregation.
 
 The reviewer-relevant measurement is the per-voxel τ̂ map (computed at each
 grid size), aggregated by tissue label via per-voxel modal assignment from

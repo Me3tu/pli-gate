@@ -79,12 +79,12 @@ public:
 
     // --- G4VRestProcess interface ---------------------------------------------
 
-    /// Pure virtual in G4VRestProcess — returns 0 to fire immediately
+    /// Pure virtual in G4VRestProcess. Returns 0 to fire immediately
     virtual G4double GetMeanLifeTime(
         const G4Track& track,
         G4ForceCondition* condition) override;
 
-    /// Returns 0 — always fire immediately when positron enters AtRest stage
+    /// Returns 0: always fire immediately when positron enters AtRest stage
     virtual G4double AtRestGetPhysicalInteractionLength(
         const G4Track& track,
         G4ForceCondition* condition) override;

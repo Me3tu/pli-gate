@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: LGPL-3.0-only
 // Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
 // ============================================================================
-// test_orepowell.cc — unit test for the three-photon o-Ps final state
+// test_orepowell.cc: unit test for the three-photon o-Ps final state
 // ============================================================================
 //
 // Exercises the SHIPPED sampler (PLIOrePowell::SampleThreeGamma, the very

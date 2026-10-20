@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: LGPL-3.0-only
 // Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
 //******************************************************************************
-// PLIOrePowell.hh — shared final-state physics for the PLI annihilation
-//                   processes (three-photon o-Ps decay + channel selection)
+// PLIOrePowell.hh: shared final-state physics for the PLI annihilation
+//                  processes (three-photon o-Ps decay + channel selection)
 //******************************************************************************
 //
 // Both PLI annihilation processes (G4PositroniumAnnihilation, PostStep, and
@@ -17,7 +17,7 @@
 //   intrinsic self-annihilation (3 gamma, rate lambda_3g, a vacuum constant).
 // The observed effective lifetime satisfies 1/tau_eff = lambda_po + lambda_3g,
 // so by the standard competing-risks result:
-//   * the decay TIME is exponential with mean tau_eff, independent of channel;
+//   * the decay TIME is exponential with mean tau_eff, independent of channel,
 //   * the CHANNEL is chosen with P(3 gamma) = lambda_3g * tau_eff
 //                                           = tau_eff / tau_3g.
 // tau_3g = 142.05 ns  [Vallery, Zitzewitz & Gidley, PRL 90, 203402 (2003)].
@@ -32,7 +32,7 @@
 // given as x_i(1-x_i)/(x_j x_k)^2. That form does NOT reproduce the analytic
 // Ore-Powell single-photon spectrum (deviations up to 593 %, and it diverges
 // at the Dalitz corner). The form above reproduces the analytic spectrum to
-// numerical precision and is bounded by 2; tests/test_orepowell.cc checks
+// numerical precision and is bounded by 2, and tests/test_orepowell.cc checks
 // this.
 //
 // f is bounded by exactly 2 on the physical region (the bound is attained on
@@ -99,7 +99,7 @@ G4bool LogCrossMaterial();
 /// (warn once, tally at destruction) for deliberate probes.
 G4bool AllowMaterialFallback();
 
-/// Ore-Powell Dalitz density; 0 outside the physical region.
+/// Ore-Powell Dalitz density, 0 outside the physical region.
 G4double DalitzDensity(G4double x1, G4double x2, G4double x3);
 
 /// Sample x_i = E_i / m_e c^2 with sum_i x_i = 2 (2D rejection, envelope 2).
@@ -109,7 +109,7 @@ void SampleFractions(G4double& x1, G4double& x2, G4double& x3);
 /// directions satisfying sum_i E_i d_i = 0, with isotropic plane orientation.
 void SampleThreeGamma(G4double energy[3], G4ThreeVector dir[3]);
 
-/// Count of rejection-envelope violations (must stay 0; exposed for tests).
+/// Count of rejection-envelope violations (must stay 0, exposed for tests).
 long EnvelopeViolations();
 
 /// Human-readable channel name, for tallies and logs.

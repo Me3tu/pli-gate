@@ -1,4 +1,4 @@
-"""Steinberger validation — dual-pipeline τ̂ extractor.
+"""Steinberger validation: dual-pipeline τ̂ extractor.
 
 Runs BOTH pipelines on the same compact Singles HDF5:
   (a) ORACLE  : per-shard eventID grouping, truth-position-corrected τ,
@@ -73,7 +73,7 @@ def in_phantom_outline(x, y, z, outline):
 def voi_masks(pos, vois):
     """Return a list of N boolean masks, one per VOI. Each mask is True for
     triples geometrically inside that VOI. VOIs may overlap (nested-cylinder
-    Steinberger pattern); each triple is independently counted in EACH VOI it
+    Steinberger pattern). Each triple is independently counted in EACH VOI it
     satisfies. Bg mask = NOT in any VOI.
     """
     masks = []
@@ -209,7 +209,7 @@ def oracle_per_shard(eid, time_ns, gx, gy, gz, sx, sy, sz, in_511, in_prompt,
     p2 = np.stack([gx_s[a2], gy_s[a2], gz_s[a2]], axis=-1)
     pp = np.stack([gx_s[p],  gy_s[p],  gz_s[p]],  axis=-1)
     tau = per_event_tau(p1, p2, pp, t_s[a1], t_s[a2], t_s[p], src)
-    # VOI assignment by source truth position — INDEPENDENT per VOI
+    # VOI assignment by source truth position, INDEPENDENT per VOI
     # (each triple may be counted in multiple nested VOIs)
     masks = voi_masks(src, vois)
     by_voi = {i: [] for i in range(-1, len(vois))}
@@ -228,8 +228,8 @@ def oracle_run(singles_h5, vois, sigma_t_ps=0.0, max_shards=None):
     bounds = find_shard_boundaries(sh)
     if max_shards: bounds = bounds[:max_shards]
     acc = {i: [] for i in range(-1, len(vois))}
-    # For the ORACLE, sigma_t_ps is OPTIONAL — if 0, no smear (matches
-    # M4 truth-time recovery); if >0, applies σ_T smear to study CRT.
+    # For the ORACLE, sigma_t_ps is OPTIONAL. If 0, no smear (matches
+    # M4 truth-time recovery). If >0, applies σ_T smear to study CRT.
     rng = np.random.default_rng(int(sigma_t_ps * 1000) or 1)
     sigma_t_ns = sigma_t_ps / 1000.0
     for sh_id, s, e in bounds:

@@ -4,9 +4,9 @@
 The model's inner crystal-face radius is 392.83 mm (MUSIRE template) against 410 mm for the scanner. This script
 (1) computes the geometric gain of the model over a 410 mm scanner per photon, per pair and per triple for the
     eight-tube source geometry: axial acceptance (|z| <= 530 mm on the mid-crystal cylinder) by Monte Carlo, times
-    the transaxial sector coverage of a 38-sided polygon with 64.2 mm sectors (side = 2 r tan(pi/38));
+    the transaxial sector coverage of a 38-sided polygon with 64.2 mm sectors (side = 2 r tan(pi/38)),
 (2) recomputes the a priori acceptance width sigma_e of the eight-tube geometry with the frozen method of
-    2026-08-26_A2_cond2/sigma_geo_sim1.py at both radii (the 392.83 mm value must reproduce 358.97 ps);
+    2026-08-26_A2_cond2/sigma_geo_sim1.py at both radii (the 392.83 mm value must reproduce 358.97 ps),
 (3) re-reads the corrected-yield zero-delay eight-tube all-prompts arm (C0, 128 shards, 303 ps) with the
     acceptance-aware windowed moment at both widths, as acceptance_tm_c0.py does, to show what the width alone
     changes in the 1.9% mean absolute residual. The events stay those of the 392.83 mm model.

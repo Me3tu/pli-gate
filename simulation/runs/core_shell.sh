@@ -1,8 +1,8 @@
 #!/bin/bash
 # SPDX-License-Identifier: LGPL-3.0-only
 # Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
-# R2 transport-novelty experiment — 8 arms, launched after the R1 regression
-# frees the CPU. Every arm uses the SAME macro and the SAME seed; arms differ
+# R2 transport-novelty experiment: 8 arms, launched after the R1 regression
+# frees the CPU. Every arm uses the SAME macro and the SAME seed. Arms differ
 # only by PLI_LIFETIME_MODE (and, for R2a, by the materials JSON).
 #
 #   R2a (null control) : pair A geometry, equal-tau JSON -> transport, source
@@ -19,7 +19,7 @@ LOG=$HERE/r2_driver.log
 cd "$PLI_SIM"
 source "$PLI_ENV_SCRIPT" >/dev/null 2>&1
 
-# Sequenced by run_all_remaining.sh; no waiting needed.
+# Sequenced by run_all_remaining.sh. No waiting needed.
 echo "[r2] starting at $(date -Is)" >> $LOG
 
 PRIMARIES=10000000
@@ -36,7 +36,7 @@ run_arm () {           # $1 label  $2 macro  $3 mode  $4 materials-json
         --batch-id 0 --label r2_$label \
         --output-dir $HERE/r2_runs/$label >> $LOG 2>&1
     echo "[r2] END   $label rc=$? $(date -Is)" >> $LOG
-    # keep only the PLI_R2 truth records; drop the bulky per-shard logs
+    # keep only the PLI_R2 truth records, and drop the bulky per-shard logs
     grep -h "^PLI_R2:" $HERE/r2_runs/$label/sim-*.log 2>/dev/null \
         | gzip -1 > $HERE/r2_runs/$label/pli_r2.txt.gz
     grep -h "^PLI_CHANNEL_TALLY:" $HERE/r2_runs/$label/sim-*.log 2>/dev/null \

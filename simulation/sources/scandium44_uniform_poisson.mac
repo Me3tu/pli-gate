@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: LGPL-3.0-only
 # Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
-# Phase 3s-2 — Sc-44 uniform-cylinder Poisson source (Phase 3c recipe)
+# Phase 3s-2: Sc-44 uniform-cylinder Poisson source (Phase 3c recipe)
 # (auto-generated from gate/sources/scandium44_ion_realistic.mac)
 #   * REMOVED: setForcedUnstableFlag true
 #   * REMOVED: setForcedHalfLife 14292 s

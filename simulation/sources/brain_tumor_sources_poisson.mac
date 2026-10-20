@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: LGPL-3.0-only
 # Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
-# Phase 3s-2 — Brain-tumor Poisson sources (auto-gen)
+# Phase 3s-2: Brain-tumor Poisson sources (auto-gen)
 /gate/source/addSource sc44_bg gps
 /gate/source/sc44_bg/gps/particle ion
 /gate/source/sc44_bg/gps/ion 21 44 0 0

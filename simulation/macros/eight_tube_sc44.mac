@@ -5,12 +5,12 @@
 /control/getEnv PLI_SIM
 /control/getEnv PLI_SCANNER_MACRO
 # ==============================================================================
-# Phase 2b Sim 1 — Sc-44 multi-tissue validation phantom (8 tubes)
+# Phase 2b Sim 1: Sc-44 multi-tissue validation phantom (8 tubes)
 # ==============================================================================
 #
 # Eight cylindrical tubes (30 mm dia, 50 mm length, axially aligned) on a
 # circle of radius 80 mm in the transverse plane (z = 0). Adjacent tube
-# centre-to-centre = 2*80*sin(22.5deg) = 61.2 mm; edge-to-edge = 31.2 mm,
+# centre-to-centre = 2*80*sin(22.5deg) = 61.2 mm, edge-to-edge = 31.2 mm,
 # > 2 x TOF FWHM (~30 mm). One material per tube:
 #
 #   T1 (  0 deg)  water_shibuya2020_n2     tau=1.9215 (N2-saturated water)
@@ -23,7 +23,7 @@
 #   T8 (315 deg)  myxoma_moskal2023        tau=1.92   (cardiac myxoma)
 #
 # Activity per tube: 50 kBq/mL x 35.3 mL = 1.77 MBq. 8 tubes -> 14.13 MBq.
-# Primaries: 250M total. Sc-44 ion source (ground state) per tube;
+# Primaries: 250M total. Sc-44 ion source (ground state) per tube.
 # /particle/select Sc44 sets short PDGLifeTime so decay fires inside the
 # 1 s simulation window. Energy framing 435-1300 keV (extraction
 # re-windows to 481-541/1100-1200 downstream). Coincidence window 5 ns.
@@ -152,7 +152,7 @@
 /gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMin 435 keV
 /gate/digitizerMgr/LSO/SinglesDigitizer/Singles/energyFraming/setMax 1300 keV
 
-# Coincidence sorter — Phase 2b spec: 5 ns window.
+# Coincidence sorter (Phase 2b spec: 5 ns window).
 /gate/digitizerMgr/CoincidenceSorter/Coincidences/setWindow 5. ns
 /gate/digitizerMgr/CoincidenceSorter/Coincidences/setOffset 0 ns
 

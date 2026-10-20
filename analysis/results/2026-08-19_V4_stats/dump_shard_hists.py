@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""V4(d) support — per-shard delay histograms for BOTH matching rules.
+"""V4(d) support: per-shard delay histograms for BOTH matching rules.
 
 The two rules act on the SAME events, so tau_closest and tau_all are correlated
 and sigma(Delta tau) computed as hypot(sigma_c, sigma_a) is conservative. To

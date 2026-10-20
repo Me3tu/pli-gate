@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: LGPL-3.0-only
 // Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
 // ============================================================================
-// PLIMaterialLoader.hh — JSON-driven per-material PLI parameter loader
+// PLIMaterialLoader.hh: JSON-driven per-material PLI parameter loader
 // ============================================================================
 //
 // Reads materials/pli_materials.json (the file produced by
@@ -13,7 +13,7 @@
 // ------------
 // 1. Python is the single source of truth for the Tao-Eldrup + O2
 //    quenching math. The JSON carries the *already-computed* tau_TE_ns
-//    per material; this C++ loader does NOT re-derive R or tau. That
+//    per material. This C++ loader does NOT re-derive R or tau. That
 //    eliminates floating-point divergence between the Python validation
 //    and the simulation runtime.
 //
@@ -46,7 +46,7 @@ class G4PsAtRestProcess;
 namespace PLIMaterialLoader {
 
 /// Physics constants block (mirrors the JSON `constants` object).
-/// Stored for diagnostic printing only — the loader does not perform
+/// Stored for diagnostic printing only. The loader does not perform
 /// any TE math itself.
 struct PLIConstants {
     G4double lambda_S_ns   = 2.0;
@@ -66,7 +66,7 @@ struct MaterialEntry {
                                                    // (post-conversion if convention != total_formation)
     G4double              I3_raw      = 0.0;       // value as read from JSON, before convention conversion
     G4String              I3_convention;           // "total_formation" (default) | "ops_intensity"
-    G4double              tau_eff_ns  = 0.0;       // = tau_TE_ns from JSON; the value used at runtime
+    G4double              tau_eff_ns  = 0.0;       // = tau_TE_ns from JSON, the value used at runtime
     G4double              tau_pub_ns  = 0.0;       // diagnostic
     G4String              tau_source;
     G4String              I3_source;
@@ -84,7 +84,7 @@ struct LoadResult {
 };
 
 /// Locate the JSON file. See header notes for resolution order.
-/// Returns an empty G4String if no candidate exists; the caller should
+/// Returns an empty G4String if no candidate exists. The caller should
 /// then inspect lastSearched() and emit a diagnostic.
 G4String resolveJsonPath();
 

@@ -37,7 +37,7 @@ OUT_BASE = _SCRIPT_DIR / "results" / "simple"
 
 # ---------- TOF parameters (shared across all runs) ----------
 # Siemens Biograph Vision Quadra coincidence timing resolution (CRT)
-# FWHM = 247 ps. parallelproj.TOFParameters.sigma_tof expects σ (not FWHM);
+# FWHM = 247 ps. parallelproj.TOFParameters.sigma_tof expects σ (not FWHM):
 # per parallelproj 1.4.0, the library's internal Gaussian uses σ = FWHM /
 # (2·sqrt(2·ln2)) = FWHM / 2.355. Convert time→LOR-distance via c·T/2
 # (the /2 accounts for TOF localization being half the path-length
@@ -50,7 +50,7 @@ N_TOF_BINS = 29
 MAX_TOF_BIN = N_TOF_BINS // 2        # 14
 
 # ---------- Gaussian post-smoothing ----------
-# Fixed physical FWHM = 8 mm; sigma in mm, converted to voxels per run
+# Fixed physical FWHM = 8 mm, sigma in mm, converted to voxels per run
 SMOOTH_FWHM_MM = 8.0
 SMOOTH_SIGMA_MM = SMOOTH_FWHM_MM / 2.3548  # ~3.397 mm
 
@@ -118,10 +118,10 @@ def load_mumap_to_recon_grid(mumap_mhd: Path,
                               img_shape: tuple,
                               voxel_mm: float,
                               phys_extent_mm: tuple) -> np.ndarray:
-    """Phase 3d2 — load a MetaImage µmap and resample onto the recon grid.
+    """Phase 3d2: load a MetaImage µmap and resample onto the recon grid.
 
     Trilinear interpolation at recon voxel centres. Voxels outside the
-    µmap bounding box → 0 (air/void; the recon FOV is larger than the
+    µmap bounding box → 0 (air/void: the recon FOV is larger than the
     cropped VIPman atlas, so the outside-atlas region is physical
     scanner-bore air. Documented in Methods.).
 
@@ -146,7 +146,7 @@ def load_mumap_to_recon_grid(mumap_mhd: Path,
     rzs = (np.arange(img_shape[2]) + 0.5) * voxel_mm - half[2]
 
     # Recon centres → µmap voxel-index coords (centre of voxel-i is i+0.5
-    # in mm; reverse: idx = (mm - origin)/voxel - 0.5 to land on voxel
+    # in mm, reverse: idx = (mm - origin)/voxel - 0.5 to land on voxel
     # CENTRE in numpy index convention).
     mux = (rxs - offset_mu[0]) / voxel_mu - 0.5
     muy = (rys - offset_mu[1]) / voxel_mu - 0.5
@@ -196,7 +196,7 @@ def run_simple(
     # ---- FOV coverage check ----
     img_half = np.array([s * voxel_mm / 2 for s in img_shape])
     with h5py.File(DET, "r") as f:
-        # Reuse the τ mask implicitly — P_annih aligns with detector order
+        # Reuse the τ mask implicitly: P_annih aligns with detector order
         # For coverage check, sample first 500k events (fast enough)
         P_sample = f["derived"]["P_annih_tof_mm"][:500_000]
     print(f"  FOV half-extents: x={img_half[0]:.0f}, y={img_half[1]:.0f}, "
@@ -237,7 +237,7 @@ def run_simple(
     # Compute per-event line integral of µ along each LOR using a 2nd
     # ListmodePETProjector instance with TOF disabled, then take exp(-∫ µ ds)
     # as the attenuation factor. Conversion: parallelproj returns line
-    # integral in voxel_size units (mm here); µmap is cm⁻¹, so divide by 10.
+    # integral in voxel_size units (mm here). µmap is cm⁻¹, so divide by 10.
     if mumap_path is not None:
         print(f"\n  loading µmap from {mumap_path}")
         mu_recon = load_mumap_to_recon_grid(mumap_path, img_shape,
@@ -406,8 +406,8 @@ def run_simple(
     smooth_stats = stats_block("m (smoothed)", m_smooth_masked)
 
     # ---- secondary "unmasked" percentiles (Phase 3n: now consolidated
-    # with the primary support mask — both bugged the same way under
-    # the old contrast-dependent thresholds; under Option B they share
+    # with the primary support mask. Both bugged the same way under
+    # the old contrast-dependent thresholds. Under Option B they share
     # the same anatomically-meaningful mask) ----
     m_all = m_raw[support]
     ms_all = m_smooth[support]

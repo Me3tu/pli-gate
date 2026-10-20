@@ -3,7 +3,7 @@
 # Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
 # Single-threaded environment for PLI validation
 
-# v1.1.0: install locations come from the environment; the defaults follow the
+# v1.1.0: install locations come from the environment. The defaults follow the
 # one-prefix layout of docs/BOOTSTRAP.md ($PLI_STACK/{geant4,root,gate}).
 export PLI_STACK=${PLI_STACK:-${HOME}/pli-stack/install}
 

@@ -25,7 +25,7 @@ echo "python: $("$PY" -c 'import sys, numpy, scipy, matplotlib; print(sys.versio
 echo "inputs: $PLI_RES"
 echo "output: $OUT"
 
-# paper figure order; f08_pedestal.py writes Fig. 4 and Fig. S3
+# paper figure order. f08_pedestal.py writes Fig. 4 and Fig. S3
 SCRIPTS=(
   f02b_closure_benchmark.py   # Fig. 2   fig2_closure_benchmark
   f09_mechanism.py            # Fig. 3   fig6_clinical_mechanism_v2

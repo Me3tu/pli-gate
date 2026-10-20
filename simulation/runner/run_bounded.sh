@@ -15,7 +15,7 @@
 # Env overrides:
 #   BOUNDED_MAX=60G   MemoryMax        hard kernel-enforced ceiling (OOM here
 #                                      kills inside the scope, not the host)
-#   BOUNDED_HIGH=55G  MemoryHigh       soft throttle — kernel reclaims aggressively
+#   BOUNDED_HIGH=55G  MemoryHigh       soft throttle: kernel reclaims aggressively
 #                                      above this level
 #   BOUNDED_SWAP=16G  MemorySwapMax    prevents hours of swap-thrash death
 #

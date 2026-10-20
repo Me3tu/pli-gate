@@ -6,7 +6,7 @@
 set -u
 source "$(dirname "${BASH_SOURCE[0]}")/../runner/paths.sh"
 L=$PLI_OUT/results/2026-08-22_G1_exposure
-OUT=$PLI_OUT/g1_exposure   # 30 batches + concat need ~55 GB; / has only 47
+OUT=$PLI_OUT/g1_exposure   # 30 batches + concat need ~55 GB (/ has only 47)
 cd "$PLI_SIM"; source "$PLI_ENV_SCRIPT" >/dev/null 2>&1; [ -z "${PLI_VENV:-}" ] || source "$PLI_VENV/bin/activate"
 export PLI_MATERIALS_JSON=${PLI_MATERIALS_JSON:-$PLI_PKG/materials/pli_materials.json}
 export PLI_DIRECT_TAU_PS=388          # their fitted tau_2

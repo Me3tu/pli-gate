@@ -10,7 +10,7 @@ Output H5 schema is bit-identical to extract_triples.py:
   triples_detector<tag>.h5  group "detector": 15 datasets (float64)
                                               + same attrs as original
   triples_truth<tag>.h5     group "truth":    11 datasets
-                                              (eventID, source_file_index int64;
+                                              (eventID, source_file_index int64,
                                                others float64)
 
 CLI matches extract_triples.py: --root-dir, --out-dir, --tag.
@@ -19,7 +19,7 @@ Design notes are in
 reconstruction/results/2026-04-26_0137_extract_triples_chunked/extract_design.md
 
 
-[Phase 2b Step 5b variant — i124 windows substituted; rest is identical to extract_triples_chunked.py.]
+[Phase 2b Step 5b variant: i124 windows substituted, rest is identical to extract_triples_chunked.py.]
 """
 
 from __future__ import annotations
@@ -116,7 +116,7 @@ def read_chunk(t, bufs, start: int, end: int) -> dict:
 
 
 class TripleAccumulator:
-    """In-RAM batch of triples; flushes to resizable H5 datasets."""
+    """In-RAM batch of triples. Flushes to resizable H5 datasets."""
 
     def __init__(self, det_grp: h5py.Group, tru_grp: h5py.Group,
                  batch: int = H5_FLUSH_BATCH):
@@ -286,7 +286,7 @@ def process_one_file(path: Path, file_idx: int, acc: TripleAccumulator,
                         [pending_arrs[k], arrs[k][:prefix_end]])
                 chunk_offset = prefix_end
             if chunk_offset == n_chunk:
-                # entire chunk absorbed; still inside same event
+                # entire chunk absorbed, still inside same event
                 continue
             # event closes at chunk_offset
             triples_this_file += find_triples_in_pending(

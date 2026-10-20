@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: LGPL-3.0-only
 # Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
-"""S2 — seed repeatability of the 12-tube closure (Sim-1 half).
+"""S2: seed repeatability of the 12-tube closure (Sim-1 half).
 
-3 additional seeds (bases 2e6/3e6/4e6; production base 1e6) — reduced
+3 additional seeds (bases 2e6/3e6/4e6, production base 1e6), reduced
 from the planned 4 because 4 x (32 min GATE + convert/extract)
-exceeds the ~2 h budget; stated here rather than silently
-truncated. Sim-2 (I-124) is not re-run: same recipe, costlier isotope;
+exceeds the ~2 h budget. Stated here rather than silently
+truncated. Sim-2 (I-124) is not re-run: same recipe, costlier isotope, and
 the Sim-1 half carries the closure claim's statistics (8 of 12 tubes).
 
 Per seed: 4 sequential batches x 16 threads x 4.425 s (= 250 M decays
@@ -168,5 +168,5 @@ if __name__ == "__main__":
 # RETRACTION 2026-08-12: an earlier note here claimed a ~2.6x plugin
 # slowdown vs April. FALSE: the primaries-mode patch had silently failed
 # to apply, so all failed attempts ran time-mode 3.9M-primary shards
-# (2.6x April's 1.5M) — runtime and 4GB-cap deaths fully explained by
+# (2.6x April's 1.5M). Runtime and 4GB-cap deaths fully explained by
 # shard size. Config now verified: 8 batches x 12M primaries, cap 5GB.

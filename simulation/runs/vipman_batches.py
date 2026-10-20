@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: LGPL-3.0-only
 # Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
-"""Phase 3q production driver — VIPman 1.4B per-batch sequential pipeline.
+"""Phase 3q production driver: VIPman 1.4B per-batch sequential pipeline.
 
 Pattern (validated by Phase 3p-2 smoketest at 50M scale):
   for batch_id in range(32):
@@ -19,7 +19,7 @@ Resume: detects existing triples_detector_batch_NN.h5 with valid n_triples
 attribute and skips that batch. Per-batch is the failure-recovery granule.
 
 Per-batch sanity range: [500_000, 1_500_000] triples (smoketest gave
-22.6 triples/k-primary; per-batch 43.75M × 22.6 ≈ 990K).
+22.6 triples/k-primary, per-batch 43.75M × 22.6 ≈ 990K).
 
 Phase 3q seed scheme:
   GATE shard:  1_000_000 + batch_id * 1000 + thread_id
@@ -31,8 +31,8 @@ NO production code changes. Calls existing utilities:
   - reconstruction/utils/lu176_bg_generator.py
   - reconstruction/utils/lso_background_inject.py  (in-process)
   - reconstruction/extract_triples_chunked.py  (subprocess)
-  - reconstruction/correct_travel_time.py  (in-process; module-level DET path
-    overridden via monkey-patch — see _correct_travel_time_phase3q below)
+  - reconstruction/correct_travel_time.py  (in-process, module-level DET path
+    overridden via monkey-patch, see _correct_travel_time_phase3q below)
   - reconstruction/simple_recon.py single  (subprocess)
 
 Phase 3q sha (must be unchanged):

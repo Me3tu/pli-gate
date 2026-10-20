@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""N4 — derive the bias analytically for the estimator as implemented.
+"""N4: derive the bias analytically for the estimator as implemented.
 
 THE ESTIMATOR (subtract_and_mle, verbatim):
     fit window  W = [tau_min, T] = [1.0, 5.0] ns
@@ -26,7 +26,7 @@ tau_hat falls with it. That is the whole mechanism.
 
     predicted fractional bias(phi) = tau_hat(phi)/tau_hat(0) - 1
 
-NO FREE PARAMETERS. tau_min, T and the estimator come from the production code;
+NO FREE PARAMETERS. tau_min, T and the estimator come from the production code, and
 phi is measured per ROI in N2.
 
 Tested exactly as eq. (2) was: prediction against measurement, identity line,

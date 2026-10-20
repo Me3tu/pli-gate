@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.1.0 — 2026-10-20
+## v1.1.0 (2026-10-20)
 
 The code release that accompanies the paper "Material-dependent positronium
 lifetimes in GATE and prompt-selection bias" (D. Dhar and J. Peter, submitted
@@ -11,8 +11,9 @@ GPL-3.0 text it incorporates in `COPYING`). v1.0.x granted no licence. The
 project's own physics, integration, materials, simulation, example and test
 sources begin with an SPDX identifier and the copyright line.
 
-**Physics sources.** Same text as v1.0.1 apart from the two header lines
-(`tail -n +3 <file>` gives the v1.0.1 file). `ENVIRONMENT_MANIFEST.json` now
+**Physics sources.** Same code as v1.0.1. The files gain the two header
+lines, and the punctuation of some comments changed (no em dashes or
+semicolons), which leaves every object file unchanged. `ENVIRONMENT_MANIFEST.json` now
 documents that this text is code-equivalent to the production binary
 e37be8b4: built from this release, `PLIMaterialLoader.cc` and
 `PLIPhysicsList.cc` give object files byte-identical to the production ones,
@@ -67,7 +68,7 @@ constant (version 8, 2.5704e-5).
 gives the version-8 oxygen constant and the default of `PLI_FIXED_TAU_NS`
 (2.0 ns, previously shown as none).
 
-## v1.0.1 — 2026-08-27
+## v1.0.1 (2026-08-27)
 
 Documentation only. No code, test, macro or database file changed.
 
@@ -88,7 +89,7 @@ pipeline correction. `CITATION.cff` gained `version: "1.0.1"`.
 Tarball `pli-gate-v1.0.1.tar.gz`, sha256
 `ee2d6da398cc85647f84f7371b2a948bcf775a4571c0b3b085dd4abc92a0f3df`, 43 files.
 
-## v1.0.0 — 2026-08
+## v1.0.0 (2026-08)
 
 First release, 43 files: the positronium physics for GATE 9.4.1
 (`custom_physics/`), the install script and the 11-file GATE patch

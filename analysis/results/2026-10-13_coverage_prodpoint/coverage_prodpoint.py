@@ -12,8 +12,8 @@ Conditions (same generator, binning, acceptance and idealized subtraction as Not
   100  component: f_R 0.075, N_s 3.2e5, tau3 2.0 ns
   101  component: f_R 0.075, N_s 3.2e5, tau3 2.7 ns
   102  moment:    f_R and N_s of the moment window from moment_window_point.json, tau3 2.0 ns
-Per replicate: PUB (clipped, prespecified), NOCLIP and JOINT point fits with the four starts of Note S11;
-shard bootstrap (32 shards, B = 200, warm-started refits) for PUB and JOINT; moment readout sharp (TM) and
+Per replicate: PUB (clipped, prespecified), NOCLIP and JOINT point fits with the four starts of Note S11,
+shard bootstrap (32 shards, B = 200, warm-started refits) for PUB and JOINT, moment readout sharp (TM) and
 acceptance-aware (TM_A) with delta-method sigma and with a shard bootstrap (B = 200).
 Interval types: bootstrap percentile (as Note S11) and normal intervals +-z * bootstrap SD (as the quoted
 uncertainties of the paper). 400 replicates per condition.

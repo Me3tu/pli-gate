@@ -25,7 +25,7 @@ FILES = [
     ("Steinberger water", str(RAW / "pli-quadra-archive-2026-08-15-singles/singles_steinberger_water.h5")),
 ]
 if not any(Path(p).exists() for _, p in FILES): raise SystemExit(f"{RAW}: raw data not included in the release, see analysis/README.md")
-MAX_SHARDS = 6          # enough for a stable mean; these files are 5-10 GB
+MAX_SHARDS = 6          # enough for a stable mean. These files are 5-10 GB
 
 
 def mu_for(path: str):

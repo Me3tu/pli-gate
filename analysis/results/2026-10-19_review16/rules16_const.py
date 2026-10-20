@@ -62,7 +62,7 @@ def readouts(Hs, sb):
     sbm = (bc > lo) & (bc < hi)
     sig_all = Hs[..., iS, :]
     # plateau of the constant: sideband counts divided by the summed acceptance there (Poisson ML for c*A(t)), so
-    # the softened window edge at -5 ns does not bias it; the sharp readout subtracts the same plateau flat.
+    # the softened window edge at -5 ns does not bias it. The sharp readout subtracts the same plateau flat.
     c = sig_all[..., sbm].sum(-1) / A_all[sbm].sum()
     h = Hs[..., sel]
     sig = h[..., iS, :]

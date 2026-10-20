@@ -27,7 +27,7 @@ Check the files with `sha256sum -c SHA256SUMS` (from inside `figures/`).
 | file | purpose |
 |---|---|
 | `common.py` | shared paths, style, palette and helpers, imported by every generator |
-| `ejmp_style.py` | house style (fonts, sizes, colour palette), unchanged from `reconstruction/results/2026-08-11_ejmp_figure_regen/` |
+| `ejmp_style.py` | house style (fonts, sizes, colour palette), from `reconstruction/results/2026-08-11_ejmp_figure_regen/`, punctuation of comments changed |
 | `f02b_closure_benchmark.py` ... `fS_benchspec.py` | the 12 generators (table below) |
 | `fig1_methods.tex` | Fig. 1, standalone TikZ |
 | `source_data/` | the 36 data files the generators read, plus `make_vipman_slice.py` (the generator of the Fig. S6(a) input) |

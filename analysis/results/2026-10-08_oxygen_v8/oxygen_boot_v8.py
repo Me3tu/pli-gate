@@ -2,8 +2,8 @@
 """Review round 8 (2026-10-08): per-insert intervals and mean paired difference for the oxygen phantom
 rerun with database v8 (plasma k_O2) and the production binary (corrected I3 convention).
 Same estimators as 2026-09-30_feedback3/oxygen/oxygen_boot.py:
-  per insert: tail mean above tau_min = 1 ns minus tau_min, sigma = tau_hat/sqrt(N); exact chi2(2N) interval;
-  mean difference over the five inserts: parametric bootstrap of Gamma(N, tau_hat/N) per insert (B = 200000);
+  per insert: tail mean above tau_min = 1 ns minus tau_min, sigma = tau_hat/sqrt(N), exact chi2(2N) interval,
+  mean difference over the five inserts: parametric bootstrap of Gamma(N, tau_hat/N) per insert (B = 200000),
   figure source: re-extraction from the v8 triples (travel-time corrected), sphere of 16 mm about each insert
   centre on the source truth position (ASSIGN_R_MM of per_insert_hypoxia.py), event-level percentile bootstrap.
 Writes oxygen_boot_v8.json next to this script."""

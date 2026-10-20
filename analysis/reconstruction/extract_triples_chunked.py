@@ -10,7 +10,7 @@ Output H5 schema is bit-identical to extract_triples.py:
   triples_detector<tag>.h5  group "detector": 15 datasets (float64)
                                               + same attrs as original
   triples_truth<tag>.h5     group "truth":    11 datasets
-                                              (eventID, source_file_index int64;
+                                              (eventID, source_file_index int64,
                                                others float64)
 
 CLI:
@@ -24,7 +24,7 @@ CLI:
 
 Phase 3p-1 added the h5 input mode for the lso_background_inject
 round-trip (Phase 3o-4). H5 input is pre-sorted by (eventID, time)
-in-memory before chunking; warning logged if input exceeds 50 M rows
+in-memory before chunking. Warning logged if input exceeds 50 M rows
 (pre-sort peak ~ N × 100 B). For ROOT, behaviour is bit-identical to
 the pre-Phase-3p-1 implementation (regression PASS verified against
 NEMA 88M reference 2026-05-04).
@@ -34,13 +34,13 @@ reconstruction/results/2026-04-26_0137_extract_triples_chunked/extract_design.md
 and Phase 3p-1 design at
 reconstruction/results/2026-05-04_2220_phase3p1_h5_extractor/findings.md.
 
-KNOWN BEHAVIOUR (Phase 3p-1 R3 finding, NOT FIXED — preserved exactly):
+KNOWN BEHAVIOUR (Phase 3p-1 R3 finding, NOT FIXED, preserved exactly):
   T_COINC_NS = 5.0 is compared against `time` field values that are in
   SECONDS (GATE Singles convention). The threshold is therefore
   effectively 5 SECONDS, not 5 ns. The threshold is currently a no-op
   because eventID grouping already constrains all candidates to a
   single decay (within ~ns naturally). Methodology description:
-  "coincidence selection via eventID grouping; the T_COINC_NS variable
+  "coincidence selection via eventID grouping. The T_COINC_NS variable
   is currently effectively a no-op due to time-units mismatch and is
   retained pending a future fix." Fix candidate: scale T_COINC_NS by
   1e-9 in the comparisons. Out of scope for Phase 3p-1 (would change
@@ -110,7 +110,7 @@ def _read_h5_singles_sorted(path: Path, log) -> tuple[dict, bool]:
     Inject's merged H5 is time-sorted (`lso_background_inject` line 276),
     which interleaves rows from different decays. The pending-buffer
     chunk logic assumes consecutive rows with the same eventID belong
-    to the same decay — true after sorting by (eventID, time).
+    to the same decay, true after sorting by (eventID, time).
 
     Returns (arrs, has_source_flag). All NEEDED branches are stored as
     float64 to match the ROOT-mode storage convention.
@@ -185,7 +185,7 @@ def read_chunk(t, bufs, start: int, end: int) -> dict:
 
 
 class TripleAccumulator:
-    """In-RAM batch of triples; flushes to resizable H5 datasets."""
+    """In-RAM batch of triples. Flushes to resizable H5 datasets."""
 
     def __init__(self, det_grp: h5py.Group, tru_grp: h5py.Group,
                  batch: int = H5_FLUSH_BATCH):
@@ -355,7 +355,7 @@ def process_one_file(path: Path, file_idx: int, acc: TripleAccumulator,
                         [pending_arrs[k], arrs[k][:prefix_end]])
                 chunk_offset = prefix_end
             if chunk_offset == n_chunk:
-                # entire chunk absorbed; still inside same event
+                # entire chunk absorbed, still inside same event
                 continue
             # event closes at chunk_offset
             triples_this_file += find_triples_in_pending(

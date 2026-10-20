@@ -2,10 +2,10 @@
 """Review round 14 (referee 4): uncertainty of the slope of the signed pedestal regression with the C0 tubes
 (signed_eq3_c0.json rows_c0 + the twelve non-tube regions of 2026-10-08_signed_eq3/signed_eq3.json, exactly the twenty
 regions of Fig. 9c and Supplementary Fig. S1). Weighted least squares through the origin, meas = slope * pred:
- (a) free slope with the paired-bootstrap sigma of each region, standard error scaled by sqrt(chi2/dof);
- (b) slope with the constant scatter term s added in quadrature (s from signed_eq3_c0.json), its standard error;
+ (a) free slope with the paired-bootstrap sigma of each region, standard error scaled by sqrt(chi2/dof),
+ (b) slope with the constant scatter term s added in quadrature (s from signed_eq3_c0.json), its standard error,
  (c) the same for the fourteen resolved regions and for the discovery-stream tubes (published regression).
-Regions within one phantom share events, so these standard errors treat the regions as independent; a jackknife over
+Regions within one phantom share events, so these standard errors treat the regions as independent. A jackknife over
 the four phantoms is given as a check of that assumption. Writes slope_ci.json."""
 import json, os
 from pathlib import Path

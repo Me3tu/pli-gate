@@ -11,7 +11,7 @@ This module is the single source of truth for the TE math. It is imported
 by:
   - tests/run_tests.sh                  (unit tests)
   - the materials-database generator    (parameter file population)
-  - custom_physics JSON consumer        (indirectly; JSON is authoritative
+  - custom_physics JSON consumer        (indirectly, JSON is authoritative
                                          at the C++ side)
 """
 import math
@@ -59,7 +59,7 @@ def lambda_po(R_nm: float,
     where ``R_inf = R + delta_R``.
 
     Monotonically decreases with R. At R = 0 it equals ``lambda_S`` (Ps is
-    fully quenched by pick-off); as R -> infinity it tends to 0.
+    fully quenched by pick-off). As R -> infinity it tends to 0.
 
     Args:
         R_nm:   free-volume radius, nm. Must be non-negative.

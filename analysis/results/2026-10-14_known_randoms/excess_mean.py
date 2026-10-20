@@ -32,7 +32,7 @@ for ik, k in enumerate(KS):
     print(f"mu {row['mu']:.4f}: exc {S:+7.0f}+-{row['exc_fit_sd']:.0f} ({row['exc_pct_G']:+.2f}% of G) mean {me:.2f}+-{sme:.2f} ns "
           f"(G {mg:.2f}; z_G {row['z_vs_G']:+.1f}, z_flat {row['z_vs_flat']:+.1f}) | model {row['model_fit_counts']:.0f} "
           f"| chi2/dof fit {row['chi2dof_fitwindow']:.2f} wide {row['chi2dof_wide']:.2f}")
-# pooled over rungs (rungs share events; descriptive only)
+# pooled over rungs (rungs share events, descriptive only)
 w = np.array([1 / r['mean_exc_sd'] ** 2 for r in out]); d = np.array([r['mean_exc_ns'] - r['mean_G_ns'] for r in out])
 pool = dict(diff_vs_G_ns=float((w * d).sum() / w.sum()), diff_sd_ns=float(1 / np.sqrt(w.sum())),
             note='inverse-variance mean over rungs; rungs share events, so the uncertainty is optimistic')

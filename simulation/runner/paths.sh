@@ -4,7 +4,7 @@
 #
 # Path setup for the run scripts in simulation/runs/ (release v1.1.0). Sourced,
 # not executed. Every location that the production scripts hard-coded for one
-# workstation is one of the variables below; simulation/README.md lists them.
+# workstation is one of the variables below, and simulation/README.md lists them.
 #
 #   PLI_SIM            this simulation/ folder (set here)
 #   PLI_PKG            the release root (set here)
@@ -16,7 +16,7 @@
 #   PLI_SCANNER_MACRO  scanner geometry macro, NOT shipped (required)
 #   PLI_GATE_MATERIALS_DB, PLI_VIPMAN_DIR
 #                      further inputs that are NOT shipped, needed only by the
-#                      NEMA, VIP-Man and stock-vs-custom macros; GATE stops with
+#                      NEMA, VIP-Man and stock-vs-custom macros. GATE stops with
 #                      an alias error if a macro needs one that is not set
 PLI_SIM="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PLI_PKG="$(cd "$PLI_SIM/.." && pwd)"

@@ -18,7 +18,7 @@ import numpy as np
 from pathlib import Path
 
 C_MM_NS = 299.792458  # speed of light in mm/ns
-GATE_TIME_SCALE_NS = 1e9  # GATE 9.4 stores time in seconds; convert to ns
+GATE_TIME_SCALE_NS = 1e9  # GATE 9.4 stores time in seconds. Convert to ns
 
 DET = Path("data/triples_detector_vipman_500M.h5")
 

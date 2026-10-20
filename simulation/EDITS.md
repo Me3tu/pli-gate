@@ -42,6 +42,8 @@ Edits that are not path replacements:
   byte. Run from the current database it writes an `r2a_equal_tau_materials.json`
   that differs from the file in `../materials/variants/`, which was made
   from the database of 2026-08-13.
+* Comments and docstrings of 41 files: em dashes and semicolons were replaced by colons, commas, parentheses or periods. These lines are not listed
+  one by one. The `+` lines of the diffs below show the release text after this change.
 * `runs/c2_eight_tube_388ps.sh`, `runs/seed_repeatability.py`,
   `sources/iodine124_tubes_poisson.mac`: the wording of a comment (last section).
 * `../integration/variants/pli_inflight_test/CMakeLists.txt`: the variant
@@ -58,55 +60,55 @@ comments that name production paths relative to the project.
 
 | shipped file | production source | source sha256 | shipped sha256 |
 |---|---|---|---|
-| `simulation/runner/run_gate_parallel.sh` | `<PROJECT>/scripts/run_gate_parallel_musire.sh` | `b0b659fe137833bf` | `880d1b5f7af9c67c` |
-| `simulation/runner/run_gate_parallel_bin.sh` | `<PROJECT>/reconstruction/results/2026-09-30_feedback3/inflight/run_gate_parallel_musire_bin.sh` | `13b0015c783bfa30` | `87dc6036a990ab06` |
-| `simulation/runner/run_bounded.sh` | `<PROJECT>/scripts/run_bounded.sh` | `8fd9c31dd8de9ca0` | `ef0d57cd408e8615` |
-| `simulation/runner/env_example.sh` | `<PROJECT>/scripts/setup/setup_environment_st.sh` | `dd3b1586bbbcd481` | `d74e884b9901a950` |
+| `simulation/runner/run_gate_parallel.sh` | `<PROJECT>/scripts/run_gate_parallel_musire.sh` | `b0b659fe137833bf` | `2628b5b92bb53792` |
+| `simulation/runner/run_gate_parallel_bin.sh` | `<PROJECT>/reconstruction/results/2026-09-30_feedback3/inflight/run_gate_parallel_musire_bin.sh` | `13b0015c783bfa30` | `8864c7600ffba9d4` |
+| `simulation/runner/run_bounded.sh` | `<PROJECT>/scripts/run_bounded.sh` | `8fd9c31dd8de9ca0` | `d1c55ae863549428` |
+| `simulation/runner/env_example.sh` | `<PROJECT>/scripts/setup/setup_environment_st.sh` | `dd3b1586bbbcd481` | `1bef656ac2be1785` |
 | `simulation/geometry/materials_pli.db` | `<PROJECT>/gate/geometry/materials_pli.db` | `5b6337c6b55ac908` | `5b6337c6b55ac908` |
 | `simulation/geometry/materials_pli_phase2b.db` | `<PROJECT>/reconstruction/results/2026-04-29_2320_phase2b_validation_sims/macros/materials_pli_phase2b.db` | `3a7dbbe8c09d953f` | `3a7dbbe8c09d953f` |
-| `simulation/geometry/phantom_mercolli_xad4.mac` | `<PROJECT>/gate/geometry/phantom_mercolli_xad4.mac` | `6a314f23ac07469e` | `38ee823a9b7f3c24` |
-| `simulation/geometry/phantom_brain_tumor_visibility.mac` | `<PROJECT>/gate/geometry/phantom_brain_tumor_visibility.mac` | `b0aad9594e4bdd86` | `291633c45c7c9d09` |
-| `simulation/geometry/phantom_hypoxia_gradient.mac` | `<PROJECT>/gate/geometry/phantom_hypoxia_gradient.mac` | `9f398596f29621ef` | `2e2f6461a7cf823c` |
-| `simulation/sources/iodine124_tubes_poisson.mac` | `<PROJECT>/gate/macros/poisson_paired/iodine124_tubes_poisson.mac` | `9391ec7e8acb076a` | `6edcc998d5e13edc` |
-| `simulation/sources/scandium44_uniform_poisson.mac` | `<PROJECT>/gate/macros/poisson_paired/scandium44_uniform_poisson.mac` | `ff6fe5fa0844e843` | `39d46d68da2dc206` |
-| `simulation/sources/brain_tumor_sources_poisson.mac` | `<PROJECT>/reconstruction/results/2026-06-10_brain_tumor_1B_truetime/brain_tumor_sources_poisson.mac` | `c29860a704bad160` | `c92cc2f64566c87a` |
-| `simulation/macros/eight_tube_sc44.mac` | `<PROJECT>/reconstruction/results/2026-08-24_C2_sim1_388/sim1_sc44_388_timedriven.mac` | `95dc73617ca451e7` | `259dddefd1b4e2ae` |
-| `simulation/macros/closure_sim1_sc44.mac` | `<PROJECT>/reconstruction/results/2026-04-29_2320_phase2b_validation_sims/macros/sim1_sc44_validation_phantom.mac` | `6cf0a901382f8132` | `d0e21c14be075324` |
-| `simulation/macros/mercolli_xad4_i124.mac` | `<PROJECT>/reconstruction/results/2026-08-13_overnight/macros/mercolli_te_poisson.mac` | `4c6f82ca81f1f431` | `1b61749b479b37fb` |
-| `simulation/macros/steinberger_disks.mac` | `<PROJECT>/reconstruction/results/2026-06-19_steinberger_validation/macros/steinberger_disk_phantom.mac` | `a59f39c1193b0d39` | `6c71c6bda80428e2` |
-| `simulation/macros/water_cylinder_20mm.mac` | `<PROJECT>/reconstruction/results/2026-08-12_steinberger_allprompts/water_7MBq.mac` | `1a86c49750d3646b` | `dc00a7cb43127fdd` |
-| `simulation/macros/water_cylinder_20cm.mac` | `<PROJECT>/reconstruction/results/2026-10-19_review16/water20cm/water20cm_7MBq.mac` | `f639f27780932a1a` | `d23c1afd4ea2358a` |
-| `simulation/macros/nema_iq.mac` | `<PROJECT>/reconstruction/results/2026-04-24_1039_nema_iq/nema_iq_200M.mac` | `30815b06fd5df909` | `87f902a548cfcf23` |
-| `simulation/macros/oxygen_gradient.mac` | `<PROJECT>/reconstruction/results/2026-10-08_oxygen_v8/hypoxia_te_v8_poisson.mac` | `ead4a55cafd4ba0c` | `5dc63eda7e1199dd` |
-| `simulation/macros/brain_tumor.mac` | `<PROJECT>/reconstruction/results/2026-08-13_overnight/macros/brain_tumor_te_poisson_1B_truetime.mac` | `a05d70670e1e69bd` | `4ae9029d08fb2c93` |
-| `simulation/macros/vipman_slab.mac` | `<PROJECT>/macros/vipman_sc44_1400M_poisson.mac` | `1fab5f8fb9427488` | `31ab5e5cd8d2e06c` |
-| `simulation/macros/core_shell_pairA.mac` | `<PROJECT>/reconstruction/results/2026-08-13_referee_response/r2_pairA.mac` | `1597ba57479b14c7` | `c2cce7a58b09642f` |
-| `simulation/macros/core_shell_pairB.mac` | `<PROJECT>/reconstruction/results/2026-08-13_referee_response/r2_pairB.mac` | `a66dacbc6afd3923` | `c253feaedbe50fa9` |
-| `simulation/macros/stock_vs_custom_pli.mac` | `<PROJECT>/reconstruction/results/2026-08-11_ejmp_figure_regen/runtime_overhead/timing_pli_eplus.mac` | `0589589a0a263529` | `0d733a77536cbf70` |
-| `simulation/macros/stock_vs_custom_stock.mac` | `<PROJECT>/reconstruction/results/2026-08-11_ejmp_figure_regen/runtime_overhead/timing_stock_eplus.mac` | `2fcc8023bcf97b90` | `8dac189973a80e15` |
+| `simulation/geometry/phantom_mercolli_xad4.mac` | `<PROJECT>/gate/geometry/phantom_mercolli_xad4.mac` | `6a314f23ac07469e` | `3c107babff981388` |
+| `simulation/geometry/phantom_brain_tumor_visibility.mac` | `<PROJECT>/gate/geometry/phantom_brain_tumor_visibility.mac` | `b0aad9594e4bdd86` | `c293f7f8f1e99d2f` |
+| `simulation/geometry/phantom_hypoxia_gradient.mac` | `<PROJECT>/gate/geometry/phantom_hypoxia_gradient.mac` | `9f398596f29621ef` | `d1a04d7bf40920f6` |
+| `simulation/sources/iodine124_tubes_poisson.mac` | `<PROJECT>/gate/macros/poisson_paired/iodine124_tubes_poisson.mac` | `9391ec7e8acb076a` | `53946f0d0a9cad9f` |
+| `simulation/sources/scandium44_uniform_poisson.mac` | `<PROJECT>/gate/macros/poisson_paired/scandium44_uniform_poisson.mac` | `ff6fe5fa0844e843` | `1e0e311d5b164938` |
+| `simulation/sources/brain_tumor_sources_poisson.mac` | `<PROJECT>/reconstruction/results/2026-06-10_brain_tumor_1B_truetime/brain_tumor_sources_poisson.mac` | `c29860a704bad160` | `a19863ae7021cd02` |
+| `simulation/macros/eight_tube_sc44.mac` | `<PROJECT>/reconstruction/results/2026-08-24_C2_sim1_388/sim1_sc44_388_timedriven.mac` | `95dc73617ca451e7` | `34ae3d1f8a0346e1` |
+| `simulation/macros/closure_sim1_sc44.mac` | `<PROJECT>/reconstruction/results/2026-04-29_2320_phase2b_validation_sims/macros/sim1_sc44_validation_phantom.mac` | `6cf0a901382f8132` | `bf018ead8c454b94` |
+| `simulation/macros/mercolli_xad4_i124.mac` | `<PROJECT>/reconstruction/results/2026-08-13_overnight/macros/mercolli_te_poisson.mac` | `4c6f82ca81f1f431` | `3658dbe5235d9b14` |
+| `simulation/macros/steinberger_disks.mac` | `<PROJECT>/reconstruction/results/2026-06-19_steinberger_validation/macros/steinberger_disk_phantom.mac` | `a59f39c1193b0d39` | `a4127c16a3b4d8f4` |
+| `simulation/macros/water_cylinder_20mm.mac` | `<PROJECT>/reconstruction/results/2026-08-12_steinberger_allprompts/water_7MBq.mac` | `1a86c49750d3646b` | `cb99321b2df78593` |
+| `simulation/macros/water_cylinder_20cm.mac` | `<PROJECT>/reconstruction/results/2026-10-19_review16/water20cm/water20cm_7MBq.mac` | `f639f27780932a1a` | `896c3933cb275116` |
+| `simulation/macros/nema_iq.mac` | `<PROJECT>/reconstruction/results/2026-04-24_1039_nema_iq/nema_iq_200M.mac` | `30815b06fd5df909` | `0937c60e2b82ccbe` |
+| `simulation/macros/oxygen_gradient.mac` | `<PROJECT>/reconstruction/results/2026-10-08_oxygen_v8/hypoxia_te_v8_poisson.mac` | `ead4a55cafd4ba0c` | `1bc0279a100b4df1` |
+| `simulation/macros/brain_tumor.mac` | `<PROJECT>/reconstruction/results/2026-08-13_overnight/macros/brain_tumor_te_poisson_1B_truetime.mac` | `a05d70670e1e69bd` | `ba1bcda630eda3dd` |
+| `simulation/macros/vipman_slab.mac` | `<PROJECT>/macros/vipman_sc44_1400M_poisson.mac` | `1fab5f8fb9427488` | `ad318b6681a94eaf` |
+| `simulation/macros/core_shell_pairA.mac` | `<PROJECT>/reconstruction/results/2026-08-13_referee_response/r2_pairA.mac` | `1597ba57479b14c7` | `874dfb2fbd79f2a7` |
+| `simulation/macros/core_shell_pairB.mac` | `<PROJECT>/reconstruction/results/2026-08-13_referee_response/r2_pairB.mac` | `a66dacbc6afd3923` | `23da779ecdaf280f` |
+| `simulation/macros/stock_vs_custom_pli.mac` | `<PROJECT>/reconstruction/results/2026-08-11_ejmp_figure_regen/runtime_overhead/timing_pli_eplus.mac` | `0589589a0a263529` | `e963f8b52ac6c56a` |
+| `simulation/macros/stock_vs_custom_stock.mac` | `<PROJECT>/reconstruction/results/2026-08-11_ejmp_figure_regen/runtime_overhead/timing_stock_eplus.mac` | `2fcc8023bcf97b90` | `f45948a514402642` |
 | `simulation/macros/unit_vertex_custom.mac` | `<PROJECT>/reconstruction/results/2026-08-30_S5_annihilation_vertex/run_custom_1M.mac` | `232d499d8cc4ece5` | `b2ae3af1dcda0ee2` |
 | `simulation/macros/unit_vertex_stock.mac` | `<PROJECT>/reconstruction/results/2026-08-30_S5_annihilation_vertex/run_stock_1M.mac` | `ebdbdb12e23e86d6` | `0b61b6a86289e81b` |
-| `simulation/macros/make_core_shell.py` | `<PROJECT>/reconstruction/results/2026-08-13_referee_response/make_r2_inputs.py` | `74e759c63a886eec` | `18cff9a4af64319a` |
-| `simulation/runs/c0_eight_tube.sh` | `<PROJECT>/reconstruction/results/2026-09-30_feedback3/c0_sim1/run_c0_chain.sh` | `13b4936f1f52b9ee` | `41f55d4d84087243` |
-| `simulation/runs/c2_eight_tube_388ps.sh` | `<PROJECT>/reconstruction/results/2026-08-24_C2_sim1_388/run_c2.sh` | `5acc565addec17c1` | `7332f4c92830a5d1` |
+| `simulation/macros/make_core_shell.py` | `<PROJECT>/reconstruction/results/2026-08-13_referee_response/make_r2_inputs.py` | `74e759c63a886eec` | `6dc22e3576d0f156` |
+| `simulation/runs/c0_eight_tube.sh` | `<PROJECT>/reconstruction/results/2026-09-30_feedback3/c0_sim1/run_c0_chain.sh` | `13b4936f1f52b9ee` | `f805e1c18cafa9d4` |
+| `simulation/runs/c2_eight_tube_388ps.sh` | `<PROJECT>/reconstruction/results/2026-08-24_C2_sim1_388/run_c2.sh` | `5acc565addec17c1` | `f4638500adeaec4d` |
 | `simulation/runs/inflight_arm.sh` | `<PROJECT>/reconstruction/results/2026-09-30_feedback3/inflight/run_hybrid_c2.sh` | `2edfacbc58a9b87b` | `6a68184c71ad88ca` |
-| `simulation/runs/mercolli_replication.sh` | `<PROJECT>/reconstruction/results/2026-08-22_G1_exposure/run_exposure.sh` | `84d9d7f41c420e71` | `8c53f2ca8e73146a` |
+| `simulation/runs/mercolli_replication.sh` | `<PROJECT>/reconstruction/results/2026-08-22_G1_exposure/run_exposure.sh` | `84d9d7f41c420e71` | `c111743a3aede8b6` |
 | `simulation/runs/water_20cm.sh` | `<PROJECT>/reconstruction/results/2026-10-19_review16/water20cm/driver.sh` | `3b517ef173d60622` | `67645bea52f8dc00` |
-| `simulation/runs/nema_iq_0ps.sh` | `<PROJECT>/reconstruction/results/2026-08-11_nema_iec_250M/launch_nema_250M.sh` | `58235f5e6588d198` | `ca5ef4c851008cc0` |
+| `simulation/runs/nema_iq_0ps.sh` | `<PROJECT>/reconstruction/results/2026-08-11_nema_iec_250M/launch_nema_250M.sh` | `58235f5e6588d198` | `2dfd57ab946060e7` |
 | `simulation/runs/nema_iq_388ps.sh` | `<PROJECT>/reconstruction/results/2026-08-24_C1_nema388/run_c1.sh` | `08aa0967f22a96e0` | `dc691950d51305cb` |
 | `simulation/runs/oxygen_v8.sh` | `<PROJECT>/reconstruction/results/2026-10-08_oxygen_v8/run_oxygen_v8.sh` | `348a2a17e9778bf6` | `545189834750f6d0` |
-| `simulation/runs/core_shell.sh` | `<PROJECT>/reconstruction/results/2026-08-13_referee_response/run_r2.sh` | `98f4fa569048f3d6` | `074e779074f40351` |
-| `simulation/runs/core_shell_matched_yield.sh` | `<PROJECT>/reconstruction/results/2026-10-08_r2c_matched_yield/run_r2c.sh` | `5f4d5e9422250e20` | `f51b281f971988df` |
-| `simulation/runs/closure_o4_driver.py` | `<PROJECT>/reconstruction/results/2026-08-13_overnight/o4_batched_driver.py` | `817ae78e04ef76ec` | `31936e276a082e01` |
-| `simulation/runs/vipman_batches.py` | `<PROJECT>/reconstruction/utils/run_phase3q_per_batch.py` | `f270dad8a77b8a64` | `c406812b74ee433f` |
-| `simulation/runs/seed_repeatability.py` | `<PROJECT>/reconstruction/results/2026-08-12_seed_repeatability/run_seed_repeatability.py` | `0f073af591492faf` | `65277c1e4ede3e2b` |
-| `simulation/lu176/lu176_bg_generator.py` | `<PROJECT>/reconstruction/utils/lu176_bg_generator.py` | `03f9953d89514546` | `d2e105d46d8471f3` |
-| `simulation/lu176/lso_background_inject.py` | `<PROJECT>/reconstruction/utils/lso_background_inject.py` | `a1458848c092429c` | `b7fc5e0f868ddba5` |
-| `materials/variants/make_r2c_materials.py` | `<PROJECT>/reconstruction/results/2026-10-08_r2c_matched_yield/make_r2c_materials.py` | `1b9eab6ea03ea340` | `ca168d31b898c335` |
-| `integration/variants/build_gate_inflight.sh` | `<PROJECT>/reconstruction/results/2026-09-30_feedback3/inflight/build_gate_inflight.sh` | `2ffa3e7f34d6704b` | `3e19511e51b456e8` |
-| `integration/variants/pli_inflight_test/pli_inflight_test.cc` | `<PROJECT>/reconstruction/results/2026-09-30_feedback3/inflight/pli_inflight_test.cc` | `67f3b81124c59ae4` | `c1f790e4a25b9324` |
+| `simulation/runs/core_shell.sh` | `<PROJECT>/reconstruction/results/2026-08-13_referee_response/run_r2.sh` | `98f4fa569048f3d6` | `c9668d88265c01b3` |
+| `simulation/runs/core_shell_matched_yield.sh` | `<PROJECT>/reconstruction/results/2026-10-08_r2c_matched_yield/run_r2c.sh` | `5f4d5e9422250e20` | `08920adcbaa9d5ea` |
+| `simulation/runs/closure_o4_driver.py` | `<PROJECT>/reconstruction/results/2026-08-13_overnight/o4_batched_driver.py` | `817ae78e04ef76ec` | `e7d2dc4081c9a32a` |
+| `simulation/runs/vipman_batches.py` | `<PROJECT>/reconstruction/utils/run_phase3q_per_batch.py` | `f270dad8a77b8a64` | `9c855095b62cdf2c` |
+| `simulation/runs/seed_repeatability.py` | `<PROJECT>/reconstruction/results/2026-08-12_seed_repeatability/run_seed_repeatability.py` | `0f073af591492faf` | `71eac043d12cdf93` |
+| `simulation/lu176/lu176_bg_generator.py` | `<PROJECT>/reconstruction/utils/lu176_bg_generator.py` | `03f9953d89514546` | `66c8e4f36d48e449` |
+| `simulation/lu176/lso_background_inject.py` | `<PROJECT>/reconstruction/utils/lso_background_inject.py` | `a1458848c092429c` | `5c6b473dd399c7d4` |
+| `materials/variants/make_r2c_materials.py` | `<PROJECT>/reconstruction/results/2026-10-08_r2c_matched_yield/make_r2c_materials.py` | `1b9eab6ea03ea340` | `f5a0ceee18e4be10` |
+| `integration/variants/build_gate_inflight.sh` | `<PROJECT>/reconstruction/results/2026-09-30_feedback3/inflight/build_gate_inflight.sh` | `2ffa3e7f34d6704b` | `452a33b8b14c77e2` |
+| `integration/variants/pli_inflight_test/pli_inflight_test.cc` | `<PROJECT>/reconstruction/results/2026-09-30_feedback3/inflight/pli_inflight_test.cc` | `67f3b81124c59ae4` | `b367d6d0f1450f2d` |
 | `integration/variants/pli_inflight_test/CMakeLists.txt` | `<PROJECT>/reconstruction/results/2026-09-30_feedback3/inflight/CMakeLists.txt` | `24b4507af0eaed0f` | `10bccf4cb6222ec7` |
-| `integration/variants/pli_inflight_test/run_physics_level.sh` | `<PROJECT>/reconstruction/results/2026-09-30_feedback3/inflight/run_physics_level.sh` | `7f03ffeca753bf58` | `1b612ba8566befba` |
+| `integration/variants/pli_inflight_test/run_physics_level.sh` | `<PROJECT>/reconstruction/results/2026-09-30_feedback3/inflight/run_physics_level.sh` | `7f03ffeca753bf58` | `d0afb1f96ef4d60c` |
 
 ## Diffs
 
@@ -186,7 +188,7 @@ comments that name production paths relative to the project.
 +++ shipped
 @@ -4 +4,3 @@
 -export PLI_PROJECT_ROOT=${HOME}/research/pli-quadra-simulation
-+# v1.1.0: install locations come from the environment; the defaults follow the
++# v1.1.0: install locations come from the environment. The defaults follow the
 +# one-prefix layout of docs/BOOTSTRAP.md ($PLI_STACK/{geant4,root,gate}).
 +export PLI_STACK=${PLI_STACK:-${HOME}/pli-stack/install}
 @@ -7,3 +9,3 @@
@@ -596,7 +598,7 @@ No edit apart from the header lines.
 -HERE = ROOT / "reconstruction/results/2026-08-13_referee_response"
 -PH2B = ROOT / ("reconstruction/results/2026-04-29_2320_phase2b_validation_sims/"
 -               "macros/materials_pli_phase2b.db")
-+# v1.1.0: paths relative to the release; GATE aliases resolved at run time
++# v1.1.0: paths relative to the release, GATE aliases resolved at run time
 +ROOT = Path(__file__).resolve().parents[2]          # release root
 +HERE = Path(__file__).resolve().parent              # simulation/macros/
 +PH2B = "{PLI_SIM}/geometry/materials_pli_phase2b.db"
@@ -644,7 +646,7 @@ No edit apart from the header lines.
 -bash "$I/run_inflight_analysis.sh"; say "in-flight analysis rc=$?"
 -cd "$R"; source scripts/setup/setup_environment_st.sh >/dev/null 2>&1; source venv/bin/activate
 -export PLI_MATERIALS_JSON=$R/materials/pli_materials.json
-+# v1.1.0: the wait for the in-flight arm and its analysis are disabled; C0 does not depend on them.
++# v1.1.0: the wait for the in-flight arm and its analysis are disabled. C0 does not depend on them.
 +#[v1.1.0 disabled] say "chain started; waiting for HYB_DONE"
 +#[v1.1.0 disabled] while ! grep -q "HYB_DONE\|HYB_FAILED" "$I/run.log"; do sleep 60; done
 +#[v1.1.0 disabled] grep -q HYB_FAILED "$I/run.log" && { say "hybrid FAILED; C0 not started"; exit 1; }
@@ -761,7 +763,7 @@ No edit apart from the header lines.
 -export PLI_MATERIALS_JSON=$R/materials/pli_materials.json
 +source "$(dirname "${BASH_SOURCE[0]}")/../runner/paths.sh"
 +L=$PLI_OUT/results/2026-08-22_G1_exposure
-+OUT=$PLI_OUT/g1_exposure   # 30 batches + concat need ~55 GB; / has only 47
++OUT=$PLI_OUT/g1_exposure   # 30 batches + concat need ~55 GB (/ has only 47)
 +cd "$PLI_SIM"; source "$PLI_ENV_SCRIPT" >/dev/null 2>&1; [ -z "${PLI_VENV:-}" ] || source "$PLI_VENV/bin/activate"
 +export PLI_MATERIALS_JSON=${PLI_MATERIALS_JSON:-$PLI_PKG/materials/pli_materials.json}
 @@ -15 +15 @@
@@ -1187,7 +1189,7 @@ No edit apart from the header lines.
 -SRC=$R/software/source/gate-9.4.1-inflight
 -BLD=$R/software/build/gate-inflight
 -INS=$R/software/install/gate-inflight
-+# v1.1.0: locations from the environment; preparing SRC is described in integration/PATCH_NOTES.md
++# v1.1.0: locations from the environment. Preparing SRC is described in integration/PATCH_NOTES.md
 +PKG="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 +source "${PLI_ENV_SCRIPT:-$PKG/simulation/runner/env_example.sh}" >/dev/null 2>&1
 +SRC=${GATE_INFLIGHT_SRC:?set GATE_INFLIGHT_SRC to a GATE 9.4.1 tree prepared with install_into_gate.sh and gate-inflight-stock.patch}
@@ -1236,7 +1238,7 @@ No edit apart from the header lines.
 -source <PROJECT>/software/install/geant4-st/bin/geant4.sh
 -export PLI_MATERIALS_JSON=<PROJECT>/materials/pli_materials.json
 -cd <PROJECT>/reconstruction/results/2026-09-30_feedback3/inflight
-+# v1.1.0: expects the CMake build of this test in ./build (cmake -S . -B build);
++# v1.1.0: expects the CMake build of this test in ./build (cmake -S . -B build), and
 +# output goes to $PLI_OUT/feedback3_inflight/physics.
 +HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 +source "${GEANT4_INSTALL:?set GEANT4_INSTALL}/bin/geant4.sh"
@@ -1259,5 +1261,5 @@ In the lines below, words of the project's internal working notes were replaced 
 |---|---|---|
 | `runs/c2_eight_tube_388ps.sh` | 8 | # CONVERTER WINDOW (decision, 2026-08-24): keep the FULL digitizer band with no |
 | `runs/seed_repeatability.py` | 7 | from the planned 4 because 4 x (32 min GATE + convert/extract) |
-| `runs/seed_repeatability.py` | 8 | exceeds the ~2 h budget; stated here rather than silently |
+| `runs/seed_repeatability.py` | 8 | exceeds the ~2 h budget. Stated here rather than silently |
 | `sources/iodine124_tubes_poisson.mac` | 29 | # Activity per tube (from Mercolli 2025a Table): |

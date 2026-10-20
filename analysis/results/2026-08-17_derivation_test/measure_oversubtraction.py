@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""N2 — measure the delayed-window over-subtraction directly, from truth tags.
+"""N2: measure the delayed-window over-subtraction directly, from truth tags.
 
 No modelling. For every ROI we count, inside the fit window (tau_min < tau <
 W_PROMPT):
@@ -21,7 +21,7 @@ n_true_sig above tau_min = 1 ns is the o-Ps count: p-Ps (0.125 ns) and direct
 annihilation (0.388 ns) are sub-nanosecond and contribute negligibly there.
 
 Run under BOTH matching rules. Registered expectation (before running): under
-all-prompts n_sub and n_true_acc should agree within counting error; under
+all-prompts n_sub and n_true_acc should agree within counting error, and under
 closest-prompt n_sub should EXCEED n_true_acc.
 
 Every physics function is imported from steinberger_extract_ap.py so the

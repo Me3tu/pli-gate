@@ -3,8 +3,8 @@
 estimators under the exact randoms-subtraction process.
 
 Generator (known truth). Delay spectrum = sum_k I_k Exp(tau_k) (x) N(0, sigma_d), times the
-window acceptance A(tau; sigma_e) of the production extractor; tau_pPs = 0.125 ns and
-tau_dir = 0.388 ns as in the component estimator; sigma_d = sqrt(1.5)*90.9 ps (pair-mean and
+window acceptance A(tau; sigma_e) of the production extractor. tau_pPs = 0.125 ns and
+tau_dir = 0.388 ns as in the component estimator. sigma_d = sqrt(1.5)*90.9 ps (pair-mean and
 prompt single), sigma_e = 358.97 ps (Sim-1 geometry). Randoms: flat in delay, prompt arm
 n_t ~ Poisson(s + r), delayed arm n_d ~ Poisson(r), independent. Randoms fraction f_R is
 defined inside the component-fit range (-1, 4.5) ns. Each replicate is built from 32
@@ -15,11 +15,11 @@ Estimators
         with Dirichlet prior (alpha = 0.75, 3.1, 1.15), five free parameters, four starts.
   NOCLIP  same objective without clipping negative bins.
   JOINT   count-level joint likelihood of both arms, per-bin randoms mean r_b profiled
-        analytically (no flatness assumption, no clipping), same prior; six parameters.
+        analytically (no flatness assumption, no clipping), same prior, six parameters.
   TM    windowed-moment (truncated-mean) estimator on (1, 5) ns with the analytic
         truncation inversion and the production delta-method sigma.
 Intervals: shard bootstrap (B = 100, warm-started single-start refits) for PUB and JOINT,
-percentile 68/95 %; delta method for TM.
+percentile 68/95 %, and delta method for TM.
 """
 from __future__ import annotations
 import json, os, sys, time
@@ -57,7 +57,7 @@ def dir_logpdf(x, a):
     return float(((a - 1) * np.log(x)).sum() + gammaln(a.sum()) - gammaln(a).sum())
 
 class Grid:
-    """Bins over (-1, 5) ns; component fits use (-1, 4.5), the moment estimator (1, 5)."""
+    """Bins over (-1, 5) ns. Component fits use (-1, 4.5), the moment estimator (1, 5)."""
     def __init__(self, bw):
         self.bw = bw
         self.edges = np.round(np.arange(-1.0, 5.0 + 1e-9, bw), 6)

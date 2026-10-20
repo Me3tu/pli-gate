@@ -1,6 +1,6 @@
 """Supplementary Fig. S2 (stem figS3_eq2_refutation): (a) Sim-1 tubes at common
 accidental rate, measured |bias| vs configured tau, with the model's monotonic
-shape r tau/(1+r tau) scaled to the mean measured bias (dashed); the 1.5 ps pair
+shape r tau/(1+r tau) scaled to the mean measured bias (dashed). The 1.5 ps pair
 ringed. (b) all regions against the model with the identity and x10, x100 guides.
 Data: 2026-08-17_derivation_test/derivation_test.json."""
 import json
@@ -11,7 +11,7 @@ pts = json.load(open(RES / '2026-08-17_derivation_test/derivation_test.json'))['
 sim1 = [d for d in pts if d['phantom'] == 'Sim-1']
 PH = [('Sim-1', 'o', THIS, 'eight-tube phantom (discovery stream)'), ('Steinberger disks', 's', THIS, 'reference disks'),
       ('Steinberger water', '^', THIS, 'water cylinder'), ('NEMA IQ', 'D', CTRL, 'NEMA background')]
-# Review round 16: panel (a), the shape test at n = 8, had no power and is dropped; the model is rejected by the
+# Review round 16: panel (a), the shape test at n = 8, had no power and is dropped. The model is rejected by the
 # scale mismatch drawn here. The eight-tube points are the discovery stream (Supplementary Note S15).
 fig = mm_fig(110, 92)
 axes = [ax_mm(fig, 16, 30, 88, 56)]

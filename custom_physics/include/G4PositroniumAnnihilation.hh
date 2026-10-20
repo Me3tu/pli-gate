@@ -78,7 +78,7 @@ public:
     }
 
     // Static lifetime-data accessors. These exist as a hook for an external
-    // timing actor that is not shipped in this package; in-package the only
+    // timing actor that is not shipped in this package. In-package the only
     // consumer is PLISteppingAction.
     static G4bool GetLastLifetimeData(G4double& lifetime,
                                       G4String& materialName,

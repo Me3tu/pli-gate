@@ -4,8 +4,8 @@
 // pli_inflight_test.cc  (2026-09-30, feedback round 3: in-flight annihilation)
 // Derived from pli_boundary_test.cc (referee round 2). Changes: physics mode
 // 'hybrid' (shipped list + stock annihil kept for IN-FLIGHT annihilation via
-// PLI_INFLIGHT_STOCK=1, see PLIPhysicsList_inflight.cc); source 'i124'
-// (two main beta+ branches); per-photon energies in the output.
+// PLI_INFLIGHT_STOCK=1, see PLIPhysicsList_inflight.cc), source 'i124'
+// (two main beta+ branches), and per-photon energies in the output.
 // Original header follows.
 //
 //
@@ -13,7 +13,7 @@
 // (the same .cc files, sha256-identical to the copies compiled into GATE) and
 // audits, per annihilation:
 //   * which process fired (PostStep "PositroniumAnnihil" / AtRest
-//     "PsAnnihilAtRest"; stock "annihil" in the reference mode)
+//     "PsAnnihilAtRest", stock "annihil" in the reference mode)
 //   * the positron kinetic energy at the annihilation step and the step length
 //   * the material the process used (pre-step point of the annihilation step,
 //     i.e. exactly what G4Track::GetMaterial() returns inside the DoIt)
@@ -82,7 +82,7 @@ class Detector : public G4VUserDetectorConstruction {
 public:
   G4VPhysicalVolume* Construct() override {
     auto* nist = G4NistManager::Instance();
-    // Materials carry the exact names of the PLI database entries; the
+    // Materials carry the exact names of the PLI database entries, and the
     // lookup is by name, so these are the entries the processes will use.
     G4Material* a = nist->BuildMaterialWithNewDensity(gMatA, "G4_WATER", 1.00 * g / cm3);
     G4Material* b = nist->BuildMaterialWithNewDensity(gMatB, "G4_ADIPOSE_TISSUE_ICRP", 0.95 * g / cm3);
@@ -122,7 +122,7 @@ public:
   ~Primary() override { delete fGun; }
 
   // 44Sc beta+ kinetic energy: allowed shape with a non-relativistic Fermi
-  // factor for a positron leaving 44Ca (Z = 20); endpoint 1.474 MeV.
+  // factor for a positron leaving 44Ca (Z = 20), endpoint 1.474 MeV.
   G4double SampleSc44() {
     const G4double me = electron_mass_c2, E0 = 1.474 * MeV, Z = 20., al = fine_structure_const;
     auto f = [&](G4double T) {
@@ -137,7 +137,7 @@ public:
   }
 
   // 124I beta+: branches E0 = 2.1376 MeV (10.7 %) and 1.5349 MeV (11.7 %),
-  // daughter 124Te (Z = 52); same allowed shape and Fermi approximation.
+  // daughter 124Te (Z = 52). Same allowed shape and Fermi approximation.
   G4double SampleI124() {
     const G4double me = electron_mass_c2, Z = 52., al = fine_structure_const;
     const G4double E0 = (G4UniformRand() < 10.7 / (10.7 + 11.7)) ? 2.1376 * MeV : 1.5349 * MeV;

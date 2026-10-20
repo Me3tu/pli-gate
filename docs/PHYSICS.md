@@ -1,7 +1,7 @@
 # What this package models
 
-A short statement of the physics, the equations as implemented, and — as
-important — the things that are deliberately not modelled.
+A short statement of the physics, the equations as implemented, and, as
+important, the things that are deliberately not modelled.
 
 ## The problem
 
@@ -57,7 +57,7 @@ The lifetime is a rate sum:
 
   with `lambda_S` = 2.0 ns^-1 the spin-averaged self-annihilation rate and
   `delta_R` = 0.1656 nm the empirical electron-layer thickness
-  (Tao 1972; Eldrup 1981).
+  (Tao 1972, Eldrup 1981).
 
 * `kappa` = 2.5704e-5 ns^-1 mmHg^-1 is the oxygen quenching constant, from
   Shibuya 2020 converted to a partial-pressure basis with the O2 solubility of
@@ -75,15 +75,15 @@ The arithmetic is in `tao_eldrup.py` of the analysis part of the release
 computed `tau_TE_ns` and the loader reads it. That means a change to the model
 requires regenerating the database, not recompiling.
 
-Note that `tau_TE_ns` stores `tau_eff` — the full rate above, including the
-three-photon and oxygen terms — and not the pure Tao-Eldrup lifetime
+Note that `tau_TE_ns` stores `tau_eff` (the full rate above, including the
+three-photon and oxygen terms) and not the pure Tao-Eldrup lifetime
 `1/lambda_po(R)`, which the TE model alone would give. The field name is
-historical; see the schema table in `README.md` for the difference (26.4 ps on
+historical. See the schema table in `README.md` for the difference (26.4 ps on
 water) and for how to recover the pure value.
 
 ### 3. Decay: two-photon and three-photon channels
 
-o-Ps decays by two competing routes — pick-off, giving two photons, and
+o-Ps decays by two competing routes: pick-off, giving two photons, and
 intrinsic self-annihilation, giving three. Because the routes compete, the
 decay *time* is exponential with mean `tau_eff` regardless of channel, while
 the *channel* is chosen with
@@ -119,7 +119,7 @@ Read this section before drawing conclusions from a simulation.
   acollinearity. A detector-level acollinearity model must be added separately
   if it matters for the study.
 * **No temperature dependence.** Tao-Eldrup parameters are used at their
-  tabulated values; the database records a measurement temperature where the
+  tabulated values. The database records a measurement temperature where the
   source gives one, but the model does not use it.
 * **Free volumes are spherical.** The Tao-Eldrup model assumes a spherical
   well. Real pores are not spherical, and R should be read as an effective
@@ -136,11 +136,11 @@ production behaviour.
 | variable | default | effect |
 |---|---|---|
 | `PLI_MATERIALS_JSON` | search path | absolute path to the materials database |
-| `PLI_DIRECT_TAU_PS` | `0` | direct-annihilation lifetime in ps; `0` means prompt |
+| `PLI_DIRECT_TAU_PS` | `0` | direct-annihilation lifetime in ps, `0` means prompt |
 | `PLI_ALLOW_MATERIAL_FALLBACK` | `0` | a non-zero integer lets a material absent from the database warn and use tau 2.0 ns and formation probability 0.35 instead of aborting |
 | `PLI_DISABLE_3GAMMA` | unset | `1` restores two-photon-only o-Ps decay |
 | `PLI_TAU_3GAMMA_NS` | `142.05` | override the vacuum three-photon lifetime |
-| `PLI_LIFETIME_MODE` | `transport` | `transport` uses the material where the positron annihilates; `source` uses where it was created; `fixed` uses one global lifetime |
+| `PLI_LIFETIME_MODE` | `transport` | `transport` uses the material where the positron annihilates, `source` uses where it was created, and `fixed` uses one global lifetime |
 | `PLI_FIXED_TAU_NS` | `2.0` | the lifetime in ns used when `PLI_LIFETIME_MODE=fixed` |
 | `PLI_LIFETIME_LOG` | unset | `1` writes one `PLI_LIFETIME:` record per annihilation to stdout (`simulation/runner/run_gate_parallel.sh` sets it to `1` unless told otherwise) |
 | `PLI_LOG_XMAT` | unset | `1` writes one `PLI_R2:` record per annihilation carrying both the emission and the annihilation material |
@@ -162,7 +162,7 @@ each process prints a channel tally:
 
     PLI_CHANNEL_TALLY:<process>:direct2g=..:pPs2g=..:oPs2g=..:oPs3g=..:envelope_violations=..
 
-`envelope_violations` must be zero; a non-zero value means the rejection
+`envelope_violations` must be zero. A non-zero value means the rejection
 sampler's bound was exceeded and the spectrum is not trustworthy.
 
 ## Relationship to GATE's own positronium classes

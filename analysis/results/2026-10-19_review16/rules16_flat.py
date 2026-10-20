@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Review round 17 diagnostic: flatness of the true uncorrelated accidental content (AP + PA_unc, event labels)
 per prompt rule, from rules16_hists.npz. F = density in the fit window (1-5 ns) / density on the sideband
-(-4.5 to -2 ns), each divided by the a priori acceptance; F - 1 is the departure from flatness that a sideband
+(-4.5 to -2 ns), each divided by the a priori acceptance. F - 1 is the departure from flatness that a sideband
 constant cannot see. Also prints the profile of the all-prompts arm in 1 ns steps. Pooled over the eight tubes."""
 import json
 from pathlib import Path

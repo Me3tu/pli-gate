@@ -5,7 +5,7 @@
 /control/getEnv PLI_GATE_MATERIALS_DB
 /control/getEnv PLI_SCANNER_MACRO
 # ==============================================================================
-# NEMA IQ phantom — Sc-44 PLI, Mercolli 2025 configuration
+# NEMA IQ phantom: Sc-44 PLI, Mercolli 2025 configuration
 # ==============================================================================
 #
 # Phantom:     Data Spectrum Corp NEMA NU 2-2018 Image Quality (cylindrical
@@ -13,7 +13,7 @@
 #              diameters 37/28/22/17/13/10 mm in a hexagonal pattern at
 #              r = 68.5 mm from the axial centre).
 # Materials:   ALL water (background and spheres). NO tumour-tissue
-#              lifetime contrast — matches Mercolli 2025 and differs from
+#              lifetime contrast. Matches Mercolli 2025 and differs from
 #              the older gate/geometry/nema_iq_phantom.mac (which used
 #              TumorTissue in spheres).
 # Activity:    Sphere-to-background PER-VOLUME concentration ratio 10:1
@@ -30,7 +30,7 @@
 #              100 M calibration runs.
 # Isotope:     Sc-44 ion (Z=21, A=44) with forcedUnstable + 0.001 ns
 #              instant-decay trick (identical chain to VIPman/water).
-# Digitizer:   Quadra — 214 ps time res, 350–1300 keV energy window, 20 ns
+# Digitizer:   Quadra, 214 ps time res, 350–1300 keV energy window, 20 ns
 #              coincidence window (all match VIPman).
 # Primaries:   the Gate runner is expected to edit
 #              `/gate/application/setTotalNumberOfPrimaries` per run.
@@ -59,7 +59,7 @@
 /gate/nema_body/vis/setVisible          true
 
 # ── Six spheres (all water, for activity contrast only) ────────────────────
-# Diameters: 37, 28, 22, 17, 13, 10 mm — NEMA NU 2-2018 spec.
+# Diameters: 37, 28, 22, 17, 13, 10 mm (NEMA NU 2-2018 spec).
 # Positions form a hexagon at r = 68.5 mm.
 /gate/nema_body/daughters/name          sphere_37mm
 /gate/nema_body/daughters/insert        sphere
@@ -143,12 +143,12 @@
 /gate/source/bg/gps/ang/type             iso
 /gate/source/bg/setForcedUnstableFlag    true
 /gate/source/bg/setForcedHalfLife        14292 s
-# body GPS volume π·109²·178 mm³ = 6,643,897 mm³; 1 unit/mm³ per-volume → 6,643,897 Bq
+# body GPS volume π·109²·178 mm³ = 6,643,897 mm³. 1 unit/mm³ per-volume → 6,643,897 Bq
 /gate/source/bg/setActivity              6643897 Bq
 
-# Six extra sphere sources at 9× — sum with body gives 10× per-voxel activity
+# Six extra sphere sources at 9×: sum with body gives 10× per-voxel activity
 # inside spheres. Scale computed from activity ratio Mercolli (40.68/3.90 ≈
-# 10.43); we use 10× exactly.
+# 10.43). We use 10× exactly.
 # Sphere 37 mm
 /gate/source/addSource                   sph37 gps
 /gate/source/sph37/gps/particle          ion
@@ -266,7 +266,7 @@
 # ensures each source emits proportional to its setActivity × time.
 #
 # Dry-run (~1 M primaries at total activity 7.07 MBq): setTimeStop 0.14 s.
-# Production (~200 M): setTimeStop 28 s — ≈ 200 M / 7.07e6 Bq.
+# Production (~200 M): setTimeStop 28 s (≈ 200 M / 7.07e6 Bq).
 /gate/application/setTimeStart 0.0 s
 /gate/application/setTimeStop  28.3 s
 /gate/application/setTimeSlice 28.3 s

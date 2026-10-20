@@ -3,7 +3,7 @@ Singles HDF5, applying the energy pre-filter and detecting shard boundaries
 via eventID resets.
 
 Schema (as specified on 2026-06-10):
-    eventID          int32     shard-local; resets per shard inside the ROOT
+    eventID          int32     shard-local, resets per shard inside the ROOT
     shard_id         uint8     shard index within this batch (0..15 typically)
     time_ns          float64   TRUE single-photon time (UNSMEARED), within-shard
     energy_keV       float32   post energy-smear, pre-time-smear
@@ -125,7 +125,7 @@ def main():
     # Pass 1: stream all entries, build the keep mask per-chunk, count.
     # We need eventID across the WHOLE file to detect shard resets, so
     # eventID is loaded fully (8 bytes/entry × ~3e9 = 24 GB worst case, too big).
-    # Instead, we load eventID-only first (int32 → 4 bytes; ~12 GB for 3e9
+    # Instead, we load eventID-only first (int32 → 4 bytes, ~12 GB for 3e9
     # would still be big). Better: stream and detect resets on the fly,
     # writing chunks as we go.
 

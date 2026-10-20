@@ -1,11 +1,11 @@
 # SPDX-License-Identifier: LGPL-3.0-only
 # Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
 # ==============================================================================
-# Brain-tumor visibility phantom — Phase 3s-2 STAGE 0 design
+# Brain-tumor visibility phantom: Phase 3s-2 STAGE 0 design
 # ==============================================================================
 #
-# Background: brain_healthy_moskal2024 cylinder (R=100, H=180 mm) — τ_TE = 2.72 ns
-# Inserts: 5 brain_tumor_moskal2024 spheres along x-axis at z=0 — τ_TE = 1.77 ns
+# Background: brain_healthy_moskal2024 cylinder (R=100, H=180 mm), τ_TE = 2.72 ns
+# Inserts: 5 brain_tumor_moskal2024 spheres along x-axis at z=0, τ_TE = 1.77 ns
 # Δτ_GT = 950 ps (well above Quadra 214 ps CRT)
 #
 # Insert sizes span below-resolution to comfortably-above:
@@ -27,7 +27,7 @@
 #     sphere volume (additive on top of the bg-source-excluded sphere region)
 #
 # At 1 MBq background-density × cylinder volume (≈ 5.65 × 10⁶ mm³) = 1 MBq total bg
-#   - Per-sphere bg volume excluded; spheres get tumor source instead
+#   - Per-sphere bg volume excluded. Spheres get tumor source instead
 #   - Each tumor source A_t = 2 × bg_density × V_sphere (gives total tumor activity
 #     = (1 + 2) × bg_density × V_sphere = 3× bg-density-per-mm³)
 #
@@ -57,7 +57,7 @@
 /gate/phantom/vis/setVisible true
 /gate/phantom/vis/setColor cyan
 
-# ── Tumor 1 (r=4 mm, smallest — PVE-dominated) ──────────────────────────────
+# ── Tumor 1 (r=4 mm, smallest, PVE-dominated) ──────────────────────────────
 /gate/phantom/daughters/name tumor_r04
 /gate/phantom/daughters/insert sphere
 /gate/tumor_r04/setMaterial brain_tumor_moskal2024
@@ -93,7 +93,7 @@
 /gate/tumor_r16/vis/setVisible true
 /gate/tumor_r16/vis/setColor magenta
 
-# ── Tumor 5 (r=20 mm, largest — well-resolved) ──────────────────────────────
+# ── Tumor 5 (r=20 mm, largest, well-resolved) ──────────────────────────────
 /gate/phantom/daughters/name tumor_r20
 /gate/phantom/daughters/insert sphere
 /gate/tumor_r20/setMaterial brain_tumor_moskal2024

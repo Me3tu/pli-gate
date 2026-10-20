@@ -10,8 +10,8 @@ bootstrap over shards (the independent simulation jobs, each with its own seed)
 applies the SAME resample to all rungs and carries the full cross-rung
 covariance into the exponent.
 
-Per shard: singles are loaded once; for each k the decay epochs are compressed
-exactly as rescale_rate.py does (t_new = t0/k + (t - t0) per eventID group);
+Per shard: singles are loaded once. For each k the decay epochs are compressed
+exactly as rescale_rate.py does (t_new = t0/k + (t - t0) per eventID group).
 clinical_per_shard (the published extractor, imported unchanged) builds triples
 under both rules with the SAME timing-smear draws for every k and rule
 (rng seeded per shard, re-created per call), so rungs differ only in rate.

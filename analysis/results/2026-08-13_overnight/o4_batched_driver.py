@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""O4 re-run driver, corrected — sequential batched GATE for the provenance re-runs.
+"""O4 re-run driver, corrected: sequential batched GATE for the provenance re-runs.
 
 WHY THIS EXISTS (read before changing anything)
 -----------------------------------------------
@@ -32,7 +32,7 @@ Three separate faults are corrected here:
 
 Not handled here: VIP-Man, which has its own validated per-batch driver
 (reconstruction/utils/run_phase3q_per_batch.py, 32 batches). Sim-2 is handled
-by this driver as well (phantom `sim2_mercolli`); o4_sim2.sh is superseded.
+by this driver as well (phantom `sim2_mercolli`), and o4_sim2.sh is superseded.
 
 Resume: a batch whose triples h5 already has rows is skipped, so the driver can
 be restarted at any point without redoing work.
@@ -71,7 +71,7 @@ STB = RES / "2026-06-19_steinberger_validation/macros"
 # per-shard workload, split into batches short enough to stay inside the memory
 # envelope. `per_batch` is what is passed to --total-primaries / --total-time-sec.
 PHANTOMS = [
-    # phase2b Sim-2 arm — cheapest run in the set (~12 min) and the one with a
+    # phase2b Sim-2 arm: cheapest run in the set (~12 min) and the one with a
     # matched pre-correction counterpart (200 M, 2026-04-30) for the yield test.
     dict(name="sim2_mercolli",
          macro=P2B / "sim2_i124_xad4_phantom.mac",
@@ -157,7 +157,7 @@ def mem_available_gb() -> float:
 
 
 def rows(h5path: Path) -> int:
-    """Row count of the first dataset under /detector; 0 if missing/unreadable."""
+    """Row count of the first dataset under /detector (0 if missing/unreadable)."""
     try:
         with h5py.File(h5path, "r") as h:
             ks = list(h["detector"].keys())
@@ -232,7 +232,7 @@ class MemoryWatchdog(threading.Thread):
 # not of the phantom. Nothing in this driver recorded that mapping, so it was
 # rediscovered the hard way: the Steinberger and brain-tumor analyses all take
 # `--singles`, but the driver deletes the ROOT once triples are extracted. That
-# silently destroyed the only usable input for three phantoms — caught for disks
+# silently destroyed the only usable input for three phantoms: caught for disks
 # and water, missed for brain-tumor and Sim-1, each costing a full re-run.
 #
 # The mapping is now explicit and checked at preflight. A phantom whose recipe
@@ -396,7 +396,7 @@ def run_batch(ph: dict, batch_id: int) -> bool:
         say(f"{name} batch {batch_id} SIM OK wall={time.time()-t0:.0f}s "
             f"mem low water {dog.low_water:.1f} GB")
 
-        # extractors glob sim_*.root (underscore); the runner writes sim-merged.root
+        # extractors glob sim_*.root (underscore). The runner writes sim-merged.root
         (bdir / "sim_merged.root").symlink_to("sim-merged.root")
         with open(bdir / "extract.log", "a") as el:
             subprocess.call([sys.executable, f"reconstruction/{ph['extractor']}",
@@ -433,7 +433,7 @@ def run_batch(ph: dict, batch_id: int) -> bool:
             say(f"{name} batch {batch_id}: singles h5 "
                 f"{sing.stat().st_size/1e9:.2f} GB")
 
-        # ROOT + per-shard logs are regenerable; the triples h5 are the product.
+        # ROOT + per-shard logs are regenerable. The triples h5 are the product.
         for pat in ("sim-0*.root", "sim-merged.root", "sim_merged.root", "sim-0*.log"):
             for f in bdir.glob(pat):
                 f.unlink()
@@ -575,7 +575,7 @@ def main():
                 ok.append(b)
             else:
                 # A batch that dies in seconds is a configuration error, not a
-                # resource problem; retrying the other 16 cannot help.
+                # resource problem. Retrying the other 16 cannot help.
                 if time.time() - t_batch < 30 and not ok:
                     say(f"{ph['name']}: batch {b} failed in "
                         f"{time.time()-t_batch:.0f}s with no prior success — "

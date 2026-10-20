@@ -26,10 +26,10 @@ PHYSICS MODEL (Phase 3o-2 design)
 DETECTOR RESPONSE
 =================
 - Energy resolution: 10.1 % FWHM @ 511 keV with √E scaling
-  (LSO scintillator; matches lso_lu176_standalone.mac).
+  (LSO scintillator, matches lso_lu176_standalone.mac).
 - Timing resolution: 214 ps FWHM Gaussian jitter.
 - Crystal-of-detection: assumed to be the crystal of emission
-  (β⁻ range ~1 mm in LSO; 88 keV γ self-absorbs ~70 % at crystal centre;
+  (β⁻ range ~1 mm in LSO, 88 keV γ self-absorbs ~70 % at crystal centre, and
    higher-energy γ scatter to neighbours but never enter the PLI 511
    window, so this approximation doesn't affect downstream triple
    formation). DEFERRED: multi-crystal Compton scattering (Step 7.3).
@@ -38,19 +38,19 @@ TEMPORAL MODEL
 ==============
 - Decay times: proper Poisson process at the configured activity.
 - Within-decay timing: instantaneous cascade (9.4 ns isomeric lifetime
-  of 998 keV state ignored — DEFERRED Step 7.2; cascade γ never reach
+  of 998 keV state ignored, DEFERRED Step 7.2. Cascade γ never reach
   the PLI window so the 9.4 ns has no observable effect).
 
 OUTPUT SCHEMA
 =============
 HDF5 file with /singles/ group containing all 21 GATE Singles branches
-required by lso_background_inject.py. Time in seconds (sorted ascending);
-energy in MeV; positions in mm. eventID is int64 (Phase 3p-3) — accommodates
+required by lso_background_inject.py. Time in seconds (sorted ascending),
+energy in MeV, positions in mm. eventID is int64 (Phase 3p-3): accommodates
 production-scale phantom decay_id ranges with a 10^12 default offset.
 
 DETECTOR HIERARCHY ID CONVENTION (Phase 3o-2 §2.4)
 ===================================================
-This is OUR convention; a hypothetical GATE-generated Lu-176 output
+This is OUR convention. A hypothetical GATE-generated Lu-176 output
 might use different IDs. The eventID-grouping triple extractor doesn't
 use these, so they are populated for provenance only.
     gantryID    = 0                 (single gantry)
@@ -69,7 +69,7 @@ DEFERRED LIMITATIONS (Phase 3o-2 §7)
 7.4 401 keV rare branch (0.4 %) not modelled.
 7.5 β⁻ self-detection assumed 100 %.
 7.6 Beta spectrum: Fermi-corrected (simplified non-relativistic Fermi
-    function); 1st-forbidden-non-unique correction NOT applied per
+    function). 1st-forbidden-non-unique correction NOT applied per
     Phase 3o-2 sign-off Q1.
 
 USAGE
@@ -117,7 +117,7 @@ N_TRANS = 20
 N_AXIAL = 80
 N_CRYSTAL_TOTAL = N_RSECTOR * N_BLOCK * N_TRANS * N_AXIAL   # 243,200
 RSECTOR_RADIUS_MM = 402.83720907    # rsector centroid → crystal centroid radial position
-CRYSTAL_RADIAL_MM = 20.0            # crystal depth (radial); centroid ± 10 mm
+CRYSTAL_RADIAL_MM = 20.0            # crystal depth (radial), centroid ± 10 mm
 CRYSTAL_TRANS_MM = 3.20             # transaxial cell size
 CRYSTAL_TRANS_PITCH_MM = 3.21       # 0.01 mm wrap gap
 CRYSTAL_AXIAL_MM = 3.20             # axial cell size
@@ -221,8 +221,8 @@ def crystal_index_to_centroid(crystal_idx: np.ndarray):
 
     Index layout (slowest → fastest): rsector → block → transaxial → axial.
     Returns:
-        (xc, yc, zc)        — world position of crystal centroid (mm)
-        (rsec, blk, ix_t, ix_a) — hierarchy indices
+        (xc, yc, zc):        world position of crystal centroid (mm)
+        (rsec, blk, ix_t, ix_a): hierarchy indices
     """
     crystal_idx = np.asarray(crystal_idx, dtype=np.int64)
     block_total = N_BLOCK * N_TRANS * N_AXIAL
@@ -320,7 +320,7 @@ def generate(activity_MBq: float,
     with h5py.File(output_path, "w") as h:
         grp = h.create_group("singles")
         # Resizable datasets (chunked + gzip compressed).
-        # Initial size 0; resize per chunk.
+        # Initial size 0, resize per chunk.
         ds = {}
         for b in SINGLES_BRANCHES:
             ds[b] = grp.create_dataset(
@@ -340,7 +340,7 @@ def generate(activity_MBq: float,
                           + np.arange(n_dec, dtype=np.int64))
             decay_idx_global += n_dec
 
-            # Decay times: uniform in [0, T_sim_s]; sort later globally
+            # Decay times: uniform in [0, T_sim_s]. Sort later globally
             decay_times = rng.uniform(0.0, T_sim_s, n_dec).astype(np.float64)
 
             # Decay vertex: sample crystal index uniformly in [0, 243199)
@@ -368,10 +368,10 @@ def generate(activity_MBq: float,
             # offsets within each decay
             ptype_per_row = np.empty(n_rows, dtype=np.int8)
             cursor = 0
-            ptype_per_row[cursor:cursor + n_dec] = 0   # but rows aren't contiguous; this approach won't work
+            ptype_per_row[cursor:cursor + n_dec] = 0   # but rows aren't contiguous. This approach won't work
             # Alternative: vectorise via cumulative offsets
             # Strategy: for each particle slot {0,1,2,3}, build per-decay
-            # "is this slot occupied" mask; then collect (decay_idx, ptype) pairs.
+            # "is this slot occupied" mask, then collect (decay_idx, ptype) pairs.
             slot_masks = [
                 np.ones(n_dec, dtype=bool),
                 emit_g307, emit_g202, emit_g88,
@@ -384,7 +384,7 @@ def generate(activity_MBq: float,
                 slot_ptypes.append(np.full(len(idx), ptype, dtype=np.int8))
             row_to_dec = np.concatenate(slot_decays)
             ptype_per_row = np.concatenate(slot_ptypes)
-            # NOTE: rows are NOT yet ordered by decay; we will time-sort at end.
+            # NOTE: rows are NOT yet ordered by decay. We will time-sort at end.
 
             # Per-row energies
             E_keV = np.empty(n_rows, dtype=np.float32)
@@ -469,7 +469,7 @@ def generate(activity_MBq: float,
         # Global time-sort across chunks: read full time array, derive
         # permutation, apply across all branches. With 4e8 rows this is
         # the most memory-intensive step (~3 GB float64 + perm). Skip the
-        # global sort — the inject re-sorts during merge anyway. Document.
+        # global sort: the inject re-sorts during merge anyway. Document.
         # (We DID time-sort within each chunk, so the file is "approximately"
         # sorted with stride = chunk size.)
         if verbose:

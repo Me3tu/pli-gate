@@ -44,8 +44,8 @@ o-Ps-intensity convention:
 |---|---|---|---|
 | direct, 2 gamma | 128,498 | 0.6402 | 0.640 |
 | p-Ps, 2 gamma | 18,140 | 0.0904 | 0.090 (= I3/3) |
-| o-Ps, 2 gamma | 53,338 | — | — |
-| o-Ps, 3 gamma | 727 | — | — |
+| o-Ps, 2 gamma | 53,338 | n/a | n/a |
+| o-Ps, 3 gamma | 727 | n/a | n/a |
 | **o-Ps total** | 54,065 | **0.2694** | **0.270** (= I3) |
 
 The three-photon share of o-Ps is 727/54,065 = 1.345 %, against
@@ -69,7 +69,7 @@ The physics emits the lifetime it is given, to sub-picosecond.
 
 In a single-material phantom, taking the lifetime from the material where the
 positron annihilates and from the material where it was created must agree.
-Measured difference **+0.00132 ns, +0.07 %** — consistent with zero. In
+Measured difference **+0.00132 ns, +0.07 %**, consistent with zero. In
 two-material phantoms deliberately built so the two differ, the same comparison
 gives **−3.11 %** and **−2.51 %**, showing the test has the sensitivity to
 detect a difference when one exists.
@@ -85,7 +85,7 @@ over-subtraction, across 20 regions in 4 phantoms:
     clustered 95 % CI                     [0.948, 1.067]
     RMSE about the identity line          0.70 %
 
-Nothing is fitted; the pedestal mean is the analytic `(T - tau_min)/2`.
+Nothing is fitted. The pedestal mean is the analytic `(T - tau_min)/2`.
 
 The same law was then tested on a configuration it had never seen, with a
 finite direct-annihilation lifetime, and predicted it at slope **0.945** with a
@@ -138,7 +138,7 @@ can see effects it should: a multiplicative scaling and a two-component mixture
 are both recovered to sub-picosecond.
 
 **The cause is not known.** It must be something that does not commute with the
-censor — a lifetime-dependent selection, a multiplicative scaling, or a change
+censor: a lifetime-dependent selection, a multiplicative scaling, or a change
 in population composition.
 
 ## An unexplained trend in the calibration closure
@@ -154,7 +154,7 @@ This is **neither** a constant delay (which gives a flat residual in ps) **nor**
 a positive fractional bias (which gives one rising with tau). It falls. The
 mean signed residual over the twelve is −2.85 ± 2.01 ps, consistent with zero,
 so a summary quoted as an RMS or a mean absolute residual does not show this
-structure. **The origin is not known**; the additive-delay and timing-smear
+structure. **The origin is not known.** The additive-delay and timing-smear
 causes above are excluded for it too. A constant systematic floor of 3.9 ps,
 carrying 23 % of the residual variance, absorbs the remaining scatter.
 
@@ -173,9 +173,9 @@ survives the 1 ns analysis censor:
 
 * the truth-tagged lifetime readout moves from 1.839 to 1.482 ns, −19 %,
   with about 24 % of the fit-window population becoming leaked direct
-  annihilation;
+  annihilation.
 * that shift is fully accounted for with no free parameters by the
-  count-weighted mean of the component lifetimes, agreeing to 0.07–0.34 %;
+  count-weighted mean of the component lifetimes, agreeing to 0.07–0.34 %.
 * a **windowed-and-truncation-corrected** estimator fares worse, not better,
   on that population: it misses by **−243.8 to −249.8 ps** across regions,
   because the correction assumes a single exponential.

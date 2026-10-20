@@ -1,4 +1,4 @@
-"""Shared setup for the figure generators (referee round 2, 2026-09-30; feedback round 3,
+"""Shared setup for the figure generators (referee round 2, 2026-09-30, and feedback round 3,
 2026-09-30 evening).
 
 Unified visual language:
@@ -12,21 +12,21 @@ never by color alone, so every figure reads in grayscale.
 
 Round 3: figures are drawn at the IOP double-column width (W = 150 mm), and every text
 element is 8 pt or larger at that size (IOP: 8 to 12 pt at final size, 15 cm wide). A panel may
-carry ONE key number where the conclusion rests on it; every such number is read
+carry ONE key number where the conclusion rests on it. Every such number is read
 from the same JSON as the text that quotes it and is asserted in the built PDF.
 No interpretive sentences are drawn into a figure.
 """
 import os
 from pathlib import Path
 # Code release v1.1.0: inputs default to the shipped source_data/ next to this file (dated result-folder
-# names kept), outputs to out/; both can be redirected with PLI_RES and PLI_FIGOUT.
+# names kept), outputs to out/. Both can be redirected with PLI_RES and PLI_FIGOUT.
 HERE = Path(__file__).resolve().parent
 RES = Path(os.environ.get('PLI_RES', str(HERE / 'source_data')))
 FS = RES / '2026-09-24_jp_a3_figures/figsrc'
 MF = FS / '2026-05-11_paper_PMB/manuscript_ejmp/figures'
 R2 = RES / '2026-09-30_referee2'
 F3 = RES / '2026-09-30_feedback3'
-import ejmp_style as st  # noqa: E402  (shipped next to this file; was results/2026-08-11_ejmp_figure_regen/ejmp_style.py)
+import ejmp_style as st  # noqa: E402  (shipped next to this file, was results/2026-08-11_ejmp_figure_regen/ejmp_style.py)
 st.apply()
 import matplotlib  # noqa: E402
 import matplotlib.pyplot as plt  # noqa: E402
@@ -70,7 +70,7 @@ def key(ax, x, y, s, transform=None, **kw):
 
 
 def mm_fig(w_mm, h_mm):
-    """A figure of exact size; axes are placed in millimetres with ax_mm."""
+    """A figure of exact size. Axes are placed in millimetres with ax_mm."""
     fig = plt.figure(figsize=(w_mm * MM, h_mm * MM))
     fig._mm = (w_mm, h_mm)
     return fig

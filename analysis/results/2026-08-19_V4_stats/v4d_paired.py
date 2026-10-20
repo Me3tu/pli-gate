@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""V4(d) — paired-arm covariance and its effect on sigma(Delta tau).
+"""V4(d): paired-arm covariance and its effect on sigma(Delta tau).
 
 The two matching rules run on the SAME shards, so tau_closest and tau_all are
 positively correlated and the production uncertainty on their difference,

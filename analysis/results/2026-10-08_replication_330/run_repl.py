@@ -3,8 +3,8 @@
 Re-runs, at a given sigma_e, everything the paper quotes from the replication fit:
  b3 main fits (all tubes, both rules), the b4 endpoint sweep (stat, half-spread syst, total, z
  against the published values with their uncertainties), the Fig. 3a spectrum of dry XAD-4,
- and the lower-edge sensitivity. Identical code paths (b3_fit defs exec'd unchanged); only
- G.SIGMA_E is set. Inputs read-only from 2026-08-23_B3; outputs written here.
+ and the lower-edge sensitivity. Identical code paths (b3_fit defs exec'd unchanged). Only
+ G.SIGMA_E is set. Inputs read-only from 2026-08-23_B3, outputs written here.
 Usage: run_repl.py SIGMA_E_NS"""
 import json, os, sys
 from pathlib import Path

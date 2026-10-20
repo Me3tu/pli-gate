@@ -1,18 +1,18 @@
 """Fig. 11 (stem fig11_realistic_forest), feedback round 3 redesign: the two findings of
 Sec. 3.9 are separated.
 (a) early-time model: per resolved region, the rule artifact Delta|b| = |b_closest| - |b_all|
-    with direct annihilation at 0 ps (square) and at 388 ps (triangle), joined; truncated-mean
+    with direct annihilation at 0 ps (square) and at 388 ps (triangle), joined. Truncated-mean
     readout, rate-matched arms, paired-bootstrap errors.
 (b) the same regions as a retention ratio Delta|b|(388 ps) / Delta|b|(0 ps) on its own axis,
     with the registered band 0.56-0.74 (the unit mismatch of drawing a ratio band on the pp axis
     is gone). The six unresolved NEMA spheres are listed in Supplementary Table S14.
 (c) estimator dependence at 388 ps: rule shift 100 (tau_all - tau_closest)/tau_cfg under a
-    three-component estimator against the truncated mean on identical events; count-level joint
+    three-component estimator against the truncated mean on identical events. Count-level joint
     likelihood (filled, primary) and the prespecified pseudo-likelihood with clipping (open),
-    NEMA background (grey diamond, pseudo-likelihood only, no paired bootstrap); 1:1 and 2:1.
+    NEMA background (grey diamond, pseudo-likelihood only, no paired bootstrap). 1:1 and 2:1.
 Review round 6 (2026-10-08): panel (c) names the two estimator families on its axes and marks the
-pooled fixed-effect values on each axis (truncated mean on x; joint and prespecified on y), so the
-doubling reads directly; joint and prespecified points of a tube are drawn 0.2 pp apart.
+pooled fixed-effect values on each axis (truncated mean on x, joint and prespecified on y), so the
+doubling reads directly. Joint and prespecified points of a tube are drawn 0.2 pp apart.
 Data: fig11_realistic_forest.json, fig11_component_shift.json (frozen), comp_joint_ratio.json."""
 import json
 import numpy as np
@@ -43,7 +43,7 @@ for r in R:
 print('eight-tube zero-delay arm from C0; pooled retention', C0['summary']['retention_ivw_c0'])
 
 # pooled numbers quoted in the text (asserted in the PDF): all three estimators refitted on the
-# same 400 paired shard resamples (comp_joint_ratio.json); the frozen analysis gave 9.31 / 1.95 / 4.77.
+# same 400 paired shard resamples (comp_joint_ratio.json). The frozen analysis gave 9.31 / 1.95 / 4.77.
 TM_FE, PUB_FE, JNT_FE = J['hetero_tm']['fe'], J['hetero_pub']['fe'], J['hetero_joint']['fe']
 RAT_PUB, RAT_JNT = J['ratio_pub_over_tm']['point'], J['ratio_joint_over_tm']['point']
 for r in R:
@@ -54,8 +54,8 @@ print(f'TM {TM_FE:.2f}  PUB {PUB_FE:.2f} ({RAT_PUB:.2f}x)  JOINT {JNT_FE:.2f} ({
 print('retention IVW', D['retention_ivw'], D['retention_ivw_err'])
 
 FH = 85
-# Review round 16: panel (a) of v2.15 (rule artifact per region) duplicated Table S14 and is dropped; retention is
-# shown against the corrected-yield zero-delay arm only (the discovery stream is in Note S15); the rule-shift panel
+# Review round 16: panel (a) of v2.15 (rule artifact per region) duplicated Table S14 and is dropped. Retention is
+# shown against the corrected-yield zero-delay arm only (the discovery stream is in Note S15). The rule-shift panel
 # shows the joint likelihood only (the clipped estimator is in Note S11), without fixed-effect pooled markers.
 fig = mm_fig(150, FH)
 yy = np.arange(len(R))[::-1].astype(float)

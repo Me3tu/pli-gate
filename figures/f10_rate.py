@@ -1,16 +1,16 @@
 """Fig. 10 (stem fig10_rate_law): (a) rate replays of two event populations, twelve rungs each:
-the discovery stream (filled; published power-law line, joint-bootstrap exponent band pivoted at the
+the discovery stream (filled, published power-law line, joint-bootstrap exponent band pivoted at the
 rung centroid, per-rung shard-bootstrap errors) and, added in review round 5, the corrected-yield
-zero-delay stream C0 (open; dashed OLS line, joint shard-bootstrap errors), same six tubes, same
-method (2026-10-08_c0_ladder); (b) per-region rule difference per 0.01 in mu for every resolved region of the separately simulated
-configurations (audit round 7b; v2.6 and earlier showed configuration means over the discovery-replay law).
+zero-delay stream C0 (open, dashed OLS line, joint shard-bootstrap errors), same six tubes, same
+method (2026-10-08_c0_ladder). (b) per-region rule difference per 0.01 in mu for every resolved region of the separately simulated
+configurations (audit round 7b, v2.6 and earlier showed configuration means over the discovery-replay law).
 Review round 6 (2026-10-08): the shaded bands are pointwise 95% intervals of the fitted power law from
 the joint shard bootstrap with prefactor and exponent resampled together (2026-10-08_signed_eq3/
 ladder_band.json, same resamples as the exponent intervals), one per stream, replacing the exponent
-interval pivoted at the centroid; the discovery band belongs to the per-shard re-extraction, whose fit
+interval pivoted at the centroid. The discovery band belongs to the per-shard re-extraction, whose fit
 (416 mu^0.997) lies within 1% of the drawn registered line (417 mu^0.999) over the plotted range.
 Review round 13 (2026-10-14): the corrected-yield replay is drawn as the primary population (filled, solid) and the
-discovery replay as the replication (open, dashed); panels (c) and (d) add the known-content test of the randoms
+discovery replay as the replication (open, dashed). Panels (c) and (d) add the known-content test of the randoms
 correction on the corrected-yield replay (2026-10-14_known_randoms/known_randoms_summary.json, a priori acceptance
 readout): (c) randoms-correction error tau(sig - rnd) - tau(G + PA_corr), (d) readout of the genuine triples alone."""
 import json
@@ -20,7 +20,7 @@ from matplotlib.lines import Line2D
 
 d = json.load(open(MF / 'fig10_rate_law.json'))
 L = d['ladder']; rows = L['rows']
-# Code release v1.1.0: 2026-09-30_referee2/ladder_joint/ladder_boot.json was loaded here into (lo, hi) and never used;
+# Code release v1.1.0: 2026-09-30_referee2/ladder_joint/ladder_boot.json was loaded here into (lo, hi) and never used,
 # load removed.
 mu = np.array([r['mu'] for r in rows]); did = np.array([r['did'] for r in rows])
 C0, N0 = np.exp(L['ln_intercept']), L['n_exponent']
@@ -38,7 +38,7 @@ for nm, al in (('corrected', 0.22),):
 rs = LB['streams']['discovery']['folded']
 dev = np.abs(rs['prefactor'] * xx ** rs['exponent'] / (C0 * xx ** N0) - 1).max()
 print(f'discovery re-extraction fit {rs["prefactor"]:.1f} mu^{rs["exponent"]:.4f}; max deviation from drawn line {100*dev:.2f}%')
-# Review round 8: line and points both from the per-shard re-extraction (the analysis estimate); the original
+# Review round 8: line and points both from the per-shard re-extraction (the analysis estimate). The original
 # extraction fit (417 mu^0.999) lies within 1% of this line over the plotted range (printed above).
 # Review round 5: the same replay on the corrected-yield stream C0 (six common tubes)
 CL = RES / '2026-10-08_c0_ladder/ladder_boot_c0.json'
@@ -63,7 +63,7 @@ ax = ax_mm(fig, 107, 70, 41, 47)
 # Audit round 7b (2026-10-08): panel (b) shows the artifact per unit mu region by region, because a
 # configuration-level ratio to the replay law depends on how regions are averaged (inverse-variance against
 # plain means) and on the tube set of the law. Signed rule difference per region (signed_eq3.json for disks,
-# water, NEMA; c0_compare.json for the eight tubes at corrected yield and 388 ps), divided by the
+# water, NEMA, and c0_compare.json for the eight tubes at corrected yield and 388 ps), divided by the
 # configuration's own mu, in percentage points per 0.01 accidental prompts per window. Resolved regions only.
 SE = json.load(open(RES / '2026-10-08_signed_eq3/signed_eq3.json'))['rows']
 CC = json.load(open(F3 / 'c0_sim1/c0_compare.json'))

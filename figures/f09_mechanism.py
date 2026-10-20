@@ -1,12 +1,12 @@
 """Fig. 9 (stem fig6_clinical_mechanism_v2), feedback round 3.
 (a) signed bias of the closest-prompt production readout against the simulated CRT: the eight
     tubes (small dots), their mean joined across the CRT configurations (thick line) and the
-    tube range (light band); zero line.
+    tube range (light band), zero line.
 (b) per tube at 303 ps on identical events, the two corrections as sequential shifts:
     closest-prompt (open) -> all-prompts (filled) -> all-prompts with the measured window
-    acceptance (teal diamond), arrows along each row; mean |bias| of each arm in the panel.
-Data: 2026-10-14_known_randoms/crt_sweep_c0_summary.json (C0, production extractor; review round 13) and
-fig6data/crt_sweep_v3_all.csv (frozen stream, extractor of that stage, grey dashed mean); 2026-09-30_feedback3/c0_sim1/acceptance_tm_c0.json."""
+    acceptance (teal diamond), arrows along each row, mean |bias| of each arm in the panel.
+Data: 2026-10-14_known_randoms/crt_sweep_c0_summary.json (C0, production extractor, review round 13) and
+fig6data/crt_sweep_v3_all.csv (frozen stream, extractor of that stage, grey dashed mean), 2026-09-30_feedback3/c0_sim1/acceptance_tm_c0.json."""
 import csv, json
 import numpy as np
 from common import *  # noqa
@@ -14,14 +14,14 @@ from matplotlib.lines import Line2D
 
 rows = list(csv.DictReader(open(FS / 'fig6data/crt_sweep_v3_all.csv')))   # discovery stream (extractor of that stage)
 # Review round 13 (2026-10-14): panel (a) is the corrected-yield arm C0 with the production extractor
-# (2026-10-14_known_randoms/crt_sweep_c0_summary.json), including noiseless timing; the discovery-stream tube
+# (2026-10-14_known_randoms/crt_sweep_c0_summary.json), including noiseless timing. The discovery-stream tube
 # mean of the prespecified sweep is drawn as a grey dashed line for comparison.
 CS = json.load(open(RES / '2026-10-14_known_randoms/crt_sweep_c0_summary.json'))
 CRTS = [0, 50, 100, 228, 303]
 TUBES = sorted(set(r['roi'] for r in rows))
 # Review round 16: discovery-stream line removed from (a), categorical CRT axis labeled as such, per-tube error
 # bars in (b) (bootstrap sd x 1.30, the run-to-run factor of the Methods, v2.19). Feedback round 3: panel (b) uses the corrected-yield zero-delay arm C0 (identical to the 388 ps arm
-# except for the direct delay); the frozen stream (superseded I3 convention) gave 20.5 -> 6.0 -> 2.2 %.
+# except for the direct delay). The frozen stream (superseded I3 convention) gave 20.5 -> 6.0 -> 2.2 %.
 A = json.load(open(F3 / 'c0_sim1/acceptance_tm_c0.json'))
 A_frozen = json.load(open(R2 / 'acceptance_tm.json'))
 print('frozen stream: mean |bias|', round(A_frozen['closest_sharp_mean_abs'], 2), round(A_frozen['all_sharp_mean_abs'], 2),

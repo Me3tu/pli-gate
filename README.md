@@ -1,4 +1,4 @@
-# PLI-GATE — positronium lifetime physics for GATE
+# PLI-GATE: positronium lifetime physics for GATE
 
 Release v1.1.0, the code release of the paper "Material-dependent positronium
 lifetimes in GATE and prompt-selection bias" (D. Dhar and J. Peter, submitted
@@ -351,10 +351,10 @@ subtraction), read this first. It cost us three runs.
 GATE offers two ways to say how much to simulate:
 
 ```
-# primaries-driven — DO NOT USE for rate-dependent work
+# primaries-driven: DO NOT USE for rate-dependent work
 /gate/application/setTotalNumberOfPrimaries 250000000
 
-# time-driven — use this
+# time-driven: use this
 /gate/source/mysource/setActivity 1.0e6 becquerel
 /gate/application/setTimeStop 2.2 s
 ```

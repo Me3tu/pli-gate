@@ -1,7 +1,7 @@
 #!/bin/bash
 # SPDX-License-Identifier: LGPL-3.0-only
 # Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
-# v1.1.0: locations from the environment; preparing SRC is described in integration/PATCH_NOTES.md
+# v1.1.0: locations from the environment. Preparing SRC is described in integration/PATCH_NOTES.md
 PKG="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 source "${PLI_ENV_SCRIPT:-$PKG/simulation/runner/env_example.sh}" >/dev/null 2>&1
 SRC=${GATE_INFLIGHT_SRC:?set GATE_INFLIGHT_SRC to a GATE 9.4.1 tree prepared with install_into_gate.sh and gate-inflight-stock.patch}

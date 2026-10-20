@@ -4,7 +4,7 @@ known accidental content, at twelve accidental rates, on the corrected-yield zer
 
 Construction. The rate replay of 2026-10-08_c0_ladder (ladder_joint_c0.py) is repeated with the published
 clinical extractor logic (sim1_extract.clinical_per_shard, re-implemented here line by line so that each triple
-keeps the indices of its three singles; the signal and randoms histograms are checked bin for bin against
+keeps the indices of its three singles, and the signal and randoms histograms are checked bin for bin against
 ladder_joint_hists.npz). Compressing the decay epochs (t_new = t0/k + (t - t0) per eventID group) injects
 accidental prompts and accidental pairs at a known rate while every decay keeps its own internal timing, so the
 content of the signal window is known for every triple from the event identity of its three singles, which is

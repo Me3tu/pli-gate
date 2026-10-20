@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: LGPL-3.0-only
 # Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
 # ============================================================================
-# run_gate_parallel_musire.sh — parallel time-fragmented GATE runner
+# run_gate_parallel_musire.sh: parallel time-fragmented GATE runner
 #
 # Pattern: J. Peter's Musiré (PetFragmentTimeSec + RunSimulation).
 # Splits a time-based GATE macro into K time-fragmented per-proc macros and
@@ -26,13 +26,13 @@
 #                         T/K simulated seconds. Macro must have
 #                         /gate/application/setTimeStop and setTimeSlice.
 #   --total-primaries N : event-based macros (VIPman-style). Each thread
-#                         runs floor(N/K) primaries; the (N mod K) extras
+#                         runs floor(N/K) primaries. The (N mod K) extras
 #                         are distributed one-per to the lowest-numbered
 #                         shards. Macro must have setTotalNumberOfPrimaries.
 #
 # Behaviour (both modes):
 #   1. setEngineSeed is forced to 1_000_000 + batch_id*1000 + thread_id
-#      (no `auto`).  --batch-id defaults to 0; pass distinct integers from
+#      (no `auto`).  --batch-id defaults to 0. Pass distinct integers from
 #      a multi-batch caller (e.g. run_nema_500M_batched.sh) so successive
 #      batches do not reproduce identical events.
 #   2. /gate/output/root/setFileName and any /gate/actor/.../save lines
@@ -81,7 +81,7 @@ done
 [[ -z "$OUTPUT_DIR" ]] && { echo "ERROR: --output-dir required" >&2; exit 2; }
 [[ ! -f "$MACRO" ]]    && { echo "ERROR: macro not found: $MACRO" >&2; exit 2; }
 
-# --batch-id must be a non-negative integer; thread_id ≤ 999 to keep the
+# --batch-id must be a non-negative integer, and thread_id ≤ 999 to keep the
 # (batch_id*1000 + thread_id) seed offset collision-free across batches.
 if ! [[ "$BATCH_ID" =~ ^[0-9]+$ ]]; then
     echo "ERROR: --batch-id must be a non-negative integer (got '$BATCH_ID')" >&2
@@ -136,7 +136,7 @@ if ! command -v hadd >/dev/null; then
 fi
 
 # PLI_MATERIALS_JSON: passthrough if exported, else auto-detect by macro path.
-# VIPman macros need the extended materials JSON (17 atlas tissues + LSO/PTFE);
+# VIPman macros need the extended materials JSON (17 atlas tissues + LSO/PTFE):
 # without it, GATE falls back to scalar I3=0.35 for atlas tissues, which is OK
 # for wallclock calibration but wrong for production physics.
 if [[ -z "${PLI_MATERIALS_JSON:-}" ]]; then
@@ -200,11 +200,11 @@ make_shard_macro() {
     local tag             # zero-padded
     tag=$(printf "%04d" "$i")
     # Seed = 1_000_000 + batch_id*1000 + thread_id.  --batch-id varies
-    # across calls in a multi-batch loop; thread_id (i, 1..K) varies inside
+    # across calls in a multi-batch loop, and thread_id (i, 1..K) varies inside
     # one call.  Each batch therefore gets an independent random stream.
     # Without the batch_id term, repeated invocations re-use the same K
     # seeds and a time-based macro (NEMA-style with fixed setTimeStop)
-    # produces 32 byte-identical copies — see findings.md of session
+    # produces 32 byte-identical copies. See findings.md of session
     # 2026-04-26_0956 for the original failure mode.
     local seed=$((1000000 + BATCH_ID * 1000 + i))
     local out="$OUTPUT_DIR/sim-${tag}"
@@ -269,13 +269,13 @@ shard_run() {
     local log="$OUTPUT_DIR/sim-${tag}.log"
     # IMPORTANT: BOUNDED_HIGH = BOUNDED_MAX (no soft throttle).
     # The default 90% HIGH causes catastrophic slowdown when per-proc RSS
-    # nudges above HIGH but below MAX — kernel enters aggressive
+    # nudges above HIGH but below MAX: kernel enters aggressive
     # __mem_cgroup_handle_over_high reclaim and locks procs in state D
-    # for hours. Setting HIGH=MAX disables soft throttle; OOM-kill at
+    # for hours. Setting HIGH=MAX disables soft throttle. OOM-kill at
     # MAX is the only memory cap. Lesson: session 2026-04-25_1057 lost
     # ~5h to this on Run B (K=5, M=10M, MAX=11G, HIGH=9G).
     # PLI_LIFETIME_LOG defaults to 1 (preserves prior production behaviour).
-    # Caller may export PLI_LIFETIME_LOG=0 to skip oracle log emission —
+    # Caller may export PLI_LIFETIME_LOG=0 to skip oracle log emission,
     # important when the simulation has a high-activity small-volume source
     # (e.g. Steinberger 2026-06-22 disks at 2.5 MBq × 60s × dense glass
     # → 2.5M PLI_LIFETIME lines/shard ≈ 170 MB log + 20-min stall on log I/O).
@@ -321,7 +321,7 @@ ls -la "$MERGED" | tee -a "$RUN_LOG"
 
 # ---------------------------------------------------------------- verify
 # Count Coincidences entries in each shard and the merged file (using python
-# uproot — lightweight and present in the project venv).
+# uproot, lightweight and present in the project venv).
 verify_python() {
     python3 - "$@" <<'PY'
 import sys

@@ -1,9 +1,9 @@
 """Fig. 6 (stem fig4_brain_tumor), post-correction.
-(a) MLEM activity, central 4 mm slice; activity-derived ROIs solid, configured
-    insert positions faint dashed; (b) per-voxel Delta tau = tau-hat - <tau_bg>
-    on the central 8 mm slice, diverging scale centred at 0; (c) contrast
+(a) MLEM activity, central 4 mm slice, activity-derived ROIs solid, configured
+    insert positions faint dashed. (b) per-voxel Delta tau = tau-hat - <tau_bg>
+    on the central 8 mm slice, diverging scale centred at 0. (c) contrast
     tau_ROI - tau_bg vs diameter, configured contrast dashed, 8 mm marked as not
-    localized. Data: 2026-08-16_fig4_rebuild; W3 activity ROIs; cluster geometry."""
+    localized. Data: 2026-08-16_fig4_rebuild, W3 activity ROIs, cluster geometry."""
 import json
 import numpy as np
 import scipy.ndimage as ndi
@@ -12,7 +12,7 @@ from common import *  # noqa
 from matplotlib.lines import Line2D
 
 SESS = RES / '2026-08-16_fig4_rebuild'
-# Code release v1.1.0: 2026-08-13_overnight/W3_detection_sigma/w3_activity_rois.json was loaded here but never used; load removed.
+# Code release v1.1.0: 2026-08-13_overnight/W3_detection_sigma/w3_activity_rois.json was loaded here but never used. Load removed.
 meta = json.load(open(SESS / 'tau_voxel_map_8mm.json')); TAU_BG = meta['tau_bg_global']
 TRUTH = [dict(r=4, cx=-66), dict(r=8, cx=-49), dict(r=12, cx=-24), dict(r=16, cx=9), dict(r=20, cx=50)]
 # Review round 17: regions redefined on the corrected-yield reconstruction (2026-10-19_review16/brain_corrected_rois.py,

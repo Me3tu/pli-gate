@@ -5,7 +5,7 @@ The published w20_apriori.json had no script on disk (inventory flag F2). This s
 (1) sigma_geo, the a priori path-length spread of the box variable, with the method and the frozen detector model of
     2026-08-23_acceptance/sigma_geo.py (hit_distance, C) and 2026-08-26_A2_cond2/sigma_geo_sim1.py: source uniform in a
     water cylinder, isotropic pair axis and independent isotropic prompt, all three photons inside the axial
-    acceptance, 2e6 decays; one generator, seed 20261019, used in turn for the 20 mm cylinder (R 10 mm, half length
+    acceptance, 2e6 decays. One generator, seed 20261019, used in turn for the 20 mm cylinder (R 10 mm, half length
     150 mm), the 20 cm cylinder (R 100 mm, half length 150 mm) and the geometry of sigma_geo.py (R 25 mm, 150 mm).
     sigma_e = hypot(sigma_geo, sigma_t / sqrt 2) with sigma_t = 90.9 ps (64.3 ps pair-timing term).
 (2) The windowed-moment readout of VOI_15x25 inverted with the acceptance of width sigma_e (20 cm), next to the
@@ -13,7 +13,7 @@ The published w20_apriori.json had no script on disk (inventory flag F2). This s
     w20_extract.py (its definitions are executed unchanged from that file).
     Without arguments: the all-prompts per-shard histograms are those of the production all-prompts subset
     (|s| <= 5 ns, all truth classes) stored in 2026-10-20_review18/w20_edge_hists.npz, identical to the w20_extract
-    histograms in the (1, 5) ns fit window; the closest-prompt histograms were not kept, so the closest-prompt point
+    histograms in the (1, 5) ns fit window. The closest-prompt histograms were not kept, so the closest-prompt point
     value is obtained from the windowed mean recovered from the stored sharp readout (w20_extract.json) and its
     bootstrap uncertainty is not computed (null).
     With the eight batch files as arguments (raw singles, see analysis/README.md), both rules are rebuilt from the
@@ -27,7 +27,7 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 RES = Path(os.environ.get("PLI_RES") or Path(__file__).resolve().parents[2])
 sys.path.insert(0, str(RES / "2026-08-23_acceptance"))
-from sigma_geo import hit_distance, C  # noqa: E402  (the frozen detector model; the module prints its own table)
+from sigma_geo import hit_distance, C  # noqa: E402  (the frozen detector model, and the module prints its own table)
 
 SIG_T_PAIR = 0.0909 / np.sqrt(2.0)
 TAU_CFG, TAU_STEINBERGER = 1.84, 1.815

@@ -3,11 +3,11 @@
 the PRODUCTION clinical extractor (sim1_extract.clinical_per_shard, unchanged apart
 from the delay function), full Sim-1 (128 shards), both matching rules.
 
-Conventions (p_ann = TOF point, label-symmetric; dp = prompt path from p_ann):
+Conventions (p_ann = TOF point, label-symmetric, and dp = prompt path from p_ann):
   photon-1   : (t1 - |p1-p_ann|/c) - (tp - dp/c)            [production]
   photon-2   : (t2 - |p2-p_ann|/c) - (tp - dp/c)
   symmetric  : ((t1+t2)/2 - |p1-p2|/(2c)) - (tp - dp/c)      [exchange-invariant]
-For a TOF point between the two hits all three are algebraically identical; they
+For a TOF point between the two hits all three are algebraically identical. They
 differ only when the TOF point falls outside the chord.
 
 Output: photon_conventions.npz with hist[shard, conv, rule, voi+1, sig/rand, bin]

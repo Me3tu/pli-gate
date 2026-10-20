@@ -1,4 +1,4 @@
-"""Phase 3n PART 2 — TOF P_ann positron-escape filter for phantom triples.
+"""Phase 3n PART 2: TOF P_ann positron-escape filter for phantom triples.
 
 Removes triples whose TOF-derived annihilation position is too far from
 the per-event truth source position. Intended for phantom geometries
@@ -12,11 +12,11 @@ SCOPE LIMITATION
 ================
 This filter is **phantom-specific**. It requires per-event discrete
 source positions, which exist in `triples_truth_*.h5` for Sim 1 / Sim 2
-but are meaningless for VIPman recons (voxelized activity distribution;
+but are meaningless for VIPman recons (voxelized activity distribution,
 no per-event "source"). For VIPman, positron escape is sufficiently
 small (< 1 % per Phase 3k cross-isotope check) that the filter is
-unnecessary; if needed, a different criterion such as
-`P_ann ∈ patient body` via µmap intersection would be required —
+unnecessary. If needed, a different criterion such as
+`P_ann ∈ patient body` via µmap intersection would be required, and
 that is Phase 3p territory.
 
 USAGE
@@ -28,7 +28,7 @@ USAGE
         --output-detector   PATH_OUT_DETECTOR.h5 \\
         --output-truth      PATH_OUT_TRUTH.h5
 
-    # report only (no write); useful for R_cut sweeps
+    # report only (no write), useful for R_cut sweeps
     python reconstruction/filter_triples_tof_pann.py \\
         --triples-detector PATH --triples-truth PATH \\
         --r-cut 75.0 --report-only
@@ -40,14 +40,14 @@ Suggested: ``<input_stem>_rcut075mm.h5`` alongside the input.
 R_cut DEFAULT: 75 mm
 ====================
 Brackets a 7-mm tube radius + ~4σ TOF blur (σ_LOR ≈ 19 mm from CRT
-247 ps FWHM). Loose enough to keep TOF-noise-broadened in-tube events;
+247 ps FWHM). Loose enough to keep TOF-noise-broadened in-tube events,
 tight enough to cut LSO-ring escapes (radius ≈ 393 mm) and most
 air-gap escapes. See Phase 3m findings.md for the empirical motivation.
 
 SIZE LIMIT
 ==========
 Single-batch in-memory read is acceptable up to ~50 M triples per H5
-(~few GB peak). Beyond that, chunked I/O would be needed; not yet
+(~few GB peak). Beyond that, chunked I/O would be needed. Not yet
 implemented because no phantom currently exceeds that scale (Sim 1 =
 3.1 M, Sim 2 = 2.1 M, Phase 2e VIPman time-grouped = 24.6 M).
 """
@@ -58,7 +58,7 @@ import numpy as np
 from pathlib import Path
 
 C_MM_NS = 299.792458
-GATE_TIME_SCALE_NS = 1e9   # GATE singles "time" is in seconds; × 1e9 → ns
+GATE_TIME_SCALE_NS = 1e9   # GATE singles "time" is in seconds, × 1e9 → ns
 
 
 def detect_time_units(t1_raw, t2_raw):
@@ -73,7 +73,7 @@ def detect_time_units(t1_raw, t2_raw):
     raw_med = float(np.median(raw_dt))
     print(f"  startup sanity: median |t1 - t2| (raw H5 units) = {raw_med:.4e}")
     if raw_med < 1e-7:
-        # Far below 100 ns; consistent with seconds-storage (typical
+        # Far below 100 ns, consistent with seconds-storage (typical
         # 1.5e-10 to 4e-10 for the phantoms we run). Apply × 1e9
         # conversion.
         print(f"  → interpreted as SECONDS; applying × {GATE_TIME_SCALE_NS:.0e} → ns "

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: LGPL-3.0-only
 # Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
-"""Lu-176 LSO background injection — post-processing merge into phantom singles.
+"""Lu-176 LSO background injection: post-processing merge into phantom singles.
 
 Reads a phantom GATE singles ROOT (or HDF5 dump) and a Lu-176 standalone
 singles ROOT, time-aligns them by treating the Lu-176 stream as a continuous
@@ -39,13 +39,13 @@ Time alignment:
     phantom timeline, we sample
         N_bg_inject = N_bg × (T_phantom / T_bg)
     from the bg singles uniformly with replacement (Poisson-sampling with
-    unit-mean rate; if N_bg >> N_bg_inject we sample without replacement
+    unit-mean rate. If N_bg >> N_bg_inject we sample without replacement
     instead). Times of selected bg singles are uniformly redistributed over
     [0, T_phantom].
 
 The module exposes:
-    inject(phantom_path, bg_path, output_path, ...) — main entry
-    _PhantomReader / _BgReader                       — small helpers
+    inject(phantom_path, bg_path, output_path, ...): main entry
+    _PhantomReader / _BgReader:                       small helpers
 """
 from __future__ import annotations
 
@@ -149,8 +149,8 @@ def _load_root_singles(path: Path,
     f = uproot.open(path)
     s = f["Singles"]
     # All branches loaded eagerly. For very large bg streams (>100 M
-    # singles), prefer chunked iteration — but the LSO bg target is
-    # ≤250 M and ~12.5 GB raw which fits on this machine; a future
+    # singles), prefer chunked iteration, but the LSO bg target is
+    # ≤250 M and ~12.5 GB raw which fits on this machine. A future
     # optimisation can chunk if needed.
     arrs = {b: s[b].array(library="np") for b in SINGLES_BRANCHES if b in s.keys()}
     # Defensive default-fill for missing branches (older GATE configs may
@@ -326,7 +326,7 @@ def _make_synthetic_singles(path: Path, n: int, T_sim_s: float,
     Energy is in MeV (matching GATE convention).
     Time is uniform on [0, T_sim_s].
     eventID is monotonic increasing (one decay per integer).
-    Position fields are zero — we only care about time/energy/eventID for
+    Position fields are zero: we only care about time/energy/eventID for
     dry-run validation of the inject algebra and downstream extraction.
     """
     import h5py

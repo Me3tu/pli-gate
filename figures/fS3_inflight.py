@@ -2,12 +2,12 @@
 in-flight annihilation on the headline observables.
 (a) physics level, 1e6 44Sc positrons at a water/adipose interface: annihilation-delay spectrum
     of the shipped list and of the hybrid list (stock in-flight annihilation kept, custom
-    processes at rest); lower strip: hybrid/shipped per 0.5 ns with the expectation 1 - f_inflight.
+    processes at rest). Lower strip: hybrid/shipped per 0.5 ns with the expectation 1 - f_inflight.
 (b) photon energies of the in-flight annihilations (hybrid list), 44Sc and 124I, per photon, with
     the tight annihilation window 481-541 keV and the prompt window 1100-1200 keV.
 (c) full GATE chain, eight-tube phantom at 388 ps, hybrid minus shipped per tube, in pp of the
     configured lifetime: truth-grouped lifetime, all-prompts and closest-prompt truncated-mean
-    lifetimes, and the rule artifact Delta|b|; independent-arm errors; pooled values below.
+    lifetimes, and the rule artifact Delta|b|. Independent-arm errors, pooled values below.
 (d) relative change of the count observables against the ranges registered before the run
     (REGISTERED_INFLIGHT.md): 511-window singles, prompt-window singles, prompt competition mu,
     genuine triples (mean over tubes, range as bar), and the physics-level delayed yield.

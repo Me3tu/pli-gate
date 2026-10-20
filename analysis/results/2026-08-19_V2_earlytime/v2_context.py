@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""V2 support — the three context numbers the registered DiD does not carry.
+"""V2 support: the three context numbers the registered DiD does not carry.
 
 1. Prediction 1 asked whether the ABSOLUTE bias worsens. Bias has to be
    measured against a comparison axis, and the right one is each arm's OWN
@@ -8,7 +8,7 @@
    comparing arm B to 1.84 would score the model change as if it were bias.
 2. The artefact is quoted in ns, but both arms' tau differ by ~0.55 ns, so an
    absolute shrinkage is not the same statement as a fractional one. Both are
-   reported; the ABSOLUTE one is what was registered.
+   reported. The ABSOLUTE one is what was registered.
 3. Prediction 2's mechanism said the artefact should fall by the fractional
    growth of the fit-window genuine count. That is a testable number.
 """

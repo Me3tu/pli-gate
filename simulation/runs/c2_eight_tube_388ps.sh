@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: LGPL-3.0-only
 # Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
 # C2: Sim-1 eight tubes under PLI_DIRECT_TAU_PS=388.
-# Same macro, activity, digitizer and thread pattern as the frozen 0 ps arm;
+# Same macro, activity, digitizer and thread pattern as the frozen 0 ps arm:
 # the two arms differ ONLY in the direct-annihilation delay.
 #
 # CONVERTER WINDOW (decision, 2026-08-24): keep the FULL digitizer band with no
@@ -19,7 +19,7 @@ L=$PLI_OUT/results/2026-08-24_C2_sim1_388
 OUT=$PLI_OUT/c2_sim1_388
 MACRO=$PLI_SIM/macros/eight_tube_sc44.mac
 # PRIMARIES mode. The Sim-1 macro carries setTotalNumberOfPrimaries, so the
-# runner must be driven with --total-primaries; --total-time-sec patches only
+# runner must be driven with --total-primaries: --total-time-sec patches only
 # setTimeStop/setTimeSlice and leaves the primary count intact, which is how
 # six launches ended up asking each shard for 250,000,000 primaries.
 NBATCH=${NBATCH:-10}

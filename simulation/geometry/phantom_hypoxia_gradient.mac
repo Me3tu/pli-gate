@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: LGPL-3.0-only
 # Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
 # ==============================================================================
-# Hypoxia gradient phantom — Phase 3.4
+# Hypoxia gradient phantom: Phase 3.4
 # ==============================================================================
 #
 # Five tumor inserts (identical composition to TumorTissue) at five
@@ -17,17 +17,17 @@
 #       20       TumorTissue_pO2_20   1.919549       -0.451 ps
 #       40       TumorTissue_pO2_40   1.917745       -2.255 ps
 #
-# Total spread across all 5 regions: 3.43 ps — compared to the Quadra's
+# Total spread across all 5 regions: 3.43 ps, compared to the Quadra's
 # 214 ps CRT. Signal/resolution = 1.6 %. This is the paper's quantitative
 # negative result: pO2 imaging at physiological pO2 on a LAFOV PET
 # scanner is infeasible regardless of the physics model used.
 #
 # Geometry (X axis, Y = Z = 0):
-#   x=-60 mm    TumorTissue_pO2_2     (most hypoxic; longest tau)
+#   x=-60 mm    TumorTissue_pO2_2     (most hypoxic, longest tau)
 #   x=-30 mm    TumorTissue_pO2_6
 #   x=  0 mm    TumorTissue_pO2_10
 #   x=+30 mm    TumorTissue_pO2_20
-#   x=+60 mm    TumorTissue_pO2_40    (most oxygenated; shortest tau)
+#   x=+60 mm    TumorTissue_pO2_40    (most oxygenated, shortest tau)
 # Inserts: r=15 mm spheres. 30 mm center-to-center pitch, contained
 # inside the 100 mm water cylinder body.
 #

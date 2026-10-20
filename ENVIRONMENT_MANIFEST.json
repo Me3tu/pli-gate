@@ -158,21 +158,21 @@
       "custom_physics/include/PLIConstants.hh (included by nothing)"
     ],
     "shipped_sha256": {
-      "custom_physics/src/G4PositroniumAnnihilation.cc": "6c8e5de0e495f879de49ec715a0378cb4919c28809c9274081a2a1ffb8be3382",
-      "custom_physics/src/G4PsAtRestProcess.cc": "0b4a9b81a263e1bef4f7300a2f26cd6d5a50c96c8f27aed09c2d259b31f003ad",
-      "custom_physics/src/PLIMaterialLoader.cc": "1af81385c0a32e7b8f3b5fde8c104e376d458491c113422cbb186baf16bba66f",
-      "custom_physics/src/PLIOrePowell.cc": "7ce925d98df6bf46adcdcdd2e69d1f6e83207666fc7114510d3f069662b204d7",
-      "custom_physics/src/PLIPhysicsList.cc": "38c9fbc90d5c61b135df422e21da53972cbfed609f692acba0d64186f9361f0a",
+      "custom_physics/src/G4PositroniumAnnihilation.cc": "185ec5deed10a91a40dd950a95287924998f68616d1fab719f255e0e270b9cc9",
+      "custom_physics/src/G4PsAtRestProcess.cc": "1293d2470175a9fdf783bb5b71409f4b2156525416a8b8c1f2616fc39a228d51",
+      "custom_physics/src/PLIMaterialLoader.cc": "162d677903efcc67f9125a061c520e62573d172065d0bfd525ac066be9d5567a",
+      "custom_physics/src/PLIOrePowell.cc": "831743b0aefed58686ba6a476ea4798a7a99fb5e1e4544b1a6c661f122c0c39b",
+      "custom_physics/src/PLIPhysicsList.cc": "5a5136caab0f0de18cd5049467dc07d74fcc1c5bd02d8b8cf40738a8253be30c",
       "custom_physics/src/PLISteppingAction.cc": "7a741fbcc6e15571e6499a593e531d94fb67d44edd38a570a15468e7b8d7bf3f",
-      "custom_physics/include/G4PositroniumAnnihilation.hh": "6e0a4f715e2d2fe3d404e8f287d7d2ba140030383b991c3ad972bd7bbaf3cd3e",
-      "custom_physics/include/G4PsAtRestProcess.hh": "262d40c23850868f3b9d4f0379724f7803ae4711c051ad0a6cda39f3d646918c",
+      "custom_physics/include/G4PositroniumAnnihilation.hh": "63e9cd61f10fff491aa6a00b18c49b42594ded9406082baba60559f5aaa182f3",
+      "custom_physics/include/G4PsAtRestProcess.hh": "3befb8de901e067368f4a24c756142fb2368cf59dce52ad13d3a02d0ce70579f",
       "custom_physics/include/PLIConstants.hh": "95a8add4246ec5c6621fe82f1aec07ff32307fff98c37a2a3604e3451d262b04",
-      "custom_physics/include/PLIMaterialLoader.hh": "4b2e8498822e4502127346bd29662311e30044808007045b8745f8791d64121c",
-      "custom_physics/include/PLIOrePowell.hh": "a207c731d3a0d1dde31c955f4f450d64beab1670d72245785ac251408d2c3d35",
+      "custom_physics/include/PLIMaterialLoader.hh": "0713faca5d4b1b21bb2477570398b575d331a58a81ab2d0ca1f547fde11bd655",
+      "custom_physics/include/PLIOrePowell.hh": "1374c589b94ef1c5b1300088bd15ac8e1f00a29bc236d54b4f0fc008e3fa8a0c",
       "custom_physics/include/PLIPhysicsList.hh": "829dd2a83a40659a19d84cff903e4429f4b8d375797dfeab04aad1356e54bbe9",
       "custom_physics/include/PLISteppingAction.hh": "b4a9425fe45da051a1d6a72b0bdadad4d9dca027ebe84e72f52566f2c162dc1e"
     },
-    "shipped_note": "The text is that of v1.0.1 with two comment lines added at the top (SPDX licence identifier and copyright). Removing them gives the v1.0.1 file: tail -n +3 <file> | sha256sum.",
+    "shipped_note": "The code is that of v1.0.1. Two comment lines were added at the top (SPDX licence identifier and copyright), and in the comments of 12 files em dashes and semicolons were replaced by colons, commas, parentheses or periods. Stripping comments from a shipped file and from its v1.0.1 version gives the same text, and the release build gives the object files listed under object_identity.",
     "v1_0_1_sha256": {
       "custom_physics/src/G4PositroniumAnnihilation.cc": "3877f4dac9a8e62104c40ddc951ba9843dffa7e2e5d9a5fbc84e00f9045863c2",
       "custom_physics/src/G4PsAtRestProcess.cc": "ee7b65106db8a485b65af4e3d1e7ae8bcef5a56c5b78b8c3b6dfbc4ebbc30c78",
@@ -253,10 +253,10 @@
       "conclusion": "the shipped physics sources are code-equivalent to the physics compiled into e37be8b4 and cc552a68"
     },
     "tests_and_build_files_sha256": {
-      "custom_physics/CMakeLists.txt": "75863878bda9743175b106fe9517364333499b60276cb763a0cf017cee143db8",
+      "custom_physics/CMakeLists.txt": "27f8a35c9a4b30a7f5d18e9402eb5df432551e7605412c0cd5cf9e25ffb80351",
       "custom_physics/cmake/PLICustomPhysicsConfig.cmake.in": "757ea922dbb7b9ee89dbb8799862bbe7a0f343057b91f489cd6fe12e37f36b2a",
-      "custom_physics/tests/test_load.cc": "9e7bdc84ab588003c6fe8549c13902d867a62700bda8411ae8c2c08ed125a797",
-      "custom_physics/tests/test_orepowell.cc": "7def7fdd95673c47ed17986f6de5dbfc681fdab05ad04bc18745ff30ddce2fd8"
+      "custom_physics/tests/test_load.cc": "192c0bea3ba4eaba6bae7cf96cbf82cae93899627540f6a7a785ad817dcf62d8",
+      "custom_physics/tests/test_orepowell.cc": "e0c61fcd00c2e9ff24b3ae13d5dff5185ea9c57a3f6c3404312cb610cd8d08fc"
     }
   },
   "variant": {

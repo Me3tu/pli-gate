@@ -6,8 +6,8 @@ of the 20 mm cylinder (VOI_15x25, sharp readout, all-prompts): steinberger_extra
 same sequential RNG seed, 50 ps histograms, fit window 1 to 5 ns, windowed-moment inversion
   (i) sharp edge (production), (ii) acceptance measured on the same dataset's randoms arm, (iii) a priori 359 ps,
 and a shard bootstrap (4 x 250 resamples, seed 11). Only the geometry differs: VOIs and phantom outline scaled from
-the 20 mm design to the published 20 cm cylinder (VOI diameters 5, 10, 15 cm; lengths unchanged 15, 20, 25 cm).
-Usage: w20_extract.py <singles.h5> [<singles.h5> ...]   (one file per batch; shards are taken per file)
+the 20 mm design to the published 20 cm cylinder (VOI diameters 5, 10, 15 cm, lengths unchanged 15, 20, 25 cm).
+Usage: w20_extract.py <singles.h5> [<singles.h5> ...]   (one file per batch, and shards are taken per file)
 Writes w20_extract.json next to this script."""
 import json, os, sys
 from pathlib import Path

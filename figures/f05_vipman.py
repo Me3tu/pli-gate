@@ -1,12 +1,12 @@
 """Fig. 5 (stem fig3_vipman_axial), post-correction O4 triples (the binary of
 every other result), no truth in any selection step.
-(a) MLEM activity (4 mm, the two 4 mm slices inside the 8 mm slice averaged);
+(a) MLEM activity (4 mm, the two 4 mm slices inside the 8 mm slice averaged).
 (b) per-voxel tau-hat at 8 mm (Table 4 estimator: mean(tau-1 | tau>1)), scale
-    1.7-2.6 ns, voxels with N<30 masked;
-(c) per-voxel counting-statistics scale tau-hat/sqrt(N) (ps);
+    1.7-2.6 ns, voxels with N<30 masked.
+(c) per-voxel counting-statistics scale tau-hat/sqrt(N) (ps).
 (d) per tissue, paired: the full chain at 8 mm (filled) against the same estimator and
     aggregation applied to truth-tagged annihilations without any detector or reconstruction
-    step (open); the vertical distance is the contribution of detection and reconstruction.
+    step (open). The vertical distance is the contribution of detection and reconstruction.
     The 4 and 6 mm values are in Supplementary Table S2 (feedback round 3).
 The 8 mm tau-hat map is read from a cache written from the same triples
 (2026-09-30_feedback3/figdata/vipman_tau8_cache.npz) when present."""
@@ -43,9 +43,9 @@ Z8, Z4 = 5, [10, 11]
 EXT = (-280, 280, -140, 140)
 # Review round 17 (second report, Sec. 8): panel (a) shows the MLEM reconstruction of the corrected-yield acquisition
 # (2026-10-19_review16/vipman_recon_O4, simple_recon single, 4 mm, 10 iterations, the settings of recon_phase3q),
-# central two 4 mm slices; the support mask is identical.
+# central two 4 mm slices. The support mask is identical.
 # Code release v1.1.0: the slice is read in float32 from 2026-10-20_review19/vipman_slice/vipman_O4_slice.npz
-# (written by make_vipman_slice.py in that folder from vipman_recon_O4/activity_x.npy); the figure in the submitted
+# (written by make_vipman_slice.py in that folder from vipman_recon_O4/activity_x.npy). The figure in the submitted
 # paper was drawn from an 8-bit quantized transfer of the same slice (2026-10-19_review16/vipman_O4_slice.npz).
 # The recon_phase3q activity, previously loaded here and then overwritten by this slice, is no longer read.
 _V = np.load(RES / '2026-10-20_review19/vipman_slice/vipman_O4_slice.npz')
@@ -54,7 +54,7 @@ act_z = np.where(_V['sup2'].any(axis=2), _V['act_z'], np.nan).T
 sup_z = sup4[:, :, Z4].any(axis=2).astype(float).T
 # body support at 8 mm (any 4 mm support voxel in the 2x2x2 block). Lifetime and
 # uncertainty are shown inside the reconstructed body support only (TOF-blurred
-# placement puts a thin, low-count rim of events outside it); voxels inside the
+# placement puts a thin, low-count rim of events outside it). Voxels inside the
 # body without an estimate (N<30) would be drawn grey, outside the body white.
 sup8 = sup4.reshape(70, 2, 35, 2, 10, 2).any(axis=(1, 3, 5))
 out_rim = valid[:, :, Z8] & ~sup8[:, :, Z8]

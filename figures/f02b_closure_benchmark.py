@@ -1,17 +1,17 @@
 """Fig. 2 (stem fig2_closure_benchmark), review round 16: Secs. 3.1 and 3.2 of v2.15 merged into one figure.
 (a) signed closure residual per calibration tube (panel (a) of the former fig2_recipe_validation), error bars
-    multiplied by 1.30, the measured run-to-run factor of the three-seed study (Methods); the exploratory trend panel is dropped.
+    multiplied by 1.30, the measured run-to-run factor of the three-seed study (Methods). The exploratory trend panel is dropped.
 (b) the 124I benchmark per sample (panel (b) of the former fig12_replication): published lifetime with its published
-    uncertainty, this work under all-prompts and closest-prompt matching; the statistical part of each error bar of
+    uncertainty, this work under all-prompts and closest-prompt matching. The statistical part of each error bar of
     this work is multiplied by 1.30 and combined with half the endpoint spread, and z is recomputed with it.
-Data: fig2_recipe_validation.json; 2026-10-08_replication_330/repl_sig0.3306.json."""
+Data: fig2_recipe_validation.json, 2026-10-08_replication_330/repl_sig0.3306.json."""
 import json
 import math
 import numpy as np
 from common import *  # noqa
 from matplotlib.lines import Line2D
 
-INFL = 1.30   # measured run-to-run factor (Methods), v2.19; was 1.8
+INFL = 1.30   # measured run-to-run factor (Methods), v2.19 (was 1.8)
 d = json.load(open(MF / 'fig2_recipe_validation.json'))
 T = d['tubes']
 NM = {'water_shibuya2020_n2': 'water (N$_2$-saturated)', 'adipose_avachat2024': 'adipose',

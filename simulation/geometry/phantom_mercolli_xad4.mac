@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: LGPL-3.0-only
 # Copyright (C) 2026 Dhritman Dhar and German Cancer Research Center (DKFZ)
 # ==============================================================================
-# Mercolli 2025a XAD-4 reproduction phantom — Phase 3.3
+# Mercolli 2025a XAD-4 reproduction phantom: Phase 3.3
 # ==============================================================================
 #
 # Reproduces the 4-tube "separated" configuration from
@@ -37,7 +37,7 @@
 #   x=+15 mm    T3 XAD4_gelatin
 #   x=+45 mm    T4 XAD4_water     (right-most)
 # All tubes r=6 mm (12 mm ID, standard chemistry tube), h=45 mm.
-# 30 mm center-to-center pitch, 18 mm edge-to-edge gap — comfortably
+# 30 mm center-to-center pitch, 18 mm edge-to-edge gap, comfortably
 # resolvable at the Quadra's ~4-5 mm FWHM.
 #
 # Sensitive-detector attachment is done by the simulation macro after
