@@ -383,9 +383,9 @@ study ran in primaries mode (`simulation/README.md`).
 
 ## Citation
 
-See `CITATION.cff`. The releases are archived at Zenodo,
-https://doi.org/10.5281/zenodo.23495807 (all versions, resolves to the latest),
-v1.1.0 at https://doi.org/10.5281/zenodo.23495808. The paper is submitted: D. Dhar and J. Peter,
+See `CITATION.cff`. Release v1.1.1 is archived at Zenodo,
+https://doi.org/10.5281/zenodo.23507052 (all versions, resolving to the latest:
+https://doi.org/10.5281/zenodo.23495807, v1.1.0: https://doi.org/10.5281/zenodo.23495808). The paper is submitted: D. Dhar and J. Peter,
 "Material-dependent positronium lifetimes in GATE and prompt-selection bias",
 Physics in Medicine and Biology (submitted). The paper reference will be
 added on publication.
