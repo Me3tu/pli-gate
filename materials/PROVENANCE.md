@@ -98,9 +98,9 @@ copies still give (the Mahmoud 2024 and Zgardzinska 2020 entries).
 | `Muscle_bovine` | 0.3478 | 0.0 | 0.180 | ops_intensity | E | 2.7300 | Mahmoud 2024 |
 | `myxoma_moskal2023` | 0.2799 | 0.0 | 0.184 | ops_intensity | M | 1.9200 | Moskal 2023 cardiac myxoma |
 | `Polycarbonate` | 0.3448 | 0.0 | 0.280 | ops_intensity | E | 2.6900 | value as recorded; not found in Mahmoud 2024 (v8); previously r… |
-| `PolycarbonateTakyu` | n/a | 0.0 | 0.300 | ops_intensity | E | 2.0700 | Takyu certified reference (bisphenol-A polycarbonate) |
+| `PolycarbonateTakyu` | n/a | 0.0 | 0.300 | ops_intensity | E | 2.0700 | Takyu certified reference (bisphenol-A polycarbonate) (see corrections below) |
 | `PTFE` | n/a | 0.0 | 0.350 | total_formation | E | 2.0000 | V7: reproduces the previous unknown-material fallback value exa… |
-| `QuartzGlass` | n/a | 0.0 | 0.250 | ops_intensity | E | 1.5600 | Takyu certified reference (UQG Optics fused silica); Steinberge… |
+| `QuartzGlass` | n/a | 0.0 | 0.250 | ops_intensity | E | 1.5600 | Takyu certified reference (UQG Optics fused silica); Steinberge… (see corrections below) |
 | `TumorTissue` | 0.2800 | 15.0 | 0.170 | ops_intensity | E | 1.9200 | Moskal 2023 (cardiac myxoma) |
 | `TumorTissue_pO2_10` | 0.2800 | 10.0 | 0.170 | ops_intensity | E | 1.9205 | derived: tao_eldrup.tau_eff(R=canonical TumorTissue, pO2=10) wi… |
 | `TumorTissue_pO2_2` | 0.2800 | 2.0 | 0.170 | ops_intensity | E | 1.9212 | derived: tao_eldrup.tau_eff(R=canonical TumorTissue, pO2=2) wit… |
@@ -114,6 +114,13 @@ copies still give (the Mahmoud 2024 and Zgardzinska 2020 entries).
 | `XAD4_gelatin` | 0.3114 | 0.0 | 0.222 | ops_intensity | M | 2.2700 | Mercolli et al., EJNMMI Phys. 12:80 (2025) Table 2 [doi:10.1186… |
 | `XAD4_water` | 0.2701 | 0.0 | 0.268 | ops_intensity | M | 1.8200 | Mercolli et al., EJNMMI Phys. 12:80 (2025) Table 2 [doi:10.1186… |
 | `XAD4_wet` | 0.3198 | 0.0 | 0.217 | ops_intensity | M | 2.3700 | Mercolli et al., EJNMMI Phys. 12:80 (2025) Table 2 [doi:10.1186… |
+
+### Corrections to source fields
+
+The file keeps these fields as the runs used them. The loader does not read them.
+
+* `PolycarbonateTakyu`, `I3_source` "Steinberger 2024 BR3 (statistics-only; tau_hat is I3-invariant)": I3 = 0.30 is a project estimate that sets only the event yield. Steinberger 2024 report no o-Ps intensity for polycarbonate.
+* `QuartzGlass`, `I3_source` "Steinberger 2024 BR3 (statistics-only; tau_hat is I3-invariant)": I3 = 0.25 is a project estimate that sets only the event yield. Steinberger 2024 report an o-Ps intensity of 0.56 to 0.59 for quartz glass with clinical isotopes and 0.39 with 22Na.
 
 ### Structural materials
 
@@ -149,7 +156,7 @@ geometric selection in the analysis.
 | `Cartilage` | 0.2969 | 30.0 | 0.220 | ops_intensity | E | 2.1000 | collagen-matrix estimate (slightly larger voids than muscle) |
 | `Fused_silica` | 0.2470 | 0.0 | 0.050 | ops_intensity | E | 1.6000 | value as recorded; not found in Mahmoud 2024 (v8); previously r… |
 | `G4_WATER` | 0.2681 | 0.0 | 0.270 | ops_intensity | E | 1.8000 | Kotera 2005 |
-| `Heart` | 0.2876 | 20.0 | 0.250 | ops_intensity | E | 2.0000 | Moskal 2023 (normal cardiac tissue near myxoma) |
+| `Heart` | 0.2876 | 20.0 | 0.250 | ops_intensity | E | 2.0000 | Moskal 2023 (normal cardiac tissue near myxoma) (see corrections below) |
 | `hepatic_avachat2024` | 0.2912 | 0.0 | 0.129 | ops_intensity | M | 2.0400 | Avachat 2024 |
 | `Hepatic_bovine` | 0.3471 | 0.0 | 0.200 | ops_intensity | E | 2.7200 | Mahmoud 2024 |
 | `Intestine` | 0.2878 | 40.0 | 0.250 | ops_intensity | E | 2.0000 | soft-tissue baseline |
@@ -163,9 +170,9 @@ geometric selection in the analysis.
 | `myxoma_moskal2023` | 0.2799 | 0.0 | 0.184 | ops_intensity | M | 1.9200 | Moskal 2023 cardiac myxoma |
 | `Pancreas` | 0.2878 | 40.0 | 0.250 | ops_intensity | E | 2.0000 | soft-tissue baseline |
 | `Polycarbonate` | 0.3448 | 0.0 | 0.280 | ops_intensity | E | 2.6900 | value as recorded; not found in Mahmoud 2024 (v8); previously r… |
-| `PolycarbonateTakyu` | n/a | 0.0 | 0.300 | ops_intensity | E | 2.0700 | Takyu certified reference (bisphenol-A polycarbonate) |
+| `PolycarbonateTakyu` | n/a | 0.0 | 0.300 | ops_intensity | E | 2.0700 | Takyu certified reference (bisphenol-A polycarbonate) (see corrections below) |
 | `PTFE` | n/a | 0.0 | 0.350 | total_formation | E | 2.0000 | V7: reproduces the previous unknown-material fallback value exa… |
-| `QuartzGlass` | n/a | 0.0 | 0.250 | ops_intensity | E | 1.5600 | Takyu certified reference (UQG Optics fused silica); Steinberge… |
+| `QuartzGlass` | n/a | 0.0 | 0.250 | ops_intensity | E | 1.5600 | Takyu certified reference (UQG Optics fused silica); Steinberge… (see corrections below) |
 | `RibBone` | 0.2472 | 30.0 | 0.150 | ops_intensity | E | 1.6000 | dense mineral matrix estimate (conservative, no published PALS) |
 | `SpineBone` | 0.2472 | 30.0 | 0.150 | ops_intensity | E | 1.6000 | dense mineral matrix estimate (conservative, no published PALS) |
 | `Spleen` | 0.2878 | 40.0 | 0.250 | ops_intensity | E | 2.0000 | soft-tissue baseline (blood-rich) |
@@ -182,6 +189,14 @@ geometric selection in the analysis.
 | `XAD4_gelatin` | 0.3114 | 0.0 | 0.222 | ops_intensity | M | 2.2700 | Mercolli et al., EJNMMI Phys. 12:80 (2025) Table 2 [doi:10.1186… |
 | `XAD4_water` | 0.2701 | 0.0 | 0.268 | ops_intensity | M | 1.8200 | Mercolli et al., EJNMMI Phys. 12:80 (2025) Table 2 [doi:10.1186… |
 | `XAD4_wet` | 0.3198 | 0.0 | 0.217 | ops_intensity | M | 2.3700 | Mercolli et al., EJNMMI Phys. 12:80 (2025) Table 2 [doi:10.1186… |
+
+### Corrections to source fields
+
+The file keeps these fields as the runs used them. The loader does not read them.
+
+* `Heart`, `tau_source` "Moskal 2023 (normal cardiac tissue near myxoma)": Moskal 2023 reports cardiac myxoma and mediastinal adipose but no normal cardiac tissue. The stored 2.00 ns is the project soft-tissue default.
+* `PolycarbonateTakyu`, `I3_source` "Steinberger 2024 BR3 (statistics-only; tau_hat is I3-invariant)": I3 = 0.30 is a project estimate that sets only the event yield. Steinberger 2024 report no o-Ps intensity for polycarbonate.
+* `QuartzGlass`, `I3_source` "Steinberger 2024 BR3 (statistics-only; tau_hat is I3-invariant)": I3 = 0.25 is a project estimate that sets only the event yield. Steinberger 2024 report an o-Ps intensity of 0.56 to 0.59 for quartz glass with clinical isotopes and 0.39 with 22Na.
 
 ### Structural materials
 

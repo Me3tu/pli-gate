@@ -30,7 +30,7 @@ ax = ax_mm(fig, 14, 70, 60, 47)
 xx = np.logspace(np.log10(0.0035), np.log10(0.11), 60)
 LB = json.load(open(RES / '2026-10-08_signed_eq3/ladder_band.json'))
 gx = np.array(LB['mu_grid'])
-# Review round 16: corrected-yield stream only (the discovery stream is reported in Supplementary Note S15).
+# Review round 16: corrected-yield stream only (the discovery stream, the earlier-yield stream of the paper, is reported in Supplementary Note S8).
 for nm, al in (('corrected', 0.22),):
     bd = LB['streams'][nm]['folded']['band']
     assert np.allclose(LB['streams'][nm]['folded']['ci95'], LB['streams'][nm]['folded']['reference_ci95'])

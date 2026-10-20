@@ -63,7 +63,7 @@ yy = np.arange(len(order)).astype(float)
 ax.axvline(0, color=REF, lw=0.8, zorder=1)
 AP = dict(arrowstyle='-|>', color='#9a9a9a', lw=0.9, mutation_scale=7, shrinkA=4.5, shrinkB=4.5)
 for y, t in zip(yy, order):
-    xc, xa, xm = cl[t]['sharp'][0], al[t]['sharp'][0], al[t]['acc359'][0]   # a priori acceptance (Note S17)
+    xc, xa, xm = cl[t]['sharp'][0], al[t]['sharp'][0], al[t]['acc359'][0]   # a priori acceptance (Note S6)
     ax.annotate('', xy=(xa, y), xytext=(xc, y), arrowprops=AP, zorder=2)
     if abs(xm - xa) > 0.8:
         ax.annotate('', xy=(xm, y), xytext=(xa, y), arrowprops=dict(AP, ls=':'), zorder=2)

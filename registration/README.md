@@ -31,7 +31,7 @@ Folder names are those of the project results tree (`reconstruction/results/`), 
 - "decision", "request", "the authors'" (prediction, expectation): decisions, requests and predictions of the authors.
 - "reviewer item N", "reviewer N", "review round N", "referee round N", "referee report": numbered points and rounds of internal pre-submission reviews of the manuscript, not the journal's peer review.
 - "page N", "book page": pages of the project's internal results book, not shipped. "freeze": the project's internal append-only register of headline numbers, not shipped.
-- Item labels such as V2, R1, G3, A1, B2, B5, C1, C2, C0, D1, D2 and N1 to N4 are the work items of the project log. "Sim-1" is the eight-tube phantom. "The frozen stream", "June" and "discovery stream" denote the eight-tube 0 ps acquisition of June 2026, which predates the correction of the o-Ps intensity convention of 2026-08-14 (paper, Note S15). "C0" is the corrected-yield 0 ps rerun of 2026-09-30 and "C2" the 388 ps eight-tube arm.
+- Item labels such as V2, R1, G3, A1, B2, B5, C1, C2, C0, D1, D2 and N1 to N4 are the work items of the project log. "Sim-1" is the eight-tube phantom. "The frozen stream", "June" and "discovery stream" denote the eight-tube 0 ps acquisition of June 2026, which predates the correction of the o-Ps intensity convention of 2026-08-14. The paper calls it the earlier-yield stream (Supplementary Note S8). "C0" is the corrected-yield 0 ps rerun of 2026-09-30 and "C2" the 388 ps eight-tube arm.
 
 **Pre-protocol records.** The six files in `pre_protocol/` were written in the same form between 2026-08-15 and 2026-08-19, before the protocol started. None is scored in the paper. `REGISTERED_V2.md` holds the water measurement from which the band of prediction 7 (0.56 to 0.74) was taken.
 
@@ -49,7 +49,7 @@ These facts come from the mtimes in `DATES.tsv` and of the result files in the s
 - `REGISTERED_TANN.md` has the same mtime second as `tann_equivalence.py` (11:07:15). The output `tann_equivalence.json` followed at 11:07:49.
 - `REGISTERED_INFLIGHT.md` (20:30:35) is newer than the physics-level output in its folder (`physics_level.json`, 20:29:07), which the record reports as done before it. Its predictions concern the GATE arm, whose comparison file `compare_inflight.json` is from 23:58. The record's header gives 20:35.
 - `REGISTERED_C0.md` (21:52:43, header "21:50") is 70 s newer than the chain script `run_c0_chain.sh` (21:51:33). The comparison `c0_compare.json` is from 2026-10-01 03:28.
-- `REGISTERED_C0_LADDER.md` states that it is not a registration in the sense of the protocol but a post hoc replication, and the paper reports it so (Table S16, note c).
+- `REGISTERED_C0_LADDER.md` states that it is not a registration in the sense of the protocol but a post hoc replication, and the paper counts it among the analyses that were not registered (Methods). Its expectations and outcomes are in note c of `docs/EIGHT_TUBE_LINEAGE.md`.
 
 ## 2. From the paper to the records
 
@@ -82,21 +82,21 @@ These facts come from the mtimes in `DATES.tsv` and of the result files in the s
 | 23 | `2026-08-27_tann/REGISTERED_TANN.md` | P-T2 |
 | 24 | `2026-08-27_tann/REGISTERED_TANN.md` | P-T3 |
 | 25 | `2026-08-29_T6_diagnostics/t6_prior_test.py` (docstring) | P-T6-1 |
+| 26 to 31 | `2026-09-30_feedback3/inflight/REGISTERED_INFLIGHT.md` (in-flight annihilation, Supplementary Note S8) | P1 to P6 |
+| 32 to 37 | `2026-09-30_feedback3/c0_sim1/REGISTERED_C0.md` (corrected-yield arm) | Q1 to Q6 |
+| 38 to 40 | `2026-10-08_r2c_matched_yield/REGISTERED_R2C.md` (matched-yield core-shell arms, Supplementary Note S5) | P1 to P3 |
 
 The record labels P-C2 (in `REGISTERED_C.md`) and P-C2-1 to P-C2-3 (in `REGISTERED_COND2.md`) are unrelated, as are P-R2 (in `REGISTERED_C2.md`) and P-R2-1 to P-R2-3 (in `REGISTERED_ROUTE2.md`).
 
-### Notes S13, S15, S19 and Table S16
+### The corrected-yield replay
 
 | paper | record | labels |
 |---|---|---|
-| Note S13, in-flight annihilation | `2026-09-30_feedback3/inflight/REGISTERED_INFLIGHT.md` | P1 to P6 |
-| Note S15, corrected-yield arm | `2026-09-30_feedback3/c0_sim1/REGISTERED_C0.md` | Q1 to Q6 |
-| Note S19, matched-yield core-shell arms | `2026-10-08_r2c_matched_yield/REGISTERED_R2C.md` | P1 to P3 |
-| Table S16, note c (post hoc replay, "expectations written before the run") | `2026-10-08_c0_ladder/REGISTERED_C0_LADDER.md` | E1 to E4 |
+| not registered (Methods), Supplementary Note S7 and note c of `docs/EIGHT_TUBE_LINEAGE.md` | `2026-10-08_c0_ladder/REGISTERED_C0_LADDER.md` | E1 to E4 |
 
 ## 3. Index of every prediction
 
-Every prediction, tolerance and falsifier in every record, with its outcome. For predictions the paper scores, the outcome is the paper's (Table S4, Notes S13, S15, S19, Table S16 note c). For the others, the outcome was taken from the findings documents and result files of the same result folder and from the project log (not shipped), and is scored here with the rule printed under Table S4: unrounded values against the registered criterion, a criterion with several parts is met only if every part is, and split if some are, and a criterion stated for every tube, region or readout is one part. Where a record gives a direction without a number, the measured value is quoted. Where a record or findings document scores a prediction itself, that score is quoted, and any difference from a literal reading of the criterion is stated.
+Every prediction, tolerance and falsifier in every record, with its outcome. For predictions the paper scores, the outcome is the paper's (Table S4), or for E1 to E4 that of note c of `docs/EIGHT_TUBE_LINEAGE.md`. For the others, the outcome was taken from the findings documents and result files of the same result folder and from the project log (not shipped), and is scored here with the rule printed under Table S4: unrounded values against the registered criterion, a criterion with several parts is met only if every part is, and split if some are, and a criterion stated for every tube, region or readout is one part. Where a record gives a direction without a number, the measured value is quoted. Where a record or findings document scores a prediction itself, that score is quoted, and any difference from a literal reading of the criterion is stated.
 
 Outcome categories:
 
@@ -111,14 +111,14 @@ Outcome categories:
 
 | | predictions | met | not met | split | did not trigger | partly scored | not scored | no direction | withdrawn |
 |---|---|---|---|---|---|---|---|---|---|
-| scored in the paper (Table S4) | 25 | 10 | 10 | 4 | 1 | | | | |
-| scored in the paper (Notes S13, S15, S19) | 15 | 11 | 3 | 1 | | | | | |
-| scored in the paper (Table S16 note c) | 4 | 4 | | | | | | | |
+| scored in the paper (Table S4, rows 1 to 25) | 25 | 10 | 10 | 4 | 1 | | | | |
+| scored in the paper (Table S4, rows 26 to 40) | 15 | 11 | 3 | 1 | | | | | |
+| corrected-yield replay (`docs/EIGHT_TUBE_LINEAGE.md`, note c) | 4 | 4 | | | | | | | |
 | not in the paper, protocol records | 48 | 21 | 13 | 1 | 3 | 2 | 8 | | |
 | not in the paper, pre-protocol records | 23 | 14 | 1 | 1 | | | 4 | 2 | 1 |
 | total | 115 | 60 | 27 | 7 | 4 | 2 | 12 | 2 | 1 |
 
-Table S4's met count of 10 includes prediction 9, which the paper scores as post hoc. The 48 protocol predictions not in the paper are in 15 records: 12 records with no row in the paper (R1, G3, density, G6, residual structure, A1b, A6, B2 and B2b of 2026-08-22, ACC, ORACLE_GAP, P5) and three records whose other predictions are in Table S4 (P-C2 and P-C3 in `REGISTERED_C.md`, P-R1 and P-R2 in `REGISTERED_C2.md`, P-T6-2 and P-T6-3 in `t6_prior_test.py`).
+The met count of 10 for rows 1 to 25 of Table S4 includes prediction 9, which the paper scores as post hoc. The 48 protocol predictions not in the paper are in 15 records: 12 records with no row in the paper (R1, G3, density, G6, residual structure, A1b, A6, B2 and B2b of 2026-08-22, ACC, ORACLE_GAP, P5) and three records whose other predictions are in Table S4 (P-C2 and P-C3 in `REGISTERED_C.md`, P-R1 and P-R2 in `REGISTERED_C2.md`, P-T6-2 and P-T6-3 in `t6_prior_test.py`).
 
 ### Protocol records, 2026-08-20 onward
 

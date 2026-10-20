@@ -32,7 +32,7 @@ driven by a materials database rather than by constants compiled into the code.
 | `registration/` | pre-run registration records | the registered predictions and their dates |
 | `examples/quickstart/` | a four-second run with no scanner | that the physics returns the lifetime it is given |
 | `tests/` | the test suite | checks of the physics and of the shipped values |
-| `docs/` | `PHYSICS.md`, `VALIDATION.md`, `BOOTSTRAP.md` | |
+| `docs/` | `PHYSICS.md`, `VALIDATION.md`, `BOOTSTRAP.md`, `EIGHT_TUBE_LINEAGE.md` (lineage of the eight-tube numbers, Table S16 of the draft supplement) | |
 | `ENVIRONMENT_MANIFEST.json` | build, binaries, source and database hashes, runtime switches | |
 | `CHANGELOG.md`, `CITATION.cff`, `.zenodo.json`, `LICENSE`, `COPYING` | | |
 
@@ -214,7 +214,7 @@ Two analysis-side scripts restate scanner parameters as numbers: the singles
 generator `simulation/lu176/lu176_bg_generator.py` (crystal layout, for the
 176Lu background) and `analysis/results/2026-08-23_acceptance/sigma_geo.py`
 (ring radii, for the a priori acceptance). These are the scanner dimensions the
-paper reports (Sec. 2.1 and Supplementary Note S20), not the GATE macro. The
+paper reports (Sec. 2.1 and Supplementary Note S3), not the GATE macro. The
 scanner sensitivity image used by the VIP-Man reconstruction and the VIP-Man
 tissue-label map at 4 mm are derived from the excluded inputs and are not
 included either.

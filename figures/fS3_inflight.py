@@ -1,4 +1,4 @@
-"""Supplementary Fig. S3 (stem figS4_inflight), feedback round 3: effect of suppressing
+"""Supplementary Fig. S8 (stem figS4_inflight), feedback round 3: effect of suppressing
 in-flight annihilation on the headline observables.
 (a) physics level, 1e6 44Sc positrons at a water/adipose interface: annihilation-delay spectrum
     of the shipped list and of the hybrid list (stock in-flight annihilation kept, custom

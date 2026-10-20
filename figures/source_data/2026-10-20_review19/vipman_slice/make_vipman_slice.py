@@ -1,4 +1,4 @@
-"""Input of Fig. S6 panel (a): the central two 4 mm slices of the corrected-yield VIPman MLEM
+"""Input of Fig. S7 panel (a): the central two 4 mm slices of the corrected-yield VIPman MLEM
 reconstruction, in float32 (2026-10-20, review round 19, for code release v1.1.0).
 
 Replaces, for the release, the 8-bit transfer 2026-10-19_review16/vipman_recon_O4/slice_q8.b64 from
@@ -53,6 +53,6 @@ print('source support_mask.npy', sha_file(SRC / 'support_mask.npy'))
 print('act_z', act_z.dtype, act_z.shape, 'sha256(bytes)', sha_arr(act_z))
 print('sup2 ', sup2.dtype, sup2.shape, 'sha256(bytes)', sha_arr(sup2))
 print('support voxels: sup2', int(sup2.sum()), 'sup2.any(axis=2)', int(m.sum()))
-print('inside support: min %.4f max %.4f 99th percentile (colour-scale top of Fig. S6a) %.4f'
+print('inside support: min %.4f max %.4f 99th percentile (colour-scale top of Fig. S7a) %.4f'
       % (np.nanmin(shown), np.nanmax(shown), np.nanpercentile(shown, 99)))
 print('wrote', OUT, OUT.stat().st_size, 'bytes, sha256', sha_file(OUT))

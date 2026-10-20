@@ -53,6 +53,19 @@ AS_USED = {
     "variants/r2c_equal_yield_materials.json": "25e3441c170cdb12bebf35abfbe6b76b912eb98164dc8890fbc66ca7ad2f507c",
 }
 
+# Corrections to free-text source fields. The JSON files keep these fields as the runs used them (their hashes are
+# quoted in the paper, RUNS.json and the registration records). The loader does not read them. Supplementary Table S3
+# of the paper gives the same corrections (v1.1.1, 2026-10-20).
+ERRATA = {
+    "Heart": ("tau_source", "Moskal 2023 reports cardiac myxoma and mediastinal adipose but no normal cardiac tissue. "
+              "The stored 2.00 ns is the project soft-tissue default."),
+    "QuartzGlass": ("I3_source", "I3 = 0.25 is a project estimate that sets only the event yield. Steinberger 2024 "
+                    "report an o-Ps intensity of 0.56 to 0.59 for quartz glass with clinical isotopes and 0.39 "
+                    "with 22Na."),
+    "PolycarbonateTakyu": ("I3_source", "I3 = 0.30 is a project estimate that sets only the event yield. Steinberger "
+                           "2024 report no o-Ps intensity for polycarbonate."),
+}
+
 CLASS_LEGEND = [
     ("M", "o-Ps intensity measured in the same fit and on the same specimen as the lifetime"),
     ("A", "o-Ps intensity fixed by assumption in the source"),
@@ -170,8 +183,16 @@ for title, fn in DBS:
             m.get("I3_convention", "**MISSING**"),
             m.get("I3_provenance_class", "n/a"),
             f'{m.get("tau_TE_ns", 0):.4f}',
-            short(m.get("tau_source"))))
+            short(m.get("tau_source")) + (" (see corrections below)" if m["name"] in ERRATA else "")))
     out.append("")
+    fixes = [m for m in sorted(mats, key=lambda x: x["name"].lower()) if m["name"] in ERRATA]
+    if fixes:
+        out += ["### Corrections to source fields", "",
+                "The file keeps these fields as the runs used them. The loader does not read them.", ""]
+        for m in fixes:
+            field, text = ERRATA[m["name"]]
+            out.append(f"* `{m['name']}`, `{field}` \"{m.get(field)}\": {text}")
+        out.append("")
 
     struct = [m for m in mats if is_structural(m)]
     if struct:

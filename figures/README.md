@@ -30,7 +30,7 @@ Check the files with `sha256sum -c SHA256SUMS` (from inside `figures/`).
 | `ejmp_style.py` | house style (fonts, sizes, colour palette), from `reconstruction/results/2026-08-11_ejmp_figure_regen/`, punctuation of comments changed |
 | `f02b_closure_benchmark.py` ... `fS_benchspec.py` | the 12 generators (table below) |
 | `fig1_methods.tex` | Fig. 1, standalone TikZ |
-| `source_data/` | the 36 data files the generators read, plus `make_vipman_slice.py` (the generator of the Fig. S6(a) input) |
+| `source_data/` | the 36 data files the generators read, plus `make_vipman_slice.py` (the generator of the Fig. S7(a) input) |
 | `make_figures.sh` | runs everything |
 | `requirements.txt` | Python package versions |
 | `EDITS.md` | every change to the scripts relative to the versions that produced the paper's figures |
@@ -67,19 +67,19 @@ Paths of inputs are relative to `source_data/`. Roles: plotted (reaches the figu
 | Fig. S2 | `fig_r2_transport_novelty` | `f04_transport.py` | `2026-09-24_jp_a3_figures/figsrc/2026-08-13_referee_response/r2_results.json` | plotted |
 | | | | `2026-10-08_r2c_matched_yield/r2c_results.json` | plotted |
 | Fig. S3 | `figS2_pedestal_residuals` | `f08_pedestal.py` (second output of the Fig. 4 run) | as Fig. 4 | plotted |
-| Fig. S4 | `fig5_sensitivity` | `f07_oxygen.py` | `2026-10-08_oxygen_v8/oxygen_boot_v8.json` | plotted |
-| Fig. S5 | `fig4_brain_tumor` | `f06_brain.py` | `2026-08-16_fig4_rebuild/tau_voxel_map_8mm.json` | plotted |
+| Fig. S5 | `fig5_sensitivity` | `f07_oxygen.py` | `2026-10-08_oxygen_v8/oxygen_boot_v8.json` | plotted |
+| Fig. S6 | `fig4_brain_tumor` | `f06_brain.py` | `2026-08-16_fig4_rebuild/tau_voxel_map_8mm.json` | plotted |
 | | | | `2026-10-19_review16/brain_corrected_rois.json` | plotted (block `corrected_regions` only) |
 | | | | `2026-08-16_fig4_rebuild/recon_4mm/activity_x.npy` | plotted |
 | | | | `2026-08-16_fig4_rebuild/recon_4mm/support_mask.npy` | plotted |
 | | | | `2026-08-16_fig4_rebuild/tau_map_smoothed.npy` | plotted |
 | | | | `2026-08-16_fig4_rebuild/mask_valid.npy` | plotted |
-| Fig. S6 | `fig3_vipman_axial` | `f05_vipman.py` | `2026-09-30_feedback3/figdata/vipman_tau8_cache.npz` | plotted |
+| Fig. S7 | `fig3_vipman_axial` | `f05_vipman.py` | `2026-09-30_feedback3/figdata/vipman_tau8_cache.npz` | plotted |
 | | | | `2026-05-05_2122_phase3q_production/recon_phase3q/support_mask.npy` | plotted |
 | | | | `2026-10-20_review19/vipman_slice/vipman_O4_slice.npz` | plotted (panel a) |
 | | | | `2026-09-30_referee2/vipman_decomp.json` | plotted |
 | | | | `2026-09-30_referee2/vipman_oracle_mix.json` | plotted |
-| Fig. S7 | `figS3_eq2_refutation` | `fS1_refutation.py` | `2026-08-17_derivation_test/derivation_test.json` | plotted |
+| Fig. S4 | `figS3_eq2_refutation` | `fS1_refutation.py` | `2026-08-17_derivation_test/derivation_test.json` | plotted |
 | Fig. S8 | `figS4_inflight` | `fS3_inflight.py` | `2026-09-30_feedback3/inflight/physics_level.json` | plotted |
 | | | | `2026-09-30_feedback3/inflight/compare_inflight.json` | plotted |
 | | | | `2026-09-30_feedback3/inflight/physics_level_delay_hists.npz` | plotted |
@@ -90,7 +90,7 @@ Paths of inputs are relative to `source_data/`. Roles: plotted (reaches the figu
 The folder keeps the dated result-folder names of the project results tree (`reconstruction/results/` of the simulation project), so every file has the same relative path as its original. 34 of the 36 data files are byte copies of those originals (sha256 checked against the inventory of the paper build). The other two:
 
 - `2026-10-19_review16/brain_corrected_rois.json` is the results-tree version (2,971 bytes). The copy used for the paper build held only the block `corrected_regions` without the fields `s` and `ratio_emp_over_ana`. The values `f06_brain.py` reads are identical in both (equal canonical-JSON hash of `corrected_regions` with those two fields removed).
-- `2026-10-20_review19/vipman_slice/vipman_O4_slice.npz` (36,201 bytes, written with `numpy.savez_compressed`) was made for this release by `make_vipman_slice.py` in the same folder from `2026-10-19_review16/vipman_recon_O4/activity_x.npy` (sha256 `b6c9de5b...`, not shipped, 784 kB) and `support_mask.npy` of the same reconstruction. It holds `act_z` (float32, 140 x 70, the mean of z slices 10 and 11, unmasked) and `sup2` (bool, 140 x 70 x 2, the support mask in those slices, 14,094 voxels). An earlier draft of the paper drew Fig. S6(a) from an 8-bit quantized transfer of the same slice (`2026-10-19_review16/vipman_O4_slice.npz`, not shipped): equal support mask, and inside the support every value equals the float32 value rounded to a step of 7.24 a.u. and capped at 1846.2 a.u. (6 voxels capped, exact maximum 1937.8 a.u.). Outside the support the 8-bit file held zeros, the float32 file the unmasked MLEM values. `f05_vipman.py` draws only the support.
+- `2026-10-20_review19/vipman_slice/vipman_O4_slice.npz` (36,201 bytes, written with `numpy.savez_compressed`) was made for this release by `make_vipman_slice.py` in the same folder from `2026-10-19_review16/vipman_recon_O4/activity_x.npy` (sha256 `b6c9de5b...`, not shipped, 784 kB) and `support_mask.npy` of the same reconstruction. It holds `act_z` (float32, 140 x 70, the mean of z slices 10 and 11, unmasked) and `sup2` (bool, 140 x 70 x 2, the support mask in those slices, 14,094 voxels). An earlier draft of the paper drew Fig. S7(a) from an 8-bit quantized transfer of the same slice (`2026-10-19_review16/vipman_O4_slice.npz`, not shipped): equal support mask, and inside the support every value equals the float32 value rounded to a step of 7.24 a.u. and capped at 1846.2 a.u. (6 voxels capped, exact maximum 1937.8 a.u.). Outside the support the 8-bit file held zeros, the float32 file the unmasked MLEM values. `f05_vipman.py` draws only the support.
 
 `2026-08-16_fig4_rebuild/tau_voxel_map_8mm.json` contains a provenance string with an absolute path on the project workstation (`/home/dhritman/...`), the location of the triples file the map was computed from. That file is not shipped.
 
@@ -122,23 +122,24 @@ TeX: pdfTeX 1.40.29 (TeX Live 2026) with `stix.sty` installed in the user tree.
 | Fig. S1 | `figS_benchspec` | pixel-identical | text placement and legend, 5,963 of 323,050 px |
 | Fig. S2 | `fig_r2_transport_novelty` | pixel-identical | text placement, 3,472 of 345,540 px |
 | Fig. S3 | `figS2_pedestal_residuals` | pixel-identical | text placement and axes position (tight_layout), 23,165 of 430,300 px |
-| Fig. S4 | `fig5_sensitivity` | pixel-identical | text placement, 4,373 of 334,908 px |
-| Fig. S5 | `fig4_brain_tumor` | pixel-identical (see note) | text placement, 1,256 of 334,908 px |
-| Fig. S6 | `fig3_vipman_axial` | panel (a) differs from the earlier 8-bit drawing by design, panels (b) to (d) pixel-identical (see note). The submitted figure is drawn from the shipped float32 slice | panel (a) as in run B, plus text placement, 2,127 of 502,362 px against run B |
-| Fig. S7 | `figS3_eq2_refutation` | pixel-identical | text placement, 2,117 of 353,600 px |
+| Fig. S5 | `fig5_sensitivity` | pixel-identical | text placement, 4,373 of 334,908 px |
+| Fig. S6 | `fig4_brain_tumor` | pixel-identical (see note) | text placement, 1,256 of 334,908 px |
+| Fig. S7 | `fig3_vipman_axial` | panel (a) differs from the earlier 8-bit drawing by design, panels (b) to (d) pixel-identical (see note). The submitted figure is drawn from the shipped float32 slice | panel (a) as in run B, plus text placement, 2,127 of 502,362 px against run B |
+| Fig. S4 | `figS3_eq2_refutation` | pixel-identical before the legend change (see note) | text placement, 2,117 of 353,600 px, before the legend change |
 | Fig. S8 | `figS4_inflight` | pixel-identical | text placement, 7,354 of 691,080 px |
 
-Pixel-identical means an identical 150-dpi render. In run B the PDFs of Figs. 2 to 6, S1 to S4, S7 and S8 are also byte-identical to the paper's apart from the metadata fields CreationDate, Creator and Producer. In both runs `fig2_closure_benchmark.json` is byte-identical to the paper build, and the printed output of every generator is identical between runs A and B and the paper environment (also with the unedited scripts).
+Pixel-identical means an identical 150-dpi render. In run B the PDFs of Figs. 2 to 6, S1 to S3, S5 and S8, and of S4 before the legend change, are also byte-identical to the paper's apart from the metadata fields CreationDate, Creator and Producer. In both runs `fig2_closure_benchmark.json` is byte-identical to the paper build, and the printed output of every generator is identical between runs A and B and the paper environment (also with the unedited scripts).
 
 Notes:
 
-- Fig. S5, run B: the PDF differs from the paper's only in the coordinates of the colour-bar ticks of panel (a), in the fifth decimal of a point (the colour-scale top is the 99th percentile of the Gaussian-smoothed activity, which differs in its last digits between scipy 1.17.0 and 1.17.1). The render is identical.
-- Fig. S6: panel (a) now uses the float32 slice described above instead of the 8-bit transfer. Against the paper, 14,169 of the 46,810 pixels of the panel (a) image change, each by at most 3 of 255 in any colour channel, and 6 pixels change at one tick mark of the panel (a) colour bar, because the colour-scale top (99th percentile inside the support) is 1711.44 a.u. instead of 1708.63 a.u. (+0.16%). No other pixel of the figure changes. The run B PDF is byte-identical (apart from metadata) to the one made with the same input in the paper environment.
+- Fig. S6, run B: the PDF differs from the paper's only in the coordinates of the colour-bar ticks of panel (a), in the fifth decimal of a point (the colour-scale top is the 99th percentile of the Gaussian-smoothed activity, which differs in its last digits between scipy 1.17.0 and 1.17.1). The render is identical.
+- Fig. S7: panel (a) now uses the float32 slice described above instead of the 8-bit transfer. Against the paper, 14,169 of the 46,810 pixels of the panel (a) image change, each by at most 3 of 255 in any colour channel, and 6 pixels change at one tick mark of the panel (a) colour bar, because the colour-scale top (99th percentile inside the support) is 1711.44 a.u. instead of 1708.63 a.u. (+0.16%). No other pixel of the figure changes. The run B PDF is byte-identical (apart from metadata) to the one made with the same input in the paper environment.
+- Fig. S4: the legend label of the eight-tube points was changed from "discovery stream" to "earlier-yield stream", the name the paper uses, on 2026-10-20, after the runs above. The paper figure was redrawn with matplotlib 3.10.9 (pip wheel, FreeType 2.6.1), and its text differs from the earlier PDF only in that label. Run A was repeated for this figure with the changed script and gave the changed label.
 - Run A against run B: every difference in the PDF drawing streams is in text-positioning operators, except in Fig. S3 (axes geometry follows the text extents through `tight_layout`) and Fig. S1 (legend handle positions follow the label extents).
 
 ## Further notes
 
 - `fS3_inflight.py` reads `compare_inflight.json` from the path in `PLI_INFLIGHT_JSON` if that variable is set (a development override). `make_figures.sh` unsets it.
 - `f05_vipman.py` reads the 8 mm lifetime map from `2026-09-30_feedback3/figdata/vipman_tau8_cache.npz`. Only if that file is missing does it try to recompute the map from `2026-08-13_overnight/O4_rerun/vipman/triples_detector_phase3q.h5` (3.2 GB, not shipped, needs h5py).
-- `f09_mechanism.py` prints comparisons with the discovery stream from two inputs that do not reach the figure (`crt_sweep_v3_all.csv`, `2026-09-30_referee2/acceptance_tm.json`). `f11_realistic.py` uses `fig11_component_shift.json` only in an assertion that guards consistency with the published component fits.
+- `f09_mechanism.py` prints comparisons with the discovery (earlier-yield) stream from two inputs that do not reach the figure (`crt_sweep_v3_all.csv`, `2026-09-30_referee2/acceptance_tm.json`). `f11_realistic.py` uses `fig11_component_shift.json` only in an assertion that guards consistency with the published component fits.
 - Figure scripts of earlier manuscript versions and figures not in the paper are not included.

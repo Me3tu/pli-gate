@@ -34,10 +34,10 @@ SCRIPTS=(
   f10_rate.py                 # Fig. 6   fig10_rate_law
   fS_benchspec.py             # Fig. S1  figS_benchspec
   f04_transport.py            # Fig. S2  fig_r2_transport_novelty
-  f07_oxygen.py               # Fig. S4  fig5_sensitivity
-  f06_brain.py                # Fig. S5  fig4_brain_tumor
-  f05_vipman.py               # Fig. S6  fig3_vipman_axial
-  fS1_refutation.py           # Fig. S7  figS3_eq2_refutation
+  f07_oxygen.py               # Fig. S5  fig5_sensitivity
+  f06_brain.py                # Fig. S6  fig4_brain_tumor
+  f05_vipman.py               # Fig. S7  fig3_vipman_axial
+  fS1_refutation.py           # Fig. S4  figS3_eq2_refutation
   fS3_inflight.py             # Fig. S8  figS4_inflight
 )
 

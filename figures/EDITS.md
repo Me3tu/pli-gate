@@ -15,12 +15,12 @@ The scripts in this folder were taken from the figure working copy that produced
 | `f05_vipman.py` | `5db0dd5c639ce706d0aece0ed9b07ab1274670a634eb96d2c449785a6c4cb1fa` | `a59446f418839d65df210a060dc40b81f6158a503d60bfed0dc2333e0627feb9` | yes (3, 4, 6) |
 | `f06_brain.py` | `48f4414aef45b2a2968c15d29047a57785a0ffe793b586faf306a81ea07fb52f` | `90a7f7c624df04a38743d66842c2e1d549502e3f53ba471c580c3ad79a24f9bf` | yes (4, 6) |
 | `f07_oxygen.py` | `7560b36858c60ef5494967f317b6aef718e4dcf32eaf5f3c00ff6bb300cfa3ee` | `fac7c7530a1e52728773333f8b2bf9b013dd1a59589d2a61e52b82d89660f2e0` | yes (6) |
-| `f08_pedestal.py` | `5f04948eb9286e4541ad9b05acdd973a65c98edc407c8843b48a98ea6153762f` | `802803d66938dc5ed8175dfb9ee90e9cb9d279f31e5f18fb9cb64d9f06bfde3a` | yes (5, 6) |
-| `f09_mechanism.py` | `dbdeebfb0e51e01fcf72be129315c741eb70a4cb341bcd39f51e18241222dffb` | `36043bd2954124ed7805ca9722a9a98a776d81996dd5775ab28839816ec171c4` | yes (6) |
-| `f10_rate.py` | `b415031686d37e20a3e7f6513f43cc21f8fb36924d5d9ad14abdd971ef3770bf` | `1dedf9f736eda787b24d44e8ced3875004b06052d08996890a0b538bb208b3dd` | yes (4, 6) |
-| `f11_realistic.py` | `06f6831e3da2480295582d78b3d03bf8e069428621a459d1c80e1fa6f86d69ec` | `a11d2b620eb73b04e6bb25818ab72e0b71534ff8c0a443dc9f54da197be5e87a` | yes (2, 6) |
-| `fS1_refutation.py` | `dd0ef0ab536bf1c6d8c54e03b01303cf6510c6944820ef8f9dae4710204f731d` | `435ac15395055300202ae93c9476eed4278871ab5d3cb453785e6ca47c4cc7b7` | yes (6) |
-| `fS3_inflight.py` | `52a5e9bb15fa43d04826600802d31bd48afc8f26ccd4014f580dd50e9b1cf429` | `1d43aeac28b361d6fde8b9c6489a33f83f84fd1cfab1ffec82535bba5e1995c6` | yes (6) |
+| `f08_pedestal.py` | `5f04948eb9286e4541ad9b05acdd973a65c98edc407c8843b48a98ea6153762f` | `2c5754e71e66ffbde260c99230ffd6f6d5ab91391e8821e036751a0092dbb377` | yes (5, 6, 7) |
+| `f09_mechanism.py` | `dbdeebfb0e51e01fcf72be129315c741eb70a4cb341bcd39f51e18241222dffb` | `368e7e83001c2cc3a7667fb0f4c97d14184f79b120a82dc285d9ee6cc99c058d` | yes (6, 7) |
+| `f10_rate.py` | `b415031686d37e20a3e7f6513f43cc21f8fb36924d5d9ad14abdd971ef3770bf` | `4f77934b18046257d2e9738f76d1f5761ef6f0d6228941b48861f9887a47b3df` | yes (4, 6, 7) |
+| `f11_realistic.py` | `06f6831e3da2480295582d78b3d03bf8e069428621a459d1c80e1fa6f86d69ec` | `f15a7ec458c66cf6ba208d4eeac76dbd12f0eea516148289eec540a4a04c2824` | yes (2, 6, 7) |
+| `fS1_refutation.py` | `dd0ef0ab536bf1c6d8c54e03b01303cf6510c6944820ef8f9dae4710204f731d` | `02b5e487a025dac1028538df04e1f2fa3200eee8f198f5ea429a1d6b869367cc` | yes (6, 7) |
+| `fS3_inflight.py` | `52a5e9bb15fa43d04826600802d31bd48afc8f26ccd4014f580dd50e9b1cf429` | `a11c4263dfc061355a7a4f460546fd574664f68062021b1435482d18370d9fbc` | yes (6, 7) |
 | `fS_benchspec.py` | `83d8861547d17723e9f04228f4a2a003384484ceee178f701e40c05a476f7780` | `eb73b38a62eff332ae0f14eb16f38ec47b523bb143ab88d11ea71efce35e5b8e` | yes (6) |
 | `fig1_methods.tex` | `b1d2a77cc62e531b28621079cf89f658396d6d5985b87ff79e221fbbf2767615` | same | no |
 
@@ -36,7 +36,7 @@ The scripts in this folder were taken from the figure working copy that produced
 2. Optional inputs made required
    - `f04_transport.py`: `2026-10-08_r2c_matched_yield/r2c_results.json` was read only `if R2C.exists()`. Without it the figure silently lost the matched-yield points and its y-range changed (upper limit 58 instead of 112). The block now runs unconditionally (de-indented, otherwise identical) and the y-limit is the constant 112.
    - `f11_realistic.py`: `2026-09-30_feedback3/c0_sim1/c0_compare.json` was read only if present, with a fallback (and a printed warning) to the superseded frozen zero-delay stream. The block now runs unconditionally (de-indented, otherwise identical) and the fallback branch is removed.
-3. `f05_vipman.py`, Fig. S6 panel (a) input
+3. `f05_vipman.py`, Fig. S7 panel (a) input (Fig. S6 in v1.1.0)
    - The slice is read from `2026-10-20_review19/vipman_slice/vipman_O4_slice.npz` (float32, written by `make_vipman_slice.py` in the same folder from `2026-10-19_review16/vipman_recon_O4/activity_x.npy`, z slices 10 and 11 averaged) instead of `2026-10-19_review16/vipman_O4_slice.npz`, which had been decoded from an 8-bit quantized transfer of the same slice (step 7.24 a.u., values above 1846.2 a.u. clipped). The support mask `sup2` is identical in both files. The comment describing the input is updated. Effect on the figure: see README.md, section "Reproduction test".
 4. Dead inputs removed (each was loaded and never reached the figure)
    - `f05_vipman.py`: `2026-05-05_2122_phase3q_production/recon_phase3q/activity_x.npy` was loaded into `act` and used only for an `act_z` that was overwritten three lines later. Both statements are removed. `support_mask.npy` of the same folder is still read (assert and outlines).
@@ -46,9 +46,15 @@ The scripts in this folder were taken from the figure working copy that produced
 
 6. Punctuation in comments and docstrings (`common.py`, `ejmp_style.py`, `f02b_closure_benchmark.py`, `f04_transport.py`, `f05_vipman.py`, `f06_brain.py`, `f07_oxygen.py`, `f08_pedestal.py`, `f09_mechanism.py`, `f10_rate.py`, `f11_realistic.py`, `fS1_refutation.py`, `fS3_inflight.py`, `fS_benchspec.py`, `make_figures.sh`, `source_data/2026-10-20_review19/vipman_slice/make_vipman_slice.py`): em dashes and semicolons were replaced by colons, commas, parentheses or periods. No code line changed.
 
+7. Supplement numbering (v1.1.1, 2026-10-20)
+   - Comments and docstrings that name supplementary notes, tables and figures follow the numbering of the final supplement (Notes S1 to S8, Tables S1 to S9, Figures S1 to S8): `f08_pedestal.py`, `f09_mechanism.py`, `f10_rate.py`, `f11_realistic.py`, `fS1_refutation.py`, `fS3_inflight.py`, the comments of `make_figures.sh` and the docstring of `source_data/2026-10-20_review19/vipman_slice/make_vipman_slice.py`. No code line changed in these files except the one below.
+   - `fS1_refutation.py`: the legend label of the eight-tube points reads "earlier-yield stream" instead of "discovery stream" (two string literals). This is the only change to a figure.
+
 Not changed, documented in README.md instead: the optional override `PLI_INFLIGHT_JSON` in `fS3_inflight.py` (unset by `make_figures.sh`), the `h5py` fallback in `f05_vipman.py` that is used only if the shipped 8 mm cache is absent, the print-only inputs of `f09_mechanism.py` and the assert-only input of `f11_realistic.py`, and the docstrings (some still name the former inputs).
 
 ## Unified diff (source version against release version)
+
+The diff shows the release text of v1.1.0 (items 1 to 5). Item 7 (v1.1.1) later changed some of the comment lines shown, as listed under item 7.
 
 ```diff
 --- container figdev16/common.py

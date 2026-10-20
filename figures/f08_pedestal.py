@@ -1,10 +1,10 @@
 """Fig. 8 (stem fig9_pedestal_derivation), three panels, and Supplementary
-Fig. S1 (stem figS2_pedestal_residuals, the former panel d).
+Fig. S3 (stem figS2_pedestal_residuals, the former panel d).
 (a) larger: hepatic tube spectra under both rules, shaded excess, fit window.
 (b) difference between the rules: thin grey tubes, bold mean, a-priori
     acceptance roll-off. (c) measured vs predicted change in |bias| with the
     zero-parameter consistency line (conditional on the measured pedestal) and the scatter band.
-Review round 6 (2026-10-08): panel (c) and Fig. S1 plot the SIGNED rule difference
+Review round 6 (2026-10-08): panel (c) and Fig. S3 plot the SIGNED rule difference
 b_all - b_closest, the quantity Eq. (4) predicts, with its paired-bootstrap uncertainty and the
 scatter term of the signed regression (2026-10-08_signed_eq3/signed_eq3.json). The folded
 |b_closest| - |b_all| differs from it only where a bias is positive (hepatic tube, two spheres).
@@ -16,7 +16,7 @@ from scipy.stats import norm
 from common import *  # noqa
 
 # Review round 13 (2026-10-14): eight-tube data from the corrected-yield arm C0 (hists_c0_0ps.npz, same dump script
-# as hists_sim1.npz). Panel (c) and Fig. S2 use the twenty-region signed regression with the C0 tubes in place of the
+# as hists_sim1.npz). Panel (c) and Fig. S3 use the twenty-region signed regression with the C0 tubes in place of the
 # discovery tubes (2026-10-14_known_randoms/signed_eq3_c0.json). The other twelve regions are unchanged.
 Z = np.load(F3 / 'c0_sim1/hists_c0_0ps.npz', allow_pickle=False)  # v1.1.0: was allow_pickle=True. Every array is numeric or <U27
 names = [str(s) for s in Z['voi_names']]
@@ -131,7 +131,7 @@ key(ax, 0.97, 0.03, '14 resolved of\n20 regions shown,\nregions within a\nphanto
 st.panel_letter(ax, 'c')
 save(fig, 'fig9_pedestal_derivation')
 
-# ---- Supplementary Fig. S2: normalized residuals, all twenty regions ----------
+# ---- Supplementary Fig. S3: normalized residuals, all twenty regions ----------
 fig, ax = plt.subplots(figsize=(110 * MM, 112 * MM))
 order = []
 for ph in PH_ORDER: order += [p for p in P if p['phantom'] == ph]

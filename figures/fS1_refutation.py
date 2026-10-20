@@ -1,4 +1,4 @@
-"""Supplementary Fig. S2 (stem figS3_eq2_refutation): (a) Sim-1 tubes at common
+"""Supplementary Fig. S4 (stem figS3_eq2_refutation): (a) Sim-1 tubes at common
 accidental rate, measured |bias| vs configured tau, with the model's monotonic
 shape r tau/(1+r tau) scaled to the mean measured bias (dashed). The 1.5 ps pair
 ringed. (b) all regions against the model with the identity and x10, x100 guides.
@@ -9,10 +9,10 @@ from common import *  # noqa
 
 pts = json.load(open(RES / '2026-08-17_derivation_test/derivation_test.json'))['points']
 sim1 = [d for d in pts if d['phantom'] == 'Sim-1']
-PH = [('Sim-1', 'o', THIS, 'eight-tube phantom (discovery stream)'), ('Steinberger disks', 's', THIS, 'reference disks'),
+PH = [('Sim-1', 'o', THIS, 'eight-tube phantom (earlier-yield stream)'), ('Steinberger disks', 's', THIS, 'reference disks'),
       ('Steinberger water', '^', THIS, 'water cylinder'), ('NEMA IQ', 'D', CTRL, 'NEMA background')]
 # Review round 16: panel (a), the shape test at n = 8, had no power and is dropped. The model is rejected by the
-# scale mismatch drawn here. The eight-tube points are the discovery stream (Supplementary Note S15).
+# scale mismatch drawn here. The eight-tube points are the earlier-yield stream (Supplementary Note S8).
 fig = mm_fig(110, 92)
 axes = [ax_mm(fig, 16, 30, 88, 56)]
 r = None
@@ -34,7 +34,7 @@ ax.plot([], [], color=REF, ls='--', lw=0.9, label='identity')
 ax.set_xscale('log'); ax.set_yscale('log'); ax.set_xlim(0.08, 60); ax.set_ylim(0.3, 60)
 ax.set_xlabel(r'predicted $|$bias$|$ $= r\tau/(1+r\tau)$ (%)'); ax.set_ylabel(r'measured $|$bias$|$ (%)')
 hh, ll = ax.get_legend_handles_labels()
-ORD = ['identity', 'eight-tube phantom (discovery stream)', 'reference disks', 'water cylinder', 'NEMA background', 'NEMA spheres (unresolved)']
+ORD = ['identity', 'eight-tube phantom (earlier-yield stream)', 'reference disks', 'water cylinder', 'NEMA background', 'NEMA spheres (unresolved)']
 hh = [hh[ll.index(o)] for o in ORD]; ll = ORD
 fig.legend(hh, ll, frameon=False, loc='lower right', bbox_to_anchor=(108 / 110, 0.6 / 92), ncol=2, fontsize=8.0,
            handlelength=1.4, columnspacing=1.0, borderaxespad=0.0)
