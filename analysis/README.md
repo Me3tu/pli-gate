@@ -333,3 +333,28 @@ started). Every raw path they build exists under the original data folders, exce
 - `results/2026-06-19_steinberger_validation/analysis/steinberger_disk_oracle_clean.py` and its output for the O4 disks, `results/2026-10-20_review19/disk_oracle_o4/` (row 3'' above).
 - The conversion chain called by the run scripts of `simulation/`: `results/2026-06-10_brain_tumor_1B_truetime/scripts/gate_root_to_singles_h5.py` (GATE ROOT to singles HDF5), `results/2026-08-16_T6_nema/concat_singles_u16.py` (batch concatenation), `reconstruction/extract_triples_i124.py`, and the image reconstruction `reconstruction/simple_recon.py` (parallelproj, used for the activity images of the brain-tumour and VIP-Man phantoms). These four contain no workstation paths. `simple_recon.py` looks for the parallelproj libraries in `/usr/local/lib` unless `PARALLELPROJ_C_LIB` and `PARALLELPROJ_CUDA_LIB` are set.
 
+## Supplement numbers in script docstrings
+
+The docstrings and comments of the scripts under `results/` name the notes and tables of the draft supplement
+that was current when each script was written (up to revision 2.19 of the paper). They are left as written. The
+final supplement (revision 2.21) holds the same material as follows.
+
+| draft | final |
+|---|---|
+| Note S7 (CRT scaling scenario, localization check) | Note S8 |
+| Notes S9 and S10 (implementation, positronium processes) | Notes S2 and S3 |
+| Note S11 (estimator bias and coverage) | Note S2, Tables S4 and S5 |
+| Note S12 (other prompt-selection rules, all-pairs builder, pair breaking) | Note S6, Tables S11 and S12 |
+| Note S13 (in-flight annihilation) | Note S8, Table S16 |
+| Table S14 (selection shift per region) | Table S13 |
+| Note S15 (corrected-yield zero-delay arm) | Notes S6 to S8, `../docs/EIGHT_TUBE_LINEAGE.md` |
+| Table S16 (lineage of the eight-tube numbers) | `../docs/EIGHT_TUBE_LINEAGE.md` |
+| Note S17 (acceptance under the exact event selection) | Note S6, and Note S4 for the 20 cm water cylinder |
+| Note S18 (pair-builder and coincidence-window sensitivity) | Note S6 |
+| Note S19 (matched-yield core-shell arms) | Note S5 |
+| Notes S20 and S21 (extended methods and results) | Notes S1 to S8 |
+| Note S24 (prompt flight time) | Note S8, Table S16 |
+| Note S25 (mechanism tests, known-content tests) | Notes S6 and S7, Tables S14 and S15 |
+| Table S4 (registered predictions) | `../registration/README.md`, the prediction table |
+| Table S5 (stock against custom physics) | Table S9 |
+| Table S22 (capability comparison) | Table S7 |

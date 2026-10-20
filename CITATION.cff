@@ -10,13 +10,13 @@ abstract: >-
   the registration files behind the paper "Material-dependent positronium
   lifetimes in GATE and prompt-selection bias".
 type: software
-version: "1.1.0"
+version: "1.1.1"
 date-released: "2026-10-20"
-doi: 10.5281/zenodo.23495808
+doi: 10.5281/zenodo.23495807
 identifiers:
   - type: doi
     value: 10.5281/zenodo.23495808
-    description: "Release v1.1.0"
+    description: "Release v1.1.0 (v1.1.1 receives its own DOI when it is archived)"
   - type: doi
     value: 10.5281/zenodo.23495807
     description: "All versions (concept DOI)"

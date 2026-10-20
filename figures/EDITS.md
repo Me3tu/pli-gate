@@ -2,7 +2,7 @@
 
 Notation: `<PROJECT>` is the project tree on the analysis workstation, `<DATA>` its data disk, `<HOME>` the home folder. The shipped files use the environment variables instead.
 
-The scripts in this folder were taken from the figure working copy that produced the figure PDFs of the submitted paper (container folder `figdev16/`, current versions without `.v2xx` suffix, and `figdev16/tikz/fig1_methods.tex`). This file lists every change made for the release. No change alters a plotted value, with two deliberate exceptions: the Fig. S7(a) input (item 3, Fig. S6(a) in v1.1.0), which replaces an 8-bit quantized slice by the float32 slice it was quantized from. and the eight-tube points of Fig. S4, which the paper redrew for revision 2.21 (item 8).
+The scripts in this folder were taken from the figure working copy that produced the figure PDFs of the submitted paper (container folder `figdev16/`, current versions without `.v2xx` suffix, and `figdev16/tikz/fig1_methods.tex`). This file lists every change made for the release. No change alters a plotted value, with two deliberate exceptions: the Fig. S7(a) input (item 3, Fig. S6(a) in v1.1.0), which replaces an 8-bit quantized slice by the float32 slice it was quantized from, and the eight-tube points of Fig. S4, which the paper redrew for revision 2.21 (item 8).
 
 ## Files
 
