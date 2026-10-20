@@ -12,6 +12,14 @@ abstract: >-
 type: software
 version: "1.1.0"
 date-released: "2026-10-20"
+doi: 10.5281/zenodo.23495808
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23495808
+    description: "Release v1.1.0"
+  - type: doi
+    value: 10.5281/zenodo.23495807
+    description: "All versions (concept DOI)"
 license: LGPL-3.0-only
 repository-code: "https://github.com/Me3tu/pli-gate"
 authors:
