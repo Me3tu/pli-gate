@@ -30,7 +30,7 @@ Check the files with `sha256sum -c SHA256SUMS` (from inside `figures/`).
 | `ejmp_style.py` | house style (fonts, sizes, colour palette), from `reconstruction/results/2026-08-11_ejmp_figure_regen/`, punctuation of comments changed |
 | `f02b_closure_benchmark.py` ... `fS_benchspec.py` | the 12 generators (table below) |
 | `fig1_methods.tex` | Fig. 1, standalone TikZ |
-| `source_data/` | the 36 data files the generators read, plus `make_vipman_slice.py` (the generator of the Fig. S7(a) input) |
+| `source_data/` | the 38 data files that the generators read, plus `make_vipman_slice.py` (the generator of the Fig. S7(a) input) and `refutation_c0.py` (the generator of the Fig. S4 input) |
 | `make_figures.sh` | runs everything |
 | `requirements.txt` | Python package versions |
 | `EDITS.md` | every change to the scripts relative to the versions that produced the paper's figures |
@@ -79,15 +79,18 @@ Paths of inputs are relative to `source_data/`. Roles: plotted (reaches the figu
 | | | | `2026-10-20_review19/vipman_slice/vipman_O4_slice.npz` | plotted (panel a) |
 | | | | `2026-09-30_referee2/vipman_decomp.json` | plotted |
 | | | | `2026-09-30_referee2/vipman_oracle_mix.json` | plotted |
-| Fig. S4 | `figS3_eq2_refutation` | `fS1_refutation.py` | `2026-08-17_derivation_test/derivation_test.json` | plotted |
-| Fig. S8 | `figS4_inflight` | `fS3_inflight.py` | `2026-09-30_feedback3/inflight/physics_level.json` | plotted |
+| Fig. S4 | `figS3_eq2_refutation` | `fS1_refutation.py` | `2026-10-20_round6/refutation_c0.json` | plotted |
+| | | (`2026-10-20_round6/refutation_c0.py`) | `2026-08-17_derivation_test/derivation_test.json` | input of `refutation_c0.py` (disk, water and NEMA points) |
+| | | | `2026-09-30_feedback3/c0_sim1/out_closest/per_voi.csv` | input of `refutation_c0.py` (eight tubes, closest-prompt extraction) |
+| | | | `2026-09-30_feedback3/c0_sim1/c0_compare.json` | input of `refutation_c0.py` (accidental-prompt rate) |
+| in-flight figure (Fig. S8 up to revision 2.20, in this release only) | `figS4_inflight` | `fS3_inflight.py` | `2026-09-30_feedback3/inflight/physics_level.json` | plotted |
 | | | | `2026-09-30_feedback3/inflight/compare_inflight.json` | plotted |
 | | | | `2026-09-30_feedback3/inflight/physics_level_delay_hists.npz` | plotted |
 | | | | `2026-09-30_feedback3/inflight/physics_level_energy_hists.npz` | plotted |
 
 ## Provenance of `source_data/`
 
-The folder keeps the dated result-folder names of the project results tree (`reconstruction/results/` of the simulation project), so every file has the same relative path as its original. 34 of the 36 data files are byte copies of those originals (sha256 checked against the inventory of the paper build). The other two:
+The folder keeps the dated result-folder names of the project results tree (`reconstruction/results/` of the simulation project), so every file has the same relative path as its original. 36 of the 38 data files are byte copies of those originals (sha256 checked against the inventory of the paper build, and for `refutation_c0.json` and `per_voi.csv`, added for revision 2.21 of the paper, against the results tree). The other two:
 
 - `2026-10-19_review16/brain_corrected_rois.json` is the results-tree version (2,971 bytes). The copy used for the paper build held only the block `corrected_regions` without the fields `s` and `ratio_emp_over_ana`. The values `f06_brain.py` reads are identical in both (equal canonical-JSON hash of `corrected_regions` with those two fields removed).
 - `2026-10-20_review19/vipman_slice/vipman_O4_slice.npz` (36,201 bytes, written with `numpy.savez_compressed`) was made for this release by `make_vipman_slice.py` in the same folder from `2026-10-19_review16/vipman_recon_O4/activity_x.npy` (sha256 `b6c9de5b...`, not shipped, 784 kB) and `support_mask.npy` of the same reconstruction. It holds `act_z` (float32, 140 x 70, the mean of z slices 10 and 11, unmasked) and `sup2` (bool, 140 x 70 x 2, the support mask in those slices, 14,094 voxels). An earlier draft of the paper drew Fig. S7(a) from an 8-bit quantized transfer of the same slice (`2026-10-19_review16/vipman_O4_slice.npz`, not shipped): equal support mask, and inside the support every value equals the float32 value rounded to a step of 7.24 a.u. and capped at 1846.2 a.u. (6 voxels capped, exact maximum 1937.8 a.u.). Outside the support the 8-bit file held zeros, the float32 file the unmasked MLEM values. `f05_vipman.py` draws only the support.
@@ -125,8 +128,8 @@ TeX: pdfTeX 1.40.29 (TeX Live 2026) with `stix.sty` installed in the user tree.
 | Fig. S5 | `fig5_sensitivity` | pixel-identical | text placement, 4,373 of 334,908 px |
 | Fig. S6 | `fig4_brain_tumor` | pixel-identical (see note) | text placement, 1,256 of 334,908 px |
 | Fig. S7 | `fig3_vipman_axial` | panel (a) differs from the earlier 8-bit drawing by design, panels (b) to (d) pixel-identical (see note). The submitted figure is drawn from the shipped float32 slice | panel (a) as in run B, plus text placement, 2,127 of 502,362 px against run B |
-| Fig. S4 | `figS3_eq2_refutation` | pixel-identical before the legend change (see note) | text placement, 2,117 of 353,600 px, before the legend change |
-| Fig. S8 | `figS4_inflight` | pixel-identical | text placement, 7,354 of 691,080 px |
+| Fig. S4 | `figS3_eq2_refutation` | pixel-identical before the redraw (see note) | text placement, 2,117 of 353,600 px, before the redraw |
+| in-flight figure (Fig. S8 up to revision 2.20) | `figS4_inflight` | pixel-identical | text placement, 7,354 of 691,080 px |
 
 Pixel-identical means an identical 150-dpi render. In run B the PDFs of Figs. 2 to 6, S1 to S3, S5 and S8, and of S4 before the legend change, are also byte-identical to the paper's apart from the metadata fields CreationDate, Creator and Producer. In both runs `fig2_closure_benchmark.json` is byte-identical to the paper build, and the printed output of every generator is identical between runs A and B and the paper environment (also with the unedited scripts).
 
@@ -134,7 +137,7 @@ Notes:
 
 - Fig. S6, run B: the PDF differs from the paper's only in the coordinates of the colour-bar ticks of panel (a), in the fifth decimal of a point (the colour-scale top is the 99th percentile of the Gaussian-smoothed activity, which differs in its last digits between scipy 1.17.0 and 1.17.1). The render is identical.
 - Fig. S7: panel (a) now uses the float32 slice described above instead of the 8-bit transfer. Against the paper, 14,169 of the 46,810 pixels of the panel (a) image change, each by at most 3 of 255 in any colour channel, and 6 pixels change at one tick mark of the panel (a) colour bar, because the colour-scale top (99th percentile inside the support) is 1711.44 a.u. instead of 1708.63 a.u. (+0.16%). No other pixel of the figure changes. The run B PDF is byte-identical (apart from metadata) to the one made with the same input in the paper environment.
-- Fig. S4: the legend label of the eight-tube points was changed from "discovery stream" to "earlier-yield stream", the name the paper uses, on 2026-10-20, after the runs above. The paper figure was redrawn with matplotlib 3.10.9 (pip wheel, FreeType 2.6.1), and its text differs from the earlier PDF only in that label. Run A was repeated for this figure with the changed script and gave the changed label.
+- Fig. S4 was redrawn after the runs above. For revision 2.21 of the paper its eight-tube points are those of the corrected-yield arm, so that its fourteen resolved regions are those of Fig. 4(c) (the earlier figure drew the earlier-yield stream, first labelled "discovery stream"). The input `2026-10-20_round6/refutation_c0.json` is made by `refutation_c0.py` in the same folder, which reproduces it byte for byte from the shipped inputs. The paper figure was drawn with matplotlib 3.10.9 (pip wheel, FreeType 2.6.1) by a script whose code, module docstring and comments aside, is identical to `fS1_refutation.py`. Run A of the shipped script gives the same text and labels.
 - Run A against run B: every difference in the PDF drawing streams is in text-positioning operators, except in Fig. S3 (axes geometry follows the text extents through `tight_layout`) and Fig. S1 (legend handle positions follow the label extents).
 
 ## Further notes

@@ -22,7 +22,7 @@ Folder names are those of the project results tree (`reconstruction/results/`), 
 
 **Dates.** The project was not under version control. The filesystem modification time (mtime) of each file is its only date record. `DATES.tsv` lists the mtimes of the originals (local time, CEST, UTC+2). For a file with an appended section the mtime is the time of the last append, so its earlier sections are dated only by their own text. Copies that should keep the dates need `cp -p`, `rsync -t` or `tar` (git does not keep mtimes).
 
-**Predictions 18 and 25** of Table S4 are not separate files. They are the docstrings of the analysis scripts that test them, `2026-08-26_A2_cond2/sigma_geo_sim1.py` (prediction 18) and `2026-08-29_T6_diagnostics/t6_prior_test.py` (prediction 25, labelled P-T6-1, with P-T6-2 and P-T6-3 beside it). Each docstring says the prediction was registered before running, and in each case the script's output file is 6 s newer than the script. The scripts are shipped whole, unchanged. They import modules from the results tree by absolute path and are not meant to run from this folder.
+**Predictions 18 and 25** of section 2 are not separate files. They are the docstrings of the analysis scripts that test them, `2026-08-26_A2_cond2/sigma_geo_sim1.py` (prediction 18) and `2026-08-29_T6_diagnostics/t6_prior_test.py` (prediction 25, labelled P-T6-1, with P-T6-2 and P-T6-3 beside it). Each docstring says the prediction was registered before running, and in each case the script's output file is 6 s newer than the script. The scripts are shipped whole, unchanged. They import modules from the results tree by absolute path and are not meant to run from this folder.
 
 **Paths.** `/data/dhritman/...` and `/home/dhritman/...` in the records are locations on the project workstation (bulk data and the project tree). They are not shipped and are not needed to read the records.
 
@@ -31,17 +31,17 @@ Folder names are those of the project results tree (`reconstruction/results/`), 
 - "decision", "request", "the authors'" (prediction, expectation): decisions, requests and predictions of the authors.
 - "reviewer item N", "reviewer N", "review round N", "referee round N", "referee report": numbered points and rounds of internal pre-submission reviews of the manuscript, not the journal's peer review.
 - "page N", "book page": pages of the project's internal results book, not shipped. "freeze": the project's internal append-only register of headline numbers, not shipped.
-- Item labels such as V2, R1, G3, A1, B2, B5, C1, C2, C0, D1, D2 and N1 to N4 are the work items of the project log. "Sim-1" is the eight-tube phantom. "The frozen stream", "June" and "discovery stream" denote the eight-tube 0 ps acquisition of June 2026, which predates the correction of the o-Ps intensity convention of 2026-08-14. The paper calls it the earlier-yield stream (Supplementary Note S8). "C0" is the corrected-yield 0 ps rerun of 2026-09-30 and "C2" the 388 ps eight-tube arm.
+- Item labels such as V2, R1, G3, A1, B2, B5, C1, C2, C0, D1, D2 and N1 to N4 are the work items of the project log. "Sim-1" is the eight-tube phantom. "The frozen stream", "June" and "discovery stream" denote the eight-tube 0 ps acquisition of June 2026, which predates the correction of the o-Ps intensity convention of 2026-08-14. The paper calls it the earlier-yield acquisition (Supplementary Note S8). "C0" is the corrected-yield 0 ps rerun of 2026-09-30 and "C2" the 388 ps eight-tube arm.
 
 **Pre-protocol records.** The six files in `pre_protocol/` were written in the same form between 2026-08-15 and 2026-08-19, before the protocol started. None is scored in the paper. `REGISTERED_V2.md` holds the water measurement from which the band of prediction 7 (0.56 to 0.74) was taken.
 
-**Not shipped.** Three ledger documents of the results tree summarize the records at earlier dates (`2026-08-26_C_methods_facts/C2_holdout_statement.md`, `2026-08-27_B1_route2/RIDERS_R2_R3_R4.md`, `2026-08-27_item4/TABLE_predictions.md`). They are not registrations and are superseded by Table S4 and by this index. The first version of Table S4 among them differs from the paper on predictions 3, 15, 21 and 23.
+**Not shipped.** Three ledger documents of the results tree summarize the records at earlier dates (`2026-08-26_C_methods_facts/C2_holdout_statement.md`, `2026-08-27_B1_route2/RIDERS_R2_R3_R4.md`, `2026-08-27_item4/TABLE_predictions.md`). They are not registrations and are superseded by section 2 and by this index. The first version of the table among them differs from section 2 on predictions 3, 15, 21 and 23.
 
 ### Timing details
 
 These facts come from the mtimes in `DATES.tsv` and of the result files in the same folders.
 
-- **Prediction 9 (C2-b).** The two-factor retention model and C2-b were stated in section 2 of `REGISTERED_C2.md`, dated 2026-08-24 in its text, before the 388 ps eight-tube arm existed. The same section records that the second factor, the lever, did not reproduce the number it was to reproduce, and holds C2-b unscored. The C2 retentions were produced on 2026-08-26 at 08:04 (`2026-08-24_C2_sim1_388/c2_result.json`). The lever was then defined by a derivation of the first author dated 2026-08-26 (route 1, quoted in `2026-08-27_B1_route2/REGISTERED_ROUTE2.md`, the note itself is not in the results tree) and verified by the independent route registered in that file on 2026-08-27 at 00:55:29 (predictions 19 to 21). C2-b was scored four minutes later (`c2b_score.json`, 00:59:39, 10.1% RMS against the registered 15%). The model was therefore stated on 2026-08-24, before the 388 ps arm existed, and its second factor was defined on 2026-08-27, when the two routes agreed, after the retentions it is scored on had been produced. Table S4 scores prediction 9 as post hoc.
+- **Prediction 9 (C2-b).** The two-factor retention model and C2-b were stated in section 2 of `REGISTERED_C2.md`, dated 2026-08-24 in its text, before the 388 ps eight-tube arm existed. The same section records that the second factor, the lever, did not reproduce the number it was to reproduce, and holds C2-b unscored. The C2 retentions were produced on 2026-08-26 at 08:04 (`2026-08-24_C2_sim1_388/c2_result.json`). The lever was then defined by a derivation of the first author dated 2026-08-26 (route 1, quoted in `2026-08-27_B1_route2/REGISTERED_ROUTE2.md`, the note itself is not in the results tree) and verified by the independent route registered in that file on 2026-08-27 at 00:55:29 (predictions 19 to 21). C2-b was scored four minutes later (`c2b_score.json`, 00:59:39, 10.1% RMS against the registered 15%). The model was therefore stated on 2026-08-24, before the 388 ps arm existed, and its second factor was defined on 2026-08-27, when the two routes agreed, after the retentions it is scored on had been produced. Section 2 scores prediction 9 as post hoc.
 - `REGISTERED_LADDER.md` (mtime 2026-08-26 10:45:21) is newer than the six-rung result `ladder_result.txt` (01:28:56), because the twelve-rung section was appended at 10:45, before `mu_ladder.json` (11:01:06). Predictions P-L1 to P-L3 are dated by the text only.
 - `REGISTERED_C2.md` (mtime 2026-08-26 00:19:19) carries the 2026-08-25 append. C2-a to C2-c are dated by the text of section 2 only.
 - `REGISTERED_C.md` (mtime 2026-08-24 10:48:16, the 2026-08-24 append) precedes the C1 run script `2026-08-24_C1_nema388/run_c1.sh` (10:49:46).
@@ -51,40 +51,66 @@ These facts come from the mtimes in `DATES.tsv` and of the result files in the s
 - `REGISTERED_C0.md` (21:52:43, header "21:50") is 70 s newer than the chain script `run_c0_chain.sh` (21:51:33). The comparison `c0_compare.json` is from 2026-10-01 03:28.
 - `REGISTERED_C0_LADDER.md` states that it is not a registration in the sense of the protocol but a post hoc replication, and the paper counts it among the analyses that were not registered (Methods). Its expectations and outcomes are in note c of `docs/EIGHT_TUBE_LINEAGE.md`.
 
-## 2. From the paper to the records
+## 2. The scored predictions
 
-### Table S4
+The paper summarizes these predictions in Supplementary Note S2. Up to revision 2.20 of the manuscript they were Table S4 of the supplement, and the table below is that table with the record and label of each row. Rows 1 to 25 belong to the campaign of the rate replay of the earlier-yield stream, the realistic-timing runs and the estimators, rows 26 to 31 to the in-flight arm (Supplementary Note S8), rows 32 to 37 to the corrected-yield arm and rows 38 to 40 to the matched-yield core-shell rerun (Supplementary Note S5). pp: percentage points of the configured lifetime.
 
-| S4 | record | label |
-|---|---|---|
-| 1 | `2026-08-26_rate_scan/REGISTERED_LADDER.md` | P-L1 |
-| 2 | `2026-08-26_rate_scan/REGISTERED_LADDER.md` | P-L2 |
-| 3 | `2026-08-26_rate_scan/REGISTERED_LADDER.md` | P-L3 |
-| 4 | `2026-08-26_rate_scan/REGISTERED_LADDER.md` (twelve-rung section) | P-L4 |
-| 5 | `2026-08-26_rate_scan/REGISTERED_LADDER.md` (twelve-rung section) | P-L5 |
-| 6 | `2026-08-24_C2_sim1_388/REGISTERED_C2.md` (section appended 2026-08-25) | P-R3 |
-| 7 | `2026-08-22_C_registration/REGISTERED_C.md` | P-C1 |
-| 8 | `2026-08-24_C2_sim1_388/REGISTERED_C2.md` | C2-a |
-| 9 | `2026-08-24_C2_sim1_388/REGISTERED_C2.md` | C2-b |
-| 10 | `2026-08-24_C2_sim1_388/REGISTERED_C2.md` | C2-c |
-| 11 | `2026-08-26_B2_paired/REGISTERED_B2.md` | P-B2-1 |
-| 12 | `2026-08-26_B2_paired/REGISTERED_B2.md` | P-B2-2 |
-| 13 | `2026-08-26_B2_paired/REGISTERED_B2.md` | P-B2-3 |
-| 14 | `2026-08-26_B2_paired/REGISTERED_B2.md` | P-B2-4 |
-| 15 | `2026-08-26_A2_cond2/REGISTERED_COND2.md` | P-C2-1 |
-| 16 | `2026-08-26_A2_cond2/REGISTERED_COND2.md` | P-C2-2 |
-| 17 | `2026-08-26_A2_cond2/REGISTERED_COND2.md` | P-C2-3 |
-| 18 | `2026-08-26_A2_cond2/sigma_geo_sim1.py` (docstring) | none (sigma_geo of Sim-1 against NEMA) |
-| 19 | `2026-08-27_B1_route2/REGISTERED_ROUTE2.md` | P-R2-1 |
-| 20 | `2026-08-27_B1_route2/REGISTERED_ROUTE2.md` | P-R2-2 |
-| 21 | `2026-08-27_B1_route2/REGISTERED_ROUTE2.md` | P-R2-3 |
-| 22 | `2026-08-27_tann/REGISTERED_TANN.md` | P-T1 |
-| 23 | `2026-08-27_tann/REGISTERED_TANN.md` | P-T2 |
-| 24 | `2026-08-27_tann/REGISTERED_TANN.md` | P-T3 |
-| 25 | `2026-08-29_T6_diagnostics/t6_prior_test.py` (docstring) | P-T6-1 |
-| 26 to 31 | `2026-09-30_feedback3/inflight/REGISTERED_INFLIGHT.md` (in-flight annihilation, Supplementary Note S8) | P1 to P6 |
-| 32 to 37 | `2026-09-30_feedback3/c0_sim1/REGISTERED_C0.md` (corrected-yield arm) | Q1 to Q6 |
-| 38 to 40 | `2026-10-08_r2c_matched_yield/REGISTERED_R2C.md` (matched-yield core-shell arms, Supplementary Note S5) | P1 to P3 |
+### Scoring rules
+
+- A criterion is met only if every part of it is met, compared with the unrounded value, and split if some parts are met. A criterion stated for every tube, region or readout is one part, which is not met if any of them misses it.
+- A correlation at the 5% level was considered significant for criteria of no correlation.
+- Prediction 9 was stated before the data of the 388 ps arm existed, but its second factor was fixed only after the retention data it is scored on had been seen (section 1, timing details). It is therefore scored as post hoc.
+- The registration of prediction 3 did not fix the tube set, which is scored on every tube with an estimate (0.989), whereas the six tubes common to all rungs, which give 1.009, became the tube set of prediction 4 and of the later replays.
+- Predictions 15 to 17 were scored with the clipped pseudo-likelihood for which they were registered, on the bootstrap weights of the registered analysis (9.31 ± 0.40 pp and 1.95 times the truncated-mean shift). Supplementary Note S7 gives 9.20 ± 0.40 pp and 1.92 times for the same estimator on the 400 paired resamples it shares with the joint likelihood. The joint likelihood, at 10.46 ± 0.23 pp and 2.19 times, leaves every outcome unchanged.
+- Predictions 12 and 14 are scored on the folded Δ\|b\| for which they were registered. On the signed difference prediction 12 would be met (largest paired-to-independent ratio 0.23) and prediction 14 would remain split (scatter 0.29 pp, 21% of the residual variance).
+- The predictions were not corrected for multiplicity and serve as descriptive diagnostics, not as confirmatory tests.
+
+Of the 24 prospective predictions of rows 1 to 25, 9 met their criterion, 10 did not, 4 split and 1 did not trigger. Of the 15 predictions of rows 26 to 40, 11 met their criterion, 3 did not and 1 split. Over all 40 rows, 20 met, 13 did not, 5 split, 1 did not trigger and 1 (prediction 9) is post hoc.
+
+### Table of scored predictions
+
+| # | prediction | registered | measured | outcome | record | label |
+|---|---|---|---|---|---|---|
+| 1 | rate-replay k = 1 rung reproduces the untouched extraction | byte-identical | byte-identical, both rules | met | `2026-08-26_rate_scan/REGISTERED_LADDER.md` | P-L1 |
+| 2 | μ strictly proportional to k | proportional | μ/k constant, rel. sd 8×10^-10 | met | `2026-08-26_rate_scan/REGISTERED_LADDER.md` | P-L2 |
+| 3 | replay exponent, six rungs | 1.0 to 1.5 (nearer linear than quadratic) | 0.989 (all tubes, five usable rungs), 1.009 (six common tubes), twelve rungs 0.999 (re-extraction 0.997, 95% interval 0.973 to 1.017) | not met (narrow) | `2026-08-26_rate_scan/REGISTERED_LADDER.md` | P-L3 |
+| 4 | twelve-rung exponent against six-rung | within ±0.05 of 1.009 | 0.999 | met | `2026-08-26_rate_scan/REGISTERED_LADDER.md` (twelve-rung section) | P-L4 |
+| 5 | k = 0.15 rung degenerate | excludable as bound | not degenerate, on the line | did not trigger | `2026-08-26_rate_scan/REGISTERED_LADDER.md` (twelve-rung section) | P-L5 |
+| 6 | mixed-phantom exponent (μ² mechanism) | 2.0±0.5 | 1.42, confounded | not met | `2026-08-24_C2_sim1_388/REGISTERED_C2.md` (section appended 2026-08-25) | P-R3 |
+| 7 | NEMA retention | 0.56 to 0.74 | 0.4655 (lifetime units) | not met | `2026-08-22_C_registration/REGISTERED_C.md` | P-C1 |
+| 8 | retention monotone in τ0 | monotone | r = -0.34 | not met | `2026-08-24_C2_sim1_388/REGISTERED_C2.md` | C2-a |
+| 9 | two-factor retention model | ≤15% RMS | 10.1% RMS | met (post hoc) | `2026-08-24_C2_sim1_388/REGISTERED_C2.md` | C2-b |
+| 10 | one-factor model fails | ≥4 of 8 tubes | 8 of 8 outside | met | `2026-08-24_C2_sim1_388/REGISTERED_C2.md` | C2-c |
+| 11 | inter-rule correlation | ρ > 0 everywhere | +0.81 to +0.99 (fifteen eight-tube and NEMA regions) | met | `2026-08-26_B2_paired/REGISTERED_B2.md` | P-B2-1 |
+| 12 | paired/independent σ | < 1 everywhere | one region 1.29 (folded) | not met | `2026-08-26_B2_paired/REGISTERED_B2.md` | P-B2-2 |
+| 13 | ρ falls when the direct component is displaced | falls | +0.964 against +0.960 | not met (null) | `2026-08-26_B2_paired/REGISTERED_B2.md` | P-B2-3 |
+| 14 | systematic floor exists and dominates | both | 0.37 pp exists, 27%, not dominant | split | `2026-08-26_B2_paired/REGISTERED_B2.md` | P-B2-4 |
+| 15 | component-estimator shift | 2 to 4 pp, positive | 9.31±0.40 pp | split (positive, magnitude not met) | `2026-08-26_A2_cond2/REGISTERED_COND2.md` | P-C2-1 |
+| 16 | shift resolved | \|z\|>3 | z = 23 | met | `2026-08-26_A2_cond2/REGISTERED_COND2.md` | P-C2-2 |
+| 17 | component shift against truncated mean | smaller | 1.95× larger | not met | `2026-08-26_A2_cond2/REGISTERED_COND2.md` | P-C2-3 |
+| 18 | eight-tube σ_geo against NEMA | smaller | 353.2 against 351.4 ps | not met | `2026-08-26_A2_cond2/sigma_geo_sim1.py` (docstring) | none (sigma_geo of Sim-1 against NEMA) |
+| 19 | pedestal-response factor of prediction 9, second implementation, pure points | agree to 1% | 0.004%, 0.028% | met | `2026-08-27_B1_route2/REGISTERED_ROUTE2.md` | P-R2-1 |
+| 20 | pedestal-response factor of prediction 9, second implementation, mixture | agree to 1% | 0.000% | met | `2026-08-27_B1_route2/REGISTERED_ROUTE2.md` | P-R2-2 |
+| 21 | 0.1996 recoverable as a wrong step | recoverable as a specific wrong step. Leading hypothesis: configured instead of observed lifetime, or uninverted window mean | recovered, neither hypothesis reproduces it | split | `2026-08-27_B1_route2/REGISTERED_ROUTE2.md` | P-R2-3 |
+| 22 | simplified t_ann equivalent | \|δ\|<2σ all VOIs | 3 of 8 beyond, pooled z = -4.7 | not met | `2026-08-27_tann/REGISTERED_TANN.md` | P-T1 |
+| 23 | per-triple difference of the two delay variables: spread and mean | spread of order σ_geo (300 to 360 ps), mean +10 to +40 ps | spread 359.2 ps (σ_geo 353.2 ps), mean -35.1 ps | split (spread met, mean of opposite sign) | `2026-08-27_tann/REGISTERED_TANN.md` | P-T2 |
+| 24 | δ against τ_cfg | no correlation | r = 0.39, p = 0.33 (8 regions) | met | `2026-08-27_tann/REGISTERED_TANN.md` | P-T3 |
+| 25 | removing the intensity prior halves the healthy-brain deviation | from 6.26% to at most 3.2% in absolute value | -6.30%, no tube moves > 0.08 pp | not met | `2026-08-29_T6_diagnostics/t6_prior_test.py` (docstring) | P-T6-1 |
+| 26 | 511-window singles | -3 to -1% | -1.81% | met | `2026-09-30_feedback3/inflight/REGISTERED_INFLIGHT.md` | P1 |
+| 27 | prompt-window singles | within ±0.5% | +0.14% | met | `2026-09-30_feedback3/inflight/REGISTERED_INFLIGHT.md` | P2 |
+| 28 | event-identity signal triples per tube | -3.5 to -1.5% | mean -2.33%, one tube -1.46% | not met (narrow) | `2026-09-30_feedback3/inflight/REGISTERED_INFLIGHT.md` | P3 |
+| 29 | lifetimes (event identity, all-prompts, closest-prompt) | \|z\|<2 each | z = -1.28, +1.98, +2.07 | not met (narrow) | `2026-09-30_feedback3/inflight/REGISTERED_INFLIGHT.md` | P4 |
+| 30 | Δ\|b\|, pooled | \|z\|<2 | z = +0.4 | met | `2026-09-30_feedback3/inflight/REGISTERED_INFLIGHT.md` | P5 |
+| 31 | accidental-prompt rate μ | within ±0.5% | +0.14% | met | `2026-09-30_feedback3/inflight/REGISTERED_INFLIGHT.md` | P6 |
+| 32 | signal ratio in every tube | 1.25 to 1.42 | 1.29 to 1.32 | met | `2026-09-30_feedback3/c0_sim1/REGISTERED_C0.md` | Q1 |
+| 33 | event-identity lifetimes unchanged | \|z\|<3 per tube, < 2 pooled | pooled z = -5.8, largest \|z\|=4.7 (within 75 mm of the decay: pooled +0.3, largest 1.3) | not met | `2026-09-30_feedback3/c0_sim1/REGISTERED_C0.md` | Q2 |
+| 34 | μ against the realistic-timing arm | within ±0.5% | -0.01% | met | `2026-09-30_feedback3/c0_sim1/REGISTERED_C0.md` | Q3 |
+| 35 | Δ\|b\| smaller in every tube, pooled factor | 0.65 to 0.85 | seven of eight, pooled 0.79 | split | `2026-09-30_feedback3/c0_sim1/REGISTERED_C0.md` | Q4 |
+| 36 | pedestal law in every tube (0.37 pp scatter) | within 3σ | largest pull 2.0 | met | `2026-09-30_feedback3/c0_sim1/REGISTERED_C0.md` | Q5 |
+| 37 | pooled retention | 0.42 to 0.54 | 0.437 | met | `2026-09-30_feedback3/c0_sim1/REGISTERED_C0.md` | Q6 |
+| 38 | arms matched event for event | identical sequences | identical in both pairs | met | `2026-10-08_r2c_matched_yield/REGISTERED_R2C.md` | P1 |
+| 39 | Δτ̂ of pairs A and B | within 3 ps of -82.1 and -57.2 ps | -82.2 and -56.8 ps | met (A and B) | `2026-10-08_r2c_matched_yield/REGISTERED_R2C.md` | P2 |
+| 40 | paired against independent σ | at least two times smaller | factors 6 and 9 | met | `2026-10-08_r2c_matched_yield/REGISTERED_R2C.md` | P3 |
 
 The record labels P-C2 (in `REGISTERED_C.md`) and P-C2-1 to P-C2-3 (in `REGISTERED_COND2.md`) are unrelated, as are P-R2 (in `REGISTERED_C2.md`) and P-R2-1 to P-R2-3 (in `REGISTERED_ROUTE2.md`).
 
@@ -96,7 +122,7 @@ The record labels P-C2 (in `REGISTERED_C.md`) and P-C2-1 to P-C2-3 (in `REGISTER
 
 ## 3. Index of every prediction
 
-Every prediction, tolerance and falsifier in every record, with its outcome. For predictions the paper scores, the outcome is the paper's (Table S4), or for E1 to E4 that of note c of `docs/EIGHT_TUBE_LINEAGE.md`. For the others, the outcome was taken from the findings documents and result files of the same result folder and from the project log (not shipped), and is scored here with the rule printed under Table S4: unrounded values against the registered criterion, a criterion with several parts is met only if every part is, and split if some are, and a criterion stated for every tube, region or readout is one part. Where a record gives a direction without a number, the measured value is quoted. Where a record or findings document scores a prediction itself, that score is quoted, and any difference from a literal reading of the criterion is stated.
+Every prediction, tolerance and falsifier in every record, with its outcome. For the predictions of section 2, the outcome is that of section 2, or for E1 to E4 that of note c of `docs/EIGHT_TUBE_LINEAGE.md`. For the others, the outcome was taken from the findings documents and result files of the same result folder and from the project log (not shipped), and is scored here with the rules of section 2: unrounded values against the registered criterion, a criterion with several parts is met only if every part is, and split if some are, and a criterion stated for every tube, region or readout is one part. Where a record gives a direction without a number, the measured value is quoted. Where a record or findings document scores a prediction itself, that score is quoted, and any difference from a literal reading of the criterion is stated.
 
 Outcome categories:
 
@@ -111,14 +137,14 @@ Outcome categories:
 
 | | predictions | met | not met | split | did not trigger | partly scored | not scored | no direction | withdrawn |
 |---|---|---|---|---|---|---|---|---|---|
-| scored in the paper (Table S4, rows 1 to 25) | 25 | 10 | 10 | 4 | 1 | | | | |
-| scored in the paper (Table S4, rows 26 to 40) | 15 | 11 | 3 | 1 | | | | | |
+| scored in section 2, rows 1 to 25 | 25 | 10 | 10 | 4 | 1 | | | | |
+| scored in section 2, rows 26 to 40 | 15 | 11 | 3 | 1 | | | | | |
 | corrected-yield replay (`docs/EIGHT_TUBE_LINEAGE.md`, note c) | 4 | 4 | | | | | | | |
 | not in the paper, protocol records | 48 | 21 | 13 | 1 | 3 | 2 | 8 | | |
 | not in the paper, pre-protocol records | 23 | 14 | 1 | 1 | | | 4 | 2 | 1 |
 | total | 115 | 60 | 27 | 7 | 4 | 2 | 12 | 2 | 1 |
 
-The met count of 10 for rows 1 to 25 of Table S4 includes prediction 9, which the paper scores as post hoc. The 48 protocol predictions not in the paper are in 15 records: 12 records with no row in the paper (R1, G3, density, G6, residual structure, A1b, A6, B2 and B2b of 2026-08-22, ACC, ORACLE_GAP, P5) and three records whose other predictions are in Table S4 (P-C2 and P-C3 in `REGISTERED_C.md`, P-R1 and P-R2 in `REGISTERED_C2.md`, P-T6-2 and P-T6-3 in `t6_prior_test.py`).
+The met count of 10 for rows 1 to 25 includes prediction 9, which section 2 scores as post hoc. The 48 protocol predictions not in the paper are in 15 records: 12 records with no row in the paper (R1, G3, density, G6, residual structure, A1b, A6, B2 and B2b of 2026-08-22, ACC, ORACLE_GAP, P5) and three records whose other predictions are in section 2 (P-C2 and P-C3 in `REGISTERED_C.md`, P-R1 and P-R2 in `REGISTERED_C2.md`, P-T6-2 and P-T6-3 in `t6_prior_test.py`).
 
 ### Protocol records, 2026-08-20 onward
 
@@ -200,8 +226,8 @@ The met count of 10 for rows 1 to 25 of Table S4 includes prediction 9, which th
 
 | label | registered | outcome | measured (source) |
 |---|---|---|---|
-| P-C1 | NEMA retains 0.56-0.74 of its 0 ps artefact, shift +0.039 to +0.052 ns | not met (Table S4 #7) | 0.4655 |
-| P-C2 | each Sim-1 tube retains 0.56-0.74 of its own 0 ps DiD (per-tube bands in the record) | not met | retention 0.303 to 0.487, 0 of 8 tubes inside (c2_result.json). Its complement is Table S4 #10 |
+| P-C1 | NEMA retains 0.56-0.74 of its 0 ps artefact, shift +0.039 to +0.052 ns | not met (row 7) | 0.4655 |
+| P-C2 | each Sim-1 tube retains 0.56-0.74 of its own 0 ps DiD (per-tube bands in the record) | not met | retention 0.303 to 0.487, 0 of 8 tubes inside (c2_result.json). Its complement is row 10 |
 | P-C3 | the truncated-mean lifetime falls by 0.4-0.7 ns at 388 ps in NEMA and in Sim-1 | split | NEMA: 528.8 ps (closest-prompt), 566.5 ps (all-prompts), met. Sim-1: 0.405 to 0.940 ns (closest-prompt) and 0.505 to 1.196 ns (all-prompts) against the June 0 ps stream, 10 of 16 tube-rule values above 0.7 ns, not met. The project log scores only the NEMA half. The Sim-1 values were computed for this index from `out_*/per_voi.csv` and the June biases in `2026-09-30_feedback3/c0_sim1/c0_compare.json` |
 
 **`2026-08-23_acceptance/REGISTERED_ACC.md`** (acceptance term, re-fit, D2 test). Findings: `findings_ACC.md`.
@@ -236,40 +262,40 @@ The met count of 10 for rows 1 to 25 of Table S4 includes prediction 9, which th
 
 | label | registered | outcome | measured (source) |
 |---|---|---|---|
-| C2-a | retention falls monotonically with tau_0 | not met (Table S4 #8) | r = -0.34 |
-| C2-b | two-factor model within 15% RMS | met, post hoc (Table S4 #9) | 10.1% RMS |
-| C2-c | one-factor model fails on at least 4 of 8 tubes | met (Table S4 #10) | 8 of 8 outside |
+| C2-a | retention falls monotonically with tau_0 | not met (row 8) | r = -0.34 |
+| C2-b | two-factor model within 15% RMS | met, post hoc (row 9) | 10.1% RMS |
+| C2-c | one-factor model fails on at least 4 of 8 tubes | met (row 10) | 8 of 8 outside |
 | P-R1 | the corrected run reproduces mu = 0.029 within ±15% | met | mu = 0.02924 on the delivered data (project log) |
 | P-R2 | per-tube DiD returns inside the bands registered on 24 August | not met | DiD 3.44 to 5.98 pp, retention 0.303 to 0.487, 0 of 8 inside (c2_result.json) |
-| P-R3 | the artefact scales as mu^n with n = 2 ± 0.5 | not met (Table S4 #6) | 1.42, confounded |
+| P-R3 | the artefact scales as mu^n with n = 2 ± 0.5 | not met (row 6) | 1.42, confounded |
 
-**`2026-08-26_rate_scan/REGISTERED_LADDER.md`**: P-L1 met, P-L2 met, P-L3 not met (narrow), P-L4 met, P-L5 did not trigger (Table S4 #1 to #5).
+**`2026-08-26_rate_scan/REGISTERED_LADDER.md`**: P-L1 met, P-L2 met, P-L3 not met (narrow), P-L4 met, P-L5 did not trigger (rows 1 to 5).
 
-**`2026-08-26_B2_paired/REGISTERED_B2.md`**: P-B2-1 met, P-B2-2 not met, P-B2-3 not met (null), P-B2-4 split (Table S4 #11 to #14).
+**`2026-08-26_B2_paired/REGISTERED_B2.md`**: P-B2-1 met, P-B2-2 not met, P-B2-3 not met (null), P-B2-4 split (rows 11 to 14).
 
-**`2026-08-26_A2_cond2/sigma_geo_sim1.py`** (docstring): sigma_geo of Sim-1 smaller than NEMA's 351.4 ps, not met, 353.2 ps (Table S4 #18).
+**`2026-08-26_A2_cond2/sigma_geo_sim1.py`** (docstring): sigma_geo of Sim-1 smaller than NEMA's 351.4 ps, not met, 353.2 ps (row 18).
 
-**`2026-08-26_A2_cond2/REGISTERED_COND2.md`**: P-C2-1 split, P-C2-2 met, P-C2-3 not met (Table S4 #15 to #17).
+**`2026-08-26_A2_cond2/REGISTERED_COND2.md`**: P-C2-1 split, P-C2-2 met, P-C2-3 not met (rows 15 to 17).
 
-**`2026-08-27_B1_route2/REGISTERED_ROUTE2.md`**: P-R2-1 met, P-R2-2 met, P-R2-3 split (Table S4 #19 to #21).
+**`2026-08-27_B1_route2/REGISTERED_ROUTE2.md`**: P-R2-1 met, P-R2-2 met, P-R2-3 split (rows 19 to 21).
 
-**`2026-08-27_tann/REGISTERED_TANN.md`**: P-T1 not met, P-T2 split, P-T3 met (Table S4 #22 to #24).
+**`2026-08-27_tann/REGISTERED_TANN.md`**: P-T1 not met, P-T2 split, P-T3 met (rows 22 to 24).
 
 **`2026-08-29_T6_diagnostics/t6_prior_test.py`** (docstring). Findings: `FINDINGS_T6.md`, `t6_prior_test.json`.
 
 | label | registered | outcome | measured (source) |
 |---|---|---|---|
-| P-T6-1 | removing the Dirichlet prior shrinks abs(dev) on T6 by more than half | not met (Table S4 #25) | -6.26% to -6.30% |
+| P-T6-1 | removing the Dirichlet prior shrinks abs(dev) on T6 by more than half | not met (row 25) | -6.26% to -6.30% |
 | P-T6-2 | the shrink is largest on T6 of the eight tubes | met | abs(dev) grows on every tube without the prior. T6's change (-0.6%) is the smallest, which meets the criterion literally. FINDINGS_T6.md calls this pass vacuous once P-T6-1 failed |
 | P-T6-3 | the fitted o-Ps intensity on T6 rises above its prior-constrained value | met | 0.296698 to 0.296737. FINDINGS_T6.md calls this pass vacuous |
 
-**`2026-09-30_feedback3/inflight/REGISTERED_INFLIGHT.md`** (Note S13): P1 met, P2 met, P3 not met (narrow), P4 not met (narrow), P5 met, P6 met.
+**`2026-09-30_feedback3/inflight/REGISTERED_INFLIGHT.md`** (Supplementary Note S8): P1 met, P2 met, P3 not met (narrow), P4 not met (narrow), P5 met, P6 met.
 
-**`2026-09-30_feedback3/c0_sim1/REGISTERED_C0.md`** (Note S15): Q1 met, Q2 not met, Q3 met, Q4 split, Q5 met, Q6 met.
+**`2026-09-30_feedback3/c0_sim1/REGISTERED_C0.md`** (corrected-yield arm): Q1 met, Q2 not met, Q3 met, Q4 split, Q5 met, Q6 met.
 
-**`2026-10-08_c0_ladder/REGISTERED_C0_LADDER.md`** (Table S16 note c, self-declared post hoc replication): E1, E2, E3, E4 met.
+**`2026-10-08_c0_ladder/REGISTERED_C0_LADDER.md`** (note c of `docs/EIGHT_TUBE_LINEAGE.md`, self-declared post hoc replication): E1, E2, E3, E4 met.
 
-**`2026-10-08_r2c_matched_yield/REGISTERED_R2C.md`** (Note S19): P1 met, P2 met (both pairs), P3 met.
+**`2026-10-08_r2c_matched_yield/REGISTERED_R2C.md`** (Supplementary Note S5): P1 met, P2 met (both pairs), P3 met.
 
 ### Pre-protocol records, 2026-08-15 to 2026-08-19
 

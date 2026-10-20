@@ -38,7 +38,7 @@ SCRIPTS=(
   f06_brain.py                # Fig. S6  fig4_brain_tumor
   f05_vipman.py               # Fig. S7  fig3_vipman_axial
   fS1_refutation.py           # Fig. S4  figS3_eq2_refutation
-  fS3_inflight.py             # Fig. S8  figS4_inflight
+  fS3_inflight.py             # in-flight figure (Fig. S8 up to revision 2.20)  figS4_inflight
 )
 
 cd "$HERE"

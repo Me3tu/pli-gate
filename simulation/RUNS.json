@@ -256,7 +256,7 @@
   {
    "id": "19",
    "phantom": "VIP-Man slab, stock against custom annihilation, 1e6 primaries",
-   "role": "Table S5 run time",
+   "role": "Table S9 run time",
    "binary": "build of 2026-08-11 (not retained)",
    "macro": "macros/stock_vs_custom_pli.mac, macros/stock_vs_custom_stock.mac (need PLI_GATE_MATERIALS_DB and PLI_VIPMAN_DIR)",
    "script": "by hand: Gate <macro>",
@@ -268,7 +268,7 @@
   {
    "id": "20",
    "phantom": "annihilation-vertex unit test",
-   "role": "Note S10",
+   "role": "Note S3",
    "binary": "e37be8b4 (by date)",
    "macro": "macros/unit_vertex_custom.mac, macros/unit_vertex_stock.mac (the stock one needs PLI_GATE_MATERIALS_DB)",
    "script": "by hand: Gate <macro> (the original run_both.sh is not shipped)",

@@ -2,7 +2,7 @@
 
 Notation: `<PROJECT>` is the project tree on the analysis workstation, `<DATA>` its data disk, `<HOME>` the home folder. The shipped files use the environment variables instead.
 
-The scripts in this folder were taken from the figure working copy that produced the figure PDFs of the submitted paper (container folder `figdev16/`, current versions without `.v2xx` suffix, and `figdev16/tikz/fig1_methods.tex`). This file lists every change made for the release. No change alters a plotted value, with the one deliberate exception of the Fig. S6(a) input (item 3), which replaces an 8-bit quantized slice by the float32 slice it was quantized from.
+The scripts in this folder were taken from the figure working copy that produced the figure PDFs of the submitted paper (container folder `figdev16/`, current versions without `.v2xx` suffix, and `figdev16/tikz/fig1_methods.tex`). This file lists every change made for the release. No change alters a plotted value, with two deliberate exceptions: the Fig. S7(a) input (item 3, Fig. S6(a) in v1.1.0), which replaces an 8-bit quantized slice by the float32 slice it was quantized from. and the eight-tube points of Fig. S4, which the paper redrew for revision 2.21 (item 8).
 
 ## Files
 
@@ -18,9 +18,9 @@ The scripts in this folder were taken from the figure working copy that produced
 | `f08_pedestal.py` | `5f04948eb9286e4541ad9b05acdd973a65c98edc407c8843b48a98ea6153762f` | `2c5754e71e66ffbde260c99230ffd6f6d5ab91391e8821e036751a0092dbb377` | yes (5, 6, 7) |
 | `f09_mechanism.py` | `dbdeebfb0e51e01fcf72be129315c741eb70a4cb341bcd39f51e18241222dffb` | `368e7e83001c2cc3a7667fb0f4c97d14184f79b120a82dc285d9ee6cc99c058d` | yes (6, 7) |
 | `f10_rate.py` | `b415031686d37e20a3e7f6513f43cc21f8fb36924d5d9ad14abdd971ef3770bf` | `4f77934b18046257d2e9738f76d1f5761ef6f0d6228941b48861f9887a47b3df` | yes (4, 6, 7) |
-| `f11_realistic.py` | `06f6831e3da2480295582d78b3d03bf8e069428621a459d1c80e1fa6f86d69ec` | `f15a7ec458c66cf6ba208d4eeac76dbd12f0eea516148289eec540a4a04c2824` | yes (2, 6, 7) |
-| `fS1_refutation.py` | `dd0ef0ab536bf1c6d8c54e03b01303cf6510c6944820ef8f9dae4710204f731d` | `02b5e487a025dac1028538df04e1f2fa3200eee8f198f5ea429a1d6b869367cc` | yes (6, 7) |
-| `fS3_inflight.py` | `52a5e9bb15fa43d04826600802d31bd48afc8f26ccd4014f580dd50e9b1cf429` | `a11c4263dfc061355a7a4f460546fd574664f68062021b1435482d18370d9fbc` | yes (6, 7) |
+| `f11_realistic.py` | `06f6831e3da2480295582d78b3d03bf8e069428621a459d1c80e1fa6f86d69ec` | `41344b9f1e47b9443e9757d77e4f2d65b60ed57a5ac3ac4f1ea42c839fdf3260` | yes (2, 6, 7, 8) |
+| `fS1_refutation.py` | `dc24e2683e957b9ee51868e0288d227319aa0c75dda796be0e65399ad01ba8d8` | `3d05f1f6127971f249ae90afa074523f4f3a3eb070257eed5af7407b8aa75cb9` | yes (6, 7, 8) |
+| `fS3_inflight.py` | `52a5e9bb15fa43d04826600802d31bd48afc8f26ccd4014f580dd50e9b1cf429` | `5e6df2a04301840597cc106673463cb734606aeb469cc65abb4d34568a7f5316` | yes (6, 7, 8) |
 | `fS_benchspec.py` | `83d8861547d17723e9f04228f4a2a003384484ceee178f701e40c05a476f7780` | `eb73b38a62eff332ae0f14eb16f38ec47b523bb143ab88d11ea71efce35e5b8e` | yes (6) |
 | `fig1_methods.tex` | `b1d2a77cc62e531b28621079cf89f658396d6d5985b87ff79e221fbbf2767615` | same | no |
 
@@ -47,14 +47,19 @@ The scripts in this folder were taken from the figure working copy that produced
 6. Punctuation in comments and docstrings (`common.py`, `ejmp_style.py`, `f02b_closure_benchmark.py`, `f04_transport.py`, `f05_vipman.py`, `f06_brain.py`, `f07_oxygen.py`, `f08_pedestal.py`, `f09_mechanism.py`, `f10_rate.py`, `f11_realistic.py`, `fS1_refutation.py`, `fS3_inflight.py`, `fS_benchspec.py`, `make_figures.sh`, `source_data/2026-10-20_review19/vipman_slice/make_vipman_slice.py`): em dashes and semicolons were replaced by colons, commas, parentheses or periods. No code line changed.
 
 7. Supplement numbering (v1.1.1, 2026-10-20)
-   - Comments and docstrings that name supplementary notes, tables and figures follow the numbering of the final supplement (Notes S1 to S8, Tables S1 to S9, Figures S1 to S8): `f08_pedestal.py`, `f09_mechanism.py`, `f10_rate.py`, `f11_realistic.py`, `fS1_refutation.py`, `fS3_inflight.py`, the comments of `make_figures.sh` and the docstring of `source_data/2026-10-20_review19/vipman_slice/make_vipman_slice.py`. No code line changed in these files except the one below.
-   - `fS1_refutation.py`: the legend label of the eight-tube points reads "earlier-yield stream" instead of "discovery stream" (two string literals). This is the only change to a figure.
+   - Comments and docstrings that name supplementary notes, tables and figures follow the numbering of the final supplement (Notes S1 to S8, Tables S1 to S16, Figures S1 to S7, with the in-flight figure, Fig. S8 up to revision 2.20, in this release only): `f08_pedestal.py`, `f09_mechanism.py`, `f10_rate.py`, `f11_realistic.py`, `fS1_refutation.py`, `fS3_inflight.py`, the comments of `make_figures.sh` and the docstring of `source_data/2026-10-20_review19/vipman_slice/make_vipman_slice.py`. No code line changed in these files except the one below.
+   - `fS1_refutation.py`: the legend label of the eight-tube points read "earlier-yield stream" instead of "discovery stream" (two string literals). Superseded by item 8.
+
+8. Revision 2.21 of the paper (v1.1.1, 2026-10-20)
+   - `fS1_refutation.py` follows the redrawn Fig. S4 of the paper. Its source version is now the container script that drew it (sha256 in the table above). It reads `2026-10-20_round6/refutation_c0.json`, in which the eight tubes are those of the corrected-yield arm, and labels these points "eight-tube phantom". The unresolved NEMA spheres are drawn below the resolved points, so that the NEMA background, at the abscissa of the 28 mm sphere, is visible. Module docstring and comments aside, its code is identical to the source version.
+   - `source_data/2026-10-20_round6/refutation_c0.py` (new, with its output) makes that input from `2026-08-17_derivation_test/derivation_test.json`, `2026-09-30_feedback3/c0_sim1/c0_compare.json` and `2026-09-30_feedback3/c0_sim1/out_closest/per_voi.csv` (new). It reproduces the shipped JSON byte for byte.
+   - `fS3_inflight.py` (docstring), `f11_realistic.py` (comments, Table S13 instead of Table S8) and the comments of `make_figures.sh` follow the numbering of the supplement of revision 2.21. No code line changed in these files.
 
 Not changed, documented in README.md instead: the optional override `PLI_INFLIGHT_JSON` in `fS3_inflight.py` (unset by `make_figures.sh`), the `h5py` fallback in `f05_vipman.py` that is used only if the shipped 8 mm cache is absent, the print-only inputs of `f09_mechanism.py` and the assert-only input of `f11_realistic.py`, and the docstrings (some still name the former inputs).
 
 ## Unified diff (source version against release version)
 
-The diff shows the release text of v1.1.0 (items 1 to 5). Item 7 (v1.1.1) later changed some of the comment lines shown, as listed under item 7.
+The diff shows the release text of v1.1.0 (items 1 to 5). Items 7 and 8 (v1.1.1) later changed some of the comment lines shown, as listed under items 7 and 8.
 
 ```diff
 --- container figdev16/common.py

@@ -105,6 +105,23 @@ before 2026-08-14 14:54 used builds that were not retained and cannot be
 rebuilt bit for bit. "Logged" means the run log records the binary hash, "by
 date" that it follows from the run date and the install time.
 
+Compared with the archived build 3522d567, used for the calibration-tube
+closure, the production build e37be8b4 adds a runtime switch for the 388 ps
+component and a stricter material loader. Both changes left the sampled
+output of a probe run unchanged record for record (129,286 and 12,869
+records). The variants of the paper are selected at run time by
+`PLI_DIRECT_TAU_PS`, `PLI_LIFETIME_MODE` and `PLI_DISABLE_3GAMMA`, whereas
+the in-flight variant cc552a68 is a separate build run with
+`PLI_INFLIGHT_STOCK` set. Up to revision 2.20 of the paper this paragraph
+was part of Supplementary Note S3.
+
+Run time (run 19): in the matched 1e6-primary run, single-threaded on an
+AMD Ryzen 9 5950X (16 cores, 84 GB), the custom list took 272.9 s against
+308.5 s for the stock `emstandard_opt4` list, 11.5% less, beyond the
+pass-to-pass repeatability of 0.6 to 1.7%, with 0.4% more singles. The
+difference was not profiled. The replacement of `G4eplusAnnihilation`, in
+flight and at rest, by a sampled delay and an emission at rest may explain it.
+
 Materials databases: v8 and v7 are `../materials/pli_materials.json` and
 `../materials/previous/pli_materials.json`. They differ at run time only in
 the five `TumorTissue_pO2_*` entries of the oxygen phantom (at most 0.11 ps),
@@ -138,7 +155,7 @@ the corrected 0.67 g/cm3.
 | 16 | Mercolli XAD-4 tubes, wet XAD-4 against a lookup table | lookup-arm comparison (May) | May build (not retained) | macros/mercolli_xad4_i124.mac with setTimeStop 0.787550 s | May orchestrator (not shipped) |  |  | PLI_MATERIALS_JSON=../materials/variants/lookup_baseline.json | ../materials/variants/lookup_baseline.json (80da91ba), which this release cannot load |
 | 17 | discovery eight-tube stream (the earlier-yield stream of the paper) | replication only | May build (not retained) | not shipped (May archive macro sim1_te_poisson.mac) | not shipped |  |  |  | May database (not retained) |
 | 18 | 12-tube closure, Sim-1 half | three-seed repeatability | build of 2026-08-12 (not retained) | `macros/closure_sim1_sc44.mac` | runs/seed_repeatability.py | 8 batches x 16 shards x 750,000 = 9.6e7 primaries per seed (the script docstring's 4 x 16 x 4.425 s = 250 M is wrong) | bases 2,000,000 / 3,000,000 / 4,000,000 + 1000 x batch + shard | none | database of 2026-08-12 (not retained) |
-| 19 | VIP-Man slab, stock against custom annihilation, 1e6 primaries | Table S7 run time | build of 2026-08-11 (not retained) | macros/stock_vs_custom_pli.mac, macros/stock_vs_custom_stock.mac (need PLI_GATE_MATERIALS_DB and PLI_VIPMAN_DIR) | by hand: Gate <macro> | one process each | 424242 (in the macros) |  | not retained |
+| 19 | VIP-Man slab, stock against custom annihilation, 1e6 primaries | Table S9 run time | build of 2026-08-11 (not retained) | macros/stock_vs_custom_pli.mac, macros/stock_vs_custom_stock.mac (need PLI_GATE_MATERIALS_DB and PLI_VIPMAN_DIR) | by hand: Gate <macro> | one process each | 424242 (in the macros) |  | not retained |
 | 20 | annihilation-vertex unit test | Note S3 | e37be8b4 (by date) | macros/unit_vertex_custom.mac, macros/unit_vertex_stock.mac (the stock one needs PLI_GATE_MATERIALS_DB) | by hand: Gate <macro> (the original run_both.sh is not shipped) | 1e6 primaries each | in the macros | PLI_OUT for the phase-space output | ../materials/previous/pli_materials.json (version 7, f6d5a53c) |
 
 Seeds: every production run uses the base 1,000,000, so seeds repeat across
